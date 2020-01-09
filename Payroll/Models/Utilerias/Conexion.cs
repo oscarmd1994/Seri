@@ -9,10 +9,10 @@ namespace Payroll.Models.Utilerias
     public class Conexion
     {
 
-        static readonly string Server = "OSCARMD";
-        static readonly string Db = "db_payroll";
+        static readonly string Server = "MCARRANZA";
+        static readonly string Db = "payroll";
         static readonly string User = "sa";
-        static readonly string Pass = "OSCAR";
+        static readonly string Pass = "123456";
 
         protected SqlConnection conexion { get; set; }
 
