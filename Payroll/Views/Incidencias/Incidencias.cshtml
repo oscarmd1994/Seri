@@ -1,0 +1,292 @@
+﻿<div class="container bg-white py-4 px-0 rounded-top">
+    <div class="row">
+        <div class="search-box col-md-11 col-lg-11 col-11 pl-3">
+            @*<label for="inputSearchEmpleados">Escribe el nombre del empleado</label>*@
+            <input type="text" name="inputSearchEmpleados" id="inputSearchEmpleados" placeholder="Escriba el nombre o numero de nomina del empleado" class="form-control pl-4 ml-4" />
+            <div id="resultSearchEmpleados" name="resultSearchEmpleados" class="list-group"></div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-3 pb-3">
+            
+        </div>
+    </div>
+</div>
+<div class="container collapse pt-3 bg-white" id="vacacionesCollapse">
+    <div class="media row border-bottom pb-3 border-primary">
+        <div class="media-body col-md-9 col-xs-3 col-lg-9 col-9">
+            <div class="row">
+                <div class="col-12">
+                    <label for="" class="font-italic">Nombre </label><br>
+                    <h5 id="nomEmp" class="font-weight-bold">Oscar Mejia Doroteo</h5>
+                </div>
+                <div class="col-4">
+                    <label for="" class="col-4 font-italic">Puesto</label><br>
+                    <h6 id="puesto_emp" class="col-4 font-weight-bold">Programador Senior</h6>
+                </div>
+                <div class="col-4">
+                    <label for="" class="col-4 font-italic">Area</label><br>
+                    <h6 id="area_emp" class="col-4 font-weight-bold">SISTEMAS</h6>
+                </div>
+                <div class="col-4">
+                    <label for="" class="col-4 font-italic">Antigüedad</label><br>
+                    <h6 id="antig_emp" class="col-4 font-weight-bold"> 8 </h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-3 col-lg-3 col-3 ml-3">
+            <img src="~/Content/img/icon-user.png" class="text-center" alt="...">
+        </div>
+    </div>
+    <div class="row pt-2 border-bottom pb-3 border-primary">
+        <div class="col-3"></div>
+        <div class="h1 col-3 mx-1 btn btn-success">
+            <span class="h2">9</span><br>
+            Dias disponibles
+        </div>
+        <div class="h1 col-3 mx-1 btn btn-danger">
+            <span class="h2">4</span><br>
+            Días usados en el año
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row pt-2 border-bottom pb-3 border-primary">
+        <div class="container col-12 col-md-12 col-lg-6">
+            <div class="text-center font-weight-bold h2">Resumen de Vacaciones</div>
+            <table id="example1" class="table table-sm table-striped text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Años</th>
+                        <th>Días</th>
+                        <th>Dias adicionales</th>
+                        <th>Dias de prima</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="container col-12 col-md-12 col-lg-6">
+            <div class="text-center font-weight-bold h2">Periodos</div>
+            <table id="example2" class="table table-sm table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr class="">
+                        <th>Año</th>
+                        <th>Días</th>
+                        <th>Días Prima</th>
+                        <th>ID</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Termino</th>
+                    </tr>
+                </thead>
+                <tbody id="tabBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container col-12 align-content-center">
+        <div class="row">
+            <div class="col-12">
+                <div class="col-12 h2 text-center">Agregar nuevo periodo de vacaciones</div>
+                <form action="#" class="needs-validation bg-secondary text-white rounded px-4 py-3 mb-4" id="frmAddPeriodo" novalidate>
+                    <div class="form-row">
+                        <div class="col-md-4 mb-3">
+                            <label for="from">Fecha Inicio</label>
+                            <input type="text" class="form-control" id="from" name="from" required placeholder="mm / dd / aaaa">
+
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="to">Fecha Termino</label>
+                            <input type="text" class="form-control datepiker" id="to" name="to" required placeholder="mm / dd / aaaa" disabled>
+
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label for="datepicker">Días</label>
+                            <input type="text" class="form-control datepiker" id="diasV" name="diasV" disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary font-weight-bold w-100 h-100" disabled id="btnCalcVacaciones" type="button" >Registrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        var dateFormat = "mm/dd/yy",
+            from = $("#from")
+                .datepicker({
+                    defaultDate: "+1w",
+                    minDate: -30,
+                    changeMonth: true,
+                    numberOfMonths: 1,
+                    beforeShowDay: $.datepicker.noWeekends,
+                    
+                    changeYear: true
+                })
+                .on("change", function () {
+                    $("#to").removeAttr("disabled");
+                    if (!$("#to").val() == "") {
+                        calcularDias()
+                    }
+                    to.datepicker("option", "minDate", getDate(this));
+                }),
+            to = $("#to").datepicker({
+                defaultDate: "+1w",
+                changeMonth: true,
+                numberOfMonths: 1,
+                beforeShowDay: $.datepicker.noWeekends,
+                
+                changeYear: true
+		
+            })
+                .on("change", function () {
+                    from.datepicker("option", "maxDate", getDate(this));
+                    $("#btnCalcVacaciones").removeAttr("disabled");
+                    calcularDias();
+                });
+
+        function getDate(element) {
+            var date;
+            try {
+                date = $.datepicker.parseDate(dateFormat, element.value);
+            } catch (error) {
+                date = null;
+            }
+
+            return date;
+        }
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#inputSearchEmpleados").on("keyup", function () {
+            $("#resultSearchEmpleados").empty();
+            var txt = $("#inputSearchEmpleados").val();
+            if ($("#inputSearchEmpleados").val() != "") {
+                var txtSearch = { "txtSearch": txt };
+                $.ajax({
+                    url: "../Empleados/SearchEmpleados",
+                    type: "POST",
+                    cache: false,
+                    data: JSON.stringify(txtSearch),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: (data) => {
+                        $("#resultSearchEmpleados").empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $("#resultSearchEmpleados").append("<button type='button' class='list-group-item list-group-item-action btnListEmpleados' onclick='MostrarDatosEmpleado(" + data[i]["IdEmpleado"] + ")' >" + data[i]["NombreEmpleado"] + " " + data[i]["ApellidosEmpleado"] + "<br><small class='text-muted'>" + data[i]["Puesto"] + "</small></button>");
+                        }
+                    }
+                });
+            } else {
+                $("#resultSearchEmpleados").empty();
+            }
+        });
+        //$("#datepicker").datepicker();
+        $('#example1 tbody').on('click', 'tr', function () {
+            $(this).toggleClass('selected');
+        });
+        $('#example2 tbody').on('click', 'tr', function () {
+            $(this).toggleClass('selected');
+        });
+        //$('#example1').DataTable();
+        //$('#example2').DataTable();
+        $("#btnCalcVacaciones").on("click", function (evt) {
+            evt.preventDefault();
+            var Periodo = $("#frmAddPeriodo").serialize();
+            alert("si form" + Periodo);
+        });
+        
+        
+        
+    });
+</script>
+<script>
+    var tab2 = DataTable();
+    function MostrarDatosEmpleado(idE) {
+        var txtIdEmpleado = { "IdEmpleado": idE };
+        $.ajax({
+            url: "../Empleados/SearchEmpleado",
+            type: "POST",
+            data: JSON.stringify(txtIdEmpleado),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: (data) => {
+                var idEmp;
+                $("#resultSearchEmpleados").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#nomEmp").empty(); $("#nomEmp").append(data[i]["NombreEmpleado"] + " " + data[i]["ApellidosEmpleado"]);
+                    $("#puesto_emp").empty(); $("#puesto_emp").append(data[i]["Puesto"]);
+                    $("#antig_emp").empty(); $("#antig_emp").append(data[i]["FechaIngreso"].substring(0,10));
+                    $("#vacacionesCollapse").collapse("show");
+                    
+                    idEmp = data[i]["IdEmpleado"];
+                    
+                }
+                console.log(data[0].IdEmpleado);
+                CargarTabPeriodos(data[0].IdEmpleado);
+
+                document.getElementById("inputSearchEmpleados").value = '';
+                
+            }
+        });
+    }
+    function CargarTabPeriodos(IdEmpleado) {
+        $.ajax({
+            url: "../Incidencias/ResumenVacaciones",
+            type: "post",
+            contentType: "application/json; charset=utf-8",
+            //data: { 'IdEmpleado': IdEmpleado },
+            dataType: "json",
+            //dataSrc: "data",
+            success: (datos) => {
+                //console.log(datos);
+                //tab2.destroy();
+                $("#tabBody").empty();
+                $("#tabBody").append(datos);
+                //tab2.destroy();
+                tab2 = $("#example2").DataTable({
+                    paging: false,
+                    scrollX: true,
+                    scrollY: true,
+                    searching: false,
+                    scrollCollapse: true,
+                    language: { url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json" }
+                });
+                    
+            }   
+
+        });
+    }
+ 
+    function calcularDias()
+    {
+		var fechaInicial=document.getElementById("from").value;
+        var fechaFinal = document.getElementById("to").value;	
+		inicial=fechaInicial.split("/");
+        final = fechaFinal.split("/");
+        console.log(inicial[1] +'/'+ (inicial[0]-1) +'/'+ inicial[2]+ " fecha inicial variable ");
+			// obtenemos las fechas en milisegundos
+		var inicio=new Date(inicial[2],(inicial[0]-1),inicial[1]);
+        var fin = new Date(final[2], (final[0]-1), final[1]);
+        //alert(inicial[2] + '-' + inicial[0] + '-' + inicial[1] + ' - a - ' + final[2] + '-' + final[0] + '-' + final[1]);
+        var timeDiff = Math.abs(fin.getTime() - inicio.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); //Días entre las dos fechas
+        var cuentaFinde = 0; //Número de Sábados y Domingos
+        var array = new Array(diffDays);
+        for (var i=0; i < diffDays + 1; i++) 
+        {
+            console.log(inicio);
+            //0 => Domingo - 6 => Sábado
+            if (inicio.getDay() == 0 || inicio.getDay() == 6) {
+                cuentaFinde++;
+            }
+            inicio.setDate(inicio.getDate() + 1);
+        }
+        var txtdias = document.getElementById("diasV");
+        txtdias.value = (diffDays + 1) - cuentaFinde;
+    }
+</script>

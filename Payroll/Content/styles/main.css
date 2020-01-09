@@ -1,0 +1,162 @@
+﻿/* Importando fuentes de la applicación */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP|Noto+Sans+KR&display=swap');
+
+body {
+    background-color: aliceblue !important;
+}
+input {
+    font-size:12px !important;
+}
+/* Navbar Colores */
+.nav-backcolor {
+    background-color: #020F59 !important;
+}
+
+/* Titulos */
+.login-title {
+    font-family: 'Noto Sans JP', sans-serif !important;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-shadow: 8px 6px #eee;
+}
+
+.title-navbar {
+    font-family: 'Noto Sans JP', sans-serif !important;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+.font-navs {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px !important;
+}
+
+.txt-none {
+    text-decoration: none !important;
+}
+
+.font-nav-child {
+    font-size: 12px !important;
+}
+
+/* Tamano de letra de labels de formularios */
+.font-labels {
+    font-size: 12px !important;
+}
+
+.font-menu-prin {
+    font-size: 13px !important;
+}
+
+/* Colores iconos */
+.col-ico {
+    color: #020F59 !important;
+}
+
+/* Margenes iconos */
+.mr-ico-05 {
+    margin-right: 0.5em !important;
+}
+
+.ml-ico-05 {
+    margin-left: 0.5em !important;
+}
+
+/* Colores y letra de botones */
+.col-btn-login {
+    background-color: #020F59 !important;
+    color: aliceblue !important;
+    padding: 0.5em !important;
+    transition: 1s !important;
+    box-shadow: 4px 4px #ddd;
+}
+
+    .col-btn-login:hover {
+        background-color: aliceblue !important;
+        color: #020F59 !important;
+        box-shadow: 2px 2px #ddd;
+    }
+
+.font-button {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.flotante0 {
+    position: fixed;
+    bottom: 480px;
+    right: 20px;
+}
+
+.flotante {
+    position: fixed;
+    bottom: 420px;
+    right: 20px;
+}
+
+.flotante2 {
+    position: fixed;
+    bottom: 360px;
+    right: 20px;
+}
+
+.flotante3 {
+    position: fixed;
+    bottom: 300px;
+    right: 20px;
+}
+
+.flotante4 {
+    position: fixed;
+    bottom: 240px;
+    right: 20px;
+}
+
+.flotante5 {
+    position: fixed;
+    bottom: 180px;
+    right: 20px;
+}
+
+.flotante6 {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+}
+
+span > .paginate_button {
+    background: whitesmoke !important;
+    margin: 0.3em !important;
+    cursor: pointer !important;
+    padding: 0.5em !important;
+    font-weight: bold !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+}
+
+#table-puestos > tbody > tr > td:nth-child(3) {
+    text-align: center !important;
+}
+
+#table-puestos > tbody > tr > td:nth-child(2) {
+    text-transform: capitalize !important;
+}
+
+#table-departaments > tbody > tr > td:nth-child(3) {
+    text-align: center !important;
+}
+
+#table-departaments > tbody > tr > td:nth-child(2) {
+    text-transform: capitalize !important;
+}
+
+#table-departamentsbtn > tbody > tr > td:nth-child(3) {
+    text-align: center !important;
+}
+
+#table-departamentsbtn > tbody > tr > td:nth-child(2) {
+    text-transform: capitalize !important;
+}
+
+#table-employes > tbody > tr > td:nth-child(3) {
+    text-align: center !important;
+}
