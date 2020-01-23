@@ -313,4 +313,48 @@
         public string sFechaRegistroPosicion { get; set; }
         public string sMensaje { get; set; }
     }
+    public class RegionalesBean
+    {
+        public int iIdRegional { get; set; }
+        public int iEmpresaId { get; set; }
+        public string sDescripcionRegional { get; set; }
+        public string sClaveRegional { get; set; }
+        public int iUsuarioAltaId { get; set; }
+        public string sFechaAlta { get; set; }
+        public string sMensaje { get; set; }
+    }
+
+    public class SucursalesBean
+    {
+        public int iIdSucursal { get; set; }
+        public string sDescripcionSucursal { get; set; }
+        public string sClaveSucursal { get; set; }
+        public int iUsuarioAltaId { get; set; }
+        public string sFechaAlta { get; set; }
+        public string sMensaje { get; set; }
+    }
+    public class ZonaEconomicaBean
+    {
+        public int iIdZonaEconomica { get; set; }
+        public string sDescripcion {get; set; }
+
+    }
+    public class AusentismosBean
+    { 
+        public int iIdTipoAusentismo { get; set; }
+        public string sNombreAusentismo { get; set; }
+        public string sDescripcionAusentismo { get; set; }
+
+    }
+    public class DescEmpleadoVacacionesBean 
+    {
+        public int iFlag { get; set; }
+        public int IdEmpleado { get; set; }
+        public string Nombre_Empleado { get; set; }
+        public string Apellido_Materno_Empleado { get; set; }
+        public string Apellido_Paterno_Empleado { get; set; }
+        public string FechaIngreso { get; set; }
+        public string DescripcionDepartamento { get; set; }
+        public string DescripcionPuesto { get; set; }
+    }
 }

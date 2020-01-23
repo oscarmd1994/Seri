@@ -44,7 +44,7 @@ namespace Payroll.Models.Daos
             return permBean;
         
         }
-
+            
         public List<MainMenuBean> bringMenus(int Profile_User)
         {
             List<MainMenuBean> MmenuBean = new List<MainMenuBean>();

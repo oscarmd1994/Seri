@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Payroll.Models.Beans;
 using Payroll.Models.Utilerias;
-using Payroll.Models.Beans;
-using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace Payroll.Models.Daos
 {
@@ -143,8 +141,8 @@ namespace Payroll.Models.Daos
                     {
                         InfoDireccionByCPBean infDomBean = new InfoDireccionByCPBean();
                         if (data["Ciudad"].ToString() == "" || data["Ciudad"].ToString().Length == 0 || data["Ciudad"] == null)
-                        {    infDomBean.sCiudad = "Sin Ciudad";    }    
-                        else    {   infDomBean.sCiudad = data["Ciudad"].ToString();    }
+                        { infDomBean.sCiudad = "Sin Ciudad"; }
+                        else { infDomBean.sCiudad = data["Ciudad"].ToString(); }
                         infDomBean.iIdColonia = int.Parse(data["IdColonia"].ToString());
                         infDomBean.sColonia = data["Colonia"].ToString();
                         infDomBean.iIdMunicipio = int.Parse(data["IdMunicipio"].ToString());

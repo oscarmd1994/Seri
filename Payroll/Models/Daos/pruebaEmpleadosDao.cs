@@ -11,35 +11,41 @@ namespace Payroll.Models.Daos
 {
     public class pruebaEmpleadosDao : Conexion
     {
-        public List<PruebaEmpleadosBean> sp_Retrieve_liveSearchEmpleado(int IdEmp, string txtSearch)
+        public List<DescEmpleadoVacacionesBean> sp_Retrieve_liveSearchEmpleado(int IdEmp, string txtSearch)
         {
             string txt = txtSearch;
-
-            List<PruebaEmpleadosBean> list = new List<PruebaEmpleadosBean>();
+            List<DescEmpleadoVacacionesBean> list = new List<DescEmpleadoVacacionesBean>();
             this.Conectar();
             SqlCommand cmd = new SqlCommand("sp_Retrieve_liveSearchEmpleado", this.conexion)
             {
                 CommandType = CommandType.StoredProcedure
             };
-            cmd.Parameters.Add(new SqlParameter("@IdEmpresa", IdEmp));
-            cmd.Parameters.Add(new SqlParameter("@NombreEmpleado", txt));
-            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Parameters.Add(new SqlParameter("@ctrliIdEmpresa", IdEmp));
+            cmd.Parameters.Add(new SqlParameter("@ctrlsNombreEmpleado", txt));
+          SqlDataReader data = cmd.ExecuteReader();
             cmd.Dispose();
             if (data.HasRows)
             {
                 while (data.Read())
                 {
-                    PruebaEmpleadosBean listEmpleados = new PruebaEmpleadosBean
+                    DescEmpleadoVacacionesBean listEmpleados = new DescEmpleadoVacacionesBean();
+                    if (int.Parse(data["iFlag"].ToString()) == 0)
                     {
-                        IdEmpleado = int.Parse(data["IdEmpleado"].ToString()),
-                        NombreEmpleado = data["NombreEmpleado"].ToString(),
-                        ApellidosEmpleado = data["ApellidosEmpleado"].ToString(),
-                        NombreDepartamento = data["NombreDepartamento"].ToString(),
-                        Puesto = data["Puesto"].ToString(),
-                        FechaIngreso = data["FechaIngreso"].ToString(),
-                        Sueldo = decimal.Parse(data["Sueldo"].ToString()),
-                        IdEmpresa = int.Parse(data["IdEmpresa"].ToString())
-                    };
+                        listEmpleados.iFlag = int.Parse(data["iFlag"].ToString());
+                        listEmpleados.IdEmpleado = int.Parse(data["IdEmpleado"].ToString());
+                        listEmpleados.Nombre_Empleado = data["Nombre_Empleado"].ToString();
+                        listEmpleados.Apellido_Paterno_Empleado = data["Apellido_Paterno_Empleado"].ToString();
+                        listEmpleados.Apellido_Materno_Empleado = data["Apellido_Materno_Empleado"].ToString();
+                        listEmpleados.DescripcionDepartamento = data["DescripcionDepartamento"].ToString();
+                        listEmpleados.DescripcionPuesto = data["DescripcionPuesto"].ToString();
+                        listEmpleados.FechaIngreso = data["FechaIngreso"].ToString();
+                    }
+                    else
+                    {
+                        listEmpleados.iFlag = int.Parse(data["iFlag"].ToString());
+                        listEmpleados.Nombre_Empleado = data["title"].ToString();
+                        listEmpleados.DescripcionPuesto = data["resume"].ToString();
+                    }
                     list.Add(listEmpleados);
                 }
             }
@@ -51,10 +57,8 @@ namespace Payroll.Models.Daos
 
             return list;
         }
-
         public List<PruebaEmpleadosBean> sp_Retrieve_pruebaEmpleado(int IdEmpleado)
         {
-
             List<PruebaEmpleadosBean> list = new List<PruebaEmpleadosBean>();
             this.Conectar();
             SqlCommand cmd = new SqlCommand("sp_Retrieve_pruevaEmpleado", this.conexion)

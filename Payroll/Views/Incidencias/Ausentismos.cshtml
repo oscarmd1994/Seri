@@ -1,17 +1,17 @@
-﻿<div class="container bg-white pb-3 rounded">
+﻿<div class="container bg-white pb-3 rounded font-labels">
     <h4 class="border-bottom border-secondary pt-4 pb-2">Registrar ausentismo a empleado</h4>
     <div class="row">
         <div class="col-md-6  rounded">
             <form action="#" method="post" class="bg-light px-3 py-3 rounded" id="frmAusentismos">
                 <div class="form-group">
                     <label for="">Motivo del ausentismo</label>
-                    <select class="form-control" id="inMotivoAusentismo" name="inMotivoAusentismo" required>
-                        <option>selecciona</option>
+                    <select class="form-control font-labels custom-select" id="inMotivoAusentismo" name="inMotivoAusentismo" required>
+                        <option>Selecciona</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="inRecuperacionAusentismo">Recupera ausentismo</label>
-                    <select class="form-control" id="inRecuperacionAusentismo" required>
+                    <select class="form-control font-labels custom-select" id="inRecuperacionAusentismo" required>
                         <option>Sexto y septimo día</option>
                         <option>Septimo día</option>
                         <option>No aplicar</option>
@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <label for="inFechaAusentismo">Fecha</label>
                     <div class="input-group">
-                        <input type="text" name="inFechaAusentismo" id="inFechaAusentismo" value="" class="form-control" required />
+                        <input type="text" name="inFechaAusentismo" id="inFechaAusentismo" value="" class="form-control font-labels" required />
                         <div class="input-group-prepend">
                             <div class="input-group-text " id=""><span class="far fa-calendar-alt"></span></div>
                         </div>
@@ -28,19 +28,19 @@
                 </div>
                 <div class="form-group">
                     <label for="inDiasAusentismo">Dias</label>
-                    <input type="number" name="inDiasAusentismo" id="inDiasAusentismo" value="" class="form-control" placeholder="Escriba los dias de Ausentismo" required />
+                    <input type="number" name="inDiasAusentismo" id="inDiasAusentismo" class="form-control" placeholder="Escriba los dias de Ausentismo" min="1" required />
                 </div>
                 <div class="form-group">
                     <label for="inCausaAusentismo">Causa</label>
                     <input type="text" name="inCausaAusentismo" id="inCausaAusentismo" value="" class="form-control" pattern="^[A-Za-z]+$" placeholder="Escriba la causa del Ausentismo" required />
                 </div>
                 <div class="d-flex form-group justify-content-end">
-                    <button type="submit" class="btn btn-primary mb-2" id="btnRegistroAusentismo"><span class="far fa-edit"></span> Registrar Ausentismo</button>
+                    <button type="submit" class="btn btn-primary mb-2 font-button btn-sm form-control" id="btnRegistroAusentismo"><span class="far fa-edit"></span> Registrar Ausentismo</button>
                 </div>
             </form>
         </div>
         <div class="col-md-6">
-            <table class="table" id="tabAusentismos">
+            <table class="table table-sm font-labels" id="tabAusentismos">
                 <thead>
                     <tr>
                         <th scope="col">Motivo</th>
@@ -62,6 +62,7 @@
 </div>
 <script>
     $(document).ready(function () {
+        var motivoA = document.getElementById("inMotivoAusentismo");
         var tabAusentismo = $("#tabAusentismos").DataTable();
         $("#inFechaAusentismo").datepicker();
 
@@ -76,6 +77,17 @@
                 console.log(data);
             }
             
+        });
+        $.ajax({
+            url: "../Incidencias/LoadAusentismos",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: (data) => {
+                motivoA.innerHTML = "";
+                for (var i = 0; i < data.length; i++) {
+                    motivoA.innerHTML += `<option value='${data[i].iIdTipoAusentismo}'> ${data[i].sDescripcionAusentismo} </option>`
+                }
+            }
         });
     });
     

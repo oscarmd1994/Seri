@@ -133,6 +133,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Beans\CatalogosBean.cs" />
+    <Compile Include="Models\Beans\LocalidadesBean.cs" />
     <Compile Include="Models\Beans\MainMenuBean.cs" />
     <Compile Include="Models\Beans\MenuBean.cs" />
     <Compile Include="Models\Beans\PeriodoVacacionesBean.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Models\Beans\PoliticasVacacionesBean.cs" />
     <Compile Include="Models\Beans\PruebaEmpleadosBean.cs" />
     <Compile Include="Models\Beans\PruebaEmpresaBean.cs" />
+    <Compile Include="Models\Beans\RegistroPatronalBean.cs" />
     <Compile Include="Models\Beans\UsuariosBean.cs" />
     <Compile Include="Models\Beans\VariablesBean.cs" />
     <Compile Include="Models\Daos\CatalogosDao.cs" />
@@ -199,6 +201,7 @@
     <Content Include="Scripts\dataTables.responsive.js" />
     <Content Include="Scripts\dataTables.scroller.js" />
     <Content Include="Scripts\datepicker.es.js" />
+    <Content Include="Scripts\main\Empre.js" />
     <Content Include="Scripts\ferros\errajax.js" />
     <Content Include="Scripts\fontawesome\fontawesome.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -213,6 +216,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\login.js" />
+    <Content Include="Scripts\main\Empresas.js" />
     <Content Include="Scripts\main\loadcatalogsemployee.js" />
     <Content Include="Scripts\main\loaddatatables.js" />
     <Content Include="Scripts\main\loadmenu.js" />
@@ -240,11 +244,13 @@
     <Content Include="Views\Empleados\Datos_Generales.cshtml" />
     <Content Include="Views\Empresas\Datos_Generales.cshtml" />
     <Content Include="Views\Incidencias\Ausentismos.cshtml" />
-    <Content Include="Views\Incidencias\Incidencias.cshtml" />
+    <Content Include="Views\Incidencias\Vacaciones.cshtml" />
     <Content Include="Views\Incidencias\PensionesAlimenticias.cshtml" />
     <Content Include="Views\Empleados\IMSS.cshtml" />
     <Content Include="Views\Empleados\Datos_Nomina.cshtml" />
     <Content Include="Views\Empleados\Estructura.cshtml" />
+    <Content Include="Views\Empresas\Registros_Patronales.cshtml" />
+    <Content Include="Views\Empresas\Localidades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,51 +3,51 @@
         <div class="search-box col-md-11 col-lg-11 col-11 pl-3">
             @*<label for="inputSearchEmpleados">Escribe el nombre del empleado</label>*@
             <input type="text" name="inputSearchEmpleados" id="inputSearchEmpleados" placeholder="Escriba el nombre o numero de nomina del empleado" class="form-control pl-4 ml-4" />
-            <div id="resultSearchEmpleados" name="resultSearchEmpleados" class="list-group"></div>
+            <div id="resultSearchEmpleados" name="resultSearchEmpleados" class="list-group pl-4 ml-4"></div>
         </div>
         <div class="col-lg-3 col-md-3 col-3 pb-3">
             
         </div>
     </div>
 </div>
-<div class="container collapse pt-3 bg-white" id="vacacionesCollapse">
+<div class="container collapse pt-3 bg-white font-labels" id="vacacionesCollapse">
     <div class="media row border-bottom pb-3 border-primary">
-        <div class="media-body col-md-9 col-xs-3 col-lg-9 col-9">
+        <div class="media-body col-md-12 ">
             <div class="row">
-                <div class="col-12">
+                <div class="col-md-3">
                     <label for="" class="font-italic">Nombre </label><br>
-                    <h5 id="nomEmp" class="font-weight-bold">Oscar Mejia Doroteo</h5>
+                    <div id="nomEmp" class="font-weight-bold">Oscar Mejia Doroteo</div>
                 </div>
-                <div class="col-4">
-                    <label for="" class="col-4 font-italic">Puesto</label><br>
-                    <h6 id="puesto_emp" class="col-4 font-weight-bold">Programador Senior</h6>
+                <div class="col-md-3">
+                    <label for="" class=" font-italic">Puesto </label><br>
+                    <div id="puesto_emp" class=" font-weight-bold">Programador Senior</div>
                 </div>
-                <div class="col-4">
-                    <label for="" class="col-4 font-italic">Area</label><br>
-                    <h6 id="area_emp" class="col-4 font-weight-bold">SISTEMAS</h6>
+                <div class="col-md-3">
+                    <label for="" class=" font-italic">Area</label><br>
+                    <div id="area_emp" class=" font-weight-bold">SISTEMAS </div>
                 </div>
-                <div class="col-4">
-                    <label for="" class="col-4 font-italic">Antigüedad</label><br>
-                    <h6 id="antig_emp" class="col-4 font-weight-bold"> 8 </h6>
+                <div class="col-md-3 ">
+                    <label for="" class=" font-italic">Antigüedad </label><br>
+                    <div id="antig_emp" class=" font-weight-bold"> 8 </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-xs-3 col-lg-3 col-3 ml-3">
-            <img src="~/Content/img/icon-user.png" class="text-center" alt="...">
-        </div>
+        @*<div class="col-md-3 col-xs-3 col-lg-3 col-3 ml-3 img-fluid">
+            <img src="~/Content/img/icon-user.png" class="text-center" alt="..." >
+        </div>*@
     </div>
-    <div class="row pt-2 border-bottom pb-3 border-primary">
-        <div class="col-3"></div>
-        <div class="h1 col-3 mx-1 btn btn-success">
-            <span class="h2">9</span><br>
+    @*<div class="row pt-2 border-bottom pb-3 border-primary">
+        <div class="col-3 "></div>
+        <div class=" col-3 mx-1 btn btn-success">
+            <span class="">9</span><br>
             Dias disponibles
         </div>
-        <div class="h1 col-3 mx-1 btn btn-danger">
-            <span class="h2">4</span><br>
+        <div class=" col-3 mx-1 btn btn-danger">
+            <span class="">4</span><br>
             Días usados en el año
         </div>
         <div class="col-3"></div>
-    </div>
+    </div>*@
     <div class="row pt-2 border-bottom pb-3 border-primary">
         <div class="container col-12 col-md-12 col-lg-6">
             <div class="text-center font-weight-bold h2">Resumen de Vacaciones</div>
@@ -162,8 +162,13 @@
 </script>
 <script>
     $(document).ready(function () {
+        //
+        //
+        $("#vacacionesCollapse").collapse("show");
+        //
+        //
         $("#inputSearchEmpleados").on("keyup", function () {
-            $("#resultSearchEmpleados").empty();
+            $("#inputSearchEmpleados").empty();
             var txt = $("#inputSearchEmpleados").val();
             if ($("#inputSearchEmpleados").val() != "") {
                 var txtSearch = { "txtSearch": txt };
@@ -175,10 +180,17 @@
                     dataType: "json",
                     contentType: "application/json; charset=utf-8",
                     success: (data) => {
+                        console.log(data[0]["iFlag"]);
                         $("#resultSearchEmpleados").empty();
-                        for (var i = 0; i < data.length; i++) {
-                            $("#resultSearchEmpleados").append("<button type='button' class='list-group-item list-group-item-action btnListEmpleados' onclick='MostrarDatosEmpleado(" + data[i]["IdEmpleado"] + ")' >" + data[i]["NombreEmpleado"] + " " + data[i]["ApellidosEmpleado"] + "<br><small class='text-muted'>" + data[i]["Puesto"] + "</small></button>");
+                        if (data[0]["iFlag"] == 0) {
+                            for (var i = 0; i < data.length; i++) {
+                                $("#resultSearchEmpleados").append("<button type='button' class='list-group-item list-group-item-action btnListEmpleados font-labels' onclick='MostrarDatosEmpleado(" + data[i]["IdEmpleado"] + ")' >" + data[i]["Nombre_Empleado"] + " " + data[i]["Apellido_Paterno_Empleado"] +' '+ data[i]["Apellido_Materno_Empleado"] + "<br><small class='text-muted'>" + data[i]["DescripcionDepartamento"] + "</small> - <small class='text-muted'>" + data[i]["DescripcionPuesto"] + "</small></button>");
+                            }
                         }
+                        else {
+                            $("#resultSearchEmpleados").append("<button type='button' class='list-group-item list-group-item-action btnListEmpleados font-labels'  >" + data[0]["Nombre_Empleado"] + "<br><small class='text-muted'>" + data[0]["DescripcionPuesto"] + "</small></button>");
+                        }
+                        
                     }
                 });
             } else {
@@ -215,21 +227,22 @@
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: (data) => {
-                var idEmp;
-                $("#resultSearchEmpleados").empty();
-                for (var i = 0; i < data.length; i++) {
-                    $("#nomEmp").empty(); $("#nomEmp").append(data[i]["NombreEmpleado"] + " " + data[i]["ApellidosEmpleado"]);
-                    $("#puesto_emp").empty(); $("#puesto_emp").append(data[i]["Puesto"]);
-                    $("#antig_emp").empty(); $("#antig_emp").append(data[i]["FechaIngreso"].substring(0,10));
+                console.log(data);
+                //var idEmp;
+                //$("#resultSearchEmpleados").empty();
+                //for (var i = 0; i < data.length; i++) {
+                //    $("#nomEmp").empty(); $("#nomEmp").append(data[i]["NombreEmpleado"] + " " + data[i]["ApellidosEmpleado"]);
+                //    $("#puesto_emp").empty(); $("#puesto_emp").append(data[i]["Puesto"]);
+                //    $("#antig_emp").empty(); $("#antig_emp").append(data[i]["FechaIngreso"].substring(0,10));
                     $("#vacacionesCollapse").collapse("show");
                     
-                    idEmp = data[i]["IdEmpleado"];
+                //    idEmp = data[i]["IdEmpleado"];
                     
-                }
-                console.log(data[0].IdEmpleado);
-                CargarTabPeriodos(data[0].IdEmpleado);
+                //}
+                //console.log(data[0].IdEmpleado);
+                //CargarTabPeriodos(data[0].IdEmpleado);
 
-                document.getElementById("inputSearchEmpleados").value = '';
+                //document.getElementById("inputSearchEmpleados").value = '';
                 
             }
         });
@@ -269,7 +282,7 @@
 		inicial=fechaInicial.split("/");
         final = fechaFinal.split("/");
         console.log(inicial[1] +'/'+ (inicial[0]-1) +'/'+ inicial[2]+ " fecha inicial variable ");
-			// obtenemos las fechas en milisegundos
+	    // obtenemos las fechas en milisegundos
 		var inicio=new Date(inicial[2],(inicial[0]-1),inicial[1]);
         var fin = new Date(final[2], (final[0]-1), final[1]);
         //alert(inicial[2] + '-' + inicial[0] + '-' + inicial[1] + ' - a - ' + final[2] + '-' + final[0] + '-' + final[1]);

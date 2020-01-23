@@ -99,7 +99,7 @@ namespace Payroll.Controllers
         [HttpPost]
         public JsonResult SearchEmpleados(string txtSearch)
         {
-            List<PruebaEmpleadosBean> empleados = new List<PruebaEmpleadosBean>();
+            List<DescEmpleadoVacacionesBean> empleados = new List<DescEmpleadoVacacionesBean>();
             pruebaEmpleadosDao Dao = new pruebaEmpleadosDao();
             empleados = Dao.sp_Retrieve_liveSearchEmpleado(int.Parse(Session["IdEmpresa"].ToString()), txtSearch);
 

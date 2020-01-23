@@ -3,7 +3,8 @@
     Layout = "~/Views/Shared/_LayoutIni.cshtml";
 }
 
-<br /> <br />
+<br />
+<br />
 
 <div class="container mt-5">
 
@@ -13,39 +14,46 @@
             <div class="card shadow rounded">
                 <div class="card-body">
                     <h1 class="card-title text-center login-title">
-                        <i class="fas fa-money-check-alt col-ico"></i> Payroll Prueba de git
+                        <i class="fas fa-money-check-alt col-ico"></i> Payroll
                     </h1>
-                   <hr />
-                   <form class="p-5" autocomplete="off">
-                       <div class="form-group row">
-                           <label for="username" class="col-sm-12 col-md-4 col-lg-4 col-form-label">
-                               <i class="fas fa-user col-ico mr-ico-05"></i>
-                               Usuario:
-                           </label>
-                           <div class="col-sm-12 col-md-8 col-lg-8">
-                               <input autofocus type="text" class="form-control text-uppercase" id="username" placeholder="Ingresa tu usuario..." />
-                           </div>
-                       </div>
-                       <div class="form-group row">
-                           <label for="password" class="col-sm-12 col-md-4 col-lg-4 col-form-label">
-                               <i class="fas fa-key col-ico mr-ico-05"></i>
-                               Contraseña:
-                           </label>
-                           <div class="col-sm-12 col-md-8 col-lg-8">
-                               <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña..." />
-                           </div>
-                       </div>
-                       <div class="form-group text-center mt-5 mb-0 row">
-                           <div class="col-sm-4 offset-sm-4">
-                               <button type="button" class="btn btn-sm btn-block col-btn-login font-button" id="btnlogin">
-                                   Ingresar <i class="fas fa-sign-in-alt ml-ico-05"></i>
-                               </button>
-                           </div>
-                       </div>
-                       <div class="form-group text-center mt-5 mb-0" id="diverror">
-                           <p class="text-danger font-size-footer" id="msgerror"></p>
-                       </div>
-                   </form>
+                    <hr />
+                    <form class="p-5" autocomplete="off">
+                        <div class="form-group row">
+                            <label for="username" class="col-sm-12 col-md-4 col-lg-4 col-form-label">
+                                <i class="fas fa-user col-ico mr-ico-05"></i>
+                                Usuario:
+                            </label>
+                            <div class="col-sm-12 col-md-8 col-lg-8">
+                                <input autofocus type="text" class="form-control text-uppercase" id="username" placeholder="Ingresa tu usuario..." />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-12 col-md-4 col-lg-4 col-form-label">
+                                <i class="fas fa-key col-ico mr-ico-05"></i>
+                                Contraseña:
+                            </label>
+                            <div class="col-sm-12 col-md-8 col-lg-8">
+                                <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña..." />
+                            </div>
+                        </div>
+                        <div class="form-group text-center mt-5 mb-0 row">
+                            <div class="col-sm-4 offset-sm-4">
+                                <button type="button" class="btn btn-sm btn-block col-btn-login font-button" id="btnlogin">
+                                    Ingresar <i class="fas fa-sign-in-alt ml-ico-05"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row mt-5 d-none" id="msjmaysact">
+                            <div class="col-md-12 text-center">
+                                <span class="badge badge-light p-2 col-ico rounded animated fadeIn btn-block font-weight-bold">
+                                    La tecla mayusculas esta activada
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group text-center mt-5 mb-0" id="diverror">
+                            <p class="text-danger font-size-footer" id="msgerror"></p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Payroll.Models.Beans;
+﻿using Payroll.Models.Beans;
 using Payroll.Models.Daos;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Payroll.Controllers
 {
@@ -37,7 +34,6 @@ namespace Payroll.Controllers
                 {
                     ad = "Entro";
                     Session["Administrador"] = 1;
-
                 }
                 else { Session["Administrador"] = 0; }
                 if (item.sPerfil == "Nomina")
@@ -76,8 +72,8 @@ namespace Payroll.Controllers
             MainMenuDao MmenuDao = new MainMenuDao();
             int Sesion_IdUser = int.Parse(Session["iIdUsuario"].ToString());
             MmenuBean = MmenuDao.sp_Retrieve_Menu_Paths(Sesion_IdUser);
-            string nav = "<nav class='nav nav-pills flex-column flex-sm-row '>";
-            string tabnav = "<div class='tab-content '>";
+            string nav = "<nav class='nav nav-pills flex-column flex-sm-row ' >";
+            string tabnav = "<div class='tab-content'>";
             string subnavs = "<ul class='nav nav-tabs flex-column flex-sm-row ' id='menuTab' role='tablist'>";
 
             int i = 1;
@@ -98,7 +94,7 @@ namespace Payroll.Controllers
                     {
                         if (subitem.iParent == item.iIdItem)
                         {
-                            subnavs += "<li class='nav-item'><a class='nav-link font-navs' onclick='seeview(" + '"' + subitem.sUrl + '"' + ")' href='#' ><span class='" + subitem.sIcono + "'></span> " + subitem.sNombre + " </a></li>";
+                            subnavs += "<li class='nav-item'><a class='nav-link font-navs "+subitem.sNombre +"' onclick='seeview(" + '"' + subitem.sUrl + '"' + ")' href='#' ><span class='" + subitem.sIcono + "' style='color:#020F59;'></span> " + subitem.sNombre + " </a></li>";
                         }
                     }
                     subnavs += "</ul>";

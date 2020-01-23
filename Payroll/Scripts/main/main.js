@@ -1,5 +1,5 @@
 ﻿$(function () {
-    console.log("EL BENI xxx");
+    
     const dateact = document.getElementById('dateact');
     let d = new Date();
     let monthact = d.getMonth() + 1, dayact = d.getDay(), montlet = "", daylet = "";

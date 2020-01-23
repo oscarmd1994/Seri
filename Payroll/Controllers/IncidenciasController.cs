@@ -42,5 +42,17 @@ namespace Payroll.Controllers
         {
             return PartialView();
         }
+        public PartialViewResult Vacaciones()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        public JsonResult LoadAusentismos()
+        {
+            List<AusentismosBean> lista = new List<AusentismosBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            lista =  Dao.sp_TiposAusentimo_Retrieve_TiposAusentismo();
+            return Json(lista);
+        }
     }
 }

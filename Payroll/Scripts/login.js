@@ -1,4 +1,5 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿//document.addEventListener('DOMContentLoaded', () => {
+$(function () { 
 
     // *-* DECLARACION DE VARIABLES FORMULARIO *-* \\
 
@@ -112,5 +113,15 @@
     // *-* EJECUCION DE FUNCIONES *-* \\
 
     btnlogin.addEventListener('click', fvalidatelogin);
+
+    document.addEventListener('keydown', function (event) {
+        const mayus = event.getModifierState && event.getModifierState('CapsLock');
+        console.log(mayus);
+        if (mayus) {
+            document.getElementById('msjmaysact').classList.remove('d-none');
+        } else {
+            document.getElementById('msjmaysact').classList.add('d-none');
+        }
+    });
 
 });

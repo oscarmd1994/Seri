@@ -155,4 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btnVerifCodPost.addEventListener('click', fvalidatestatecodpost);
 
     // FIN FUNCIONALIDADES ESTADOS \\
+    
+    
 });

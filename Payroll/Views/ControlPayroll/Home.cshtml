@@ -29,7 +29,26 @@
 </div>
 <script>
     function seeview(data) {
-        $("#bodySubmenus").load(data);
+        let timerInterval
+        Swal.fire({
+            title: 'Loading...',
+            html: 'Just a second please!',
+            timer: 2500,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+                $("#bodySubmenus").load(data);
+                Swal.showLoading();
+                
+            }
+        }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        });
+
+
+        
     }
     function change() {
         $("#bodySubmenus").empty();
@@ -44,7 +63,7 @@
                 $.ajax({
                     url: "../Empresas/DefineEmpresa",
                     type: "POST",
-                    data: { IdEmpresa : id, NombreEmpresa : nombre },
+                    data: JSON.stringify({ IdEmpresa: id, NombreEmpresa: nombre }),
                     contentType: "application/json; charset=utf-8"
                     
                 });

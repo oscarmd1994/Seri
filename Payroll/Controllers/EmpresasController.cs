@@ -18,15 +18,21 @@ namespace Payroll.Controllers
 
             return Json(empresas);
         }
-        public void DefineEmpresas(int IdEmpresa, string NombreEmpresa)
+        public void DefineEmpresa(int IdEmpresa, string NombreEmpresa)
         {
             @Session["IdEmpresa"] = IdEmpresa;
             @Session["sEmpresa"] = NombreEmpresa;
         }
         public PartialViewResult Datos_Generales()
         {
-
-            return PartialView();
+            if (Session["iIdUsuario"] == null)
+            {
+                return PartialView(Redirect("../Home/Index"));
+            }
+            else
+            {
+                return PartialView();
+            }
         }
         public JsonResult New_ClaveEmpresa()
         {
@@ -50,7 +56,7 @@ namespace Payroll.Controllers
                             "</div>" +
                             "<div class='form-control btn btn-menu btnsEmpresas' onclick='btnsEmpresas(\"" + item.IdEmpresa + "\",\"" + item.NombreEmpresa + "\")'>" +
 
-                                "<small class=''>" + item.NombreEmpresa + "</small>" +
+                                "<small class='badge p-0 m-0 text-wrap'>" + item.NombreEmpresa + "</small>" +
                             "</div>" +
                         "</div>" +
                     "</div>" +
@@ -59,43 +65,115 @@ namespace Payroll.Controllers
             btnsEmpresas += "</div>";
             return Json(btnsEmpresas);
         }
+        //[HttpPost]
+        //public JsonResult SearchEmpresas(int txt)
+        //{
+        //    List<PruebaEmpresaBean> empresas = new List<PruebaEmpresaBean>();
+        //    PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+        //    empresas = Dao.sp_Retrieve_NombreEmpresa(txt);
+        //    return Json(empresas);
+        //}
         [HttpPost]
-        public JsonResult SearchEmpresas(int txt)
+        public JsonResult SearchEmpresa()
         {
+            int IdEmpresa;
             List<PruebaEmpresaBean> empresas = new List<PruebaEmpresaBean>();
             PruebaEmpresaDao Dao = new PruebaEmpresaDao();
-            empresas = Dao.sp_Retrieve_NombreEmpresa(txt);
+            empresas = Dao.sp_Retrieve_NombreEmpresa(IdEmpresa = int.Parse(Session["IdEmpresa"].ToString()));
             return Json(empresas);
         }
-
         [HttpPost]
-        public JsonResult Insert_Empresa_FirstStep(
-                        string inNombre_empresa,
-                        string inNomCorto_empresa,
-                        string inRfc_empresa,
-                        string inGiro_empresa,
-                        int inCodigo_postal,
-                        int inEstado_empresa,
-                        int inMunicipio_empresa,
-                        string inCiudad_empresa,
-                        int inColonia_empresa,
-                        string inDelegacion_Empresa,
-                        string inCalle_Empresa,
-                        int inUltimo_nomina,
-                        int inInicio_nomina,
-                        int inFinal_nomina,
-                        string inPeriodo_pago,
-                        string inPago,
-                        string inAfiliacionIMSS,
-                        string inRiesgoTrabajo
-
-            )
+        public JsonResult Insert_Empresa_FirstStep(string inNombre_empresa, string inNomCorto_empresa, string inRfc_empresa, string inGiro_empresa,int inRegimenFiscal_Empresa, int inCodigo_postal, int inEstado_empresa, int inMunicipio_empresa, string inCiudad_empresa, int inColonia_empresa, string inDelegacion_Empresa, string inCalle_Empresa, string inAfiliacionIMSS,string inNombre_Afiliacion, string inRiesgoTrabajo, int inClase )
         {
             List<string> empresas = new List<string>();
             PruebaEmpresaDao Dao = new PruebaEmpresaDao();
-            empresas = Dao.sp_Insert_FirstStep_Empresas(inNombre_empresa, inNomCorto_empresa, inRfc_empresa, inGiro_empresa, inCodigo_postal, inEstado_empresa, inMunicipio_empresa, inCiudad_empresa, inDelegacion_Empresa, inColonia_empresa, inCalle_Empresa, inUltimo_nomina, inInicio_nomina, inFinal_nomina, inPeriodo_pago, inPago, inAfiliacionIMSS, inRiesgoTrabajo, int.Parse(Session["iIdUsuario"].ToString()));
+            empresas = Dao.sp_Insert_FirstStep_Empresas(inNombre_empresa, inNomCorto_empresa, inRfc_empresa, inGiro_empresa, inRegimenFiscal_Empresa, inCodigo_postal, inEstado_empresa, inMunicipio_empresa, inCiudad_empresa, inDelegacion_Empresa, inColonia_empresa, inCalle_Empresa, inAfiliacionIMSS, inNombre_Afiliacion, inRiesgoTrabajo, int.Parse(Session["iIdUsuario"].ToString()), inClase);
             return Json(empresas);
         }
-
+        public PartialViewResult Registros_Patronales()
+        {
+            return PartialView();
+        }
+        public PartialViewResult Localidades()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        public JsonResult LoadRegistrosPatronales() {
+            List<RegistroPatronalBean> RP = new List<RegistroPatronalBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            RP = Dao.sp_Registro_Patronal_Retrieve_Registros_Patronales(int.Parse(Session["IdEmpresa"].ToString()));
+            var data = new { data = RP };
+            return Json(data);
+        }
+        public JsonResult LoadRegPat()
+        {
+            List<RegistroPatronalBean> RP = new List<RegistroPatronalBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            RP = Dao.sp_Registro_Patronal_Retrieve_Registros_Patronales(int.Parse(Session["IdEmpresa"].ToString()));
+            return Json(RP);
+        }
+        [HttpPost]
+        public JsonResult LoadLocalidades()
+        {
+            List<LocalidadesBean> RP = new List<LocalidadesBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            RP = Dao.sp_TLocalicades_Retrieve_Localidades(int.Parse(Session["IdEmpresa"].ToString()));
+            var data = new { data = RP };
+            return Json(data);
+        }
+        public JsonResult LoadClasesRP()
+        {
+            List<CClases_RegPatBean> RP = new List<CClases_RegPatBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            RP = Dao.sp_CClases_RegPat();
+            return Json(RP);
+        }
+        public JsonResult LoadRegimenesFiscales()
+        {
+            List<RegimenFiscalBean> RP = new List<RegimenFiscalBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            RP = Dao.sp_CRegimen_Fiscal_Retrieve();
+            return Json(RP);
+        }
+        [HttpPost]
+        public JsonResult Insert_Registro_Patronal( int Empresa_id , string Afiliacion_IMSS, string Nombre_Afiliacion, string Riesgo_Trabajo, int ClasesRegPat, int Status  )
+        {
+            List<string> RP = new List<string>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            RP = Dao.sp_Registro_Patronal_Insert_Registros_Patronales( Empresa_id, Afiliacion_IMSS, Nombre_Afiliacion, Riesgo_Trabajo, ClasesRegPat, Status );
+            var data = new { data = RP };
+            return Json(data);
+        }
+        public JsonResult LoadRegionalesEmp()
+        {
+            List<RegionalesBean> RP = new List<RegionalesBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            RP = Dao.sp_CRegionales_Retrieve_Regionales_xEmpresa(int.Parse(Session["IdEmpresa"].ToString()));
+            return Json(RP);
+        }
+        public JsonResult LoadSucursales()
+        {
+            List<SucursalesBean> RP = new List<SucursalesBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            RP = Dao.sp_CSucursales_Retrieve_Sucursales();
+            return Json(RP);
+        }
+        public JsonResult LoadZonaEconomica()
+        {
+            List<ZonaEconomicaBean> RP = new List<ZonaEconomicaBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            RP = Dao.sp_CZonaEconomica_Retrieve_ZonaEconomica();
+            return Json(RP);
+        }
+        [HttpPost]
+        public JsonResult Insert_Localidad( string Descripcion,string TasaIva,int Afiliacion_IMSS, int Regional_id,int ZonaEconomica_id,int Sucursal_id, int Estado_id)
+        {
+            List<string> RP = new List<string>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            RP = Dao.sp_TLocalidades_Insert_Localidades( int.Parse(Session["IdEmpresa"].ToString()), Descripcion, TasaIva, Afiliacion_IMSS, Regional_id, ZonaEconomica_id, Sucursal_id, Estado_id);
+            var data = new { data = RP };
+            return Json(data);
+        }
     }
 }
