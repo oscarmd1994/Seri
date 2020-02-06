@@ -76,7 +76,17 @@ input {
         color: #020F59 !important;
         box-shadow: 2px 2px #ddd;
     }
-
+.btn-return {
+    background-color: #ff6600 !important;
+    color: #020F59 !important;
+    transition: 1s !important;
+    box-shadow: 4px 4px #ddd;
+}
+.btn-return:hover {
+    background-color: aliceblue !important;
+    color: #020F59 !important;
+    box-shadow: 2px 2px #ddd;
+}
 .font-button {
     font-family: 'Noto Sans KR', sans-serif;
 }

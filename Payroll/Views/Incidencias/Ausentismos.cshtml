@@ -1,46 +1,57 @@
 ﻿<div class="container bg-white pb-3 rounded font-labels">
-    <h4 class="border-bottom border-secondary pt-4 pb-2">Registrar ausentismo a empleado</h4>
+    <div class="border-bottom border-secondary pt-4 pb-2 font-weight-bold d-flex justify-content-between"><div>Registrar ausentismo a empleado : </div><strong class="font-button" id="EmpDes"></strong><div class="btn btn-info btn-sm font-labels" id="btn-cambiar-empleado" title="Cambia de usuario"><i class="fas fa-users"></i></div></div>
     <div class="row">
         <div class="col-md-6  rounded">
             <form action="#" method="post" class="bg-light px-3 py-3 rounded" id="frmAusentismos">
-                <div class="form-group">
-                    <label for="">Motivo del ausentismo</label>
-                    <select class="form-control font-labels custom-select" id="inMotivoAusentismo" name="inMotivoAusentismo" required>
-                        <option>Selecciona</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="inRecuperacionAusentismo">Recupera ausentismo</label>
-                    <select class="form-control font-labels custom-select" id="inRecuperacionAusentismo" required>
-                        <option>Sexto y septimo día</option>
-                        <option>Septimo día</option>
-                        <option>No aplicar</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="inFechaAusentismo">Fecha</label>
-                    <div class="input-group">
-                        <input type="text" name="inFechaAusentismo" id="inFechaAusentismo" value="" class="form-control font-labels" required />
-                        <div class="input-group-prepend">
-                            <div class="input-group-text " id=""><span class="far fa-calendar-alt"></span></div>
+                <div class="form-group row">
+                    <div class="form-group col-md-12">
+                        <label for="">Motivo del ausentismo</label>
+                        <select class="form-control font-labels custom-select" id="inMotivoAusentismo" name="inMotivoAusentismo" required>
+                            <option>Selecciona</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inRecuperacionAusentismo">Recupera ausentismo</label>
+                        <select class="form-control font-labels custom-select" id="inRecuperacionAusentismo" required>
+                            <option value="">Selecciona</option>
+                            <option value="Sexto y septimo dia">Sexto y septimo día</option>
+                            <option value="Septimo dia">Septimo día</option>
+                            <option value="No aplicar">No aplicar</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inFechaAusentismo">Fecha</label>
+                        <div class="input-group">
+                            <input type="text" name="inFechaAusentismo" id="inFechaAusentismo" class="form-control font-labels" placeholder="MM/DD/AAAA" required />
+                            <div class="input-group-prepend">
+                                <div class="input-group-text " id=""><span class="far fa-calendar-alt"></span></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="inDiasAusentismo">Dias</label>
-                    <input type="number" name="inDiasAusentismo" id="inDiasAusentismo" class="form-control" placeholder="Escriba los dias de Ausentismo" min="1" required />
-                </div>
-                <div class="form-group">
-                    <label for="inCausaAusentismo">Causa</label>
-                    <input type="text" name="inCausaAusentismo" id="inCausaAusentismo" value="" class="form-control" pattern="^[A-Za-z]+$" placeholder="Escriba la causa del Ausentismo" required />
-                </div>
-                <div class="d-flex form-group justify-content-end">
-                    <button type="submit" class="btn btn-primary mb-2 font-button btn-sm form-control" id="btnRegistroAusentismo"><span class="far fa-edit"></span> Registrar Ausentismo</button>
+                    <div class="form-group col-md-6">
+                        <label for="inDiasAusentismo">Dias</label>
+                        <input type="text" name="inDiasAusentismo" id="inDiasAusentismo" class="form-control input-number" placeholder="Escriba los dias de Ausentismo" min="1" maxlength="2" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inCausaAusentismo">Causa</label>
+                        <input type="text" name="inCausaAusentismo" id="inCausaAusentismo" value="" class="form-control" placeholder="Escriba la causa del Ausentismo" required />
+                    </div>
+                    <div class="form-group imss col-md-6">
+                        <label for="inCertificadoAusentismo">Certificado</label>
+                        <input type="text" name="inCertificadoAusentismo" id="inCertificadoAusentismo" value="" class="form-control" placeholder="Folio de certificado" required />
+                    </div>
+                    <div class="form-group imss col-md-6">
+                        <label for="inComentariosAusentismo">Comentarios</label>
+                        <input type="text" name="inComentariosAusentismo" id="inComentariosAusentismo" value="" class="form-control" placeholder="Escriba un comentario" required />
+                    </div>
+                    <div class="d-flex form-group col-md-12 justify-content-end">
+                        <button type="button" class="btn btn-primary mb-2 font-button btn-sm form-control" id="btnRegistroAusentismo"><span class="far fa-edit"></span> Registrar Ausentismo</button>
+                    </div>
                 </div>
             </form>
         </div>
         <div class="col-md-6">
-            <table class="table table-sm font-labels" id="tabAusentismos">
+            <table class="table table-sm font-labels text-center" id="tabAusentismos">
                 <thead>
                     <tr>
                         <th scope="col">Motivo</th>
@@ -49,46 +60,43 @@
                         <th scope="col">Causa</th>
                     </tr>
                 </thead>
-                <tbody>
-                    
+                <tbody id="tabody">
                 </tbody>
             </table>
         </div>
     </div>
-    
-    
-    
-    
-</div>
-<script>
-    $(document).ready(function () {
-        var motivoA = document.getElementById("inMotivoAusentismo");
-        var tabAusentismo = $("#tabAusentismos").DataTable();
-        $("#inFechaAusentismo").datepicker();
 
-        $("#btnRegistroAusentismo").on("click", function (evt) {
-            var data = $("#frmAusentismos").serialize();
-            var form = document.getElementById("frmAusentismos");
-            if (form.checkValidity()) {
-                evt.preventDefault();
-                console.log(data);
-            } else {
-                evt.preventDefault();
-                console.log(data);
-            }
-            
-        });
-        $.ajax({
-            url: "../Incidencias/LoadAusentismos",
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            success: (data) => {
-                motivoA.innerHTML = "";
-                for (var i = 0; i < data.length; i++) {
-                    motivoA.innerHTML += `<option value='${data[i].iIdTipoAusentismo}'> ${data[i].sDescripcionAusentismo} </option>`
-                }
-            }
-        });
-    });
-    
-</script>   
+
+
+
+</div>
+@* MODAL DE LIVE SEARCH EMPLEADO *@
+<!-- Modal -->
+<div class="modal fade" id="modalLiveSearchEmpleado" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-labels" id="staticBackdropLabel">Busca el empleado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="search-box col-md-12">
+
+                        <label for="inputSearchEmpleados" class="font-labels">Escribe el nombre del empleado que buscas</label>
+                        <input type="text" name="inputSearchEmpleados" id="inputSearchEmpleados" placeholder="Escriba el nombre del empleado" class=" form-control" autocomplete="off" />
+                        <div id="resultSearchEmpleados" name="resultSearchEmpleados" class="list-group"></div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-3 pb-3">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/main/Ausentismos.js"></script>

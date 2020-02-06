@@ -57,13 +57,19 @@ namespace Payroll.Models.Daos
             {
                 while (data.Read())
                 {
-                    PruebaEmpresaBean listEmpresas = new PruebaEmpresaBean
+                    PruebaEmpresaBean listEmpresas = new PruebaEmpresaBean();
+                    //
+                    //--------------QUITAR ESTE FILTRO UNA VEZ QUE SE ARREGLEN LAS EMPRESAS Y LOS EMPLEADOS 
+                    if (int.Parse(data["IdEmpresa"].ToString()) > 3 )
                     {
-                        IdEmpresa = int.Parse(data["IdEmpresa"].ToString()),
-                        RazonSocial = data["RazonSocial"].ToString(),
-                        NombreEmpresa = data["NombreEmpresa"].ToString()
-                    };
-                    list.Add(listEmpresas);
+                        listEmpresas.IdEmpresa = int.Parse(data["IdEmpresa"].ToString());
+                        listEmpresas.RazonSocial = data["RazonSocial"].ToString();
+                        listEmpresas.NombreEmpresa = data["NombreEmpresa"].ToString();
+                        list.Add(listEmpresas);
+                    }
+                    
+                    
+                    
                 }
             }
             else
@@ -524,6 +530,43 @@ namespace Payroll.Models.Daos
                         iIdTipoAusentismo = int.Parse(data["idValor"].ToString()),
                         sNombreAusentismo = data["Valor"].ToString(),
                         sDescripcionAusentismo = data["Descripcion"].ToString()
+                    };
+                    lista.Add(list);
+                }
+            }
+            else
+            {
+                lista = null;
+            }
+            data.Close();
+
+            return lista;
+        }
+        public List<PeriodosVacacionesBean> sp_TperiodosVacaciones_Retrieve_PeriodosVacaciones(int IdEmpleado, int IdEmpresa)
+        {
+            List<PeriodosVacacionesBean> lista = new List<PeriodosVacacionesBean>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_TperiodosVacaciones_Retrieve_PeriodosVacaciones", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrliIdEmpresa", IdEmpresa));
+            cmd.Parameters.Add(new SqlParameter("@ctrliIdEmpleado", IdEmpleado));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    PeriodosVacacionesBean list = new PeriodosVacacionesBean
+                    {
+                        Anio                = int.Parse(data["Anio"].ToString()),
+                        Fecha_Inicio        = data["Fecha_Inicio"].ToString(),
+                        Fecha_Fin           = data["Fecha_Fin"].ToString(),
+                        Dias                = int.Parse(data["Dias"].ToString()),
+                        Agendadas           = data["Agendadas"].ToString(),
+                        Disfrutadas         = data["Disfrutadas"].ToString()
                     };
                     lista.Add(list);
                 }

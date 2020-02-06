@@ -1,14 +1,5 @@
 ﻿<div class="container bg-white py-4 px-0 rounded-top">
-    <div class="row">
-        <div class="search-box col-md-11 col-lg-11 col-11 pl-3">
-            @*<label for="inputSearchEmpleados">Escribe el nombre del empleado</label>*@
-            <input type="text" name="inputSearchEmpleados" id="inputSearchEmpleados" placeholder="Escriba el nombre o numero de nomina del empleado" class="form-control pl-4 ml-4" />
-            <div id="resultSearchEmpleados" name="resultSearchEmpleados" class="list-group pl-4 ml-4"></div>
-        </div>
-        <div class="col-lg-3 col-md-3 col-3 pb-3">
-            
-        </div>
-    </div>
+    
 </div>
 <div class="container collapse pt-3 bg-white font-labels" id="vacacionesCollapse">
     <div class="media row border-bottom pb-3 border-primary">
@@ -16,65 +7,65 @@
             <div class="row">
                 <div class="col-md-3">
                     <label for="" class="font-italic">Nombre </label><br>
-                    <div id="nomEmp" class="font-weight-bold">Oscar Mejia Doroteo</div>
+                    <div id="nomEmp" class="font-weight-bold"></div>
                 </div>
                 <div class="col-md-3">
                     <label for="" class=" font-italic">Puesto </label><br>
-                    <div id="puesto_emp" class=" font-weight-bold">Programador Senior</div>
+                    <div id="puesto_emp" class=" font-weight-bold"></div>
                 </div>
                 <div class="col-md-3">
-                    <label for="" class=" font-italic">Area</label><br>
-                    <div id="area_emp" class=" font-weight-bold">SISTEMAS </div>
+                    <label for="" class=" font-italic">Departamento</label><br>
+                    <div id="area_emp" class=" font-weight-bold"></div>
                 </div>
                 <div class="col-md-3 ">
                     <label for="" class=" font-italic">Antigüedad </label><br>
-                    <div id="antig_emp" class=" font-weight-bold"> 8 </div>
+                    <div id="antig_emp" class=" font-weight-bold"></div>
                 </div>
             </div>
         </div>
         @*<div class="col-md-3 col-xs-3 col-lg-3 col-3 ml-3 img-fluid">
-            <img src="~/Content/img/icon-user.png" class="text-center" alt="..." >
-        </div>*@
+                <img src="~/Content/img/icon-user.png" class="text-center" alt="..." >
+            </div>*@
     </div>
     @*<div class="row pt-2 border-bottom pb-3 border-primary">
-        <div class="col-3 "></div>
-        <div class=" col-3 mx-1 btn btn-success">
-            <span class="">9</span><br>
-            Dias disponibles
-        </div>
-        <div class=" col-3 mx-1 btn btn-danger">
-            <span class="">4</span><br>
-            Días usados en el año
-        </div>
-        <div class="col-3"></div>
-    </div>*@
+            <div class="col-3 "></div>
+            <div class=" col-3 mx-1 btn btn-success">
+                <span class="">9</span><br>
+                Dias disponibles
+            </div>
+            <div class=" col-3 mx-1 btn btn-danger">
+                <span class="">4</span><br>
+                Días usados en el año
+            </div>
+            <div class="col-3"></div>
+        </div>*@
     <div class="row pt-2 border-bottom pb-3 border-primary">
         <div class="container col-12 col-md-12 col-lg-6">
-            <div class="text-center font-weight-bold h2">Resumen de Vacaciones</div>
-            <table id="example1" class="table table-sm table-striped text-center">
+            <div class="text-center font-weight-bold font-labels">Resumen de Vacaciones</div>
+            <table id="example1" class="table table-sm table-striped text-center table-bordered table-hover font-labels">
                 <thead class="thead-dark">
                     <tr>
                         <th>Años</th>
-                        <th>Días</th>
-                        <th>Dias adicionales</th>
-                        <th>Dias de prima</th>
+                        <th>Días Prima</th>
+                        <th>Dias Disfrutados</th>
+                        <th>Dias Restantes</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tab1">
                 </tbody>
 
             </table>
         </div>
 
         <div class="container col-12 col-md-12 col-lg-6">
-            <div class="text-center font-weight-bold h2">Periodos</div>
-            <table id="example2" class="table table-sm table-striped table-bordered table-hover">
+            <div class="text-center font-weight-bold font-labels">Periodos</div>
+            <table id="example2" class="table table-sm table-striped text-center table-bordered table-hover font-labels">
                 <thead class="thead-dark">
                     <tr class="">
                         <th>Año</th>
                         <th>Días</th>
-                        <th>Días Prima</th>
-                        <th>ID</th>
+                        <th>Agendadas</th>
+                        <th>Disfrutadas</th>
                         <th>Fecha Inicio</th>
                         <th>Fecha Termino</th>
                     </tr>
@@ -87,7 +78,7 @@
     <div class="container col-12 align-content-center">
         <div class="row">
             <div class="col-12">
-                <div class="col-12 h2 text-center">Agregar nuevo periodo de vacaciones</div>
+                <div class="col-12 text-center font-button">Agregar nuevo periodo de vacaciones</div>
                 <form action="#" class="needs-validation bg-secondary text-white rounded px-4 py-3 mb-4" id="frmAddPeriodo" novalidate>
                     <div class="form-row">
                         <div class="col-md-4 mb-3">
@@ -102,10 +93,10 @@
                         </div>
                         <div class="col-md-2 mb-3">
                             <label for="datepicker">Días</label>
-                            <input type="text" class="form-control datepiker" id="diasV" name="diasV" disabled>
+                            <input type="text" class="form-control" disabled id="diasV" name="diasV" >
                         </div>
                         <div class="col-md-2">
-                            <button class="btn btn-primary font-weight-bold w-100 h-100" disabled id="btnCalcVacaciones" type="button" >Registrar</button>
+                            <button class="btn btn-primary font-weight-bold w-100 h-100" disabled id="btnCalcVacaciones" type="button">Registrar</button>
                         </div>
                     </div>
                 </form>
@@ -113,8 +104,38 @@
         </div>
     </div>
 </div>
+@* MODAL DE LIVE SEARCH EMPLEADO *@
+<!-- Modal -->
+<div class="modal fade" id="modalLiveSearchEmpleado" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-labels" id="staticBackdropLabel">Busca el empleado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="search-box col-md-12">
+                        
+                            <label for="inputSearchEmpleados" class="font-labels">Escribe el nombre del empleado que buscas</label>
+                            <input type="text" name="inputSearchEmpleados" id="inputSearchEmpleados" placeholder="Escriba el nombre del empleado" class=" form-control" autocomplete="off"/>
+                            <div id="resultSearchEmpleados" name="resultSearchEmpleados" class="list-group"></div>
+                        
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-3 pb-3">
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
 <script>
     $(function () {
+        $("#modalLiveSearchEmpleado").modal("show");
         var dateFormat = "mm/dd/yy",
             from = $("#from")
                 .datepicker({
@@ -123,7 +144,7 @@
                     changeMonth: true,
                     numberOfMonths: 1,
                     beforeShowDay: $.datepicker.noWeekends,
-                    
+
                     changeYear: true
                 })
                 .on("change", function () {
@@ -138,9 +159,9 @@
                 changeMonth: true,
                 numberOfMonths: 1,
                 beforeShowDay: $.datepicker.noWeekends,
-                
+
                 changeYear: true
-		
+
             })
                 .on("change", function () {
                     from.datepicker("option", "maxDate", getDate(this));
@@ -184,13 +205,13 @@
                         $("#resultSearchEmpleados").empty();
                         if (data[0]["iFlag"] == 0) {
                             for (var i = 0; i < data.length; i++) {
-                                $("#resultSearchEmpleados").append("<button type='button' class='list-group-item list-group-item-action btnListEmpleados font-labels' onclick='MostrarDatosEmpleado(" + data[i]["IdEmpleado"] + ")' >" + data[i]["Nombre_Empleado"] + " " + data[i]["Apellido_Paterno_Empleado"] +' '+ data[i]["Apellido_Materno_Empleado"] + "<br><small class='text-muted'>" + data[i]["DescripcionDepartamento"] + "</small> - <small class='text-muted'>" + data[i]["DescripcionPuesto"] + "</small></button>");
+                                $("#resultSearchEmpleados").append("<div class='list-group-item list-group-item-action btnListEmpleados font-labels  font-weight-bold' onclick='MostrarDatosEmpleado(" + data[i]["IdEmpleado"] + ")' > <i class='far fa-user-circle text-primary'></i> " + data[i]["Nombre_Empleado"] + " " + data[i]["Apellido_Paterno_Empleado"] + ' ' + data[i]["Apellido_Materno_Empleado"] + "   -   <small class='text-muted'><i class='fas fa-briefcase text-warning'></i> " + data[i]["DescripcionDepartamento"] + "</small> - <small class='text-muted'>" + data[i]["DescripcionPuesto"] + "</small></div>");
                             }
                         }
                         else {
-                            $("#resultSearchEmpleados").append("<button type='button' class='list-group-item list-group-item-action btnListEmpleados font-labels'  >" + data[0]["Nombre_Empleado"] + "<br><small class='text-muted'>" + data[0]["DescripcionPuesto"] + "</small></button>");
+                            $("#resultSearchEmpleados").append("<button type='button' class='list-group-item list-group-item-action btnListEmpleados font-labels'  >" + data[0]["Nombre_Empleado"] + "<br><small class='text-muted'>" + data[0]["DescripcionPuesto"] + "</small> </button>");
                         }
-                        
+
                     }
                 });
             } else {
@@ -208,17 +229,31 @@
         //$('#example2').DataTable();
         $("#btnCalcVacaciones").on("click", function (evt) {
             evt.preventDefault();
+            $("#diasV").removeAttr("disabled");
             var Periodo = $("#frmAddPeriodo").serialize();
-            alert("si form" + Periodo);
+            $("#diasV").disabled = true;
+            console.log(Periodo);
+            $.ajax({
+                url: "",
+                data: JSON.stringify(),
+                type: "post",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function() {
+
+                }
+            });
         });
-        
-        
-        
+
+
+
     });
 </script>
 <script>
-    var tab2 = DataTable();
+    var tab2,tab1;
     function MostrarDatosEmpleado(idE) {
+        //tab2.destroy();
+        //tab1.destroy();
         var txtIdEmpleado = { "IdEmpleado": idE };
         $.ajax({
             url: "../Empleados/SearchEmpleado",
@@ -228,70 +263,83 @@
             contentType: "application/json; charset=utf-8",
             success: (data) => {
                 console.log(data);
-                //var idEmp;
-                //$("#resultSearchEmpleados").empty();
-                //for (var i = 0; i < data.length; i++) {
-                //    $("#nomEmp").empty(); $("#nomEmp").append(data[i]["NombreEmpleado"] + " " + data[i]["ApellidosEmpleado"]);
-                //    $("#puesto_emp").empty(); $("#puesto_emp").append(data[i]["Puesto"]);
-                //    $("#antig_emp").empty(); $("#antig_emp").append(data[i]["FechaIngreso"].substring(0,10));
-                    $("#vacacionesCollapse").collapse("show");
-                    
-                //    idEmp = data[i]["IdEmpleado"];
-                    
-                //}
-                //console.log(data[0].IdEmpleado);
-                //CargarTabPeriodos(data[0].IdEmpleado);
-
-                //document.getElementById("inputSearchEmpleados").value = '';
                 
-            }
-        });
-    }
-    function CargarTabPeriodos(IdEmpleado) {
-        $.ajax({
-            url: "../Incidencias/ResumenVacaciones",
-            type: "post",
-            contentType: "application/json; charset=utf-8",
-            //data: { 'IdEmpleado': IdEmpleado },
-            dataType: "json",
-            //dataSrc: "data",
-            success: (datos) => {
-                //console.log(datos);
-                //tab2.destroy();
-                $("#tabBody").empty();
-                $("#tabBody").append(datos);
-                //tab2.destroy();
-                tab2 = $("#example2").DataTable({
+                $("#resultSearchEmpleados").empty();
+                for (var i = 0; i < data.length; i++) {
+                    $("#nomEmp").empty(); $("#nomEmp").append(data[i]["Nombre_Empleado"] + " " + data[i]["Apellido_Paterno_Empleado"] + " " + data[i]["Apellido_Materno_Empleado"]);
+                    $("#puesto_emp").empty(); $("#puesto_emp").append(data[i]["DescripcionPuesto"]);
+                    $("#area_emp").empty(); $("#area_emp").append(data[i]["DescripcionDepartamento"])
+                    $("#antig_emp").empty(); $("#antig_emp").append(data[i]["FechaIngreso"].substring(0,10));
+                    $("#vacacionesCollapse").collapse("show");
+
+                }
+                console.log(data[0]["IdEmpleado"]);
+                //CargarTabPeriodos(data[0]["Anio"],data[0]["DiasPrima"],data[0][""],data[0][""],data[0][""],data[0][""]);
+                $("#tab1").empty();
+                var line = CargarTabResumen(data[0]["Anio"], data[0]["DiasPrima"], data[0]["DiasDisfrutados"], data[0]["DiasRestantes"]);
+                $("#tab1").append(line);
+                tab2 = $("#example1").DataTable({
                     paging: false,
-                    scrollX: true,
-                    scrollY: true,
+                    scrollX: false,
+                    scrollY: false,
                     searching: false,
                     scrollCollapse: true,
                     language: { url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json" }
                 });
-                    
-            }   
+                CargarTabPeriodos(idE);
+                document.getElementById("inputSearchEmpleados").value = '';
+                ftoggle();
+            }
+        });
+        
+    }
+    function ftoggle() {
+        $("#modalLiveSearchEmpleado").modal("toggle")
+    }
+    
+    function CargarTabResumen( anio, diasP, diasD, diasR ) {
+        var fila = `<tr>
+                        <td>${anio}</td>
+                        <td>${diasP}</td>
+                        <td>${diasD}</td>
+                        <td>${diasR}</td>
+                    </tr>`;
+        return fila;
+    }
+    function CargarTabPeriodos( IdEmpleado ) {
+        $.ajax({
+            url: "../Incidencias/LoadPeiodosVac",
+            type: "POST",
+            data: JSON.stringify({ IdEmpleado: IdEmpleado }),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: (data) => {
+                console.log(data);
+                
+                
+                
+            
 
+            }
         });
     }
- 
-    function calcularDias()
-    {
-		var fechaInicial=document.getElementById("from").value;
-        var fechaFinal = document.getElementById("to").value;	
-		inicial=fechaInicial.split("/");
+
+
+    function calcularDias() {
+        var fechaInicial = document.getElementById("from").value;
+        var fechaFinal = document.getElementById("to").value;
+        inicial = fechaInicial.split("/");
         final = fechaFinal.split("/");
-        console.log(inicial[1] +'/'+ (inicial[0]-1) +'/'+ inicial[2]+ " fecha inicial variable ");
-	    // obtenemos las fechas en milisegundos
-		var inicio=new Date(inicial[2],(inicial[0]-1),inicial[1]);
-        var fin = new Date(final[2], (final[0]-1), final[1]);
+        console.log(inicial[1] + '/' + (inicial[0] - 1) + '/' + inicial[2] + " fecha inicial variable ");
+        // obtenemos las fechas en milisegundos
+        var inicio = new Date(inicial[2], (inicial[0] - 1), inicial[1]);
+        var fin = new Date(final[2], (final[0] - 1), final[1]);
         //alert(inicial[2] + '-' + inicial[0] + '-' + inicial[1] + ' - a - ' + final[2] + '-' + final[0] + '-' + final[1]);
         var timeDiff = Math.abs(fin.getTime() - inicio.getTime());
         var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); //Días entre las dos fechas
         var cuentaFinde = 0; //Número de Sábados y Domingos
         var array = new Array(diffDays);
-        for (var i=0; i < diffDays + 1; i++) 
-        {
+        for (var i = 0; i < diffDays + 1; i++) {
             console.log(inicio);
             //0 => Domingo - 6 => Sábado
             if (inicio.getDay() == 0 || inicio.getDay() == 6) {

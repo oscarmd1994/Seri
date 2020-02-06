@@ -1,9 +1,10 @@
-﻿namespace Payroll.Models.Beans
+﻿using System;
+
+namespace Payroll.Models.Beans
 {
     public class CatalogosBean
     {
     }
-
     public class CatalogoGeneralBean
     {
         public int iId { get; set; }
@@ -16,7 +17,6 @@
         public string sFechaAlta { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class InfDomicilioBean
     {
 
@@ -42,7 +42,6 @@
         public string sColonia { get; set; }
         public string sCiudad { get; set; }
     }
-
     public class NivelEstudiosBean
     {
         public int iIdNivelEstudio { get; set; }
@@ -54,7 +53,6 @@
         public string sFechaModificaNivel { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class TipoSangreBean
     {
         public int iIdTipoSangre { get; set; }
@@ -66,7 +64,6 @@
         public string sFechaModificaTipo { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class TabuladoresBean
     {
         public int iIdTabulador { get; set; }
@@ -78,7 +75,6 @@
         public string sFechaModificaTabulador { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class BancosBean
     {
         public int iIdBanco { get; set; }
@@ -353,8 +349,77 @@
         public string Nombre_Empleado { get; set; }
         public string Apellido_Materno_Empleado { get; set; }
         public string Apellido_Paterno_Empleado { get; set; }
-        public string FechaIngreso { get; set; }
         public string DescripcionDepartamento { get; set; }
         public string DescripcionPuesto { get; set; }
+        public string FechaIngreso { get; set; }
+        //
+        public int Id_Per_Vac { get; set; }
+        public string Fecha_Aniversario { get; set; }
+        public int Id_Per_Vac_Ln { get; set; }
+        public int Anio { get; set; }
+        public int DiasPrima { get; set; }
+        public int DiasDisfrutados { get; set; }
+        public int DiasRestantes { get; set; }
+
+
+    }
+    public class PeriodosVacacionesBean
+    {
+        public int Anio { get; set; }
+        public string Fecha_Inicio { get; set; }
+        public string Fecha_Fin { get; set; }
+        public int Dias { get; set; }
+        public string Agendadas { get; set; }
+        public string Disfrutadas { get; set; }
+
+    }
+    public class CreditosBean
+    {
+        public int IdCredito { get; set; }
+        public int Empleado_id {get;set;}
+        public int Empresa_id {get;set;}
+        public string TipoDescuento {get;set;}
+        public string SeguroVivienda {get;set;}
+        public string Descuento {get;set;}
+        public string NoCredito {get;set;}
+        public string FechaAprovacionCredito {get;set;}
+        public string Descontar {get;set;}
+        public string FechaBaja { get; set; }
+        public string FechaReinicio { get; set; }
+        public string Finalizado { get; set; }
+    }
+    public class AusentismosEmpleadosBean
+    {
+        public int IdAusentismo { get; set; }
+        public int Tipo_Ausentismo_id { get; set; }
+        public int Empleado_id { get; set; }
+        public int Empresa_id { get; set; }
+        public string RecuperaAusentismo { get; set; }
+        public string Fecha_Ausentismo { get; set; }
+        public int Dias_Ausentismo { get; set; }
+        public string Certificado_imss { get; set; }
+        public string Comentarios_imss { get; set; }
+        public string Causa_FaltaInjustificada { get; set; }
+    }
+    public class PensionesAlimentariasBean
+    {
+        public int IdPension { get; set; }
+        public int Empleado_id { get; set; }
+        public int Empresa_id { get; set; }
+        public string Cuota_Fija { get; set; }
+        public int Porcentaje { get; set; }
+        public string AplicaEn { get; set; }
+        public string Descontar_en_Finiquito { get; set; }
+        public string No_Oficio { get; set; }
+        public string Fecha_Oficio { get; set; }
+        public string Tipo_Calculo { get; set; }
+        public string Aumentar_segun_salario_minimo_general { get; set; }
+        public string Aumentar_segun_aumento_de_sueldo { get; set; }
+        public string Beneficiaria { get; set; }
+        public int Banco { get; set; }
+        public string Sucursal { get; set; }
+        public string Tarjeta_vales { get; set; }
+        public string Cuenta_cheques { get; set; }
+        public string Fecha_baja { get; set; }
     }
 }

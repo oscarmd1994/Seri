@@ -201,6 +201,7 @@
     <Content Include="Scripts\dataTables.responsive.js" />
     <Content Include="Scripts\dataTables.scroller.js" />
     <Content Include="Scripts\datepicker.es.js" />
+    <Content Include="Scripts\main\Ausentismos.js" />
     <Content Include="Scripts\main\Empre.js" />
     <Content Include="Scripts\ferros\errajax.js" />
     <Content Include="Scripts\fontawesome\fontawesome.js" />
@@ -217,10 +218,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\main\Empresas.js" />
+    <Content Include="Scripts\main\Incidencias.js" />
     <Content Include="Scripts\main\loadcatalogsemployee.js" />
     <Content Include="Scripts\main\loaddatatables.js" />
     <Content Include="Scripts\main\loadmenu.js" />
     <Content Include="Scripts\main\main.js" />
+    <Content Include="Scripts\main\PensionesAlimenticias.js" />
     <Content Include="Scripts\main\savedatageneral.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\sweetalert\sweetalert.min.js" />
@@ -251,6 +254,7 @@
     <Content Include="Views\Empleados\Estructura.cshtml" />
     <Content Include="Views\Empresas\Registros_Patronales.cshtml" />
     <Content Include="Views\Empresas\Localidades.cshtml" />
+    <Content Include="Views\Incidencias\Creditos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

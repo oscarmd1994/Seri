@@ -2,16 +2,7 @@
     <div class="h4 px-5 py-3 font-button " style="font-size:14px;">Datos generales de la nueva empresa</div>
     <div class="dropdown-divider mb-3"></div>
     <form id="form_inEmpresa" class="needs-validation font-labels" novalidate>
-
         <div class="form-row">
-
-            @*<div class="form-group col-md-2">
-            <label for="inId_empresa" class=" col-form-label font-labels">ID EMPRESA</label>
-            <input class="form-control font-labels" type="text" name="inId_empresa" id="inId_empresa" disabled>
-            <div class="valid-feedback">
-
-            </div>
-        </div>*@
             <div class="form-group col-md-6">
                 <label for="inNombre_empresa" class=" col-form-label font-labels">Nombre Empresa</label>
                 <input class="form-control font-labels" type="text" name="inNombre_empresa" id="inNombre_empresa" placeholder="Escribe la razón social de la empresa" required>
@@ -48,25 +39,12 @@
 
                 </div>
             </div>
-            @*<div class="form-group col-md-6">
-            <label for="validationServerUsername">Registros Patronales</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text btn btn-secondary font-labels" id="btnShowRegistroPatronal"><i class="fas fa-search"></i></span>
-                </div>
-                <input type="text" class="form-control font-labels" id="validationServerUsername" placeholder="Agrega uno o mas centro de costos" aria-describedby="inputGroupPrepend3" required disabled>
-                <div class="invalid-feedback">
-
-                </div>
-            </div>
-        </div>*@
             <div class="h5 px-5 py-3 text-dark font-labels col-md-12"><span class="fas fa-circle"></span> Direccion de la empresa</div>
             <div class="dropdown-divider mb-3"></div>
             <div class="form-group col-md-2">
                 <label for="inCodigo_postal">Codigo Postal</label>
                 <input type="text" maxlength="5" size="5" class="form-control input-number font-labels" min="0" name="inCodigo_postal" id="inCodigo_postal" required>
                 <div class="invalid-feedback">
-
                 </div>
             </div>
             <div class="form-group col-md-2">
@@ -170,58 +148,7 @@
                 <label class="invisible"> INF ONLY</label>
                 <input class="btn btn-primary form-control font-button" type="submit" name="btn_saveEmpresa" id="btn_saveEmpresa" value="Guardar Empresa" />
             </div>
-            @*<div class="form-group col-md-6">
-            <div class="h5 px-5 py-3 text-dark font-labels"><span class="fas fa-circle"></span> Numero de nomina automaticos</div>
-            <div class="dropdown-divider mb-3"></div>
-            <div class="form-group">
-                <label for="inUltimo_nomina" class="">Ultimo</label>
-                <input class="form-control mb-2 input-number font-labels" type="text" min="0" name="inUltimo_nomina" id="inUltimo_nomina" required>
-                <div class="invalid-feedback">
-
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inInicio_nomina" class="">Inicial</label>
-                <input class="form-control mb-2 input-number font-labels" type="text" min="0" name="inInicio_nomina" id="inInicio_nomina" required>
-                <div class="invalid-feedback">
-
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inFinal_nomina" class="">Final</label>
-                <input class="form-control mb-2 input-number font-labels" type="text" min="0" name="inFinal_nomina" id="inFinal_nomina" required>
-                <div class="invalid-feedback">
-
-                </div>
-            </div>
-        </div>*@
             <div class="form-group col-md-12 d-flex justify-content-end">
-                @*<div class="h5 px-5 py-3 text-dark font-labels"><span class="fas fa-circle"></span> Asignación primaria de Sueldo</div>
-            <div class="dropdown-divider mb-3"></div>
-            <div class="form-group">
-                <label for="inPeriodo_pago" class="">Periodo de pago: </label>
-                <select class="form-control custom-select font-labels" name="inPeriodo_pago" id="inPeriodo_pago" required>
-                    <option value="Semanal" class="">Semanal</option>
-                    <option value="Catorcenal">Catorcenal</option>
-                    <option value="Quincenal" selected="selected">Quincenal</option>
-                    <option value="Mensual">Mensual</option>
-                </select>
-                <div class="invalid-feedback">
-
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inPago" class="">Se paga por: </label>
-                <select class="form-control custom-select font-labels" name="inPago" id="inPago" required>
-                    <option value="Horas" class="">Horas</option>
-                    <option value="Dias"> Días</option>
-                    <option value="Periodos completos" selected>Periodos completos</option>
-                </select>
-                <div class="invalid-feedback">
-
-                </div>
-            </div>*@
-
             </div>
         </div>
         <div class="d-flex justify-content-end">
@@ -231,9 +158,6 @@
 </div>
 
 <script>
-
-
-
     // patron del RFC, persona moral
     _rfc_pattern_pm = "^(([A-ZÑ&]{3})([0-9]{2})([0][13578]|[1][02])(([0][1-9]|[12][\\d])|[3][01])([A-Z0-9]{3}))|" +
         "(([A-ZÑ&]{3})([0-9]{2})([0][13456789]|[1][012])(([0][1-9]|[12][\\d])|[3][0])([A-Z0-9]{3}))|" +
@@ -257,30 +181,6 @@
         municipio.disabled = true;
         states.disabled = true;
         colony.disabled = true;
-        //$.ajax({
-        //    url: "../Empleados/LoadStates",
-        //    type: "POST",
-        //    data: {},
-        //    contentType: "application/json; charset=utf-8",
-        //    success: (data) => {
-        //        for (i = 0; i < data.length; i++) {
-        //            //states.innerHTML += `<option value="${data[i].iId}">${data[i].sValor}</option>`;
-        //            modalStates.innerHTML += `<option value="${data[i].iId}">${data[i].sValor}</option>`;
-        //        }
-        //    }
-        //});//Carga estados
-        //$.ajax({
-        //    url: "../Empresas/New_ClaveEmpresa",
-        //    type: "POST",
-        //    data: {},
-        //    contentType: "application/json; charset=utf-8",
-        //    success: (data) => {
-        //        //console.log(data);
-        //        document.getElementById("inId_empresa").disabled = false;
-        //        document.getElementById("inId_empresa").value = data;
-        //        document.getElementById("inId_empresa").disabled = true;
-        //    }
-        //});//Carga nuevos
         $("#btnValidaCpEstado").on("click", function () {
             fvalidatestatecodpost();
         });
@@ -344,7 +244,6 @@
     });
     $("#inCodigo_postal").on("keyup", function (evt) {
         var i = $(this).val();
-        //alert(i.length);
         if (i.length == 5) {
             btnvalidacpstate.disabled = false;
             $("#btnValidaCpEstado").removeClass("btn-secondary");
@@ -431,9 +330,6 @@
             var callEmp = document.getElementById("inCalle_Empresa");
             var rfEmp = document.getElementById("inRFiscal_empresa");
             var noafiEmp = document.getElementById("inNombreAfiliacionIMSS");
-            //var finnom = document.getElementById("inFinal_nomina");
-            //var ppgEmp = document.getElementById("inPeriodo_pago");
-            //var pagoEmp = document.getElementById("inPago");
             var afImss = document.getElementById("inAfiliacionIMSS");
             var riesgot = document.getElementById("inRiesgoTrabajo");
             var claserp = document.getElementById("inClase");
@@ -450,11 +346,6 @@
                 , inColonia_empresa: colEmp.value
                 , inDelegacion_Empresa: delEmp.value
                 , inCalle_Empresa: callEmp.value
-                //, inUltimo_nomina: ultnom.value
-                //, inInicio_nomina: inicom.value
-                //, inFinal_nomina: finnom.value
-                //, inPeriodo_pago: ppgEmp.value
-                //, inPago: pagoEmp.value
                 , inAfiliacionIMSS: afImss.value
                 , inNombre_Afiliacion: noafiEmp.value
                 , inRiesgoTrabajo: riesgot.value
@@ -467,7 +358,6 @@
                 data: JSON.stringify(datos),
                 contentType: "application/json; charset=utf-8",
                 success: (data) => {
-                    //alert("si pasa");
                     console.log(data);
                     if (data[0] == "True") {
                         Swal.fire({
@@ -478,7 +368,6 @@
 
                             setTimeout(function () {
                                 emp.reset();
-                                
                                 $("#bodySubmenus").load("/Empresas/Registros_Patronales");
                             }, 1500);
                         });
@@ -501,10 +390,7 @@
                 }
             });
         }
-
     });
-
-
 </script>
 
 

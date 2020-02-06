@@ -47,11 +47,11 @@ namespace Payroll.Controllers
             return Json(listInfDomBean);
         }
         [HttpPost]
-        public JsonResult LoadInformationHome(int codepost,int state)
+        public JsonResult LoadInformationHome(int codepost, int state)
         {
             InfDomicilioDao infDomDao = new InfDomicilioDao();
             List<InfDomicilioBean> listInfDomBean = new List<InfDomicilioBean>();
-            listInfDomBean = infDomDao.sp_Domicilio_Retrieve_Domicilio(codepost,state);
+            listInfDomBean = infDomDao.sp_Domicilio_Retrieve_Domicilio(codepost, state);
             return Json(listInfDomBean);
         }
 
@@ -108,9 +108,10 @@ namespace Payroll.Controllers
         [HttpPost]
         public JsonResult SearchEmpleado(int IdEmpleado)
         {
-            List<PruebaEmpleadosBean> empleados = new List<PruebaEmpleadosBean>();
+            @Session["Empleado_id"] = IdEmpleado;
+            List<DescEmpleadoVacacionesBean> empleados = new List<DescEmpleadoVacacionesBean>();
             pruebaEmpleadosDao Dao = new pruebaEmpleadosDao();
-            empleados = Dao.sp_Retrieve_pruebaEmpleado(IdEmpleado);
+            empleados = Dao.sp_CEmpleado_Retrieve_Empleado(int.Parse(Session["Empleado_id"].ToString()), int.Parse(Session["IdEmpresa"].ToString()));
             return Json(empleados);
         }
         [HttpPost]
@@ -157,5 +158,6 @@ namespace Payroll.Controllers
             datoPosicionBean = listEmpleadoDao.sp_Posiciones_Retrieve_PosicionEmpleado(keyemploye);
             return Json(datoPosicionBean);
         }
+
     }
 }
