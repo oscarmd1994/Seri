@@ -110,7 +110,6 @@ namespace Payroll.Models.Beans
         public string sFechaRegistroPuesto { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class ProfesionesFamiliaBean
     {
         public int iIdProfesionFamilia { get; set; }
@@ -119,7 +118,6 @@ namespace Payroll.Models.Beans
         public string sUsuarioRegistroProfesion { get; set; }
         public string sFechaRegistroProfesoin { get; set; }
     }
-
     public class EtiquetasContablesBean
     {
         public int iIdEtiquetaContable { get; set; }
@@ -128,7 +126,6 @@ namespace Payroll.Models.Beans
         public string sUsuarioRegistroEtiqueta { get; set; }
         public string sFechaRegistroEtiqueta { get; set; }
     }
-
     public class NivelJerarBean
     {
         public int iIdNivelJerarquico { get; set; }
@@ -137,7 +134,6 @@ namespace Payroll.Models.Beans
         public string sUsuarioRegistroNivel { get; set; }
         public string sFechaRegistroNivel { get; set; }
     }
-
     public class PerfomanceManagerBean
     {
         public int iIdPerfomanceManager { get; set; }
@@ -146,7 +142,6 @@ namespace Payroll.Models.Beans
         public string sUsuarioRegistroPerfomance { get; set; }
         public string sFechaRegistroPerfomance { get; set; }
     }
-
     public class EmpresasBean
     {
         public int iIdEmpresa { get; set; }
@@ -168,7 +163,6 @@ namespace Payroll.Models.Beans
         public string sFechaRegistro { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class CentrosCostosBean
     {
         public int iIdCentroCosto { get; set; }
@@ -180,7 +174,6 @@ namespace Payroll.Models.Beans
         public string sFechaRegistroCentro { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class EdificiosBean
     {
         public int iIdEdificio { get; set; }
@@ -195,7 +188,6 @@ namespace Payroll.Models.Beans
         public string sFechaRegistroEdificio { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class NivelEstructuraBean
     {
         public int iIdNivelEstructura { get; set; }
@@ -205,7 +197,6 @@ namespace Payroll.Models.Beans
         public string sFechaRegistraNivel { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class DepartamentosBean
     {
         public int iIdDepartamento { get; set; }
@@ -226,7 +217,6 @@ namespace Payroll.Models.Beans
         public string sFechaRegistroDepartamento { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class EmpleadosBean
     {
         public int iIdEmpleado { get; set; }
@@ -253,7 +243,6 @@ namespace Payroll.Models.Beans
         public int iNumeroNomina { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class ImssBean
     {
         public int iIdImss { get; set; }
@@ -268,7 +257,6 @@ namespace Payroll.Models.Beans
         public string sFechaRegistroImss { get; set; }
         public string sMensaje { get; set; }
     }
-
     public class DatosNominaBean
     {
         public int iIdNomina { get; set; }
@@ -357,6 +345,28 @@ namespace Payroll.Models.Beans
         public string Fecha_Aniversario { get; set; }
         public int Id_Per_Vac_Ln { get; set; }
         public int Anio { get; set; }
+        public int DiasPrima { get; set; }
+        public int DiasDisfrutados { get; set; }
+        public int DiasRestantes { get; set; }
+
+
+    }
+    public class PVacacionesBean
+    {
+        public int iFlag { get; set; }
+        public int IdEmpleado { get; set; }
+        public string Nombre_Empleado { get; set; }
+        public string Apellido_Materno_Empleado { get; set; }
+        public string Apellido_Paterno_Empleado { get; set; }
+        public string DescripcionDepartamento { get; set; }
+        public string DescripcionPuesto { get; set; }
+        public string FechaIngreso { get; set; }
+        public int Id_Per_Vac { get; set; }
+        public string FechaAntiguedad { get; set; }
+        public string aniversario_proximo { get; set; }
+        public string aniversario_anterior { get; set; }
+        public int Id_Per_Vac_Ln { get; set; }
+        public string Periodo { get; set; }
         public int DiasPrima { get; set; }
         public int DiasDisfrutados { get; set; }
         public int DiasRestantes { get; set; }

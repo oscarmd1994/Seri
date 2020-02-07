@@ -16,11 +16,7 @@
     var CCheques = document.getElementById("inCCheques");
     var FBaja = document.getElementById("inFBaja");
 
-    var ch1, ch2, ch3;
-    if ($("#inDescFiniquito").is(":checked")) { ch1 = 1; } else { ch1 = 0; }
-    if ($("#inAumentoSegunSMG").is(":checked")) { ch2 = 1; } else { ch2 = 0; }
-    if ($("#inAumentarSegunAs").is(":checked")) { ch3 = 1; } else { ch3 = 0; }
-
+    
     //$("#inBanco").on("change", function () {
     //    switch ($("#inBanco").val) {
     //        case: '1' 
@@ -28,8 +24,14 @@
     //    }
     //});
     $("#modalLiveSearchEmpleado").modal("show");
-    //tabAusentismo();
+    
     $("#btn-save-pension").on("click", function (evt) {
+        var ch1, ch2, ch3;
+        if ($("#inDescFiniquito").is(":checked")) { ch1 = 1; } else { ch1 = 0; }
+        if ($("#inAumentoSegunSMG").is(":checked")) { ch2 = 1; } else { ch2 = 0; }
+        if ($("#inAumentarSegunAs").is(":checked")) { ch3 = 1; } else { ch3 = 0; }
+        if (Porcentaje.value == "") { Porcentaje.value = 0 }
+        if (CFija.value == "") { CFija.value = "0" }
         var data = $("#frmPensionesAlimenticias").serialize();
         
         var form = document.getElementById("frmPensionesAlimenticias");
@@ -65,47 +67,34 @@
                 }),
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: (data) => {
+                success: () => {
+                    
+                    //Refresca la tabla 
+                    $.ajax({
+                        method: "POST",
+                        url: "../Incidencias/LoadPensiones",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: (data) => {
+                            console.log(data);
+                            document.getElementById("tabody").innerHTML = "";
+                            for (var i = 0; i < data.length; i++) {
+                                
+                                document.getElementById("tabody").innerHTML += "<tr><td>" + data[i]["Beneficiaria"] + "</td><td>" + data[i]["No_Oficio"] + "</td><td>" + data[i]["Fecha_Oficio"] + "</td><td>$ " + data[i]["Cuota_Fija"] + " - % " + data[i]["Porcentaje"] + "</td><td><div class='btn btn-secondary btn-sm btn-editar-pensiones' onclick='eliminarPension( " + data[i]["IdIdPension"] + " );'><i class='far fa-edit'></i></div></td></tr>";
+                                console.log(data[i]["Tipo_Ausentismo_id"]);
+                            }
+                        }
+                    });
+                    //
+
                     Swal.fire({
                         icon: 'success',
                         title: 'Completado!',
                         text: 'Credito agregado con éxito'
                     });
-                    //try {
-                    //var tb = $("#tabAusentismos").DataTable();
-                    //$("#tabody").empty();
-                    //tb.ajax.destroy
-
-                    //$.ajax({
-                    //    method: "POST",
-                    //    url: "../Incidencias/LoadAusentismosTab",
-                    //    contentType: "application/json; charset=utf-8",
-                    //    dataType: "json",
-                    //    success: (data) => {
-                    //        console.log(data);
-                    //        for (var i = 0; i < data.length; i++) {
-                    //            document.getElementById("tabody").innerHTML += "<tr><td>" + data[i]["Tipo_Ausentismo_id"] + "</td><td>" + data[i]["Fecha_Ausentismo"] + "</td><td>" + data[i]["Dias_Ausentismo"] + "</td><td><div class='btn btn-secondary btn-sm btn-editar-ausentismo' onclick='eliminarAusentismo( " + data[i]["IdAusentismo"] + " );'><i class='far fa-edit'></i></div></td></tr>";
-                    //            console.log(data[i]["Tipo_Ausentismo_id"]);
-                    //        }
-
-                    //        $("#tabAusentismos").DataTable({
-                    //            paging: false,
-                    //            scrollX: false,
-                    //            scrollY: false,
-                    //            searching: false,
-                    //            scrollCollapse: true
-                    //        });
 
 
-                    //    }
-                    //});
-
-                    //} catch (e) {
-                    //    console.log(e);
-                    //    var tab = document.getElementById("tabAusentismos");
-                    //    tab.ajax.destroy();
-                    //    $("#tabAusentismos").DataTable();
-                    //}
+                    
                 }
             });
 
@@ -174,31 +163,10 @@ function tabPensiones() {
         success: (data) => {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
-                document.getElementById("tabody").innerHTML += "<tr><td>" + data[i]["Beneficiaria"] + "</td><td>" + data[i]["No_Oficio"] + "</td><td>" + data[i]["Fecha_Oficio"] + "</td><td>$ " + data[i]["Cuota_Fija"] + " - % "+ data[i]["Porcentaje"] +"</td><td><div class='btn btn-secondary btn-sm btn-editar-pensiones' onclick='eliminarPension( " + data[i]["IdIdPension"] + " );'><i class='far fa-edit'></i></div></td></tr>";
+                document.getElementById("tabody").innerHTML += "<tr><td>" + data[i]["Beneficiaria"] + "</td><td>" + data[i]["No_Oficio"] + "</td><td>" + data[i]["Fecha_Oficio"] + "</td><td>$ " + data[i]["Cuota_Fija"] + " - % " + data[i]["Porcentaje"] +"</td><td><div class='btn btn-secondary btn-sm btn-editar-pensiones' onclick='eliminarPension( " + data[i]["IdIdPension"] + " );'><i class='far fa-edit'></i></div></td></tr>";
                 console.log(data[i]["Tipo_Ausentismo_id"]);
             }
-            try {
-                $("#tabPensiones").DataTable({
-
-                    paging: false,
-                    scrollX: true,
-                    scrollY: true,
-                    searching: false
-
-                });
-            } catch (e) {
-                var tab = document.getElementById("tabAusentismos");
-                tab.ajax.destroy();
-                $("#tabAusentismos").DataTable({
-
-                    paging: false,
-                    scrollX: false,
-                    scrollY: false,
-                    searching: false,
-                    scrollCollapse: true
-
-                });
-            }
+            
 
         }
     });

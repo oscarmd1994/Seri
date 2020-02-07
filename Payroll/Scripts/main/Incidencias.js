@@ -33,6 +33,22 @@
             type: "POST",
             contentType: "application/json; charset=utf-8",
             success: (data) => {
+                //Refresca la tabla
+                $.ajax({
+                    method: "POST",
+                    url: "../Incidencias/LoadCreditosEmpleado",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: (data) => {
+                        document.getElementById("tcbody").innerHTML = "";
+                        for (var i = 0; i < data.length; i++) {
+                            document.getElementById("tcbody").innerHTML += "<tr><td>" + data[i]["NoCredito"] + "</td><td>" + data[i]["TipoDescuento"] + "</td><td>" + data[i]["Descuento"] + "</td><td>" + data[i]["FechaBaja"] + "</td><td><div class='btn btn-danger btn-sm'><i class='far fa-check-square'></i></div></td></tr>";
+                        }
+                    }
+                });
+
+
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Completado!',
@@ -57,6 +73,11 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: (data) => {
+
+                    
+
+
+
                     console.log(data[0]["iFlag"]);
                     $("#resultSearchEmpleados").empty();
                     if (data[0]["iFlag"] == 0) {
@@ -99,8 +120,6 @@ function MostrarDatosEmpleado(idE) {
 
 }
 function createTab() {
-    
-    
         $.ajax({
             method: "POST",
             url: "../Incidencias/LoadCreditosEmpleado",
@@ -114,25 +133,7 @@ function createTab() {
                 for (var i = 0; i < data.length; i++) {
                     document.getElementById("tcbody").innerHTML += "<tr><td>" + data[i]["NoCredito"] + "</td><td>" + data[i]["TipoDescuento"] + "</td><td>" + data[i]["Descuento"] + "</td><td>" + data[i]["FechaBaja"] + "</td><td><div class='btn btn-danger btn-sm'><i class='far fa-check-square'></i></div></td></tr>";
                 }
-                try {
-                    $("#tabCreditos").DataTable({
-                        paging: false,
-                        scrollX: false,
-                        scrollY: false,
-                        searching: false,
-                        scrollCollapse: true
-                    });
-                } catch (e){
-                    var tab = document.getElementById("tabCreditos");
-                    tab.ajax.destroy();
-                    $("#tabCreditos").DataTable({
-                        paging: false,
-                        scrollX: false,
-                        scrollY: false,
-                        searching: false,
-                        scrollCollapse: true
-                    });
-                }
+                
                 
             }
         });

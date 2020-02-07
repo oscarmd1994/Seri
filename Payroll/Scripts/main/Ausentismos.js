@@ -79,11 +79,7 @@
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
                 success: (data) => {
-                    //try {
-                    //var tb = $("#tabAusentismos").DataTable();
-                    $("#tabody").empty();
-                    //tb.ajax.destroy
-
+                    
                     $.ajax({
                         method: "POST",
                         url: "../Incidencias/LoadAusentismosTab",
@@ -91,29 +87,25 @@
                         dataType: "json",
                         success: (data) => {
                             console.log(data);
+                            document.getElementById("tabody").innerHTML = "";
                             for (var i = 0; i < data.length; i++) {
                                 document.getElementById("tabody").innerHTML += "<tr><td>" + data[i]["Tipo_Ausentismo_id"] + "</td><td>" + data[i]["Fecha_Ausentismo"] + "</td><td>" + data[i]["Dias_Ausentismo"] + "</td><td><div class='btn btn-secondary btn-sm btn-editar-ausentismo' onclick='eliminarAusentismo( " + data[i]["IdAusentismo"] + " );'><i class='far fa-edit'></i></div></td></tr>";
                                 console.log(data[i]["Tipo_Ausentismo_id"]);
                             }
                             
-                            //$("#tabAusentismos").DataTable({
-                            //    paging: false,
-                            //    scrollX: false,
-                            //    scrollY: false,
-                            //    searching: false,
-                            //    scrollCollapse: true
-                            //});
+                            
                             
 
                         }
                     });
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Correcto!',
+                        text: "Ausentismo agregado con éxito"
 
-                    //} catch (e) {
-                    //    console.log(e);
-                    //    var tab = document.getElementById("tabAusentismos");
-                    //    tab.ajax.destroy();
-                    //    $("#tabAusentismos").DataTable();
-                    //}
+                    });
+
+                   
                 }
             });
             

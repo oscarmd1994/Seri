@@ -542,11 +542,11 @@ namespace Payroll.Models.Daos
 
             return lista;
         }
-        public List<PeriodosVacacionesBean> sp_TperiodosVacaciones_Retrieve_PeriodosVacaciones(int IdEmpleado, int IdEmpresa)
+        public List<PVacacionesBean> sp_TperiodosVacaciones_Retrieve_PeriodosVacaciones(int IdEmpleado, int IdEmpresa)
         {
-            List<PeriodosVacacionesBean> lista = new List<PeriodosVacacionesBean>();
+            List<PVacacionesBean> lista = new List<PVacacionesBean>();
             this.Conectar();
-            SqlCommand cmd = new SqlCommand("sp_TperiodosVacaciones_Retrieve_PeriodosVacaciones", this.conexion)
+            SqlCommand cmd = new SqlCommand("sp_TPeriodos_Verify_AllPeriods", this.conexion)
             {
                 CommandType = CommandType.StoredProcedure
             };
@@ -559,12 +559,12 @@ namespace Payroll.Models.Daos
             {
                 while (data.Read())
                 {
-                    PeriodosVacacionesBean list = new PeriodosVacacionesBean
+                    PVacacionesBean list = new PVacacionesBean
                     {
-                        Anio                = int.Parse(data["Anio"].ToString()),
-                        Fecha_Inicio        = data["Fecha_Inicio"].ToString(),
-                        Fecha_Fin           = data["Fecha_Fin"].ToString(),
-                        Dias                = int.Parse(data["Dias"].ToString()),
+                        Anio                = int.Parse(data["aniversario_anterior"].ToString()),
+                        Fecha_Inicio        = data["Fecha_hoy"].ToString(),
+                        Fecha_Fin           = data["Fecha_fin_1"].ToString(),
+                        Dias                = int.Parse(data["Dias_vacaciones_1"].ToString()),
                         Agendadas           = data["Agendadas"].ToString(),
                         Disfrutadas         = data["Disfrutadas"].ToString()
                     };

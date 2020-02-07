@@ -383,7 +383,7 @@ namespace Payroll.Models.Daos
         {
             List<string> list = new List<string>();
             this.Conectar();
-            SqlCommand cmd = new SqlCommand("sp_TPensiones_Alimenticias_Insert_Penciones", this.conexion)
+            SqlCommand cmd = new SqlCommand("sp_TPensiones_Alimenticias_Insert_Pensiones", this.conexion)
             {
                 CommandType = CommandType.StoredProcedure
             };
@@ -408,8 +408,6 @@ namespace Payroll.Models.Daos
             cmd.Dispose();
             if (data.HasRows)
             {
-                //list.Add("1");
-                //list.Add("Pension  Eliminado con éxito");
                 while (data.Read())
                 {
                     list.Add( data["iFlag"].ToString());
@@ -447,6 +445,7 @@ namespace Payroll.Models.Daos
                     list.Empresa_id = int.Parse(data["Empresa_id"].ToString());
                     list.Empleado_id = int.Parse(data["Empleado_id"].ToString());
                     if (data["Cuota_fija"].ToString().Length == 0) { list.Cuota_Fija = ""; } else { list.Cuota_Fija = data["Cuota_fija"].ToString(); }
+                    if (data["Porcentaje"].ToString().Length == 0) { list.Porcentaje = 0; } else { list.Porcentaje = int.Parse(data["Porcentaje"].ToString()); }
                     if (data["AplicaEn"].ToString().Length == 0) { list.AplicaEn = ""; } else { list.AplicaEn = data["AplicaEn"].ToString(); }
                         
                     list.Descontar_en_Finiquito = data["Descontar_en_Finiquito"].ToString();
