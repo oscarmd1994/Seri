@@ -82,14 +82,12 @@ namespace Payroll.Models.Daos
                     listEmpleados.DescripcionPuesto = data["DescripcionPuesto"].ToString();
                     listEmpleados.FechaIngreso = data["FechaIngreso"].ToString();
                     listEmpleados.Id_Per_Vac = int.Parse(data["IdPer_Vac"].ToString());
-                    listEmpleados.Fecha_Aniversario = data["Fecha_Aniversario"].ToString();
+                    listEmpleados.Fecha_Aniversario = data["FechaAntiguedad"].ToString();
                     listEmpleados.Id_Per_Vac_Ln = int.Parse(data["IdPer_Vac_Ln"].ToString());
                     listEmpleados.Anio = int.Parse(data["Anio"].ToString());
                     listEmpleados.DiasPrima = int.Parse(data["DiasPrima"].ToString());
                     listEmpleados.DiasDisfrutados = int.Parse(data["DiasDisfrutados"].ToString());
                     listEmpleados.DiasRestantes = int.Parse(data["DiasRestantes"].ToString());
-
-
 
                     list.Add(listEmpleados);
                 }

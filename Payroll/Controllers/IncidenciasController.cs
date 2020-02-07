@@ -60,13 +60,22 @@ namespace Payroll.Controllers
             return Json(lista);
         }
         [HttpPost]
-        public JsonResult LoadPeiodosVac(int IdEmpleado)
+        public JsonResult LoadPeiodosVac()
         {
-            List<PeriodosVacacionesBean> lista = new List<PeriodosVacacionesBean>();
+            List<PVacacionesBean> lista = new List<PVacacionesBean>();
             PruebaEmpresaDao Dao = new PruebaEmpresaDao();
-            lista = Dao.sp_TperiodosVacaciones_Retrieve_PeriodosVacaciones( IdEmpleado, int.Parse(Session["IdEmpresa"].ToString()));
+            lista = Dao.sp_TperiodosVacaciones_Retrieve_PeriodosVacaciones(int.Parse(Session["Empleado_id"].ToString()), int.Parse(Session["IdEmpresa"].ToString()));
             return Json(lista);
         }
+        [HttpPost]
+        public JsonResult SavePeiodosVac(int PerVacLn_id, string FechaInicio, string FechaFin, int Dias)
+        {
+            List<PVacacionesBean> lista = new List<PVacacionesBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            lista = Dao.sp_TPeriodosDist_Insert_Periodo(PerVacLn_id, FechaInicio, FechaFin, Dias);
+            return Json(lista);
+        }
+
         [HttpPost]
         public JsonResult LoadCreditosEmpleado()
         {

@@ -37,18 +37,9 @@
             timerProgressBar: true,
             onBeforeOpen: () => {
                 $("#bodySubmenus").load(data);
-                Swal.showLoading();
-                
-            }
-        }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-                
+                Swal.showLoading();      
             }
         });
-
-
-        
     }
     function change() {
         $("#bodySubmenus").empty();

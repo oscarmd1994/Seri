@@ -5,22 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <link rel="icon" type="image/png" href="~/Content/img/icon-payroll.png" />
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/modernizr")
-
     <link rel="stylesheet" href="~/Content/jquery-ui.css">
 
     <link rel="stylesheet" href="~/Content/jquery.dataTables.css" />
-    <link rel="stylesheet" href="~/Content/autoFill.dataTables.min.css" />
-    <link rel="stylesheet" href="~/Content/responsive.dataTables.css" />
-    <link rel="stylesheet" href="~/Content/scroller.dataTables.css" />
     <link rel="stylesheet" href="~/Content/jquery-ui.theme.css" />
     <link rel="stylesheet" href="~/Content/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/styles/main.css" />
     <link rel="stylesheet" href="~/Content/animate/animate.css" />
-
-    @RenderSection("scripts", required: false)
+    <link rel="stylesheet" href="~/Content/styles/Nomina.css" />
 </head>
 <body>
 
@@ -77,17 +71,29 @@
 
     </div>
 
-    <script src="~/Scripts/jquery-ui.js" charset="UTF-8"></script>
-    <script src="~/Scripts/jquery.dataTables.js"></script>
-    <script src="~/Scripts/dataTables.autoFill.js"></script>
-    <script src="~/Scripts/dataTables.responsive.js"></script>
-    <script src="~/Scripts/dataTables.scroller.js"></script>
-    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/fontawesome/fontawesome.js"></script>
-    <script src="~/Scripts/sweetalert/sweetalert.min.js"></script>
-    <script src="~/Scripts/datepicker.es.js" charset="UTF-8"></script>
-    <script src="~/Scripts/toastr/toastr.min.js"></script>
-    <script src="~/Scripts/main/main.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/fontawesome/fontawesome.js"></script>
+    <script type="text/javascript" src="~/Scripts/sweetalert/sweetalert.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/datepicker.es.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="~/Scripts/toastr/toastr.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/main/main.js"></script>
+    <link rel="stylesheet" href="~/Scripts/jqxGrid/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="~/Scripts/jqxGrid/jqwidgets/styles/jqx.arctic.css" type="text/css" />
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqx-all.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxcore.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxdata.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxbuttons.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxscrollbar.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxmenu.js"></script>
+
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxgrid.selection.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxgrid.filter.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxlistbox.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxdropdownlist.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxcheckbox.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxwindow.js"></script>
 
 </body>
 </html>

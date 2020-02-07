@@ -561,12 +561,52 @@ namespace Payroll.Models.Daos
                 {
                     PVacacionesBean list = new PVacacionesBean
                     {
-                        Anio                = int.Parse(data["aniversario_anterior"].ToString()),
-                        Fecha_Inicio        = data["Fecha_hoy"].ToString(),
-                        Fecha_Fin           = data["Fecha_fin_1"].ToString(),
-                        Dias                = int.Parse(data["Dias_vacaciones_1"].ToString()),
-                        Agendadas           = data["Agendadas"].ToString(),
-                        Disfrutadas         = data["Disfrutadas"].ToString()
+                        Periodo = data["aniversario_anterior"].ToString().Substring(0,10) +" a "+ data["aniversario_proximo"].ToString().Substring(0,10),
+                        DiasPrima = int.Parse(data["DiasPrima"].ToString()),
+                        DiasDisfrutados = int.Parse(data["DiasDisfrutados"].ToString()),
+                        DiasRestantes = int.Parse(data["DiasRestantes"].ToString()),
+                        Id_Per_Vac_Ln = int.Parse(data["IdPer_Vac_Ln"].ToString())
+                        
+                    };
+                    lista.Add(list);
+                }
+            }
+            else
+            {
+                lista = null;
+            }
+            data.Close();
+
+            return lista;
+        }
+        
+        public List<PVacacionesBean> sp_TPeriodosDist_Insert_Periodo(int PerVacLn_id,string FechaInicio,string FechaFin, int Dias)
+        {
+            List<PVacacionesBean> lista = new List<PVacacionesBean>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_TPeriodos_Verify_AllPeriods", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlPerVacLn_id", PerVacLn_id));
+            cmd.Parameters.Add(new SqlParameter("@ctrlFechaInicio", FechaInicio));
+            cmd.Parameters.Add(new SqlParameter("@ctrlFechaFin", FechaFin));
+            cmd.Parameters.Add(new SqlParameter("@ctrlDias", Dias));
+
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    PVacacionesBean list = new PVacacionesBean
+                    {
+                        Periodo = data["aniversario_anterior"].ToString().Substring(0, 10) + " a " + data["aniversario_proximo"].ToString().Substring(0, 10),
+                        DiasPrima = int.Parse(data["DiasPrima"].ToString()),
+                        DiasDisfrutados = int.Parse(data["DiasDisfrutados"].ToString()),
+                        DiasRestantes = int.Parse(data["DiasRestantes"].ToString()),
+                        Id_Per_Vac_Ln = int.Parse(data["IdPer_Vac_Ln"].ToString())
+
                     };
                     lista.Add(list);
                 }

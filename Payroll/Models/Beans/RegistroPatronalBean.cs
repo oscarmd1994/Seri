@@ -10,7 +10,7 @@ namespace Payroll.Models.Beans
         public int IdRegPat { get; set; }
         public int Empresa_id { get; set; }
         public string Afiliacion_IMSS { get; set; }
-        public string Nombre_Afiliacion { get; set; }
+		public string Nombre_Afiliacion { get; set; }
         public string Riesgo_Trabajo { get; set; }
         public int ClasesRegPat_id { get; set; }
         public string Cancelado { get; set; }
