@@ -22,8 +22,7 @@ namespace Payroll.Controllers
         {
             List<PuestosBean> listPuestoBean = new List<PuestosBean>();
             PuestosDao puestoDao = new PuestosDao();
-            // Reemplazar por la sesion de la empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             listPuestoBean = puestoDao.sp_Puestos_Retrieve_Search_Puestos(wordsearch, keyemp);
             return Json(listPuestoBean);
         }
@@ -42,8 +41,7 @@ namespace Payroll.Controllers
         {
             DatosPosicionesBean posicionBean = new DatosPosicionesBean();
             DatosPosicionesDao posicionesDao = new DatosPosicionesDao();
-            // Remplazar por la sesion de la empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             posicionBean = posicionesDao.sp_Posicion_Consecutivo_Posicion(keyemp);
             var data = new { result = posicionBean.sPosicionCodigo, mesage = posicionBean.sMensaje };
             return Json(data);
@@ -54,8 +52,7 @@ namespace Payroll.Controllers
         {
             List<DatosPosicionesBean> listPosicionesBean = new List<DatosPosicionesBean>();
             DatosPosicionesDao posicionesDao = new DatosPosicionesDao();
-            // Reemplazar por la session de la empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             listPosicionesBean = posicionesDao.sp_Posiciones_Retrieve_Search_Posiciones(wordsearch, keyemp, type);
             return Json(listPosicionesBean);
         }
@@ -65,8 +62,7 @@ namespace Payroll.Controllers
         {
             List<DatosPosicionesBean> listPosicionesBean = new List<DatosPosicionesBean>();
             DatosPosicionesDao posicionesDao = new DatosPosicionesDao();
-            // Reemplazar por la session de la empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             listPosicionesBean = posicionesDao.sp_Posiciones_Retrieve_Search_Disp_Posiciones(wordsearch, keyemp);
             return Json(listPosicionesBean);
         }
@@ -85,8 +81,7 @@ namespace Payroll.Controllers
         {
             List<RegionalesBean> listRegionBean = new List<RegionalesBean>();
             RegionesDao regionDao = new RegionesDao();
-            // Reemplazar por la session de la empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             listRegionBean = regionDao.sp_Regionales_Retrieve_Search_Regionales(wordsearch, keyemp);
             return Json(listRegionBean);
         }
@@ -123,8 +118,7 @@ namespace Payroll.Controllers
         {
             List<DepartamentosBean> departamentoBean = new List<DepartamentosBean>();
             DepartamentosDao departamentoDao = new DepartamentosDao();
-            // Reemplazar por la sesion de la empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             departamentoBean = departamentoDao.sp_Departamentos_Retrieve_Search_Departamentos(wordsearch, keyemp, type);
             return Json(departamentoBean);
         }
@@ -143,8 +137,7 @@ namespace Payroll.Controllers
         {
             List<CentrosCostosBean> centrCostBean = new List<CentrosCostosBean>();
             CentrosCostosDao centrCostDao = new CentrosCostosDao();
-            // Reemplazar por la sesion de la empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             centrCostBean = centrCostDao.sp_CentrosCostos_Retrieve_Search_CentrosCostos(wordsearch, keyemp);
             return Json(centrCostBean);
         }
@@ -161,10 +154,9 @@ namespace Payroll.Controllers
         [HttpPost]
         public JsonResult SearchLocalitys(string wordsearch)
         {
-            List<LocalidadesBean> localBean = new List<LocalidadesBean>();
+            List<LocalidadesBean2> localBean = new List<LocalidadesBean2>();
             LocalidadesDao localDao = new LocalidadesDao();
-            // Reemplazar por la sesion de la empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             localBean = localDao.sp_Localidades_Retrieve_Search_Localidades(wordsearch, keyemp);
             return Json(localBean);
         }
@@ -174,8 +166,7 @@ namespace Payroll.Controllers
         {
             List<EmpleadosBean> empleadoBean = new List<EmpleadosBean>();
             ListEmpleadosDao empleadoDao = new ListEmpleadosDao();
-            // Reemplazar por la sesion de la empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             empleadoBean = empleadoDao.sp_Empleados_Retrieve_Search_Empleados(keyemp, wordsearch);
             return Json(empleadoBean);
         }

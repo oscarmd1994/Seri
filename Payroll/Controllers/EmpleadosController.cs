@@ -183,7 +183,7 @@ namespace Payroll.Controllers
         [HttpPost]
         public JsonResult LoadRegPatCla()
         {
-            List<RegistroPatronalBean> regPatronalBean = new List<RegistroPatronalBean>();
+            List<RegistroPatronalBean2> regPatronalBean = new List<RegistroPatronalBean2>();
             RegistroPatronalDao regPatronalDao = new RegistroPatronalDao();
             // Reemplazar por la sesion de la empresa
             int keyemp = int.Parse(Session["IdEmpresa"].ToString());

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Services;
-using Payroll.Models.Beans;
+﻿using Payroll.Models.Beans;
 using Payroll.Models.Daos;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Payroll.Controllers
 {
@@ -22,7 +18,8 @@ namespace Payroll.Controllers
         {
             List<PuestosBean> listPuestosBean = new List<PuestosBean>();
             PuestosDao puestosDao = new PuestosDao();
-            listPuestosBean = puestosDao.sp_Puestos_Retrieve_Puestos(1, "Active/Desactive", 0, 5);
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            listPuestosBean = puestosDao.sp_Puestos_Retrieve_Puestos(1, "Active/Desactive", 0, keyemp);
             object json = new { data = listPuestosBean };
             return Json(json);
         }
@@ -79,7 +76,7 @@ namespace Payroll.Controllers
 
         //Carga las empresas al momento de registrar un nuevo departamento
         [HttpPost]
-        public JsonResult Business(bool state, string type, int keyemp)
+        public JsonResult Business(int state, string type, int keyemp)
         {
             List<EmpresasBean> listEmpresasBean = new List<EmpresasBean>();
             EmpresasDao empresasDao = new EmpresasDao();
@@ -93,17 +90,18 @@ namespace Payroll.Controllers
         {
             List<CentrosCostosBean> listCentrosCostosBean = new List<CentrosCostosBean>();
             CentrosCostosDao centrosCostosDao = new CentrosCostosDao();
-            listCentrosCostosBean = centrosCostosDao.sp_CentrosCostos_Retrieve_CentrosCostos(state, type, keycos);
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            listCentrosCostosBean = centrosCostosDao.sp_CentrosCostos_Retrieve_CentrosCostos(state, type, keycos, keyemp);
             return Json(listCentrosCostosBean);
         }
 
         //Carga los edificios al momento de registrar un nuevo departamento
         [HttpPost]
-        public JsonResult Buildings(int state, string type, int keyedi)
+        public JsonResult Buildings(string type, int keyedi)
         {
             List<EdificiosBean> listEdificiosBean = new List<EdificiosBean>();
             EdificiosDao edificioDao = new EdificiosDao();
-            listEdificiosBean = edificioDao.sp_Edificios_Retrieve_Edificios(state, type, keyedi);
+            listEdificiosBean = edificioDao.sp_Edificios_Retrieve_Edificios(type, keyedi);
             return Json(listEdificiosBean);
         }
 
@@ -113,7 +111,8 @@ namespace Payroll.Controllers
         {
             List<NivelEstructuraBean> listNivelEstructuraBean = new List<NivelEstructuraBean>();
             NivelEstructuraDao nivelEstructuraDao = new NivelEstructuraDao();
-            listNivelEstructuraBean = nivelEstructuraDao.sp_NivelEstructura_Retrieve_NivelEstructura(state, type, keyniv);
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            listNivelEstructuraBean = nivelEstructuraDao.sp_NivelEstructura_Retrieve_NivelEstructura(state, type, keyniv, keyemp);
             return Json(listNivelEstructuraBean);
         }
 
@@ -123,22 +122,34 @@ namespace Payroll.Controllers
         {
             List<DepartamentosBean> listDepartamentosBean = new List<DepartamentosBean>();
             DepartamentosDao departamentosDao = new DepartamentosDao();
-            listDepartamentosBean = departamentosDao.sp_Departamentos_Retrieve_Departamentos(1, "Active/Desactive", 0);
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            listDepartamentosBean = departamentosDao.sp_Departamentos_Retrieve_Departamentos(0, "Active/Desactive", 0, keyemp);
             object json = new { data = listDepartamentosBean };
             return Json(json);
         }
-
+        [HttpPost]
+        public JsonResult DepartamentsSearch()
+        {
+            List<DepartamentosBean> listDepartamentosBean = new List<DepartamentosBean>();
+            DepartamentosDao departamentosDao = new DepartamentosDao();
+            int keyemp = 0;
+            listDepartamentosBean = departamentosDao.sp_Departamentos_Retrieve_Departamentos(0, "Active/Desactive", 0, keyemp);
+            object json = new { data = listDepartamentosBean };
+            var jsonResult = Json(json, JsonRequestBehavior.DenyGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+        }
         //Carga el numero de nomina siguiente
         [HttpPost]
         public JsonResult LoadNumNomina(int keyemp)
         {
             NumeroNominaBean numeroNominaBean = new NumeroNominaBean();
-            NumeroNominaDao numeroNominaDao   = new NumeroNominaDao();
-            
-            numeroNominaBean = numeroNominaDao.sp_Consulta_NumeroNomina_Empresa((Int32)Session["IdEmpresa"]);
+            NumeroNominaDao numeroNominaDao = new NumeroNominaDao();
+
+            numeroNominaBean = numeroNominaDao.sp_Consulta_NumeroNomina_Empresa(int.Parse(Session["IdEmpresa"].ToString()));
             return Json(numeroNominaBean);
         }
-        
+
         //Carga el numero de posicion siguiente
         [HttpPost]
         public JsonResult LoadNumPosicion()
@@ -148,6 +159,37 @@ namespace Payroll.Controllers
             numeroPosicionBean = numeroPosicionDao.sp_Consulta_NumeroPosicion();
             return Json(numeroPosicionBean);
         }
+        [HttpPost]
+        public JsonResult Positions()
+        {
+            List<DatosPosicionesBean> posicionBean = new List<DatosPosicionesBean>();
+            DatosPosicionesDao posicionDao = new DatosPosicionesDao();
+            // Reemplazar por la sesion de empresa
+            int keyemp = 5;
+            string typefil = "NOT IN";
+            posicionBean = posicionDao.sp_Posiciones_Retrieve_Posiciones(keyemp, typefil);
+            var data = new { data = posicionBean };
+            return Json(data);
+        }
 
+        [HttpPost]
+        public JsonResult Regionales()
+        {
+            List<RegionalesBean> regionBean = new List<RegionalesBean>();
+            RegionesDao regionDao = new RegionesDao();
+            regionBean = regionDao.sp_Regionales_Retrieve_Regionales();
+            var data = new { data = regionBean };
+            return Json(data);
+        }
+
+        [HttpPost]
+        public JsonResult Sucursales()
+        {
+            List<SucursalesBean> sucursalBean = new List<SucursalesBean>();
+            SucursalesDao regionDao = new SucursalesDao();
+            sucursalBean = regionDao.sp_Sucursales_Retrieve_Sucursales();
+            var data = new { data = sucursalBean };
+            return Json(data);
+        }
     }
 }

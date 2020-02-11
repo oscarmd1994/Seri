@@ -625,7 +625,7 @@ namespace Payroll.Models.Daos
     }
     public class EmpresasDao : Conexion
     {
-        public List<EmpresasBean> sp_Empresas_Retrieve_Empresas(bool state, string type, int keyemp)
+        public List<EmpresasBean> sp_Empresas_Retrieve_Empresas(int state, string type, int keyemp)
         {
             List<EmpresasBean> listEmpresasBean = new List<EmpresasBean>();
             try
