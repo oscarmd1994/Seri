@@ -408,3 +408,4 @@ C:\Users\Juan Flores Torres\Desktop\oscar\IPSNet\Payroll\obj\Debug\Payroll.cspro
 C:\Users\Juan Flores Torres\Desktop\oscar\IPSNet\Payroll\obj\Debug\Payroll.csproj.CopyComplete
 C:\Users\Juan Flores Torres\Desktop\oscar\IPSNet\Payroll\obj\Debug\Payroll.dll
 C:\Users\Juan Flores Torres\Desktop\oscar\IPSNet\Payroll\obj\Debug\Payroll.pdb
+D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.csproj.CoreCompileInputs.cache
