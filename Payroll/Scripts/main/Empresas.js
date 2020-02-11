@@ -19,7 +19,7 @@
 
 
     // INICIO FUNCIONALIDADES ESTADOS \\
-
+    let getDataTabDataGen;
     // ** Funcion que carga los estados ** \\
     floadstates = () => {
         try {
@@ -64,7 +64,7 @@
         }
     }
 
-    floadstates();
+    //floadstates();
 
     fvalidatestate = () => {
         colony.innerHTML = '<option value="0">Selecciona</option>'
@@ -81,7 +81,7 @@
         }
     }
 
-    state.addEventListener('change', fvalidatestate);
+    //state.addEventListener('change', fvalidatestate);
 
     fvalidatecodpost = () => {
         if (codpost.value.length == 5) {
@@ -94,7 +94,7 @@
         }
     }
 
-    codpost.addEventListener('keyup', fvalidatecodpost);
+    //codpost.addEventListener('keyup', fvalidatecodpost);
 
     fvalidatestatecodpost = () => {
         if (codpost.value.length === 5) {
@@ -151,7 +151,7 @@
         }
     }
 
-    btnVerifCodPost.addEventListener('click', fvalidatestatecodpost);
+    //btnVerifCodPost.addEventListener('click', fvalidatestatecodpost);
 
     // FIN FUNCIONALIDADES ESTADOS \\
     
