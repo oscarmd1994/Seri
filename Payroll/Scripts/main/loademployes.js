@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿$(function () {
 
     /*
      * Variables ventana modal edita empleados 

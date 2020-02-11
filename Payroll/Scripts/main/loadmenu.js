@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿$(function () {
 
     // Carga el contenido del menu \\
     

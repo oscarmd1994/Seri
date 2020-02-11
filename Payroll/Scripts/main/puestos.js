@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿$(function () {
 
     /* FUNCION QUE OBTIENE DATOS DEL CATALOGO GENERAL -> CLASIFICACION DEL PUESTO */
     floadcataloggeneral = (element, state, type, keycol, catalog) => {

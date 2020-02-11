@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿$(function () {
 
     // Comentar cuando el proyecto este en produccion \\
     //const idefectivo = 1115;

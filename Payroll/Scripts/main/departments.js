@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿$(function () {
 
     /* CONSTANTES DE LA BUSQUEDA DE UN DEPARTAMENTO AL REGISTRAR UNO NUEVO */
     const searchdepartmentkeynew = document.getElementById('searchdepartmentkeynew');

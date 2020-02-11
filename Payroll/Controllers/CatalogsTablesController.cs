@@ -132,7 +132,7 @@ namespace Payroll.Controllers
         {
             List<DepartamentosBean> listDepartamentosBean = new List<DepartamentosBean>();
             DepartamentosDao departamentosDao = new DepartamentosDao();
-            int keyemp = 0;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             listDepartamentosBean = departamentosDao.sp_Departamentos_Retrieve_Departamentos(0, "Active/Desactive", 0, keyemp);
             object json = new { data = listDepartamentosBean };
             var jsonResult = Json(json, JsonRequestBehavior.DenyGet);
@@ -165,7 +165,7 @@ namespace Payroll.Controllers
             List<DatosPosicionesBean> posicionBean = new List<DatosPosicionesBean>();
             DatosPosicionesDao posicionDao = new DatosPosicionesDao();
             // Reemplazar por la sesion de empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             string typefil = "NOT IN";
             posicionBean = posicionDao.sp_Posiciones_Retrieve_Posiciones(keyemp, typefil);
             var data = new { data = posicionBean };

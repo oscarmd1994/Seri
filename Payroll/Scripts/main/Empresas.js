@@ -1,5 +1,4 @@
-﻿
-document.addEventListener('DOMContentLoaded', () => {
+﻿$(function () {
     // variables
     let name = document.getElementById('name');
     const state = document.getElementById('inEstado_empresa');

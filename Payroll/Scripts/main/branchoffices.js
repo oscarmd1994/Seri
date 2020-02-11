@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿$(function () {
 
     /* FUNCION QUE CARGA LOS DATOS DE LA SUCURSAL SELECCIONADA POR EL USUARIO */
     fselectoffice = (param) => {

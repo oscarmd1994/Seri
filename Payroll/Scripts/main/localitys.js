@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿$(function () {
 
     /* CONSTANTES DE LOCALIDADES EN FORMULARIO DE REGISTRO DE POSICIONES */
     const localityr       = document.getElementById('localityr');

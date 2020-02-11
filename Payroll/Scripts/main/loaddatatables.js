@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿$(function () {
 
     /*
      * Declaracion de variables de los botones que cargan datos consecutivos

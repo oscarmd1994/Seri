@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+﻿$(function () {
 
     /* FUNCION QUE CARGA LOS DATOS DE LA POSICION SELECCIONADA POR EL USUARIO */
     fselectposition = (param) => {
