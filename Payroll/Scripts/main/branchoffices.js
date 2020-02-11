@@ -91,7 +91,6 @@
                                 resultoffices.innerHTML += `<button class="list-group-item d-flex justify-content-between mb-1 align-items-center shadow rounded">${number}. - ${data[i].sClaveSucursal} <i class="fas fa-edit ml-2 text-warning fa-lg" onclick="fselectoffice(${data[i].iIdSucursal})"></i> </button>`;
                             }
                         }
-                        console.log(data);
                     }, error: (jqXHR, exception) => {
                         fcaptureaerrorsajax(jqXHR, exception);
                     }
