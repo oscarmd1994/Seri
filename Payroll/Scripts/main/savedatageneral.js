@@ -1,4 +1,16 @@
-﻿$(function () {
+﻿document.addEventListener('DOMContentLoaded', () => {
+
+    // Comentar cuando el proyecto este en produccion \\
+    //const idefectivo = 1115;
+    //const idcuentach = 1116;
+    //const idcajeroau = 1117;
+    //const idcuentaah = 1118;
+
+    // Descomentar cuando el proyecto este en produccion \\
+    const idefectivo = 218;
+    const idcuentach = 219;
+    const idcajeroau = 220;
+    const idcuentaah = 221;
 
     const navDataGenTab = document.getElementById('nav-datagen-tab'),
         navImssTab = document.getElementById('nav-imss-tab'),
@@ -123,7 +135,7 @@
                 nivemp: nivemp.value, tipjor: tipjor.value,
                 tipcon: tipcon.value, fecing: fecing.value,
                 fecant: fecant.value, vencon: vencon.value,
-                estats: estats.value,
+                //estats: estats.value,
             }
         };
         objectDataTabNom.datanom = dataLocSto;
@@ -176,6 +188,7 @@
                         banuse.value = data.iBanco_id;
                         cunuse.value = data.sCuenta;
                         localStorage.setItem('modedit', 'true');
+                        document.getElementById('btn-save-data-all').disabled = true;
                         flocalstodatatabstructure();
                         fchecklocalstotab();
                     }
@@ -216,7 +229,7 @@
                         fecing.value = fformatdate(data.sFechaIngreso);
                         fecant.value = fformatdate(data.sFechaAntiguedad);
                         vencon.value = fformatdate(data.sVencimientoContrato);
-                        estats.value = data.sTipoAlta;
+                        //estats.value = data.sTipoAlta;
                         floaddatatabstructure(paramid);
                         flocalstodatatabnomina();
                     }
@@ -361,9 +374,6 @@
         language: spanish
     });
 
-    floadtimer = () => {
-
-    }
 
     $("#table-employes tbody").on('click', 'button', function () {
         var data = tableEmployes.row($(this).parents('tr')).data();
@@ -425,7 +435,9 @@
     const numberst = document.getElementById('numberst');
     const telfij   = document.getElementById('telfij');
     const telmov   = document.getElementById('telmov');
-    const mailus    = document.getElementById('mailus');
+    const mailus   = document.getElementById('mailus');
+    const tipsan   = document.getElementById('tipsan');
+    const fecmat   = document.getElementById('fecmat');
         
     /*
      * Variables de botones 
@@ -441,7 +453,7 @@
         const dataSend = {
             name: name.value, apepat: apepat.value, apemat: apemat.value, sex: sex.value, estciv: estciv.value, fnaci: fnaci.value, lnaci: lnaci.value,
             title: title.value, nacion: nacion.value, state: state.value, codpost: codpost.value, city: city.value, colony: colony.value, street: street.value,
-            numberst: numberst.value, telfij: telfij.value, telmov: telmov.value, email: mailus.value
+            numberst: numberst.value, telfij: telfij.value, telmov: telmov.value, email: mailus.value, tipsan: tipsan.value, fecmat: fecmat.value
         };
         try {
             document.getElementById('txtsave1').textContent = 'Guardando...';
@@ -450,19 +462,31 @@
                 type: "POST",
                 data: dataSend,
                 success: (data) => {
-                    if (data.result == "success") {
-                        document.getElementById('icosave1').classList.add('text-success');
-                        document.getElementById('txtsave1').textContent = 'Guardado';
+                    if (data.sMensaje == "success") {
+                        icosave1.classList.add('text-success');
+                        txtsave1.textContent = 'Guardado';
+                        console.log('Guardado datos generales');
                         setTimeout(() => {
                             fsavedataimss();
                         }, 1500);
+                    } else if (data.sMensaje == "empexists") {
+                        Swal.fire({
+                            title: 'Atencion', text: 'El empleado ' + String(name.value) + " " + String(apepat.value) + " " + String(apemat.value) + ' ya se encuentra registrado.', icon: 'warning',
+                            showClass: { popup: 'animated fadeInDown faster' },
+                            hideClass: { popup: 'animated fadeOutUp faster' },
+                            confirmButtonText: "Aceptar", allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
+                        }).then((acepta) => {
+                            $("#nav-datagen-tab").click();
+                            setTimeout(() => { name.focus(); }, 1000);
+                        });
                     } else {
                         icosave1.classList.add('text-danger');
-                        txtsave1.textContent = 'Error!';
+                        txtsave1.textContent = 'Error';
                         setTimeout(() => {
                             $("#processsave").modal('hide');
                             fclearsavestyle();
                         }, 1500);
+                        console.log(data);
                     }
                 }, error: (jqXHR, exception) => { fcaptureaerrorsajax(jqXHR, exception); }
             });
@@ -479,11 +503,11 @@
         }
     }
 
-
     /*
      * Variables apartado imss
      */
     const clvimss = document.getElementById('clvimss');
+    const fecefe  = document.getElementById('fecefe');
     const regimss = document.getElementById('regimss');
     const rfc     = document.getElementById('rfc');
     const curp    = document.getElementById('curp');
@@ -495,7 +519,7 @@
      */
     fsavedataimss = () => {
         const dataSend = {
-            regimss: regimss.value, rfc: rfc.value, curp: curp.value, nivest: nivest.value, nivsoc: nivsoc.value, empleado: name.value,
+            fecefe: fecefe.value, regimss: regimss.value, rfc: rfc.value, curp: curp.value, nivest: nivest.value, nivsoc: nivsoc.value, empleado: name.value,
             apepat: apepat.value, apemat: apemat.value, fechanaci: fnaci.value
         };
         try {
@@ -505,9 +529,10 @@
                 type: "POST",
                 data: dataSend,
                 success: (data) => {
-                    document.getElementById('icosave2').classList.add('text-success');
-                    document.getElementById('txtsave2').textContent = 'Guardado';
                     if (data.result == "success") {
+                        icosave2.classList.add('text-success');
+                        txtsave2.textContent = 'Guardado';
+                        console.log('Guardado imss');
                         setTimeout(() => {
                             fsavedatanomina();
                         }, 1500);
@@ -517,7 +542,9 @@
                         setTimeout(() => {
                             $("#processsave").modal('hide');
                             fclearsavestyle();
-                        }, 1500); }
+                        }, 1500);
+                        console.log(data);
+                    }
                 }, error: (jqXHR, exception) => { fcaptureaerrorsajax(jqXHR, exception); }
             });
         } catch (error) {
@@ -537,9 +564,11 @@
      * Variables del apartado datos de nomina
      */
     const clvnom = document.getElementById('clvnom');
-    const numnom = document.getElementById('numnom');
+    const fecefecnom = document.getElementById('fecefecnom');
+    //const numnom = document.getElementById('numnom');
     const salmen = document.getElementById('salmen');
-    const pagret = document.getElementById('pagret');
+    const tipper = document.getElementById('tipper');
+    //const pagret = document.getElementById('pagret');
     const tipemp = document.getElementById('tipemp');
     const tipmon = document.getElementById('tipmon');
     const nivemp = document.getElementById('nivemp');
@@ -548,16 +577,30 @@
     const fecing = document.getElementById('fecing');
     const fecant = document.getElementById('fecant');
     const vencon = document.getElementById('vencon');
-    const estats = document.getElementById('estats');
+    //const estats = document.getElementById('estats');
+    const tipcontra = document.getElementById('tipcontra');
+    const motinc = document.getElementById('motinc');
+    const tippag = document.getElementById('tippag');
+    const banuse = document.getElementById('banuse');
+    const cunuse = document.getElementById('cunuse');
+    const clvstr = document.getElementById('clvstr');
 
     /*
      * Funcion que guarda los datos del apartado datos de nomina
      */
     fsavedatanomina = () => {
+        let banco;
+        if (banuse.value == "0") {
+            banco = 94;
+        } else {
+            banco = banuse.value;
+        }
         const dataSend = {
-            numnom: numnom.value, salmen: salmen.value, pagret: pagret.value, tipemp: tipemp.value, tipmon: tipmon.value, nivemp: nivemp.value,
-            tipjor: tipjor.value, tipcon: tipcon.value, fecing: fecing.value, fecant: fecant.value, vencon: vencon.value, estats: estats.value,
-            empleado: name.value, apepat: apepat.value, apemat: apemat.value, fechanaci: fnaci.value, keyemp: 5
+            fecefecnom: fecefecnom.value, salmen: salmen.value, tipemp: tipemp.value, nivemp: nivemp.value,
+            tipjor: tipjor.value, tipcon: tipcon.value, fecing: fecing.value, fecant: fecant.value, vencon: vencon.value,
+            //estats: estats.value,
+            empleado: name.value, apepat: apepat.value, apemat: apemat.value, fechanaci: fnaci.value, tipper: tipper.value, tipcontra: tipcontra.value,
+            motinc: motinc.value, tippag: tippag.value, banuse: banco, cunuse: cunuse.value, position: clvstr.value, clvemp: 0
         };
         try {
             document.getElementById('txtsave3').textContent = 'Guardando';
@@ -567,11 +610,12 @@
                 data: dataSend,
                 success: (data) => {
                     if (data.result == "success") {
-                        document.getElementById('icosave3').classList.add('text-success');
-                        document.getElementById('txtsave3').textContent = 'Guardado';
+                        icosave3.classList.add('text-success');
+                        txtsave3.textContent = 'Guardado';
                         setTimeout(() => {
                             fsavedataestructure();
                         }, 1500);
+                        console.log('Guardo nomina!');
                     } else {
                         icosave3.classList.add('text-danger');
                         txtsave3.textContent = 'Error!';
@@ -579,6 +623,7 @@
                             $("#processsave").modal('hide');
                             fclearsavestyle();
                         }, 1500);
+                        console.log(data);
                     }
                 }, error: (jqXHR, exception) => { fcaptureaerrorsajax(jqXHR, exception); }
             });
@@ -598,7 +643,8 @@
     /*
      * Variables apartado estructura
      */
-    const clvstr = document.getElementById('clvstr');
+    const fechefectpos = document.getElementById('fechefectpos');
+    const fechinipos   = document.getElementById('fechinipos');
     const numpla = document.getElementById('numpla');
     const depaid = document.getElementById('depaid');
     const depart = document.getElementById('depart');
@@ -606,46 +652,39 @@
     const pueusu = document.getElementById('pueusu');
     const emprep = document.getElementById('emprep');
     const report = document.getElementById('report');
-    const tippag = document.getElementById('tippag');
-    const banuse = document.getElementById('banuse');
-    const cunuse = document.getElementById('cunuse');
 
     /*
      * Funcion que guarda los datos del apartado estructura
      */
-    fsavedataestructure = () => {
+    fsavedataestructure = () => {   
         var acepta = 0;
-        let banco;
-        if (banuse.value == "0") {
-            banco = 94;
-        } else {
-            banco = banuse.value;
-        }
         const dataSend = {
-            numpla: numpla.value, depaid: depaid.value, puesid: puesid.value, emprep: emprep.value, report: report.value, tippag: tippag.value,
-            banuse: banco, cunuse: cunuse.value, empleado: name.value, apepat: apepat.value, apemat: apemat.value, fechanaci: fnaci.value
+            clvstr: clvstr.value, fechefectpos: fechefectpos.value, fechinipos: fechinipos.value,
+            empleado: name.value, apepat: apepat.value, apemat: apemat.value, fechanaci: fnaci.value
         };
         try {
             document.getElementById('txtsave4').textContent = 'Guardando';
+            fsearchpositionsig();
             $.ajax({
                 url: "../SaveDataGeneral/DataEstructura",
                 type: "POST",
                 data: dataSend,
                 success: (data) => {
-                    if (data.result === "success") {
-                        document.getElementById('icosave4').classList.add('text-success');
-                        document.getElementById('txtsave4').textContent = 'Guardado';
+                    if (data.result == "success") {
+                        icosave4.classList.add('text-success');
+                        txtsave4.textContent = 'Guardado';
                         document.getElementById('successdiv').classList.remove('d-none');
+                        console.log('Guardado todo');
                         setTimeout(() => {
                             $("#processsave").modal('hide');
                             document.getElementById('successdiv').classList.add('d-none');
                             tableEmployes.ajax.reload();
-                            fclearlocsto();
+                            //fclearlocsto();
                             fclearsavestyle();
+                            //freloadtables();
                         }, 1500);
                     } else {
-                        icosave4.classList.add('text-danger');
-                        txtsave4.textContent = 'Error!';
+                        console.log(data);
                         setTimeout(() => {
                             $("#processsave").modal('hide');
                             fclearsavestyle();
@@ -734,7 +773,6 @@
                 }
             }
             if (validatedatagen == 0) {
-                console.log('Listo para guardar edicion datos generales');
                 const arrInput = [regimss, rfc, curp, nivest, nivsoc];
                 for (let i = 0; i < arrInput.length; i++) {
                     if (arrInput[i].hasAttribute("tp-select")) {
@@ -753,24 +791,49 @@
                     }
                 }
                 if (validatedataimss == 0) {
-                    console.log('Listo para guardar edicion datos imss');
-                    const arrInput = [numnom, salmen, pagret, tipemp, nivemp, tipjor, tipcon, fecing, estats];
+                    const arrInput = [fecefecnom, salmen, tipper, tipemp, nivemp, tipjor, tipcon, fecing, tipcontra, motinc, tippag];
                     for (let t = 0; t < arrInput.length; t++) {
                         if (arrInput[t].hasAttribute("tp-select")) {
+                            let textpag;
                             if (arrInput[t].value == "0") {
                                 const attrselect = arrInput[t].getAttribute('tp-select');
                                 fshowtypealert('Atención', 'Selecciona una opción de ' + String(attrselect), 'warning', arrInput[t], 0);
                                 validatedatanom = 1;
                                 break;
                             }
+                            if (arrInput[t].id == "tippag") {
+                                textpag = $('select[id="tippag"] option:selected').text();
+                            }
+                            if (arrInput[t].value == idcuentach || arrInput[t].value == idcuentaah) {
+                                arrInput.push(banuse, cunuse);
+                            }
                             if (arrInput[t].id == "tipemp" && arrInput[t].value == 76) {
                                 arrInput.push(vencon);
+                            }
+                            if (arrInput[t].value == idcuentach) {
+                                if (cunuse.value.length < 10) {
+                                    fshowtypealert('Atencion', 'El numero de cuenta de cheques debe contener 10 digitos y solo tiene ' + String(cunuse.value.length) + ' digitos.', 'warning', cunuse, 0);
+                                    validatedatanom = 1;
+                                    break;
+                                }
+                            }
+                            if (arrInput[t].value == idcuentaah) {
+                                if (cunuse.value.length < 15) {
+                                    fshowtypealert('Atención', 'El numero de cuenta de ahorro debe de contener 18 digitos y solo tiene ' + String(cunuse.value.length) + ' digitos.', 'warning', cunuse, 0);
+                                    validatedatanom = 1;
+                                    break;
+                                }
                             }
                         } else {
                             if (arrInput[t].hasAttribute("tp-date")) {
                                 const attrdate = arrInput[t].getAttribute("tp-date");
                                 const d = new Date();
-                                const fechAct = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+                                let fechAct;
+                                if (d.getMonth() + 1 < 10) {
+                                    fechAct = d.getFullYear() + "-" + "0" + (d.getMonth() + 1) + "-" + d.getDate();
+                                } else {
+                                    fechAct = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+                                }
                                 if (arrInput[t].value != "" && attrdate == "less") {
                                     if (arrInput[t].value > fechAct) {
                                         fshowtypealert('Atención', 'La ' + arrInput[t].placeholder + ' seleccionada ' + arrInput[t].value + ' no puede ser mayor a la fecha actual', 'warning', arrInput[t], 1);
@@ -798,7 +861,6 @@
                         }
                     }
                     if (validatedatanom == 0) {
-                        console.log('Listo para editar datos de nomina');
                         const arrInput = [numpla, depart, pueusu, emprep, report, tippag];
                         for (let i = 0; i < arrInput.length; i++) {
                             if (arrInput[i].hasAttribute('tp-select')) {
@@ -820,10 +882,50 @@
                             }
                         }
                         if (validatedatastru == 0) {
-                            $("#processsave").modal('show');
-                            setTimeout(() => {
-                                fsavedatageneral();
-                            }, 1000);
+                            const arrInput = [clvstr, fechefectpos, fechinipos];
+                            let validateSend = 0;
+                            for (let a = 0; a < arrInput.length; a++) {
+                                if (arrInput[a].hasAttribute('tp-date')) {
+                                    const attrdate = arrInput[a].getAttribute('tp-date');
+                                    if (arrInput[a].value != "" && attrdate == 'higher') {
+                                        const ds = new Date();
+                                        let fechAct;
+                                        let datetod;
+                                        if (ds.getDate() < 10) {
+                                            datetod = "0" + ds.getDate();
+                                        } else { datetod = ds.getDate(); }
+                                        if (ds.getMonth() + 1 < 10) {
+                                            fechAct = ds.getFullYear() + "-" + "0" + (ds.getMonth() + 1) + "-" + datetod;
+                                        } else {
+                                            fechAct = ds.getFullYear() + "-" + (ds.getMonth() + 1) + "-" + datetod;
+                                        }
+                                        if (arrInput[a].value < fechAct) {
+                                            console.log(arrInput[a].value);
+                                            console.log(fechAct);
+                                            fshowtypealert('Atencion', 'La fecha ' + arrInput[a].value + ' es incorrecta, debe de ser mayor a la fecha actual', 'warning', arrInput[a], 1);
+                                            validateSend = 1;
+                                            break;
+                                        }
+                                    }
+                                    else {
+                                        fshowtypealert('Atencion', 'Completa el campo ' + String(arrInput[a].placeholder), 'warning', arrInput[a], 0);
+                                        validateSend = 1;
+                                        break;
+                                    }
+                                } else {
+                                    if (arrInput[a].value == '') {
+                                        fshowtypealert('Atencion', 'Completa el campo ' + String(arrInput[a].placeholder), 'warning', arrInput[a], 0);
+                                        validateSend = 1;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (validateSend == 0) {
+                                $("#processsave").modal('show');
+                                setTimeout(() => {
+                                    fsavedatageneral();
+                                }, 1000);
+                            }
                         } else { $("#nav-estructure-tab").click(); }
                     } else { $("#nav-datanom-tab").click(); }
                 } else { $("#nav-imss-tab").click(); }
@@ -864,11 +966,13 @@
                     if (data.result === "success") {
                         icoedit4.classList.add('text-success');
                         txtedit4.textContent = 'Correcto!';
+                        document.getElementById('successeditdiv').classList.remove('d-none');
                         setTimeout(() => {
                             tableEmployes.ajax.reload();
                             fclearlocsto();
                             $("#processedit").modal('hide');
-                            fcleareditstyle();
+                            document.getElementById('successeditdiv').classList.add('d-none');
+                            fclearsavestyle();
                         }, 1500);
                     } else {
                         icoedit4.classList.add('text-danger');
@@ -898,7 +1002,8 @@
     fsaveeditdatanomina = () => {
         const dataSendNominaEdit = {
             numnom: numnom.value, salmen: salmen.value, pagret: pagret.value, tipemp: tipemp.value, tipmon: tipmon.value, nivemp: nivemp.value,
-            tipjor: tipjor.value, tipcon: tipcon.value, fecing: fecing.value, fecant: fecant.value, vencon: vencon.value, estats: estats.value,
+            tipjor: tipjor.value, tipcon: tipcon.value, fecing: fecing.value, fecant: fecant.value, vencon: vencon.value,
+            //estats: estats.value,
             clvnom: clvnom.value
         };
         try {
@@ -1099,7 +1204,7 @@
             }
             if (validatedataimss == 0) {
                 console.log('Listo para guardar edicion datos imss');
-                const arrInput = [numnom, salmen, pagret, tipemp, nivemp, tipjor, tipcon, fecing, estats];
+                const arrInput = [numnom, salmen, pagret, tipemp, nivemp, tipjor, tipcon, fecing];
                 for (let t = 0; t < arrInput.length; t++) {
                     if (arrInput[t].hasAttribute("tp-select")) {
                         if (arrInput[t].value == "0") {
@@ -1165,7 +1270,6 @@
                         }
                     }
                     if (validatedatastru == 0) {
-                        console.log('Entro a la funcion final');
                         $("#processedit").modal('show');
                         setTimeout(() => {
                             fsaveeditdatagen();

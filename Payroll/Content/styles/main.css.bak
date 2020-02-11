@@ -117,7 +117,7 @@ input {
 
 .flotante2 {
     position: fixed;
-    bottom: 420px;
+    bottom: 0px;
     right: 20px;
 }
 

@@ -5,11 +5,8 @@ using System.Web.Mvc;
 
 namespace Payroll.Controllers
 {
-
     public class EmpleadosController : Controller
     {
-
-        // GET: Empleados
         public PartialViewResult Datos_Generales()
         {
             return PartialView();
@@ -26,7 +23,6 @@ namespace Payroll.Controllers
         {
             return PartialView();
         }
-
         [HttpPost]
         public JsonResult LoadStates()
         {
@@ -37,7 +33,6 @@ namespace Payroll.Controllers
             var data = new { resp = "bien" };
             return Json(infDomBean);
         }
-
         [HttpPost]
         public JsonResult LoadInformationHome2(int codepost)
         {
@@ -54,7 +49,6 @@ namespace Payroll.Controllers
             listInfDomBean = infDomDao.sp_Domicilio_Retrieve_Domicilio(codepost, state);
             return Json(listInfDomBean);
         }
-
         [HttpPost]
         public JsonResult LoadDataCatGen(int state, string type, int keycat, int keycam)
         {
@@ -115,15 +109,6 @@ namespace Payroll.Controllers
             return Json(empleados);
         }
         [HttpPost]
-        public JsonResult LoadEmployes()
-        {
-            List<EmpleadosBean> empleadoBean = new List<EmpleadosBean>();
-            ListEmpleadosDao listEmpleadoDao = new ListEmpleadosDao();
-            empleadoBean = listEmpleadoDao.sp_Empleados_Retrieve_Empleados(17);
-            var data = new { data = empleadoBean };
-            return Json(data);
-        }
-        [HttpPost]
         public JsonResult DataTabGenEmploye(int keyemploye)
         {
             EmpleadosBean empleadoBean = new EmpleadosBean();
@@ -137,7 +122,9 @@ namespace Payroll.Controllers
         {
             ImssBean imssBean = new ImssBean();
             ListEmpleadosDao listEmpleadoDao = new ListEmpleadosDao();
-            imssBean = listEmpleadoDao.sp_Imss_Retrieve_ImssEmpleado(keyemploye);
+            // Reemplazar por la sesion de la empresa
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            imssBean = listEmpleadoDao.sp_Imss_Retrieve_ImssEmpleado(keyemploye, keyemp);
             return Json(imssBean);
         }
 
@@ -146,7 +133,9 @@ namespace Payroll.Controllers
         {
             DatosNominaBean datoNominaBean = new DatosNominaBean();
             ListEmpleadosDao listEmpleadoDao = new ListEmpleadosDao();
-            datoNominaBean = listEmpleadoDao.sp_Nominas_Retrieve_NominaEmpleado(keyemploye);
+            // Reemplazar por la sesion de la empresa
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            datoNominaBean = listEmpleadoDao.sp_Nominas_Retrieve_NominaEmpleado(keyemploye, keyemp);
             return Json(datoNominaBean);
         }
 
@@ -155,9 +144,60 @@ namespace Payroll.Controllers
         {
             DatosPosicionesBean datoPosicionBean = new DatosPosicionesBean();
             ListEmpleadosDao listEmpleadoDao = new ListEmpleadosDao();
-            datoPosicionBean = listEmpleadoDao.sp_Posiciones_Retrieve_PosicionEmpleado(keyemploye);
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            datoPosicionBean = listEmpleadoDao.sp_Posiciones_Retrieve_PosicionEmpleado(keyemploye, keyemp);
             return Json(datoPosicionBean);
         }
+        //Codigo nuevo
+        [HttpPost]
+        public JsonResult LoadTypePer()
+        {
+            List<TipoPeriodosBean> tipoPeriodoBean = new List<TipoPeriodosBean>();
+            TipoPeriodosDao tipoPeriodoDao = new TipoPeriodosDao();
+            tipoPeriodoBean = tipoPeriodoDao.sp_TipoPeriodos_Retrieve_TipoPeriodos();
+            return Json(tipoPeriodoBean);
+        }
 
+        [HttpPost]
+        public JsonResult LoadLocalitys()
+        {
+            List<LocalidadesBean2> localidadBean = new List<LocalidadesBean2>();
+            LocalidadesDao localidadDao = new LocalidadesDao();
+            //Reemplazar por la sesion de la empresa
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            localidadBean = localidadDao.sp_TLocalicades_Retrieve_Localidades(keyemp);
+            return Json(localidadBean);
+        }
+
+        [HttpPost]
+        public JsonResult LoadPositiosRep()
+        {
+            List<DatosPosicionesBean> posicionBean = new List<DatosPosicionesBean>();
+            DatosPosicionesDao posicionDao = new DatosPosicionesDao();
+            // Reemplazar por la sesion de empresa
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            string typefil = "AllPositions";
+            posicionBean = posicionDao.sp_Posiciones_Retrieve_Posiciones(keyemp, typefil);
+            return Json(posicionBean);
+        }
+        [HttpPost]
+        public JsonResult LoadRegPatCla()
+        {
+            List<RegistroPatronalBean> regPatronalBean = new List<RegistroPatronalBean>();
+            RegistroPatronalDao regPatronalDao = new RegistroPatronalDao();
+            // Reemplazar por la sesion de la empresa
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            regPatronalBean = regPatronalDao.sp_Registro_Patronal_Retrieve_Registros_Patronales(keyemp);
+            return Json(regPatronalBean);
+        }
+
+        [HttpPost]
+        public JsonResult LoadNacions()
+        {
+            List<NacionalidadesBean> nacionBean = new List<NacionalidadesBean>();
+            NacionalidadesDao nacionDao = new NacionalidadesDao();
+            nacionBean = nacionDao.sp_Nacionalidades_Retrieve_Nacionalidades();
+            return Json(nacionBean);
+        }
     }
 }

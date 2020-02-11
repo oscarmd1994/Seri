@@ -1,24 +1,36 @@
-﻿$(function () {
+﻿document.addEventListener('DOMContentLoaded', () => {
+
+    // Comentar cuando el proyecto este en produccion \\
+    //const idefectivo = 1115;
+    //const idcuentach = 1116;
+    //const idcajeroau = 1117;
+    //const idcuentaah = 1118;
+
+    // Descomentar cuando el proyecto este en produccion \\
+    const idefectivo = 218;
+    const idcuentach = 219;
+    const idcajeroau = 220;
+    const idcuentaah = 221;
 
     // ** Configuracion toastrjs ** \\
 
-    //toastr.options = {
-    //    "closeButton": false,
-    //    "debug": false,
-    //    "newestOnTop": false,
-    //    "progressBar": false,
-    //    "positionClass": "toast-top-left",
-    //    "preventDuplicates": false,
-    //    "onclick": null,
-    //    "showDuration": "300",
-    //    "hideDuration": "1000",
-    //    "timeOut": "5000",
-    //    "extendedTimeOut": "1000",
-    //    "showEasing": "swing",
-    //    "hideEasing": "linear",
-    //    "showMethod": "fadeIn",
-    //    "hideMethod": "fadeOut"
-    //}
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-left",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 
     /*
      *  VARIABLES
@@ -81,15 +93,19 @@
     const title = document.getElementById('title');
     const sex = document.getElementById('sex');
     const estciv = document.getElementById('estciv');
+    const nacion = document.getElementById('nacion');
 
     /* Datos IMSS */
     const nivsoc = document.getElementById('nivsoc');
 
     /* Datos Nomina */
+    const tipper = document.getElementById('tipper');
     const tipemp = document.getElementById('tipemp');
     const nivemp = document.getElementById('nivemp');
     const tipjor = document.getElementById('tipjor');
     const tipcon = document.getElementById('tipcon');
+    const tipcontra = document.getElementById('tipcontra');
+    const motinc = document.getElementById('motinc');
 
 
     /* 
@@ -185,6 +201,106 @@
     // ** Ejecución de la carga de los datos del tipo de contrato del empleado M -> DATOS NOMINA ** \\
     floaddatagentype(tipcon, 0, 'Active/Desactive', 0, 14, 'nom');
 
+    // ** Ejecución de la carga de los datos del tipo de contratacion del empleado M -> DATOS NOMINA ** \\
+    floaddatagentype(tipcontra, 0, 'Active/Desactive', 0, 19, 'nom');
+
+    // ** Ejecución de la carga de los datos deL motivo de incremento del empleado M -> DATOS NOMINA ** \\
+    floaddatagentype(motinc, 0, 'Active/Desactive', 0, 21, 'nom');
+
+    // ** Ejecución de la carga de los datos del tipo de pago M ->  DATOS NOMINA ** \\
+    floaddatagentype(tippag, 0, 'Active/Desactive', 0, 22, 'nom');
+
+    floaddatanacionalidades = () => {
+        try {
+            $.ajax({
+                url: "../Empleados/LoadNacions",
+                type: "POST",
+                data: {},
+                success: (data) => {
+                    const quantity = data.length;
+                    let naciond;
+                    for (t in getDataTabDataGen) {
+                        if (getDataTabDataGen[t].key === "general") {
+                            naciond = getDataTabDataGen[t].data.nacion;
+                        }
+                    }
+                    if (quantity > 0) {
+                        for (let i = 0; i < data.length; i++) {
+                            if (naciond == data[i].iIdNacionalidad) {
+                                nacion.innerHTML += `<option selected value="${data[i].iIdNacionalidad}">${data[i].sDescripcion}</option>`;
+                            } else {
+                                nacion.innerHTML += `<option value="${data[i].iIdNacionalidad}">${data[i].sDescripcion}</option>`;
+                            }
+                        }
+                    } else {
+                        console.log('No hay registros');
+                    }
+                }, error: (jqXHR, exception) => {
+                    fcaptureaerrorsajax(jqXHR, exception);
+                }
+            });
+        } catch (error) {
+            if (error instanceof TypeError) {
+                console.log('TypeError ', error);
+            } else if (error instanceof EvalError) {
+                console.log('EvalError ', error);
+            } else if (error instanceof RangeError) {
+                console.log('RangeError ', error);
+            } else {
+                console.log('Error ', error);
+            }
+        }
+    }
+
+    // ** Ejecución de la carga de las nacionalidades M -> DATOS GENERALES ** \\
+    floaddatanacionalidades();
+
+    floaddatatypeper = () => {
+        try {
+            $.ajax({
+                url: "../Empleados/LoadTypePer",
+                type: "POST",
+                data: {},
+                success: (data) => {
+                    const quantity = data.length;
+                    let typerd;
+                    if (JSON.parse(localStorage.getItem('objectDataTabNom')) != null) {
+                        for (i in getDataTabNom) {
+                            if (getDataTabNom[i].key === "nom") {
+                                typerd = getDataTabNom[i].data.tipper;
+                            }
+                        }
+                    }
+                    if (quantity > 0) {
+                        for (let i = 0; i < data.length; i++) {
+                            if (typerd == data[i].iId) {
+                                tipper.innerHTML += `<option selected value="${data[i].iId}">${data[i].sValor}</option>`;
+                            } else {
+                                tipper.innerHTML += `<option value="${data[i].iId}">${data[i].sValor}</option>`;
+                            }
+                        }
+                    } else {
+                        console.log('No hay registros');
+                    }
+                }, error: (jqXHR, exception) => {
+                    fcaptureaerrorsajax(jqXHR, exception);
+                }
+            });
+        } catch (error) {
+            if (error instanceof TypeError) {
+                console.log('TypeError ', error);
+            } else if (error instanceof EvalError) {
+                console.log('EvalError ', error);
+            } else if (error instanceof RangeError) {
+                console.log('RangeError ', error);
+            } else {
+                console.log('Error ', error);
+            }
+        }
+    }
+    // ** Ejecución de la carga de los datos del tipo de periodo del empleado --> DATOS NOMINA ** \\
+    floaddatatypeper();
+
     // INICIO FUNCIONALIDADES ESTADOS \\
 
     // ** Funcion que carga los estados ** \\
@@ -263,7 +379,11 @@
 
     codpost.addEventListener('keyup', fvalidatecodpost);
 
-    fvalidatestatecodpost = (foc) => {
+    fvalidatestatecodpost = (foc, paramstate) => {
+        let statesend = state.value;
+        if (paramstate != 0) {
+            statesend = paramstate;
+        }
         if (codpost.value.length === 5) {
             document.getElementById('load-spinner').classList.remove('d-none');
             btnVerifCodPost.classList.add('d-none');
@@ -271,7 +391,7 @@
                 $.ajax({
                     url: "../Empleados/LoadInformationHome",
                     type: "POST",
-                    data: { codepost: codpost.value, state: state.value },
+                    data: { codepost: codpost.value, state: statesend },
                     success: (data) => {
                         if (data.length > 0) {
                             fdisabledfields(false);
@@ -284,10 +404,10 @@
                             for (i = 0; i < data.length; i++) {
                                 city.value = data[i].sCiudad;
                                 if (data[i].sColonia != "") {
-                                    if (data[i].iIdColonia == colonyd) {
-                                        colony.innerHTML += `<option selected value="${data[i].iIdColonia}">${data[i].sColonia}</option>`;
+                                    if (data[i].sColonia == colonyd) {
+                                        colony.innerHTML += `<option selected value="${data[i].sColonia}">${data[i].sColonia}</option>`;
                                     } else {
-                                        colony.innerHTML += `<option value="${data[i].iIdColonia}">${data[i].sColonia}</option>`;
+                                        colony.innerHTML += `<option value="${data[i].sColonia}">${data[i].sColonia}</option>`;
                                     }
                                 }
                             }
@@ -328,15 +448,17 @@
     }
 
     btnVerifCodPost.addEventListener('click', () => {
-        fvalidatestatecodpost(1);
+        fvalidatestatecodpost(1,0);
     });
 
     fvalidatelocalstorageinfdom = () => {
+        let stateloc = 0;
         let flag = false;
         if (JSON.parse(localStorage.getItem("objectTabDataGen")) != null) {
             for (dt in getDataTabDataGen) {
                 if (getDataTabDataGen[dt].data.colony != "" && getDataTabDataGen[dt].data.street != ""
-                    && getDataTabDataGen[dt].data.numberstd != "" && getDataTabDataGen[dt].data.codpost != "") {
+                    && getDataTabDataGen[dt].data.numberst != "" && getDataTabDataGen[dt].data.codpost != "") {
+                    stateloc = getDataTabDataGen[dt].data.state;
                     flag = true;
                     break;
                 }
@@ -345,7 +467,7 @@
         if (flag) {
             fdisabledfields(false);
             codpost.disabled = false;
-            fvalidatestatecodpost(0);
+            fvalidatestatecodpost(0, stateloc);
         } else {
             fdisabledfields(true);
         }
@@ -462,10 +584,10 @@
                 success: (data) => {
                     const quantity = data.length;
                     let banused = 0;
-                    if (JSON.parse(localStorage.getItem('objectDataTabEstructure')) != null) {
-                        for (i in getDataEstructure) {
-                            if (getDataEstructure[i].key === "estructure") {
-                                banused = getDataEstructure[i].data.banuse;
+                    if (JSON.parse(localStorage.getItem('objectDataTabNom')) != null) {
+                        for (i in getDataTabNom) {
+                            if (getDataTabNom[i].key === "nom") {
+                                banused = getDataTabNom[i].data.banuse;
                             }
                         }
                     }
@@ -505,24 +627,24 @@
     const infobankct = document.getElementById('infobankct');
     const infobankch = document.getElementById('infobankch');
 
-    if (JSON.parse(localStorage.getItem('objectDataTabEstructure')) != null) {
-        for (i in getDataEstructure) {
-            if (getDataEstructure[i].key === "estructure") {
-                if (getDataEstructure[i].data.banuse != "") {
+    if (JSON.parse(localStorage.getItem('objectDataTabNom')) != null) {
+        for (i in getDataTabNom) {
+            if (getDataTabNom[i].key === "nom") {
+                if (getDataTabNom[i].data.banuse != "") {
                     fdatabank(false);
                 }
             }
         }
     }
 
-    tippag.addEventListener('change', () => {
-        if (tippag.value == "Cuenta cheques" || tippag.value == "Cuenta clabe") {
+    fchangetippag = () => {
+        if (tippag.value == idcuentach || tippag.value == idcuentaah) {
             fdatabank(false);
-            if (tippag.value === "Cuenta cheques") {
+            if (tippag.value == idcuentach) {
                 cunuse.setAttribute("maxlength", 11);
                 infobankch.classList.remove('d-none');
                 infobankct.classList.add('d-none');
-            } else if (tippag.value === "Cuenta clabe") {
+            } else if (tippag.value == idcuentaah) {
                 cunuse.setAttribute("maxlength", 15);
                 infobankct.classList.remove('d-none');
                 infobankch.classList.add('d-none');
@@ -538,7 +660,9 @@
             infobankct.classList.add('d-none');
             fdatabank(true);
         }
-    });
+    }
+
+    tippag.addEventListener('change', fchangetippag);
 
     $("#cunuse").keyup(function () {
         this.value = (this.value + '').replace(/[^0-9]/g, '');
@@ -557,7 +681,7 @@
     });
 
     banuse.addEventListener('change', () => {
-        if (tippag.value === "Cuenta clabe") {
+        if (tippag.value == idcuentaah) {
             for (i = 0; i < arrbank.length; i++) {
                 if (arrbank[i].iIdBanco == banuse.value) {
                     if (String(arrbank[i].iClave).length == 2) {

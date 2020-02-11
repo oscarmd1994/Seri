@@ -130,11 +130,11 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NominaController.cs" />
     <Compile Include="Controllers\SaveDataGeneralController.cs" />
+    <Compile Include="Controllers\SearchDataCatController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Beans\CatalogosBean.cs" />
-    <Compile Include="Models\Beans\LocalidadesBean.cs" />
     <Compile Include="Models\Beans\MainMenuBean.cs" />
     <Compile Include="Models\Beans\MenuBean.cs" />
     <Compile Include="Models\Beans\NominaBean.cs" />
@@ -143,7 +143,6 @@
     <Compile Include="Models\Beans\PoliticasVacacionesBean.cs" />
     <Compile Include="Models\Beans\PruebaEmpleadosBean.cs" />
     <Compile Include="Models\Beans\PruebaEmpresaBean.cs" />
-    <Compile Include="Models\Beans\RegistroPatronalBean.cs" />
     <Compile Include="Models\Beans\UsuariosBean.cs" />
     <Compile Include="Models\Beans\VariablesBean.cs" />
     <Compile Include="Models\Daos\CatalogosDao.cs" />
@@ -157,6 +156,7 @@
     <Compile Include="Models\Daos\SaveDataGeneralDao.cs" />
     <Compile Include="Models\Daos\UsuariosDao.cs" />
     <Compile Include="Models\Daos\VariablesDao.cs" />
+    <Compile Include="Models\Utilerias\CapturaErrores.cs" />
     <Compile Include="Models\Utilerias\Conexion.cs" />
     <Compile Include="Models\Utilerias\Encriptamiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -172,6 +172,7 @@
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\dataTables.bootstrap.css" />
     <Content Include="Content\dataTables.jqueryui.css" />
+    <Content Include="Content\datatables\datatables.min.css" />
     <Content Include="Content\img\form-complete.svg" />
     <Content Include="Content\img\icon-payroll-2.png" />
     <Content Include="Content\img\icon-payroll.png" />
@@ -203,6 +204,7 @@
     <Content Include="Scripts\dataTables.jqueryui.js" />
     <Content Include="Scripts\dataTables.responsive.js" />
     <Content Include="Scripts\dataTables.scroller.js" />
+    <Content Include="Scripts\datatables\datatables.min.js" />
     <Content Include="Scripts\datepicker.es.js" />
     <Content Include="Scripts\jqxGrid\jqwidgets\globalization\globalize.culture.cs-CZ.js" />
     <Content Include="Scripts\jqxGrid\jqwidgets\globalization\globalize.culture.de-DE.js" />
@@ -686,6 +688,10 @@
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\jqx.web.css" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\jqx.windowsphone.css" />
     <Content Include="Scripts\main\Ausentismos.js" />
+    <Content Include="Scripts\main\branchoffices.js" />
+    <Content Include="Scripts\main\catalogos.js" />
+    <Content Include="Scripts\main\departments.js" />
+    <Content Include="Scripts\main\employes.js" />
     <Content Include="Scripts\main\Empre.js" />
     <Content Include="Scripts\ferros\errajax.js" />
     <Content Include="Scripts\fontawesome\fontawesome.js" />
@@ -702,13 +708,23 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\main\Empresas.js" />
+    <Content Include="Scripts\main\formValidation.js" />
     <Content Include="Scripts\main\Incidencias.js" />
+    <Content Include="Scripts\main\load1.js" />
+    <Content Include="Scripts\main\load2.js" />
+    <Content Include="Scripts\main\loadcatalogosemploye.js" />
     <Content Include="Scripts\main\loadcatalogsemployee.js" />
     <Content Include="Scripts\main\loaddatatables.js" />
+    <Content Include="Scripts\main\loademployes.js" />
     <Content Include="Scripts\main\loadmenu.js" />
+    <Content Include="Scripts\main\localitys.js" />
     <Content Include="Scripts\main\main.js" />
     <Content Include="Scripts\main\PensionesAlimenticias.js" />
+    <Content Include="Scripts\main\positions.js" />
+    <Content Include="Scripts\main\puestos.js" />
+    <Content Include="Scripts\main\regionales.js" />
     <Content Include="Scripts\main\savedatageneral.js" />
+    <Content Include="Scripts\main\startMenu.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Nomoper\NomOperConsulta.js" />
     <Content Include="Scripts\Nomoper\OperNom.js" />
@@ -757,8 +773,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CatalogsTables\" />
+    <Folder Include="Views\EditDataGeneral\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\MainMenu\" />
+    <Folder Include="Views\SaveDataGeneral\" />
+    <Folder Include="Views\SearchDataCat\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

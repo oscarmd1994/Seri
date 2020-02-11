@@ -22,10 +22,6 @@ namespace Payroll.Controllers
             usuBean = usuDao.sp_Login_Retrieve_Usuario_Inicia_Sesion(username, password);
             Session["iIdUsuario"] = usuBean.iIdUsuario;
             Session["sUsuario"] = usuBean.sUsuario;
-            //Session de empresa modificar una vez de tengan las tablas necesarias para el funcionamiento
-            Session["IdEmpresa"] = 1;
-            Session["sEmpresa"] = "";
-            /////////////////////////
             Session["Administrador"] = 0; Session["Nomina"] = 0; Session["Incidencias"] = 0; Session["Kiosko"] = 0; Session["RH"] = 0;
             Session["Profile"] = usuBean.iPerfil;
             List<PermisosBean> permBean = new List<PermisosBean>();

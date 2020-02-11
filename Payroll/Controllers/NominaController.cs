@@ -252,16 +252,11 @@ namespace Payroll.Controllers
             FuncionesNomina dao = new FuncionesNomina();
             TD = dao.sp_DeficionNominaCancelados_Retrieve_DeficionNominaCancelados(sNombreDefinicion, iCancelado);
 
-            for (int i = 0; i < TD.Count; i++)
-            {
-
-                if (TD[i].iCancelado == "True")
-                {
+            for (int i = 0; i < TD.Count; i++)  {
+                if (TD[i].iCancelado == "True") {
                     TD[i].iCancelado = "Si";
                 }
-
-                else if (TD[i].iCancelado == "False")
-                {
+                else if (TD[i].iCancelado == "False")   {
                     TD[i].iCancelado = "No";
                 }
             }

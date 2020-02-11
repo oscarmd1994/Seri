@@ -13,33 +13,45 @@ namespace Payroll.Models.Daos
 
     public class EditDepartamentosDao : Conexion
     {
-        public DepartamentosBean sp_Departamentos_Update_Departamento(string edidepart, string edidescdepart, int edireportaa, int edicentrcost, int ediedific, int edinivestuc, string ediubicac, string ediplaza, string edititul, string edisucurbanc, string edicateg, int clvdepart)
+        public DepartamentosBean sp_Departamentos_Update_Departamento(string edidepart, string edidescdepart, string edinivestuc, string nivsuptxtedit, int ediedific, string edipiso, string ediubicac, int edicentrcost, int edireportaa, string edidgatxt, string edidirgentxt, string edidirejetxt, string edidiraretxt, int edidirgen, int edidireje, int edidirare, int clvdepart)
         {
             DepartamentosBean departamentoBean = new DepartamentosBean();
-            try {
+            try
+            {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Departamentos_Update_Departamento", this.conexion) {
+                SqlCommand cmd = new SqlCommand("sp_Departamentos_Update_Departamento", this.conexion)
+                {
                     CommandType = CommandType.StoredProcedure
                 };
                 cmd.Parameters.Add(new SqlParameter("@ctrlDepartamento", edidepart));
                 cmd.Parameters.Add(new SqlParameter("@ctrlDescripcion", edidescdepart));
-                cmd.Parameters.Add(new SqlParameter("@ctrlEmpresaReporta", edireportaa));
-                cmd.Parameters.Add(new SqlParameter("@ctrlCentroCosto", edicentrcost));
-                cmd.Parameters.Add(new SqlParameter("@ctrlEdificio", ediedific));
                 cmd.Parameters.Add(new SqlParameter("@ctrlNivelEstructura", edinivestuc));
+                cmd.Parameters.Add(new SqlParameter("@ctrlNivelSuperior", nivsuptxtedit));
+                cmd.Parameters.Add(new SqlParameter("@ctrlEdificio", ediedific));
+                cmd.Parameters.Add(new SqlParameter("@ctrlPiso", edipiso));
                 cmd.Parameters.Add(new SqlParameter("@ctrlUbicacion", ediubicac));
-                cmd.Parameters.Add(new SqlParameter("@ctrlPlaza", ediplaza));
-                cmd.Parameters.Add(new SqlParameter("@ctrlTitulo", edititul));
-                cmd.Parameters.Add(new SqlParameter("@ctrlSucursal", edisucurbanc));
-                cmd.Parameters.Add(new SqlParameter("@ctrlCategoria", edicateg));
+                cmd.Parameters.Add(new SqlParameter("@ctrlCentroCosto", edicentrcost));
+                cmd.Parameters.Add(new SqlParameter("@ctrlEmpresaReporta", edireportaa));
+                cmd.Parameters.Add(new SqlParameter("@ctrlDGA", edidgatxt));
+                cmd.Parameters.Add(new SqlParameter("@ctrlDirecGen", edidirgentxt));
+                cmd.Parameters.Add(new SqlParameter("@ctrlDirecEje", edidirejetxt));
+                cmd.Parameters.Add(new SqlParameter("@ctrlDirecAre", edidiraretxt));
+                cmd.Parameters.Add(new SqlParameter("@ctrlEmprDGen", edidirgen));
+                cmd.Parameters.Add(new SqlParameter("@ctrlEmprDEje", edidireje));
+                cmd.Parameters.Add(new SqlParameter("@ctrlEmprDAre", edidirare));
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdDepartamento", clvdepart));
-                if (cmd.ExecuteNonQuery() > 0) {
+                if (cmd.ExecuteNonQuery() > 0)
+                {
                     departamentoBean.sMensaje = "success";
-                } else {
+                }
+                else
+                {
                     departamentoBean.sMensaje = "error";
                 }
                 cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
-            } catch (Exception exc) {
+            }
+            catch (Exception exc)
+            {
                 Console.WriteLine(exc);
             }
             return departamentoBean;
@@ -48,54 +60,59 @@ namespace Payroll.Models.Daos
 
     public class EditPuestosDao : Conexion
     {
-        public PuestosBean sp_Puestos_Update_Puesto(string edipuesto, string edidescpuesto, int ediproffamily, int edietiqcont, int edicolect, string edigraddom, string editarjpres, int ediclasifpuesto, int edinivjerarpuesto, int ediperfmanager, int editabpuesto, string edisindcat, int ediclvsat, int clvpuesto)
+        public PuestosBean sp_Puestos_Update_Puesto(string edicodpuesto, string edipuesto, string edidescpuesto, int ediproffamily, int ediclasifpuesto, int edicolect, int edinivjerarpuesto, int ediperfmanager, int editabpuesto, int clvpuesto)
         {
             PuestosBean puestoBean = new PuestosBean();
-            try {
+            try
+            {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Puestos_Update_Puesto", this.conexion) {
+                SqlCommand cmd = new SqlCommand("sp_Puestos_Update_Puesto", this.conexion)
+                {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.Add(new SqlParameter("@ctrlNombrePuesto", edipuesto));
-                cmd.Parameters.Add(new SqlParameter("@ctrlDescripcion", edidescpuesto));
-                cmd.Parameters.Add(new SqlParameter("@ctrlIdProfesion", ediproffamily));
-                cmd.Parameters.Add(new SqlParameter("@ctrlIdEtiqueta", edietiqcont));
-                cmd.Parameters.Add(new SqlParameter("@ctrlIdClasificacion", ediclasifpuesto));
-                cmd.Parameters.Add(new SqlParameter("@ctrlColectivo", edicolect));
-                cmd.Parameters.Add(new SqlParameter("@ctrlClaveSat", ediclvsat));
-                cmd.Parameters.Add(new SqlParameter("@ctrlNivel", edinivjerarpuesto));
-                cmd.Parameters.Add(new SqlParameter("@ctrlPerfomance", ediperfmanager));
-                cmd.Parameters.Add(new SqlParameter("@ctrlTabulador", editabpuesto));
-                cmd.Parameters.Add(new SqlParameter("@ctrlSindicato", edisindcat));
-                cmd.Parameters.Add(new SqlParameter("@ctrlGrado", edigraddom));
-                cmd.Parameters.Add(new SqlParameter("@ctrlTarjeta", editarjpres));
+                cmd.Parameters.Add(new SqlParameter("@ctrlCodigoPuesto", edicodpuesto.ToUpper()));
+                cmd.Parameters.Add(new SqlParameter("@ctrlNombrePuesto", edipuesto.ToUpper()));
+                cmd.Parameters.Add(new SqlParameter("@ctrlDescriPuesto", edidescpuesto.ToUpper()));
+                cmd.Parameters.Add(new SqlParameter("@ctrlProfesionFamId", ediproffamily));
+                cmd.Parameters.Add(new SqlParameter("@ctrlClasificacioId", ediclasifpuesto));
+                cmd.Parameters.Add(new SqlParameter("@ctrlColectivoId", edicolect));
+                cmd.Parameters.Add(new SqlParameter("@ctrlNivelJerarId", edinivjerarpuesto));
+                cmd.Parameters.Add(new SqlParameter("@ctrlPerfomanceId", ediperfmanager));
+                cmd.Parameters.Add(new SqlParameter("@ctrlTabuladorId", editabpuesto));
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdPuesto", clvpuesto));
-                if (cmd.ExecuteNonQuery() > 0) {
+                if (cmd.ExecuteNonQuery() > 0)
+                {
                     puestoBean.sMensaje = "success";
-                } else {
+                }
+                else
+                {
                     puestoBean.sMensaje = "error";
                 }
                 cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
-            } catch (Exception exc) {
+            }
+            catch (Exception exc)
+            {
                 Console.WriteLine(exc);
             }
             return puestoBean;
         }
-    } 
+    }
 
     public class EditEmpleadoDao : Conexion
     {
-        public EmpleadosBean sp_Empleados_Update_Empleado(string name, string apepat, string apemat, int sex, int estciv, string fnaci, string lnaci, int title, string nacion, int state, string codpost, string city, int colony, string street, string numberst, string telfij, string telmov, string email, int clvemp)
+        public EmpleadosBean sp_Empleados_Update_Empleado(string name, string apepat, string apemat, int sex, int estciv, string fnaci, string lnaci, int title, int nacion, int state, string codpost, string city, string colony, string street, string numberst, string telfij, string telmov, string email, string fecmat, string tipsan, int clvemp)
         {
             EmpleadosBean empleadoBean = new EmpleadosBean();
-            try {
+            try
+            {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Empleados_Update_Empleado", this.conexion) {
-                   CommandType = CommandType.StoredProcedure
+                SqlCommand cmd = new SqlCommand("sp_Empleados_Update_Empleado", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.Add(new SqlParameter("@ctrlNombre", name));
-                cmd.Parameters.Add(new SqlParameter("@ctrlApellidoPaterno", apepat));
-                cmd.Parameters.Add(new SqlParameter("@ctrlApellidoMaterno", apemat));
+                cmd.Parameters.Add(new SqlParameter("@ctrlNombre", name.ToUpper()));
+                cmd.Parameters.Add(new SqlParameter("@ctrlApellidoPaterno", apepat.ToUpper()));
+                cmd.Parameters.Add(new SqlParameter("@ctrlApellidoMaterno", apemat.ToUpper()));
                 cmd.Parameters.Add(new SqlParameter("@ctrlSexo", sex));
                 cmd.Parameters.Add(new SqlParameter("@ctrlEstadoCivil", estciv));
                 cmd.Parameters.Add(new SqlParameter("@ctrlFechaNacimiento", fnaci));
@@ -111,73 +128,100 @@ namespace Payroll.Models.Daos
                 cmd.Parameters.Add(new SqlParameter("@ctrlTelefonoFijo", telfij));
                 cmd.Parameters.Add(new SqlParameter("@ctrlTelefonoMovil", telmov));
                 cmd.Parameters.Add(new SqlParameter("@ctrlCorreoElectronico", email));
+                cmd.Parameters.Add(new SqlParameter("@ctrlFechaMatrimonio", fecmat));
+                cmd.Parameters.Add(new SqlParameter("@ctrlTipoSangre", tipsan));
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpleado", clvemp));
-                if (cmd.ExecuteNonQuery() > 0) {
+                if (cmd.ExecuteNonQuery() > 0)
+                {
                     empleadoBean.sMensaje = "success";
-                } else {
+                }
+                else
+                {
                     empleadoBean.sMensaje = "error";
                 }
                 cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
-            } catch (Exception exc) {
+            }
+            catch (Exception exc)
+            {
                 Console.WriteLine(exc);
+                empleadoBean.sMensaje = exc.Message.ToString();
             }
             return empleadoBean;
         }
 
-        public ImssBean sp_Imss_Update_DatoImss(string regimss, string rfc, string curp, int nivest, int nivsoc, int clvimss)
+        public ImssBean sp_Imss_Update_DatoImss(string regimss, string fecefe, string rfc, string curp, int nivest, int nivsoc, int clvimss)
         {
             ImssBean imssBean = new ImssBean();
-            try {
+            try
+            {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Imss_Update_DatoImss", this.conexion) {
+                SqlCommand cmd = new SqlCommand("sp_Imss_Update_DatoImss", this.conexion)
+                {
                     CommandType = CommandType.StoredProcedure
                 };
+                cmd.Parameters.Add(new SqlParameter("@ctrlFechaEfectiva", fecefe));
                 cmd.Parameters.Add(new SqlParameter("@ctrlRegistroImss", regimss));
                 cmd.Parameters.Add(new SqlParameter("@ctrlRfc", rfc));
                 cmd.Parameters.Add(new SqlParameter("@ctrlCurp", curp));
                 cmd.Parameters.Add(new SqlParameter("@ctrlNivelEstudios", nivest));
                 cmd.Parameters.Add(new SqlParameter("@ctrlNivelSocioeconomico", nivsoc));
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdImss", clvimss));
-                if (cmd.ExecuteNonQuery() > 0) {
+                if (cmd.ExecuteNonQuery() > 0)
+                {
                     imssBean.sMensaje = "success";
-                } else {
+                }
+                else
+                {
                     imssBean.sMensaje = "error";
                 }
                 cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
-            } catch (Exception exc) {
+            }
+            catch (Exception exc)
+            {
                 Console.WriteLine(exc);
             }
             return imssBean;
         }
 
-        public DatosNominaBean sp_Nomina_Update_DatoNomina(int numnom, double salmen, string pagret, int tipemp, string tipmon, int nivemp, int tipjor, int tipcon, string fecing, string fecant, string vencon, string estats, int clvnom)
+        public DatosNominaBean sp_Nomina_Update_DatoNomina(string fecefecnom, double salmen, int tipper, int tipemp, int nivemp, int tipjor, int tipcon, int tipcontra, int motinc, string fecing, string fecant, string vencon, int tippag, int banuse, string cunuse, int clvnom, int position)
         {
             DatosNominaBean nominaBean = new DatosNominaBean();
-            try{
+            try
+            {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Nomina_Update_DatoNomina", this.conexion) {
+                SqlCommand cmd = new SqlCommand("sp_Nomina_Update_DatoNomina", this.conexion)
+                {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.Add(new SqlParameter("@ctrlNumeroNomina", numnom));
+                cmd.Parameters.Add(new SqlParameter("@ctrlFechaEfectiva", fecefecnom));
+                cmd.Parameters.Add(new SqlParameter("@ctrlTipoPeriodo", tipper));
                 cmd.Parameters.Add(new SqlParameter("@ctrlSalarioMensual", salmen));
-                cmd.Parameters.Add(new SqlParameter("@ctrlPagoRetroactivo", pagret));
                 cmd.Parameters.Add(new SqlParameter("@ctrlTipoEmpleado", tipemp));
-                cmd.Parameters.Add(new SqlParameter("@ctrlTipoMoneda", tipmon));
                 cmd.Parameters.Add(new SqlParameter("@ctrlNivelEmpleado", nivemp));
                 cmd.Parameters.Add(new SqlParameter("@ctrlTipoJornada", tipjor));
                 cmd.Parameters.Add(new SqlParameter("@ctrlTipoContrato", tipcon));
+                cmd.Parameters.Add(new SqlParameter("@ctrlTipoContratacion", tipcontra));
+                cmd.Parameters.Add(new SqlParameter("@ctrlMotivoInc", motinc));
                 cmd.Parameters.Add(new SqlParameter("@ctrlFechaIngreso", fecing));
                 cmd.Parameters.Add(new SqlParameter("@ctrlFechaAntiguedad", fecant));
                 cmd.Parameters.Add(new SqlParameter("@ctrlVencimientoCont", vencon));
-                cmd.Parameters.Add(new SqlParameter("@ctrlTipoAlta", estats));
+                cmd.Parameters.Add(new SqlParameter("@ctrlPosicionId", position));
+                cmd.Parameters.Add(new SqlParameter("@ctrlPagoId", tippag));
+                cmd.Parameters.Add(new SqlParameter("@ctrlBancoId", banuse));
+                cmd.Parameters.Add(new SqlParameter("@ctrlCtaCheques", cunuse));
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdNomina", clvnom));
-                if (cmd.ExecuteNonQuery() > 0) {
+                if (cmd.ExecuteNonQuery() > 0)
+                {
                     nominaBean.sMensaje = "success";
-                } else {
+                }
+                else
+                {
                     nominaBean.sMensaje = "error";
                 }
                 cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
-            } catch (Exception exc){
+            }
+            catch (Exception exc)
+            {
                 Console.WriteLine(exc);
             }
             return nominaBean;
@@ -202,18 +246,95 @@ namespace Payroll.Models.Daos
                 cmd.Parameters.Add(new SqlParameter("@ctrlBanco_id", banuse));
                 cmd.Parameters.Add(new SqlParameter("@ctrlCuenta", cunuse));
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdPosicion", clvstr));
-                if (cmd.ExecuteNonQuery() > 0) {
+                if (cmd.ExecuteNonQuery() > 0)
+                {
                     posicionBean.sMensaje = "success";
-                } else {
+                }
+                else
+                {
                     posicionBean.sMensaje = "error";
                 }
                 cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
-            } catch (Exception exc) {
+            }
+            catch (Exception exc)
+            {
                 Console.WriteLine(exc);
             }
             return posicionBean;
         }
 
     }
+
+    public class EditRegionalesDao : Conexion
+    {
+        public RegionalesBean sp_Regionales_Update_Regionales(string descregionedit, string claregionedit, int clvregion)
+        {
+            RegionalesBean regionBean = new RegionalesBean();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Regionales_Update_Regionales", this.conexion) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Add(new SqlParameter("@ctrlDescripcionEd", descregionedit));
+                cmd.Parameters.Add(new SqlParameter("@ctrlClaveRegionEd", claregionedit));
+                cmd.Parameters.Add(new SqlParameter("@ctrlIdRegionalEd", clvregion));
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    regionBean.sMensaje = "success";
+                }
+                else
+                {
+                    regionBean.sMensaje = "error";
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "EditDataGeneralDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return regionBean;
+        }
+    }
+
+    public class EditSucursalesDao : Conexion
+    {
+        public SucursalesBean sp_Sucursales_Update_Sucursales(string descsucursaledit, string clasucursaledit, int clvsucursal)
+        {
+            SucursalesBean sucuesalesBean = new SucursalesBean();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Sucursales_Update_Sucursales", this.conexion) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Add(new SqlParameter("@ctrlDescripcionEd", descsucursaledit));
+                cmd.Parameters.Add(new SqlParameter("@ctrlClaveSucursalEd", clasucursaledit));
+                cmd.Parameters.Add(new SqlParameter("@ctrlIdSucursalEd", clvsucursal));
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    sucuesalesBean.sMensaje = "success";
+                }
+                else
+                {
+                    sucuesalesBean.sMensaje = "error";
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "EditDataGeneralDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return sucuesalesBean;
+        }
+    }
+
+
 
 }
