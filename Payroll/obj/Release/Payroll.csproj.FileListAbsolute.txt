@@ -1,0 +1,2 @@
+D:\IPSNet\Repositorio\Seri\Payroll\obj\Release\Payroll.csprojAssemblyReference.cache
+D:\IPSNet\Repositorio\Seri\Payroll\obj\Release\Payroll.csproj.CoreCompileInputs.cache
