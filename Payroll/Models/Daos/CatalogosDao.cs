@@ -1290,9 +1290,9 @@ namespace Payroll.Models.Daos
     }
     public class RegistroPatronalDao : Conexion
     {
-        public List<RegistroPatronalBean> sp_Registro_Patronal_Retrieve_Registros_Patronales(int keyemp)
+        public List<RegistroPatronalBean2> sp_Registro_Patronal_Retrieve_Registros_Patronales(int keyemp)
         {
-            List<RegistroPatronalBean> listRegPatronal = new List<RegistroPatronalBean>();
+            List<RegistroPatronalBean2> listRegPatronal = new List<RegistroPatronalBean2>();
             try
             {
                 this.Conectar();
@@ -1306,7 +1306,7 @@ namespace Payroll.Models.Daos
                 {
                     while (data.Read())
                     {
-                        RegistroPatronalBean regPatronal = new RegistroPatronalBean();
+                        RegistroPatronalBean2 regPatronal = new RegistroPatronalBean2();
                         regPatronal.iIdRegPat = Convert.ToInt32(data["IdRegPat"].ToString());
                         regPatronal.iEmpresaid = Convert.ToInt32(data["Empresa_id"].ToString());
                         regPatronal.sAfiliacionIMSS = data["Afiliacion_IMSS"].ToString();
@@ -1331,14 +1331,14 @@ namespace Payroll.Models.Daos
             return listRegPatronal;
         }
     }
-    public class RegionesDao : ConexionServer
+    public class RegionesDao : Conexion
     {
         public List<RegionalesBean> sp_Regionales_Retrieve_Search_Regionales(string wordsearch, int keyemp)
         {
             List<RegionalesBean> listRegionalesBean = new List<RegionalesBean>();
             try
             {
-                this.ConectarServer();
+                this.Conectar();
                 SqlCommand cmd = new SqlCommand("sp_Regionales_Retrieve_Search_Regionales", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -1379,7 +1379,7 @@ namespace Payroll.Models.Daos
             RegionalesBean regionalBean = new RegionalesBean();
             try
             {
-                this.ConectarServer();
+                this.Conectar();
                 SqlCommand cmd = new SqlCommand("sp_Regionales_Retrieve_Regional", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -1413,7 +1413,7 @@ namespace Payroll.Models.Daos
             List<RegionalesBean> listRegionalesBean = new List<RegionalesBean>();
             try
             {
-                this.ConectarServer();
+                this.Conectar();
                 SqlCommand cmd = new SqlCommand("sp_Regionales_Retrieve_Regionales", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -1451,7 +1451,7 @@ namespace Payroll.Models.Daos
             RegionalesBean regionBean = new RegionalesBean();
             try
             {
-                this.ConectarServer();
+                this.Conectar();
                 SqlCommand cmd = new SqlCommand("sp_Regionales_Insert_Regionales", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -1482,7 +1482,7 @@ namespace Payroll.Models.Daos
             return regionBean;
         }
     }
-    public class SucursalesDao : ConexionServer
+    public class SucursalesDao : Conexion
     {
 
         public List<SucursalesBean> sp_Sucursales_Retrieve_Search_Sucursales(string wordsearch)
@@ -1490,7 +1490,7 @@ namespace Payroll.Models.Daos
             List<SucursalesBean> listSucursalesBean = new List<SucursalesBean>();
             try
             {
-                this.ConectarServer();
+                this.Conectar();
                 SqlCommand cmd = new SqlCommand("sp_Sucursales_Retrieve_Search_Sucursales", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -1529,7 +1529,7 @@ namespace Payroll.Models.Daos
             SucursalesBean sucursalBean = new SucursalesBean();
             try
             {
-                this.ConectarServer();
+                this.Conectar();
                 SqlCommand cmd = new SqlCommand("sp_Sucursales_Retrieve_Sucursal", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -1562,7 +1562,7 @@ namespace Payroll.Models.Daos
             List<SucursalesBean> listSucursalesBean = new List<SucursalesBean>();
             try
             {
-                this.ConectarServer();
+                this.Conectar();
                 SqlCommand cmd = new SqlCommand("sp_Sucursales_Retrieve_Sucursales", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -1600,7 +1600,7 @@ namespace Payroll.Models.Daos
             SucursalesBean sucursalBean = new SucursalesBean();
             try
             {
-                this.ConectarServer();
+                this.Conectar();
                 SqlCommand cmd = new SqlCommand("sp_Sucursales_Insert_Sucursales", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -1631,14 +1631,14 @@ namespace Payroll.Models.Daos
         }
 
     }
-    public class NacionalidadesDao : ConexionServer
+    public class NacionalidadesDao : Conexion
     {
         public List<NacionalidadesBean> sp_Nacionalidades_Retrieve_Nacionalidades()
         {
             List<NacionalidadesBean> listNacionBean = new List<NacionalidadesBean>();
             try
             {
-                this.ConectarServer();
+                this.Conectar();
                 SqlCommand cmd = new SqlCommand("sp_Nacionalidades_Retrieve_Nacionalidades", this.conexion) { CommandType = CommandType.StoredProcedure };
                 SqlDataReader data = cmd.ExecuteReader();
                 if (data.HasRows)

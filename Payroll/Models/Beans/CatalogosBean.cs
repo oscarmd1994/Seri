@@ -346,6 +346,16 @@ namespace Payroll.Models.Beans
         public int ClasesRegPat_id { get; set; }
         public string Cancelado { get; set; }
     }
+    public class RegistroPatronalBean2
+    {
+        public int iIdRegPat { get; set; }
+        public int iEmpresaid { get; set; }
+        public string sAfiliacionIMSS { get; set; }
+        public string sNombreAfiliacion { get; set; }
+        public string sRiesgoTrabajo { get; set; }
+        public int iClasesRegPat_id { get; set; }
+        public string sCancelado { get; set; }
+    }
     public class CClases_RegPatBean
     {
         public int IdClase { get; set; }
