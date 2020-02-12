@@ -112,6 +112,13 @@ namespace Payroll.Controllers
             PruebaEmpresaDao Dao = new PruebaEmpresaDao();
             RP = Dao.sp_Registro_Patronal_Retrieve_Registros_Patronales(int.Parse(Session["IdEmpresa"].ToString()));
             return Json(RP);
+        }public JsonResult LoadRegistroPatronal( int IdRegPat)
+        {
+            List<RegistroPatronalBean> RP = new List<RegistroPatronalBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            int Empresa_id = int.Parse(Session["IdEmpresa"].ToString());
+            RP = Dao.sp_Registro_Patronal_Retrieve_Registro_Patronal(Empresa_id, IdRegPat);
+            return Json(RP);
         }
         [HttpPost]
         public JsonResult LoadLocalidades()

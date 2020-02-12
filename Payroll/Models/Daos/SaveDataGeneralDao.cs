@@ -191,6 +191,48 @@ namespace Payroll.Models.Daos
             }
             return empleadoBean;
         }
+        public EmpleadosBean sp_Empleado_Update_PosicionNomina(int clvemp, int keyemp)
+        {
+            EmpleadosBean empleadoBean = new EmpleadosBean();
+            try
+            {
+<<<<<<< HEAD
+                this.ConectarServer();
+                SqlCommand cmd = new SqlCommand("sp_Empleado_Update_PosicionNomina", this.conexionServer) { CommandType = CommandType.StoredProcedure };
+=======
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Empleado_Update_PosicionNomina", this.conexion) { CommandType = CommandType.StoredProcedure };
+>>>>>>> 6e3154b2e8af15f69c50c8d2d5e32d60680f2ab9
+                cmd.Parameters.Add(new SqlParameter("@IdEmpleado", clvemp));
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", keyemp));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.Read())
+                {
+                    if (data["sRespuesta"].ToString() == "success")
+                    {
+                        empleadoBean.sMensaje = "Actualizado";
+                    }
+                    else
+                    {
+                        empleadoBean.sMensaje = data["sRespuesta"].ToString();
+                    }
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message.ToString());
+            }
+            finally
+            {
+<<<<<<< HEAD
+                conexionServer.Close();
+=======
+                conexion.Close();
+>>>>>>> 6e3154b2e8af15f69c50c8d2d5e32d60680f2ab9
+            }
+            return empleadoBean;
+        }
     }
     public class ImssDao : Conexion
     {

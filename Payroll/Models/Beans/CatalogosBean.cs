@@ -444,12 +444,14 @@ namespace Payroll.Models.Beans
     }
     public class PeriodosVacacionesBean
     {
-        public int Anio { get; set; }
+        public int IdPer_vac_Dist {get;set;}
+        public int Per_vac_Ln_id { get; set; }
         public string Fecha_Inicio { get; set; }
         public string Fecha_Fin { get; set; }
         public int Dias { get; set; }
         public string Agendadas { get; set; }
         public string Disfrutadas { get; set; }
+        public string Cancelado { get; set; }
 
     }
     public class CreditosBean

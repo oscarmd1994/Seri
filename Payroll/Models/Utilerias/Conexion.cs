@@ -21,9 +21,15 @@ namespace Payroll.Models.Utilerias
 
         static readonly string Server = "201.149.34.185,15002";
         static readonly string Db = "IPSNet";
+<<<<<<< HEAD
         static readonly string User = "IPSNet";
         static readonly string Pass = "IPSNet2";
 
+=======
+        static readonly string User = "sa";
+        static readonly string Pass = "S3R2017.t3";
+        
+>>>>>>> 4107e7674a80de9aa82a8fd21138f9af78ef2d0e
         protected SqlConnection conexion { get; set; }
 
         protected SqlConnection Conectar()
