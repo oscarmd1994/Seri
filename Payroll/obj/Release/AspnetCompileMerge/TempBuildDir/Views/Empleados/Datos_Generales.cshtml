@@ -1,0 +1,1404 @@
+﻿<div class="container bg-white">
+    <div>
+        <button class="flotante0 rounded btn btn-outline-success animated fadeIn delay-1s" title="Guardar cambios" id="btn-save-edit">
+            <i class="fas fa-user-check"></i>
+        </button>
+        <button class="flotante rounded btn btn-outline-success" title="Continuar" id="btn-save-data">
+            <i class="fas fa-check"></i>
+        </button>
+        <button class="flotante2 rounded btn btn-outline-danger" title="Limpiar todos los campos" id="btn-clear-localstorage">
+            <i class="fas fa-eraser"></i>
+        </button>
+        <button type="button" data-toggle="modal" data-target="#processsave" class="flotante3 rounded btn btn-outline-info" title="Ayuda" id="btn-view-help">
+            <i class="fas fa-question"></i>
+        </button>
+        <button class="flotante4 rounded btn btn-outline-primary" title="Registrar departamento" data-toggle="modal" data-target="#searchdepartamentbtn" id="btn-modal-search-departament">
+            <i class="fas fa-building"></i>
+        </button>
+        <button class="flotante5 rounded btn btn-outline-primary" title="Registrar puesto" data-toggle="modal" data-target="#searchpuestobtn" id="btn-modal-search-puesto">
+            <i class="fas fa-briefcase"></i>
+        </button>
+        <button class="flotante6 rounded btn btn-outline-primary" title="Empleados" data-toggle="modal" data-target="#searchemploye" id="btn-modal-search-employe">
+            <i class="fas fa-users"></i>
+        </button>
+    </div>
+    <div class="tab-pane fade show active p-3" id="nav-empleado" role="tabpanel" aria-labelledby="nav-empleado-tab">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active font-navs" id="nav-datagen-tab" data-toggle="tab" href="#nav-datagen" role="tab" aria-controls="nav-datagen" aria-selected="true">
+                    <i class="fas fa-book col-ico mr-ico-05"></i> Datos generales
+                </a>
+                <a class="nav-item nav-link font-navs" id="nav-imss-tab" data-toggle="tab" href="#nav-imss" role="tab" aria-controls="nav-imss" aria-selected="false">
+                    <i class="fas fa-notes-medical col-ico mr-ico-05"></i> IMSS
+                </a>
+                <a class="nav-item nav-link font-navs" id="nav-datanom-tab" data-toggle="tab" href="#nav-datanom" role="tab" aria-controls="nav-datanom" aria-selected="false">
+                    <i class="fas fa-dollar-sign col-ico mr-ico-05"></i> Datos de nomina
+                </a>
+                <a class="nav-item nav-link font-navs" id="nav-estructure-tab" data-toggle="tab" href="#nav-estructure" role="tab" aria-controls="nav-estructure" aria-selected="false">
+                    <i class="fas fa-project-diagram col-ico mr-ico-05"></i> Estructura
+                </a>
+                <a class="nav-item nav-link disabled" id="nav-estructure-tab" data-toggle="tab" href="#nav-estructure" role="tab" aria-controls="nav-estructure" aria-selected="false">
+                    <div class="text-right">
+                        <i class="fas fa-user-edit text-primary mr-ico-05 d-none" id="icouser"></i>
+                        <span id="nameuser" class="text-capitalize"></span>
+                    </div>
+                </a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active p-3" id="nav-datagen" role="tabpanel" aria-labelledby="nav-datagen-tab">
+                <div class="row mt-4">
+                    <div id="div-most-alert-data-gen" class="col-md-6 offset-3"></div>
+                    <div class="col-md-12 mb-4">
+                        <div class="text-left">
+                            <h6 class="col-ico font-nav-child">
+                                <b>
+                                    <i class="fas fa-circle fa-sm mr-ico-05"></i>
+                                    Datos principales
+                                </b>
+                            </h6>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <input type="hidden" value="0" readonly class="form-control form-control-sm" id="clvemp" />
+                            <label for="name" class="col-sm-4 col-form-label font-labels">
+                                Nombre:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Nombre" maxlength="30" type="text" id="name" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="apepat" class="col-sm-4 col-form-label font-labels">
+                                Apellido Paterno:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Apellido paterno" maxlength="30" type="text" id="apepat" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="apemat" class="col-sm-4 col-form-label font-labels">
+                                Apellido Materno:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Apellido materno" maxlength="30" type="text" id="apemat" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="sex" class="col-sm-4 col-form-label font-labels">
+                                Genero:
+                            </label>
+                            <div class="col-sm-8">
+                                <select tp-select="Genero" class="form-control form-control-sm" id="sex">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="estciv" class="col-sm-4 col-form-label font-labels">
+                                Estado civil:
+                            </label>
+                            <div class="col-sm-8">
+                                <select tp-select="Estado civil" placeholder="Estado civil" class="form-control form-control-sm" id="estciv">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="fnaci" class="col-sm-4 col-form-label font-labels">
+                                Fecha de Nacimiento:
+                            </label>
+                            <div class="col-sm-8">
+                                <input tp-date="less" placeholder="Fecha de nacimiento" title="Fecha nacimiento" type="date" id="fnaci" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lnaci" class="col-sm-4 col-form-label font-labels">
+                                Lugar de Nacimiento:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Lugar de nacimiento" maxlength="70" type="text" id="lnaci" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-4 col-form-label font-labels">
+                                Titulo:
+                            </label>
+                            <div class="col-sm-8">
+                                <select placeholder="Titulo" tp-select="Titulo" class="form-control form-control-sm" id="title">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nacion" class="col-sm-4 col-form-label font-labels">
+                                Nacionalidad:
+                            </label>
+                            <div class="col-sm-8">
+                                <select placeholder="Nacionalidad" tp-select="Nacionalidad" class="form-control form-control-sm" id="nacion">
+                                    <option value="0">Selecciona</option>
+                                    <option value="Mexicana">Mexicana</option>
+                                    <option value="Otra">Otra</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="text-left">
+                            <h6 class="col-ico font-nav-child">
+                                <b>
+                                    <i class="fas fa-circle fa-sm mr-ico-05"></i>
+                                    Dirección
+                                </b>
+                            </h6>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="state" class="col-sm-4 col-form-label font-labels">
+                                Estado:
+                            </label>
+                            <div class="col-sm-8">
+                                <select tp-select="Estado" class="form-control form-control-sm" id="state">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="codpost" class="col-sm-4 col-form-label font-labels">
+                                C. postal:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Codigo postal" type="number" id="codpost" class="form-control form-control-sm" />
+                            </div>
+                            <div class="offset-4 col-sm-8 mt-2">
+                                <button class="btn btn-sm btn-block" id="btn-verif-codpost">
+                                    Verificar
+                                </button>
+                                <div class="text-center mt-2 d-none" id="load-spinner">
+                                    <div class="spinner-border text-info" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <br />
+                                    <span class="badge mt-3 badge-pill badge-info p-2">Comprobando...</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="city" class="col-sm-4 col-form-label font-labels">
+                                Ciudad:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Ciudad" type="text" class="form-control form-control-sm" id="city" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="colony" class="col-sm-4 col-form-label font-labels">
+                                Colonia:
+                            </label>
+                            <div class="col-sm-8">
+                                <select tp-select="Colonia" class="form-control form-control-sm" id="colony">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="street" class="col-sm-4 col-form-label font-labels">
+                                Calle:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Calle" maxlength="50" type="text" id="street" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="numberst" class="col-sm-4 col-form-label font-labels">
+                                N. calle:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Numero de calle" maxlength="10" type="text" id="numberst" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="text-left">
+                            <h6 class="col-ico font-nav-child">
+                                <b>
+                                    <i class="fas fa-circle fa-sm mr-ico-05"></i>
+                                    Otros
+                                </b>
+                            </h6>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="telfij" class="col-sm-4 col-form-label font-labels">
+                                Telefono fijo:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Telefono fijo" maxlength="10" class="form-control form-control-sm" id="telfij" type="text" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="telmov" class="col-sm-4 col-form-label font-labels">
+                                Telefono movil:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Telefono movil" maxlength="10" pattern="[0-9]{10}" class="form-control form-control-sm" id="telmov" type="text" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="mailus" class="col-sm-4 col-form-label font-labels">
+                                Correo electronico:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Correo electronico" maxlength="40" class="form-control form-control-sm" id="mailus" type="email" />
+                                <div class="invalid-feedback">
+                                    Introduzca una correo valido.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img width="250" class="img-fluid" src="~/Content/img/form-complete.svg" alt="data-register">
+                    </div>
+                    <div class="offset-md-8 col-md-4 mt-5 text-center">
+                        <button class="btn btn-block btn-light col-btn-login font-button" id="btn-save-data-gen">
+                            Continuar <i class="fas fa-arrow-right ml-ico-05"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade p-3" id="nav-imss" role="tabpanel" aria-labelledby="nav-imss-tab">
+                <div class="row mt-4">
+                    <div id="div-most-alert-data-imss" class="col-md-6 offset-3"></div>
+                    <div class="col-md-12 mb-4">
+                        <div class="text-left">
+                            <h6 class="col-ico">
+                                <i class="fas fa-circle fa-sm mr-ico-05"></i>
+                                Registros oficiales
+                            </h6>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <input type="hidden" readonly class="form-control form-control-sm" id="clvimss" />
+                            <label for="regimss" class="col-sm-4 col-form-label font-labels">
+                                Registro IMSS:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="Numero de registro" maxlength="11" type="text" id="regimss" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="rfc" class="col-sm-4 col-form-label font-labels">
+                                R.F.C:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="R.F.C" maxlength="13" type="text" id="rfc" class="form-control form-control-sm text-uppercase" />
+                                <div class="invalid-feedback">
+                                    Los 10 primeros caracteres de tu rfc deben de concordar con los primeros 10 caracteres de tu curp.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="curp" class="col-sm-4 col-form-label font-labels">
+                                C.U.R.P:
+                            </label>
+                            <div class="col-sm-8">
+                                <input placeholder="C.U.R.P" type="text" id="curp" class="form-control form-control-sm text-uppercase" maxlength="18" />
+                                <div class="invalid-feedback">
+                                    Introduzca una curp valida, compruebe que los primeros 10 digitos del rfc concuerden con los de la curp.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="text-left">
+                            <h6 class="col-ico">
+                                <i class="fas fa-circle fa-sm mr-ico-05"></i>
+                                Otros
+                            </h6>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="nivest" class="col-sm-4 col-form-label font-labels">
+                                Nivel de estudios:
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="nivest" tp-select="Nivel de estudios" class="form-control form-control-sm">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nivsoc" class="col-sm-4 col-form-label font-labels">
+                                Nivel socioeconomico:
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="nivsoc" tp-select="Nivel socioeconomico" class="form-control form-control-sm">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img width="250" class="img-fluid" src="~/Content/img/form-complete.svg" alt="data-register">
+                    </div>
+                    <div class="offset-md-6 col-md-6 mt-5 text-center">
+                        <button class="btn btn-block btn-light col-btn-login font-button" id="btn-save-data-imss">
+                            Continuar <i class="fas fa-arrow-right ml-ico-05"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade p-3" id="nav-datanom" role="tabpanel" aria-labelledby="nav-datanom-tab">
+                <div class="row mt-4">
+                    <div id="div-most-alert-data-nomina" class="col-md-6 offset-3"></div>
+                    <div class="col-md-12 mb-4">
+                        <div class="text-left">
+                            <h6 class="col-ico">
+                                <i class="fas fa-circle fa-sm mr-ico-05"></i>
+                                Datos de ingreso
+                            </h6>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <input type="hidden" readonly class="form-control form-control-sm" id="clvnom" />
+                            <label for="numnom" class="col-sm-4 col-form-label font-labels">
+                                N°. Nómina:
+                            </label>
+                            <div class="col-sm-8">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div style="cursor:pointer !important;" class="input-group-text" id="btn-search-num-nomina"> <i class="fas fa-search"></i> </div>
+                                    </div>
+                                    <input type="number" placeholder="Numero de nómina" id="numnom" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="salmen" class="col-sm-4 col-form-label font-labels">
+                                Salario mensual:
+                            </label>
+                            <div class="col-sm-8">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"> <i class="fas fa-dollar-sign"></i> </div>
+                                    </div>
+                                    <input type="number" placeholder="Salario mensual" id="salmen" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="pagret" class="col-sm-4 col-form-label font-labels">
+                                Con pago retroactivo:
+                            </label>
+                            <div class="col-sm-8">
+                                <select tp-select id="pagret" class="form-control form-control-sm">
+                                    <option value="0">Selecciona</option>
+                                    <option value="SI">SI</option>
+                                    <option selected value="NO">NO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tipemp" class="col-sm-4 col-form-label font-labels">
+                                Tipo de empleado:
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="tipemp" tp-select="Tipo de empleado" class="form-control form-control-sm">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tipmon" class="col-sm-4 col-form-label font-labels">
+                                Tipo de moneda:
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" readonly id="tipmon" class="form-control form-control-sm" value="MONEDA NACIONAL" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nivemp" class="col-sm-4 col-form-label font-labels">
+                                Nivel empleado:
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="nivemp" tp-select="Nivel empleado" class="form-control form-control-sm">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="tipjor" class="col-sm-4 col-form-label font-labels">
+                                Tipo de jornada:
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="tipjor" tp-select="Tipo de jornada" class="form-control form-control-sm">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="tipcon" class="col-sm-4 col-form-label font-labels">
+                                Tipo de contrato:
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="tipcon" tp-select="Tipo de contrato" class="form-control form-control-sm">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fecing" class="col-sm-4 col-form-label font-labels">
+                                Fecha de ingreso:
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date" placeholder="Fecha de ingreso" tp-date="less" id="fecing" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="fecant" class="col-sm-4 col-form-label font-labels">
+                                Fecha de reconocimiento de antiguedad:
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date" placeholder="Fecha de reconocimiento de antiguedad" tp-date="less" id="fecant" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="vencon" class="col-sm-4 col-form-label font-labels">
+                                Vencimiento contrato:
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="date" tp-date="higher" placeholder="Vencimiento contrato" id="vencon" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="estats" class="col-sm-4 col-form-label font-labels">
+                                Tipo de Alta:
+                            </label>
+                            <div class="col-sm-8">
+                                <select id="estats" tp-select="Tipo de alta" class="form-control form-control-sm">
+                                    <option selected value="0">Selecciona</option>
+                                    <option value="Alta">ALTA</option>
+                                    <option value="Reingreso">REINGRESO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offset-6 col-md-6 text-center mt-4">
+                        <img width="250" class="img-fluid" src="~/Content/img/form-complete.svg" alt="data-register">
+                    </div>
+                    <div class="offset-md-6 col-md-6 mt-5 text-center">
+                        <button class="btn btn-block btn-light col-btn-login font-button" id="btn-save-data-nomina">
+                            Continuar <i class="fas fa-arrow-right ml-ico-05"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade p-3" id="nav-estructure" role="tabpanel" aria-labelledby="nav-estructure-tab">
+                <div class="row mt-4">
+                    <div id="div-most-alert-data-estructure" class="col-md-6 offset-3"></div>
+                    <div class="col-md-12 mb-4">
+                        <div class="text-left">
+                            <h6 class="col-ico">
+                                <i class="fas fa-circle fa-sm mr-ico-05"></i>
+                                Datos de la plantilla
+                            </h6>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <input type="hidden" readonly class="form-control form-control-sm" id="clvstr" />
+                            <label for="numpla" class="col-sm-4 col-form-label font-labels">
+                                N°. de posición:
+                            </label>
+                            <div class="col-sm-8">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div style="cursor:pointer;" class="input-group-text btn btn-primary" id="btn-search-num-posicion">
+                                            <i class="fas fa-undo"></i>
+                                        </div>
+                                    </div>
+                                    <input placeholder="N°. de posición" type="number" id="numpla" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="depart" class="col-sm-4 col-form-label font-labels">
+                                Departamento:
+                            </label>
+                            <div class="col-sm-8">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div data-toggle="modal" data-target="#searchdepartament" style="cursor:pointer;" class="input-group-text btn btn-primary" id="btn-search-departamento">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" readonly id="depaid" class="form-control form-control-sm" />
+                                    <input readonly type="text" id="depart" class="form-control form-control-sm" placeholder="Departamento" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="pueusu" class="col-sm-4 col-form-label font-labels">
+                                Puestos:
+                            </label>
+                            <div class="col-sm-8">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div style="cursor:pointer;" class="input-group-text btn btn-primary" id="btn-search-puesto" data-toggle="modal" data-target="#searchpuesto">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" readonly id="puesid" class="form-control form-control-sm" />
+                                    <input type="text" readonly id="pueusu" class="form-control form-control-sm" placeholder="Puesto" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="emprep" class="col-sm-4 col-form-label font-labels">
+                                Empresa reporta a:
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" id="emprep" class="form-control form-control-sm" placeholder="Empresa reporta a" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="report" class="col-sm-4 col-form-label font-labels">
+                                Reporta a:
+                            </label>
+                            <div class="col-sm-8">
+                                <input type="text" id="report" class="form-control form-control-sm" placeholder="Reporta a" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12 mb-4">
+                        <div class="text-left">
+                            <h6 class="col-ico">
+                                <i class="fas fa-circle fa-sm mr-ico-05"></i>
+                                Tipo de pago
+                            </h6>
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="tippag" class="col-sm-4 col-form-label font-labels">
+                                Tipo de pago:
+                            </label>
+                            <div class="col-sm-8">
+                                <select tp-select="Tipo de pagp" id="tippag" class="form-control form-control-sm">
+                                    <option selected value="0">Selecciona</option>
+                                    <option value="Efectivo">Efectivo</option>
+                                    <option value="Cuenta cheques">Cuenta cheques</option>
+                                    <option value="Cuenta clabe">Cuenta clabe</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="banuse" class="col-sm-4 col-form-label font-labels">
+                                Banco:
+                            </label>
+                            <div class="col-sm-8">
+                                <select tp-select="Banco" id="banuse" class="form-control form-control-sm">
+                                    <option value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="cunuse" class="col-sm-4 col-form-label font-labels">
+                                Cuenta:
+                            </label>
+                            <div class="col-sm-8">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <small id="clvbank">
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <input placeholder="Cuenta" type="text" id="cunuse" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center d-none" id="infobankch">
+                            <div class="alert alert-info" role="alert">
+                                <small><b>La longitud del numero de cuenta debe de ser 10 digitos</b></small>
+                            </div>
+                        </div>
+                        <div class="form-group text-center d-none" id="infobankct">
+                            <div class="alert alert-info" role="alert">
+                                <small><b>La longitud del numero de cuenta debe de ser 18 digitos</b></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6 mt-5 text-center">
+                        <div class="mt-4 p-3 card shadow">
+                            <p class="text-justify">
+                                Al momento de seleccionar esta opción los datos ingresados permaneceran en los campos durante un periodo maximo de 48 horas, una vez pasado este tiempo la información se eliminara de los campos.
+                            </p>
+                            <button class="btn btn-light col-btn-login font-button mt-4" id="btn-save-data-estructure">
+                                Guardar temporalmente <i class="fas fa-clock ml-ico-05"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-5 text-center">
+                        <div class="mt-4 p-3 card shadow">
+                            <p class="text-justify">
+                                Al seleccionar esta opción los datos se almacenarán en el sistema estando disponibles en cualquier momento que usted decida consultarlos, quedando los campos libres para iniciar otro registro.
+                            </p>
+                            <button class="btn btn-light col-btn-login font-button mt-4" id="btn-save-data-all">
+                                Guardar registro <i class="fas fa-check ml-ico-05"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" data-backdrop="static" id="searchdepartament" tabindex="-1" role="dialog" aria-labelledby="searchdepartament" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchdepartamentLabel"> <i class="fas fa-building mr-2"></i> Lista de departamentos </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table display" width="100%" id="table-departaments">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Reporta a</th>
+                                            <th class="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="data-body-departaments"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-toggle="modal" data-target="#registerdepartament" type="button" class="btn btn-outline-success btn-sm" id="btnregisterdepartament"> <i class="fas fa-plus mr-2"></i> Agregar nuevo</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="searchdepartamentbtn" tabindex="-1" role="dialog" aria-labelledby="searchdepartament" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchdepartamentLabel"> <i class="fas fa-building mr-2"></i> Lista de departamentos </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="ico-close-registerdepart-btn">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table display" width="100%" id="table-departamentsbtn">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Reporta a</th>
+                                            <th class="text-center">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="data-body-departaments"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-toggle="modal" data-target="#registerdepartament" type="button" class="btn btn-outline-success btn-sm" id="btnregisterdepartamentbtn"> <i class="fas fa-plus mr-2"></i> Agregar nuevo</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"> <i class="fas fa-times mr-2" id="btn-close-registerdepart-btn"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- VENTANA MODAL PARA BUSCAR LOS PUESTOS -->
+
+<div class="modal fade" data-backdrop="static" id="searchpuesto" tabindex="-1" role="dialog" aria-labelledby="searchpuestoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchpuestoLabel"> <i class="fas fa-briefcase mr-2 col-ico"></i> Lista de puestos</h5>
+                <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table display" id="table-puestos" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Puesto</th>
+                                            <th>Descripcion</th>
+                                            <th class="text-center">Accion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="data-body-puestos">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-toggle="modal" data-target="#registerpuesto" type="button" class="btn btn-outline-success btn-sm" id="btnregisterpuesto"> <i class="fas fa-plus mr-2"></i> Agregar nuevo</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="searchpuestobtn" tabindex="-1" role="dialog" aria-labelledby="searchpuestoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchpuestoLabel"> <i class="fas fa-briefcase mr-2 col-ico"></i> Lista de puestos</h5>
+                <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close" id="ico-close-registerpuesto-btn">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table display" id="table-puestosbtn" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Puesto</th>
+                                            <th>Descripcion</th>
+                                            <th class="text-center">Accion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="data-body-puestos">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-toggle="modal" data-target="#registerpuesto" type="button" class="btn btn-outline-success btn-sm" id="btnregisterpuestobtn"> <i class="fas fa-plus mr-2"></i> Agregar nuevo</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal" id="btn-close-registerpuesto-btn"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="registerpuesto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fas fa-plus mr-2 col-ico"></i> Registrar puesto</h5>
+                <button id="ico-clear-fields-job" type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="regpuesto">Puesto:</label>
+                                <input placeholder="Puesto" type="text" id="regpuesto" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="regdescpuesto">Descripción:</label>
+                                <input placeholder="Descripcion" type="text" id="regdescpuesto" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="proffamily">Profesión familia:</label>
+                                <select tp-select="Profesión familia" class="form-control form-control-sm" id="proffamily">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="etiqcont">Etiqueta contable:</label>
+                                <select tp-select="Etiqueta contable" class="form-control form-control-sm" id="etiqcont">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="regcolect">Colectivo:</label>
+                                <select tp-select="Colectivo" id="regcolect" class="form-control form-control-sm">
+                                    <option value="0" selected>Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="graddom">Grado Dominio:</label>
+                                <input placeholder="Grado dominio" type="text" id="graddom" class="form-control form-control-sm" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="tarjpres">Tarjetas de Presentación:</label>
+                                <input placeholder="Tarjetas de Presentación" type="text" id="tarjpres" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="clasifpuesto">Clasificación puesto:</label>
+                                <select tp-select="Clasificación puesto" class="form-control form-control-sm" id="clasifpuesto">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="nivjerarpuesto">Nivel jerarquico:</label>
+                                <select tp-select="Nivel Jerarquico" class="form-control form-control-sm" id="nivjerarpuesto">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="perfmanager">Perfomance manager:</label>
+                                <select tp-select="Perfomance manager" class="form-control form-control-sm" id="perfmanager">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="tabpuesto">Tabulador:</label>
+                                <select tp-select="Tabulador" class="form-control form-control-sm" id="tabpuesto">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="sindcat">Sindicato</label>
+                                <select tp-select="Sindicato" class="form-control form-control-sm" id="sindcat">
+                                    <option value="0" selected>Selecciona</option>
+                                    <option value="No Sindicato">No Sindicato</option>
+                                    <option value="Sindicato1">Sindicato 1</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="clvsat">Clave Sat</label>
+                                <select tp-select="Clave sat" class="form-control form-control-sm" id="clvsat">
+                                    <option value="0" selected>Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success btn-sm" id="btnsavepuesto"> <i class="fas fa-check mr-2"></i> Guardar </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal" id="btn-clear-fields-job"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- VENTANA MODAL EDITA PUESTO -->
+<div class="modal fade" data-backdrop="static" id="editpuesto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> <i class="fas fa-edit mr-2 col-ico"></i> Editar puesto <span id="namepuestoedi"></span> </h5>
+                <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control form-control-sm" id="clvpuesto" />
+                                <label class="col-form-label font-labels" for="edipuesto">Puesto:</label>
+                                <input placeholder="Puesto" type="text" id="edipuesto" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edidescpuesto">Descripción:</label>
+                                <input placeholder="Descripcion" type="text" id="edidescpuesto" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="ediproffamily">Profesión familia:</label>
+                                <select tp-select="Profesión familia" class="form-control form-control-sm" id="ediproffamily">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edietiqcont">Etiqueta contable:</label>
+                                <select tp-select="Etiqueta contable" class="form-control form-control-sm" id="edietiqcont">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edicolect">Colectivo:</label>
+                                <select tp-select="Colectivo" id="edicolect" class="form-control form-control-sm">
+                                    <option value="0" selected>Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edigraddom">Grado Dominio:</label>
+                                <input placeholder="Grado dominio" type="text" id="edigraddom" class="form-control form-control-sm" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="editarjpres">Tarjetas de Presentación:</label>
+                                <input placeholder="Tarjetas de Presentación" type="text" id="editarjpres" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="ediclasifpuesto">Clasificación puesto:</label>
+                                <select tp-select="Clasificación puesto" class="form-control form-control-sm" id="ediclasifpuesto">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edinivjerarpuesto">Nivel jerarquico:</label>
+                                <select tp-select="Nivel Jerarquico" class="form-control form-control-sm" id="edinivjerarpuesto">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="ediperfmanager">Perfomance manager:</label>
+                                <select tp-select="Perfomance manager" class="form-control form-control-sm" id="ediperfmanager">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="editabpuesto">Tabulador:</label>
+                                <select tp-select="Tabulador" class="form-control form-control-sm" id="editabpuesto">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edisindcat">Sindicato</label>
+                                <select tp-select="Sindicato" class="form-control form-control-sm" id="edisindcat">
+                                    <option value="0" selected>Selecciona</option>
+                                    <option value="No Sindicato">No Sindicato</option>
+                                    <option value="Sindicato1">Sindicato 1</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="ediclvsat">Clave Sat</label>
+                                <select tp-select="Clave sat" class="form-control form-control-sm" id="ediclvsat">
+                                    <option value="0" selected>Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success btn-sm" id="btnedipuesto"> <i class="fas fa-check mr-2"></i> Guardar </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" data-backdrop="static" id="registerdepartament" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fas fa-plus mr-2 col-ico"></i> Registrar departamento</h5>
+                <button id="ico-clear-fields-departament" type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="regdepart">Departamento:</label>
+                                <input placeholder="Departamento" type="text" maxlength="80" id="regdepart" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="descdepart">Descripción del departamento</label>
+                                <input placeholder="Descripción del departamento" maxlength="80" type="text" id="descdepart" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="reportaa">Reporta a:</label>
+                                <select tp-select="Reporta a" class="form-control form-control-sm" id="reportaa">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="centrcost">Centro de costo:</label>
+                                <select tp-select="Centro de costo" class="form-control form-control-sm" id="centrcost">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edific">Edificio:</label>
+                                <select tp-select="Edificio" class="form-control form-control-sm" id="edific">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="nivestuc">Nivel de estructura</label>
+                                <select tp-select="Nivel de estructura" class="form-control form-control-sm" id="nivestuc">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="ubicac">Ubicación</label>
+                                <input placeholder="Ubicación" maxlength="50" type="text" id="ubicac" class="form-control form-control-sm" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="plaza">Plaza</label>
+                                <input placeholder="Plaza" type="text" maxlength="50" id="plaza" class="form-control form-control-sm" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="titul">Titular</label>
+                                <input placeholder="Titular" type="text" id="titul" maxlength="50" class="form-control form-control-sm" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="sucurbanc">Sucursal bancaria</label>
+                                <input placeholder="Sucursal bancaria" type="text" id="sucurbanc" maxlength="50" class="form-control form-control-sm" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="categ">Categoria</label>
+                                <input placeholder="Categoria" type="text" id="categ" maxlength="50" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success btn-sm" id="btnsavedepartament"> <i class="fas fa-check mr-2"></i> Guardar </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal" id="btn-clear-fields-departament"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- VENTANA MODAL EDITA DEPARTAMENTOS -->
+<div class="modal fade" data-backdrop="static" id="editdepartament" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"> <i class="fas fa-edit mr-2 col-ico"></i> Editar departamento: <span id="namedepartamentedi"></span> </h5>
+                <button id="ico-clear-fields-departament" type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control form-control-sm" id="clvdepart" />
+                                <label class="col-form-label font-labels" for="edidepart">Departamento:</label>
+                                <input placeholder="Departamento" type="text" maxlength="80" id="edidepart" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edidescdepart">Descripción del departamento</label>
+                                <input placeholder="Descripción del departamento" maxlength="80" type="text" id="edidescdepart" class="form-control form-control-sm text-capitalize" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edireportaa">Reporta a:</label>
+                                <select tp-select="Reporta a" class="form-control form-control-sm" id="edireportaa">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edicentrcost">Centro de costo:</label>
+                                <select tp-select="Centro de costo" class="form-control form-control-sm" id="edicentrcost">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="ediedific">Edificio:</label>
+                                <select tp-select="Edificio" class="form-control form-control-sm" id="ediedific">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edinivestuc">Nivel de estructura</label>
+                                <select tp-select="Nivel de estructura" class="form-control form-control-sm" id="edinivestuc">
+                                    <option selected value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="ediubicac">Ubicación</label>
+                                <input placeholder="Ubicación" maxlength="50" type="text" id="ediubicac" class="form-control form-control-sm" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="ediplaza">Plaza</label>
+                                <input placeholder="Plaza" type="text" maxlength="50" id="ediplaza" class="form-control form-control-sm" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edititul">Titular</label>
+                                <input placeholder="Titular" type="text" id="edititul" maxlength="50" class="form-control form-control-sm" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edisucurbanc">Sucursal bancaria</label>
+                                <input placeholder="Sucursal bancaria" type="text" id="edisucurbanc" maxlength="50" class="form-control form-control-sm" />
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label font-labels" for="edicateg">Categoria</label>
+                                <input placeholder="Categoria" type="text" id="edicateg" maxlength="50" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success btn-sm" id="btnedidepartament"> <i class="fas fa-check mr-2"></i> Guardar </button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- VENTANA MODAL MUESTRA PROCESO DE GUARDADO -->
+<div class="modal fade" data-backdrop="static" id="processsave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fas fa-database mr-2 col-ico"></i> Guardando registros </h5>
+                <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 border-right">
+                            <h6 class="text-center">Generales</h6>
+                            <hr />
+                            <div class="text-center">
+                                <span> <i class="fas fa-lg fa-check-circle" id="icosave1"></i> </span>
+                                <br />
+                                <span id="txtsave1"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 border-right">
+                            <h6 class="text-center">
+                                Imss
+                            </h6>
+                            <hr />
+                            <div class="text-center">
+                                <span> <i class="fas fa-lg fa-check-circle" id="icosave2"></i> </span>
+                                <br />
+                                <span id="txtsave2"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 border-right">
+                            <h6 class="text-center">
+                                Nomina
+                            </h6>
+                            <hr />
+                            <div class="text-center">
+                                <span> <i class="fas fa-lg fa-check-circle" id="icosave3"></i> </span>
+                                <br />
+                                <span id="txtsave3"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="text-center">
+                                Estructura
+                            </h6>
+                            <hr />
+                            <div class="text-center">
+                                <span> <i class="fas fa-lg fa-check-circle" id="icosave4"></i> </span>
+                                <br />
+                                <span id="txtsave4"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-3 mt-5 d-none" id="successdiv">
+                            <div class="alert alert-success text-center font-weight-bold">
+                                Datos registrados correctamente!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal" id="btn-close-save-all"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- VENTANA MODAL MUESTRA PROCESO DE GUARDADO -->
+<div class="modal fade" data-backdrop="static" id="processedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> <i class="fas fa-database mr-2 col-ico"></i> Editando registros </h5>
+                <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 border-right">
+                            <h6 class="text-center">Generales</h6>
+                            <hr />
+                            <div class="text-center">
+                                <span> <i class="fas fa-lg fa-check-circle" id="icoedit1"></i> </span>
+                                <br />
+                                <span id="txtedit1"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 border-right">
+                            <h6 class="text-center">
+                                Imss
+                            </h6>
+                            <hr />
+                            <div class="text-center">
+                                <span> <i class="fas fa-lg fa-check-circle" id="icoedit2"></i> </span>
+                                <br />
+                                <span id="txtedit2"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3 border-right">
+                            <h6 class="text-center">
+                                Nomina
+                            </h6>
+                            <hr />
+                            <div class="text-center">
+                                <span> <i class="fas fa-lg fa-check-circle" id="icoedit3"></i> </span>
+                                <br />
+                                <span id="txtedit3"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="text-center">
+                                Estructura
+                            </h6>
+                            <hr />
+                            <div class="text-center">
+                                <span> <i class="fas fa-lg fa-check-circle" id="icoedit4"></i> </span>
+                                <br />
+                                <span id="txtedit4"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-3 mt-5 d-none" id="successeditdiv">
+                            <div class="alert alert-success text-center font-weight-bold">
+                                Datos registrados correctamente!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal" id="btn-close-save-all"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- VENTANA MODAL EMPLEADOS -->
+<div class="modal fade" data-backdrop="static" id="searchemploye" tabindex="-1" role="dialog" aria-labelledby="searchpuestoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchemployelabel"> <i class="fas fa-users mr-2 col-ico"></i> Lista de empleados</h5>
+                <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close" id="ico-close-registerpuesto-btn">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table display" id="table-employes" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Nomina</th>
+                                            <th class="text-center">Accion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="data-body-employe">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal" id="btn-close-employe"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="employefinded" tabindex="-1" role="dialog" aria-labelledby="employefindedlabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="employefindedlabel"></h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="~/Scripts/ferros/errajax.js"></script>
+<script type="text/javascript" src="~/Scripts/main/main.js"></script>
+<script type="text/javascript" src="~/Scripts/main/loadcatalogsemployee.js"></script>
+<script type="text/javascript" src="~/Scripts/main/loaddatatables.js"></script>
+<script type="text/javascript" src="~/Scripts/main/savedatageneral.js"></script>
+@*<script type="text/javascript" src="~/Scripts/main/loademployes.js"></script>*@
