@@ -95,11 +95,28 @@
     });
     //
     $("#btnClearRP").on("click", function () {
-        document.getElementById("inAfiliacionImssRP").value;
-        document.getElementById("inEmpresaRP").value  ;
-        document.getElementById("inRiesgoTrabajoRP");
-        document.getElementById("inNombreAfiliacionRP");
-        SelectLoaderFromRegPat();
+        document.getElementById("inAfiliacionImssRP").value = "";
+        
+        document.getElementById("inRiesgoTrabajoRP").value = "";
+        document.getElementById("inNombreAfiliacionRP").value = "";
+        document.getElementById("inClase").innerHTML = "";
+        //Clases
+        $.ajax({
+            url: "../Empresas/LoadClasesRP",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: (data) => {
+                
+                for (i = 0; i < data.length; i++) {
+                    document.getElementById("inClase").innerHTML += `<option value='${data[i].IdClase}'>${data[i].Nombre_Clase}</option>`;
+
+                    //document.getElementById("btnUpdateRP").classList.add("invisible");
+                }
+            }
+        });
+        document.getElementById("btnGuardarRP").classList.remove("invisible");
+        document.getElementById("btnUpdateRP").classList.add("invisible");
+        document.getElementById("btnClearRP").classList.add("invisible");
     });
     //
     $("#inStatusRP").on("click", function () {
