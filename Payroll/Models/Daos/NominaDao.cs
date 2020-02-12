@@ -601,9 +601,6 @@ namespace Payroll.Models.Daos
                 Console.WriteLine(exc);
             }
             return list;
-
-
-
         }
 
         public List<NominahdBean> sp_DeficionNominaCancelados_Retrieve_DeficionNominaCancelados(string CrtlsNombreDefinicio, int CrtliCanceldo) {
@@ -697,7 +694,7 @@ namespace Payroll.Models.Daos
                     CommandType = CommandType.StoredProcedure
                 };
                 cmd.Parameters.Add(new SqlParameter("@CtrliIdDefinicionHd", CtrliIdDefinicionHd));
-            
+
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     bean.sMensaje = "success";
@@ -718,7 +715,7 @@ namespace Payroll.Models.Daos
 
         }
 
-        public NominaLnBean sp_TpDefinicionNomLn_Update_TpDefinicionNomLn( int CtrlIdDefinicionLn, int CtriIdEmpresaid, int CtriIdTipoPeriodo,  int CtriIdPeriodo, int CtriIdRenglon, int ctrliEspejo, int ctrliIDAcumulado)
+        public NominaLnBean sp_TpDefinicionNomLn_Update_TpDefinicionNomLn(int CtrlIdDefinicionLn, int CtriIdEmpresaid, int CtriIdTipoPeriodo, int CtriIdPeriodo, int CtriIdRenglon, int ctrliEspejo, int ctrliIDAcumulado)
         {
             NominaLnBean bean = new NominaLnBean();
             try
@@ -784,9 +781,159 @@ namespace Payroll.Models.Daos
 
         }
 
+        public List<TpCalculosHd> sp_ExiteDefinicionTpCalculo_Retrieve_ExiteDefinicionTpCalculo(int CtrliIdDefinicion)
+        {
+            List<TpCalculosHd> list = new List<TpCalculosHd>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_ExiteDefinicionTpCalculo_Retrieve_ExiteDefinicionTpCalculo", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@CtrliIdDefinicion", CtrliIdDefinicion));
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        TpCalculosHd ls = new TpCalculosHd();
+                        {
+                            ls.iIdCalculosHd = int.Parse(data["Existe"].ToString());
+
+                        };
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    TpCalculosHd ls = new TpCalculosHd();
+                    {
+                        ls.iIdCalculosHd = 0;
+
+                    };
+                    list.Add(ls);
+                }
+                data.Close(); cmd.Dispose(); conexion.Close(); //cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+
+        }
+
+        public TpCalculosHd sp_TpCalculos_Insert_TpCalculos(int CtrliIdDefinicionHd, int CtrliNominaCerrada)
+        {
+            TpCalculosHd bean = new TpCalculosHd();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_TpCalculos_Insert_TpCalculos", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@CtrliIdDefinicionHd", CtrliIdDefinicionHd));
+                cmd.Parameters.Add(new SqlParameter("@CtrliNominaCerrada", CtrliNominaCerrada));
+
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    bean.sMensaje = "success";
+                }
+                else
+                {
+                    bean.sMensaje = "error";
+                }
+                cmd.Dispose(); conexion.Close(); //cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+
+            return bean;
+        }
+
+        public TpCalculosHd sp_TpCalculos_update_TpCalculos(int CtrliIdDedinicionHD, int CtrliNominacerrada)
+        {
+            TpCalculosHd bean = new TpCalculosHd();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_TpCalculos_update_TpCalculos", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@CtrliIdDedinicionHD", CtrliIdDedinicionHD));
+                cmd.Parameters.Add(new SqlParameter("@CtrliNominacerrada", CtrliNominacerrada));
+              
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    bean.sMensaje = "success";
+                }
+                else
+                {
+                    bean.sMensaje = "error";
+                }
+                cmd.Dispose(); conexion.Close(); cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+
+            return bean;
+        }
+
+
+        public List<NominaLnDatBean> sp_TpDefinicionNomins_Retrieve_TpDefinicionNomins()
+        {
+            List<NominaLnDatBean> list = new List<NominaLnDatBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_TpDefinicionNomins_Retrieve_TpDefinicionNomins", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                //cmd.Parameters.Add(new SqlParameter("@ctrlNombreEmpresa", txt));
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        NominaLnDatBean ls = new NominaLnDatBean();
+                        {
+                        ls.iIdDefinicionln = data["IdDefinicion_Ln"].ToString();
+                        ls.IdEmpresa = data["NombreEmpresa"].ToString();
+                        ls.iRenglon = data["NombreRenglon"].ToString();
+                        ls.iElementonomina = data["Cg_Elemento_Nomina_id"].ToString();
+                        ls.iTipodeperiodo = data["Valor"].ToString();
+                        ls.iIdperiodo = data["Periodo_id"].ToString();
+                        ls.iIdAcumulado = data["Acumulado_id"].ToString();
+                        ls.iEsespejo = data["Es_Espejo"].ToString();
+
+                    };
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                data.Close(); cmd.Dispose(); conexion.Close(); //cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+        }
+
     }
-
-
 }
 
    

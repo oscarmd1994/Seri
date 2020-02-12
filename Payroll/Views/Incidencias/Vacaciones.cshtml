@@ -258,7 +258,7 @@
                     console.log("regresa periodos");
                     document.getElementById("tabBody").innerHTML = "";
                     for (var i = 0; i < data.length; i++) {
-                        //document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' "+ data[i]["IdPer_vac_Dist"] +" '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td><td>" + data[i]["Agendadas"] + "</td><td>" + data[i]["Disfrutadas"] + "</td></tr>";
+                        
                         if (data[i]["Agendadas"] = "True") {
                             document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td><td><div class='fas fa-check'></div></td><td></tr>";
                         } else {

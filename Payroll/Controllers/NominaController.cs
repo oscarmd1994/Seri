@@ -19,7 +19,7 @@ namespace Payroll.Controllers
             return PartialView();
         }
 
-        public PartialViewResult Deducciones( )
+        public PartialViewResult Ejecucion( )
         {
           
             return PartialView();
@@ -193,6 +193,8 @@ namespace Payroll.Controllers
                         Dta[i].iIdAcumulado = "";
                     }
 
+
+
                     if (Dta[i].iIdAcumulado != "0" && Dta[i].iIdAcumulado != "" && Dta[i].iIdAcumulado != " ")
                     {
 
@@ -201,8 +203,6 @@ namespace Payroll.Controllers
                         Dta[i].iIdAcumulado = DA[0].iIdAcumulado;
 
                     }
-
-
 
                 }
             }
@@ -252,15 +252,24 @@ namespace Payroll.Controllers
             FuncionesNomina dao = new FuncionesNomina();
             TD = dao.sp_DeficionNominaCancelados_Retrieve_DeficionNominaCancelados(sNombreDefinicion, iCancelado);
 
-            for (int i = 0; i < TD.Count; i++)  {
-                if (TD[i].iCancelado == "True") {
+            if (TD != null) { 
+
+              for (int i = 0; i < TD.Count; i++)
+            {
+
+                if (TD[i].iCancelado == "True")
+                {
                     TD[i].iCancelado = "Si";
                 }
-                else if (TD[i].iCancelado == "False")   {
+
+                else if (TD[i].iCancelado == "False")
+                {
                     TD[i].iCancelado = "No";
                 }
+              }
             }
-                return Json(TD);
+
+            return Json(TD);
         }
 
         [HttpPost]
@@ -293,7 +302,6 @@ namespace Payroll.Controllers
         }
 
         [HttpPost]
-
         public JsonResult DeleteDefinicionNl(int iIdDefinicionln)
         {
             NominaLnBean Bean = new NominaLnBean();
@@ -301,5 +309,95 @@ namespace Payroll.Controllers
             Bean = dao.sp_EliminarDefinicionNl_Delete_EliminarDefinicionNl(iIdDefinicionln);
             return Json(Bean);
         }
+
+        [HttpPost]
+
+        public JsonResult CompruRegistroExit(int iIdDefinicionHd)
+        {
+            List<TpCalculosHd> LNND = new List<TpCalculosHd>();
+            FuncionesNomina Dao = new FuncionesNomina();
+            LNND = Dao.sp_ExiteDefinicionTpCalculo_Retrieve_ExiteDefinicionTpCalculo(iIdDefinicionHd);
+            return Json(LNND);
+
+        }
+
+        //Guarda los datos de TpCalculos
+        [HttpPost]
+        public JsonResult InsertDatTpCalculos(int iIdDefinicionHd, int iNominaCerrada)
+        {
+            TpCalculosHd bean = new TpCalculosHd();
+            FuncionesNomina dao = new FuncionesNomina();            
+            bean = dao.sp_TpCalculos_Insert_TpCalculos(iIdDefinicionHd, iNominaCerrada);
+            return Json(bean);
+            
+        }
+
+        // Actualiza PTCalculoshd
+        [HttpPost]
+        public JsonResult UpdateCalculoshd(int iIdDefinicionHd, int iNominaCerrada)
+        {
+            TpCalculosHd bean = new TpCalculosHd();
+            FuncionesNomina dao = new FuncionesNomina();
+            bean = dao.sp_TpCalculos_update_TpCalculos(iIdDefinicionHd, iNominaCerrada);
+            return Json(bean);
+        }
+
+
+        public JsonResult TpDefinicionnl()
+        {
+            List<NominaLnDatBean> Dta = new List<NominaLnDatBean>();
+            List<NominaLnDatBean> DA = new List<NominaLnDatBean>();
+            FuncionesNomina dao = new FuncionesNomina();
+            Dta = dao.sp_TpDefinicionNomins_Retrieve_TpDefinicionNomins();
+            if (Dta != null)
+            {
+                for (int i = 0; i < Dta.Count; i++)
+                {
+                    if (Dta[i].iElementonomina == "39")
+                    {
+                        Dta[i].iElementonomina = "Percepciones";
+                    }
+
+                    if (Dta[i].iElementonomina == "40")
+                    {
+                        Dta[i].iElementonomina = "Deducciones";
+                    }
+
+
+                    if (Dta[i].iEsespejo == "True")
+                    {
+                        Dta[i].iEsespejo = "Si";
+                    }
+
+                    else if (Dta[i].iEsespejo == "False")
+                    {
+                        Dta[i].iEsespejo = "No";
+                    }
+
+                    if (Dta[i].iIdAcumulado == "0")
+                    {
+
+                        Dta[i].iIdAcumulado = "";
+                    }
+
+
+
+                    if (Dta[i].iIdAcumulado != "0" && Dta[i].iIdAcumulado != "" && Dta[i].iIdAcumulado != " ")
+                    {
+
+                        int num = int.Parse(Dta[i].iIdAcumulado);
+                        DA = dao.sp_DescripAcu_Retrieve_DescripAcu(num);
+                        Dta[i].iIdAcumulado = DA[0].iIdAcumulado;
+
+                    }
+
+                }
+            }
+
+
+            return Json(Dta);
+        }
+
+
     }
 }

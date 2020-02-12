@@ -130,4 +130,18 @@ namespace Payroll.Models.Beans
 
 
     }
+
+    public class TpCalculosHd
+    {
+
+        public int iIdCalculosHd { get; set; }
+        public int iIdDefinicionHd { get; set; }
+        public int iInicioCalculos { get; set; }
+        public int iFinCalculos { get; set; }
+        public int iNominaCerrada { get; set; }
+        public string sMensaje { get; set; }
+
+
+    }
+
 }
