@@ -16,8 +16,6 @@
 
     const btnVerifCodPost = document.getElementById('btn-verif-codpost');
 
-
-
     // INICIO FUNCIONALIDADES ESTADOS \\
     let getDataTabDataGen;
     // ** Funcion que carga los estados ** \\

@@ -47,10 +47,11 @@
             <table id="example2" class="table table-sm table-striped text-center table-bordered table-hover font-labels">
                 <thead class="">
                     <tr class="">
-                        <th>Año</th>
                         <th>Días</th>
                         <th>Fecha Inicio</th>
                         <th>Fecha Termino</th>
+                        <th>Agendadas</th>
+                        <th>Disfrutadas</th>
                     </tr>
                 </thead>
                 <tbody id="tabBody">
@@ -205,33 +206,70 @@
         $('#example2 tbody').on('click', 'tr', function () {
             $(this).toggleClass('selected');
         });
+        //Evento click para guardar periodo de vacaciones
         $("#btnCalcVacaciones").on("click", function (evt) {
             evt.preventDefault();
-
             var fechai = document.getElementById("from");
             var fechat = document.getElementById("to");
             $("#diasV").removeAttr("disabled");
             var dias = document.getElementById("diasV");
             var ln_id = document.getElementById("btn_id_periodo_ln");
-            
-           
             $("#diasV").disabled = true;
-            console.log(Periodo);
+            var datos = JSON.stringify({
+                PerVacLn_id: ln_id.value,
+                FechaInicio: fechai.value,
+                FechaFin: fechat.value,
+                Dias: dias.value
+            });
+            console.log("periodo");
+            console.log(datos);
+            //$.ajax({
+            //    url: "../Incidencias/SavePeriodosVac",
+            //    data: datos,
+            //    type: "POST",
+            //    dataType: "json",
+            //    contentType: "application/json; charset=utf-8",
+            //    success: function() {
+            //        console.log("periodo guardado");
+            //    }
+            //});
+
             $.ajax({
-                url: "",
-                data: JSON.stringify({
-                    PerVacLn_id: ln_id.value,
-                    FechaInicio: fechai.value,
-                    FechaFin: fechat.value,
-                    Dias: dias.value
-                }),
-                type: "post",
+                url: "../Incidencias/SavePeriodosVac",
+                type: "POST",
+                cache: false,
+                data: datos,
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function() {
-
+                success: (data) => {
+                    console.log("periodo guardado");
+                    console.log(data);
                 }
             });
+
+            $.ajax({
+                url: "../Incidencias/LoadPeriodosDist",
+                type: "POST",
+                cache: false,
+                data: JSON.stringify({PerVacLn_id: ln_id.value}),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: (data) => {
+                    console.log("regresa periodos");
+                    document.getElementById("tabBody").innerHTML = "";
+                    for (var i = 0; i < data.length; i++) {
+                        //document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' "+ data[i]["IdPer_vac_Dist"] +" '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td><td>" + data[i]["Agendadas"] + "</td><td>" + data[i]["Disfrutadas"] + "</td></tr>";
+                        if (data[i]["Agendadas"] = "True") {
+                            document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td><td><div class='fas fa-check'></div></td><td></tr>";
+                        } else {
+                            document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td></td><td><td><div class='fas fa-check'></div></tr>";
+                        }
+                    }
+                    
+                }
+            });
+
+            console.log("llega");
         });
 
 
@@ -274,30 +312,40 @@
     
     function CargarTabResumen( ) {
         $.ajax({
-                    url: "../Incidencias/LoadPeiodosVac",
-                    type: "POST",
-                    data: JSON.stringify(),
-                    dataType: "json",
-                    contentType: "application/json; charset=utf-8",
-                    success: (data) => {
-                        //document.getElementById("tabody").innerHTML = "";
-                        for (var i = 0; i < data.length; i++) {
-                            document.getElementById("tab1").innerHTML += "<tr><td>" + data[i]["Periodo"] + " <input type='hidden' id='btn_id_periodo_ln' value=' "+ data[i]["Id_Per_Vac_Ln"] +" '> </td><td>" + data[i]["DiasPrima"] + "</td><td>" + data[i]["DiasDisfrutados"] + "</td><td>" + data[i]["DiasRestantes"] + "</td></tr>";
-                                
-                        }
-                    }
-                });
-    }
-    function CargarTabPeriodos( IdEmpleado ) {
-        $.ajax({
-            url: "../Incidencias/LoadPeiodosVac",
+            url: "../Incidencias/LoadPeriodosVac",
             type: "POST",
-            data: JSON.stringify({ IdEmpleado: IdEmpleado }),
+            data: JSON.stringify(),
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: (data) => {
-                console.log(data);
-            
+                var id = data[0]["Id_Per_Vac_Ln"];
+                for (var i = 0; i < data.length; i++) {
+
+                    document.getElementById("tab1").innerHTML += "<tr><td>" + data[i]["Periodo"] + " <input type='hidden' id='btn_id_periodo_ln' value=' "+ data[i]["Id_Per_Vac_Ln"] +" '> </td><td>" + data[i]["DiasPrima"] + "</td><td>" + data[i]["DiasDisfrutados"] + "</td><td>" + data[i]["DiasRestantes"] + "</td></tr>";
+                                
+                }
+                CargarTabPeriodos(id);
+            }
+        });
+    }
+    function CargarTabPeriodos( id ) {
+        $.ajax({
+            url: "../Incidencias/LoadPeriodosDist",
+            type: "POST",
+            data: JSON.stringify({ PerVacLn_id: id }),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: (data) => {
+                document.getElementById("tabBody").innerHTML = "";
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i]["Agendadas"] = "True") {
+                        document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td><td><div class='fas fa-check'></div></td><td></tr>";
+                    } else {
+                        document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td></td><td><td><div class='fas fa-check'></div></tr>";
+                    }
+
+                    
+                }
             }
         });
     }
