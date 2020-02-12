@@ -196,8 +196,8 @@ namespace Payroll.Models.Daos
             EmpleadosBean empleadoBean = new EmpleadosBean();
             try
             {
-                this.ConectarServer();
-                SqlCommand cmd = new SqlCommand("sp_Empleado_Update_PosicionNomina", this.conexionServer) { CommandType = CommandType.StoredProcedure };
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Empleado_Update_PosicionNomina", this.conexion) { CommandType = CommandType.StoredProcedure };
                 cmd.Parameters.Add(new SqlParameter("@IdEmpleado", clvemp));
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", keyemp));
                 SqlDataReader data = cmd.ExecuteReader();
@@ -220,7 +220,7 @@ namespace Payroll.Models.Daos
             }
             finally
             {
-                conexionServer.Close();
+                conexion.Close();
             }
             return empleadoBean;
         }
