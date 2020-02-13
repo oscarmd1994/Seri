@@ -200,12 +200,13 @@ namespace Payroll.Controllers
             return Json(nacionBean);
         }
         [HttpPost]
+        [HttpPost]
         public JsonResult UpdatePosicionAct(int clvemp)
         {
             EmpleadosBean empleadoBean = new EmpleadosBean();
             EmpleadosDao empleadoDao = new EmpleadosDao();
             // Reemplazar por la sesion de la empresa
-            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            int keyemp = 5;
             empleadoBean = empleadoDao.sp_Empleado_Update_PosicionNomina(clvemp, keyemp);
             var data = new { empleado = clvemp, result = empleadoBean.sMensaje };
             return Json(data);

@@ -162,11 +162,6 @@
             localStorage.setItem('tabSelected', 'none');
         }
         if (localStorage.getItem('modedit') != null) {
-            btnsaveedit.classList.remove('d-none');
-        } else {
-            btnsaveedit.classList.add('d-none')
-        }
-        if (localStorage.getItem('modedit') != null) {
             document.getElementById('btn-save-data-all').disabled = false;
         }
     }

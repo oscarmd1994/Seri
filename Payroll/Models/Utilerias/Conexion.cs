@@ -23,6 +23,10 @@ namespace Payroll.Models.Utilerias
         static readonly string Db = "IPSNet";
         static readonly string User = "sa";
         static readonly string Pass = "S3R2017.t3";
+<<<<<<< HEAD
+=======
+        
+>>>>>>> fd3abdf0d816f5c2ff87ce836edd7c62aaace62b
         protected SqlConnection conexion { get; set; }
 
         protected SqlConnection Conectar()
