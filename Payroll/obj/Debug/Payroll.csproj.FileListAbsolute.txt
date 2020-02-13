@@ -408,6 +408,91 @@ C:\Users\Juan Flores Torres\Desktop\Server\Payroll\Payroll\bin\es\System.Web.Web
 C:\Users\Juan Flores Torres\Desktop\Server\Payroll\Payroll\obj\Debug\Payroll.csproj.CopyComplete
 C:\Users\Juan Flores Torres\Desktop\Server\Payroll\Payroll\obj\Debug\Payroll.dll
 C:\Users\Juan Flores Torres\Desktop\Server\Payroll\Payroll\obj\Debug\Payroll.pdb
+<<<<<<< HEAD
+D:\IPSNet\Repositorio\Seri\Payroll\bin\Payroll.dll.config
+D:\IPSNet\Repositorio\Seri\Payroll\bin\Payroll.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\Payroll.pdb
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\csc.exe
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\csc.exe.config
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\csc.rsp
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\csi.exe
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\csi.exe.config
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\csi.rsp
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.Managed.Core.targets
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.AppContext.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Collections.Immutable.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Console.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.IO.Compression.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.IO.FileSystem.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.IO.Pipes.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Reflection.Metadata.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Security.AccessControl.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Security.Claims.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Security.Principal.Windows.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.ValueTuple.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Xml.XmlDocument.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Xml.XPath.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\vbc.exe
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\vbc.exe.config
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\vbc.rsp
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\VBCSCompiler.exe
+D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\VBCSCompiler.exe.config
+D:\IPSNet\Repositorio\Seri\Payroll\bin\Antlr3.Runtime.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\Microsoft.Web.Infrastructure.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\Newtonsoft.Json.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.Helpers.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.Mvc.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.Optimization.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.Razor.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.WebPages.Deployment.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.WebPages.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.WebPages.Razor.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\WebGrease.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.Helpers.xml
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.Mvc.xml
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.Optimization.xml
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.Razor.xml
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.WebPages.xml
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.WebPages.Deployment.xml
+D:\IPSNet\Repositorio\Seri\Payroll\bin\System.Web.WebPages.Razor.xml
+D:\IPSNet\Repositorio\Seri\Payroll\bin\Newtonsoft.Json.xml
+D:\IPSNet\Repositorio\Seri\Payroll\bin\Antlr3.Runtime.pdb
+D:\IPSNet\Repositorio\Seri\Payroll\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\IPSNet\Repositorio\Seri\Payroll\bin\es\System.Web.Helpers.resources.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\es\System.Web.Mvc.resources.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\es\System.Web.Optimization.resources.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\es\System.Web.Razor.resources.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\es\System.Web.WebPages.resources.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\es\System.Web.WebPages.Deployment.resources.dll
+D:\IPSNet\Repositorio\Seri\Payroll\bin\es\System.Web.WebPages.Razor.resources.dll
+D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.csproj.CoreCompileInputs.cache
+D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.csproj.CopyComplete
+D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.dll
+D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.pdb
+D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.csprojAssemblyReference.cache
+=======
 C:\Users\Marco Carranza\Documents\Seri\Payroll\bin\Payroll.dll.config
 C:\Users\Marco Carranza\Documents\Seri\Payroll\bin\Payroll.dll
 C:\Users\Marco Carranza\Documents\Seri\Payroll\bin\Payroll.pdb
@@ -572,3 +657,4 @@ C:\Users\DELL\Desktop\gitproyecto\Seri\Payroll\obj\Debug\Payroll.csproj.CopyComp
 C:\Users\DELL\Desktop\gitproyecto\Seri\Payroll\obj\Debug\Payroll.dll
 C:\Users\DELL\Desktop\gitproyecto\Seri\Payroll\obj\Debug\Payroll.pdb
 C:\Users\DELL\Desktop\gitproyecto\Seri\Payroll\obj\Debug\Payroll.csprojAssemblyReference.cache
+>>>>>>> 4107e7674a80de9aa82a8fd21138f9af78ef2d0e

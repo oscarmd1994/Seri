@@ -1,4 +1,5 @@
 ﻿$(function () {
+
     const idefectivo = 218;
     const idcuentach = 219;
     const idcajeroau = 220;
