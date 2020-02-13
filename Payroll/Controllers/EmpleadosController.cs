@@ -200,7 +200,6 @@ namespace Payroll.Controllers
             return Json(nacionBean);
         }
         [HttpPost]
-        [HttpPost]
         public JsonResult UpdatePosicionAct(int clvemp)
         {
             EmpleadosBean empleadoBean = new EmpleadosBean();
