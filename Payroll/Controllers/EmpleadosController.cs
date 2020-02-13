@@ -205,7 +205,7 @@ namespace Payroll.Controllers
             EmpleadosBean empleadoBean = new EmpleadosBean();
             EmpleadosDao empleadoDao = new EmpleadosDao();
             // Reemplazar por la sesion de la empresa
-            int keyemp = 5;
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
             empleadoBean = empleadoDao.sp_Empleado_Update_PosicionNomina(clvemp, keyemp);
             var data = new { empleado = clvemp, result = empleadoBean.sMensaje };
             return Json(data);
