@@ -14,7 +14,7 @@ namespace Payroll.Models.Daos
 
     public class ListEmpleadosDao : Conexion
     {
-        public List<EmpleadosBean> sp_Empleados_Retrieve_Search_Empleados(int keyemp, string wordsearch)
+        public List<EmpleadosBean> sp_Empleados_Retrieve_Search_Empleados(int keyemp, string wordsearch, string filtered)
         {
             List<EmpleadosBean> listEmpleadosBean = new List<EmpleadosBean>();
             try
@@ -26,6 +26,7 @@ namespace Payroll.Models.Daos
                 };
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpresa", keyemp));
                 cmd.Parameters.Add(new SqlParameter("@ctrlWordSearch", wordsearch));
+                cmd.Parameters.Add(new SqlParameter("@ctrlFiltered", filtered));
                 SqlDataReader data = cmd.ExecuteReader();
                 if (data.HasRows)
                 {
