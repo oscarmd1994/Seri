@@ -1,5 +1,4 @@
 ﻿$(function () {
-
     // Comentar cuando el proyecto este en produccion \\
     //const idefectivo = 1115;
     //const idcuentach = 1116;
@@ -580,7 +579,7 @@
             $.ajax({
                 url: "../Empleados/LoadBanks",
                 type: "POST",
-                data: { state: 1, type: 'Active/Desactive', keyban: 0 },
+                data: { keyban: 0 },
                 success: (data) => {
                     const quantity = data.length;
                     let banused = 0;
@@ -601,7 +600,7 @@
                             }
                         }
                     } else {
-                        console.error('Ocurrio un problema al cargar');
+                        console.error('No se encontro ningun registro');
                     }
                 }, error: (jqXHR, exception) => {
                     fcaptureaerrorsajax(jqXHR, exception);

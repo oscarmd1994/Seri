@@ -17,7 +17,7 @@
         navDataNomTab = document.getElementById('nav-datanom-tab'),
         navEstructureTab = document.getElementById('nav-estructure-tab');
 
-    const btnsaveedit = document.getElementById('btn-save-edit');
+    //const btnsaveedit = document.getElementById('btn-save-edit');
 
     const icoedit1 = document.getElementById('icoedit1'),
         icoedit2 = document.getElementById('icoedit2'),
@@ -1279,6 +1279,6 @@
         } else { $("#nav-datagen-tab").click(); }
     }
 
-    btnsaveedit.addEventListener('click', fvalidatefieldsedit);
+   //btnsaveedit.addEventListener('click', fvalidatefieldsedit);
 
 });

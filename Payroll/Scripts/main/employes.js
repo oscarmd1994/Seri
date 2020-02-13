@@ -468,6 +468,7 @@
                     title: 'Cargando información',
                     html: 'Terminando en <b></b> milisegundos.',
                     timer: 5000, timerProgressBar: true,
+                    allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
                     onBeforeOpen: () => {
                         Swal.showLoading();
                         timerInterval = setInterval(() => {

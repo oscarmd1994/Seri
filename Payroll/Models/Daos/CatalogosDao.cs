@@ -268,7 +268,7 @@ namespace Payroll.Models.Daos
     }
     public class BancosDao : Conexion
     {
-        public List<BancosBean> sp_Bancos_Retrieve_Bancos(int state, string type, int keyban)
+        public List<BancosBean> sp_Bancos_Retrieve_Bancos(int keyban)
         {
             List<BancosBean> listBanBean = new List<BancosBean>();
             try
@@ -278,8 +278,6 @@ namespace Payroll.Models.Daos
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.Add(new SqlParameter("@ctrlEstadoBanco", state));
-                cmd.Parameters.Add(new SqlParameter("@ctrlTipoFiltro", type));
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdBanco", keyban));
                 SqlDataReader data = cmd.ExecuteReader();
                 if (data.HasRows)
@@ -288,18 +286,7 @@ namespace Payroll.Models.Daos
                     {
                         BancosBean banBean = new BancosBean();
                         banBean.iIdBanco = Convert.ToInt32(data["IdBanco"].ToString());
-                        banBean.sNombreBanco = data["NombreBanco"].ToString();
-                        banBean.iClave = Convert.ToInt32(data["Clave"].ToString());
-                        if (keyban != 0)
-                        {
-                            banBean.iEstadoBanco = Convert.ToInt32(data["EstadoBanco"].ToString());
-                            banBean.sUsuarioRegistroBanco = data["UsuarioRegistroBanco"].ToString();
-                            banBean.sFechaRegistroBanco = data["FechaRegistroBanco"].ToString();
-                            banBean.sUsuarioModificaBanco = (String.IsNullOrEmpty(data["UsuarioModificaBanco"].ToString())) ? "Sin resultado"
-                                : data["UsuarioModificaBanco"].ToString();
-                            banBean.sFechaModificaBanco = (String.IsNullOrEmpty(data["FechaModificaBanco"].ToString())) ? "Sin resultado"
-                                : data["FechaModificaBanco"].ToString();
-                        }
+                        banBean.sNombreBanco = data["Descripcion"].ToString();
                         listBanBean.Add(banBean);
                     }
                 }

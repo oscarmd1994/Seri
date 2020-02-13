@@ -251,7 +251,7 @@
                 }
             }
             document.getElementById('icouser').classList.remove('d-none');
-            if (localStorage.getItem('modedit') != null) {
+            if (localStorage.getItem('modeedit') != null) {
                 document.getElementById('nameuser').textContent = "Editando al Empleado: " + name.value + " " + apep.value + " " + apem.value + ".";
             } else {
                 document.getElementById('nameuser').textContent = "Empleado: " + name.value + " " + apep.value + " " + apem.value + ".";
