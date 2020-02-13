@@ -7,18 +7,18 @@
      * Variables apartado datos generales
      */
     const clvemp = document.getElementById('clvemp');
-    const name   = document.getElementById('name');
+    const name = document.getElementById('name');
     const apepat = document.getElementById('apepat');
     const apemat = document.getElementById('apemat');
-    const sex    = document.getElementById('sex');
+    const sex = document.getElementById('sex');
     const estciv = document.getElementById('estciv');
-    const fnaci  = document.getElementById('fnaci');
-    const lnaci  = document.getElementById('lnaci');
-    const title  = document.getElementById('title');
+    const fnaci = document.getElementById('fnaci');
+    const lnaci = document.getElementById('lnaci');
+    const title = document.getElementById('title');
     const nacion = document.getElementById('nacion');
-    const state  = document.getElementById('state');
+    const state = document.getElementById('state');
     const codpost = document.getElementById('codpost');
-    const city   = document.getElementById('city');
+    const city = document.getElementById('city');
     const colony = document.getElementById('colony');
     const street = document.getElementById('street');
     const numberst = document.getElementById('numberst');
@@ -34,14 +34,14 @@
      */
     const clvimss = document.getElementById('clvimss');
     const fechefecactimss = document.getElementById('fechefecactimss');
-    const fecefe  = document.getElementById('fecefe');
+    const fecefe = document.getElementById('fecefe');
     const regimss = document.getElementById('regimss');
-    const rfc     = document.getElementById('rfc');
-    const curp    = document.getElementById('curp');
-    const nivest  = document.getElementById('nivest');
-    const nivsoc  = document.getElementById('nivsoc');
+    const rfc = document.getElementById('rfc');
+    const curp = document.getElementById('curp');
+    const nivest = document.getElementById('nivest');
+    const nivsoc = document.getElementById('nivsoc');
     const btnsaveeditdataimss = document.getElementById('btn-save-edit-data-imss');
-    const btnsavedataimss     = document.getElementById('btn-save-data-imss');
+    const btnsavedataimss = document.getElementById('btn-save-data-imss');
     /*
      * Variables del apartado datos de nomina
      */
@@ -69,7 +69,7 @@
     /*
      * Variables apartado estructura
      */
-    const clvstract  = document.getElementById('clvstract');
+    const clvstract = document.getElementById('clvstract');
     const clvposasig = document.getElementById('clvposasig');
     const fechefecposact = document.getElementById('fechefecposact');
     const fechefectpos = document.getElementById('fechefectpos');
@@ -88,7 +88,7 @@
     const searchemployekey = document.getElementById('searchemployekey');
     const resultemployekey = document.getElementById('resultemployekey');
     /* CONSTANTES BOTONES DE LA VENTANA MODAL DE BUSQUEDA DE EMPLEADOS */
-    const btnmodalsearchemploye     = document.getElementById('btn-modal-search-employe');
+    const btnmodalsearchemploye = document.getElementById('btn-modal-search-employe');
     const icoclosesearchemployesbtn = document.getElementById('ico-close-searchemployes-btn');
     const btnclosesearchemployesbtn = document.getElementById('btn-close-searchemployes-btn');
     /* EJECUCION DE EVENTO QUE ACTIVA EL CAMPOS DE BUSQUEDA DE EMPLEADOS */
@@ -97,7 +97,7 @@
     });
     /* FUNCION QUE LIMPIA LA CAJA DE BUSQUEDA DE EMPLEADOS Y LA LISTA DE LOS RESULTADOS */
     fclearsearchresults = () => {
-        searchemployekey.value     = '';
+        searchemployekey.value = '';
         resultemployekey.innerHTML = '';
     }
     /* EJECUCION DE FUNCION QUE LIMPIA LA CAJA DE BUSQUEDA Y LA LISTA DE RESULTADOS */
@@ -108,6 +108,40 @@
         navImssTab = document.getElementById('nav-imss-tab'),
         navDataNomTab = document.getElementById('nav-datanom-tab'),
         navEstructureTab = document.getElementById('nav-estructure-tab');
+    /* FUNCION QUE EJECUTA UN SP PARA ACTUALIZAR LA POSICION DEL EMPLEADO EN TB -> EMPLEADO_NOMINA */
+    fupdateposnew = () => {
+        try {
+            if (clvemp.value != "" && clvemp.value > 0) {
+                $.ajax({
+                    url: "../Empleados/UpdatePosicionAct",
+                    type: "POST",
+                    data: { clvemp: clvemp.value },
+                    success: (data) => {
+                        if (data.result == "success") {
+                            floaddatatabgeneral(data.empleado);
+                        }
+                    }, complete: (comp) => {
+                        //console.log(comp);
+                        //console.log('Finalizado');
+                    }, error: (jqXHR, exception) => {
+                        fcaptureaerrorsajax(jqXHR, exception);
+                    }
+                });
+            }
+        } catch (error) {
+            if (error instanceof TypeError) {
+                console.log('TypeError ', error);
+            } else if (error instanceof RangeError) {
+                console.log('RangeError ', error);
+            } else if (error instanceof EvalError) {
+                console.log('EvalError ', error);
+            } else {
+                console.log('Error ', error);
+            }
+        }
+    }
+    /* EJECUCION DE FUNCTION QUE ACTUALIZA LA POSICION */
+    fupdateposnew();
     /* VARIABLES ALMACENA LOCAL STORAGE */
     let objectDataTabDataGen = {},
         objectDataTabImss = {},
@@ -336,16 +370,19 @@
             }
         }
     }
-    if (localStorage.getItem("modeedit") != null) {
-        btnsaveeditdatagen.classList.remove('d-none');
-        btnsavedatagen.classList.add('d-none');
-        btnsaveeditdataimss.classList.remove('d-none');
-        btnsavedataimss.classList.add('d-none');
-        btnsavedatanomina.classList.add('d-none');
-        btnsaveeditdatanomina.classList.remove('d-none');
-        btnsavedataall.classList.add('d-none');
-        btnsaveeditdataest.classList.remove('d-none');
+    fvalidatebuttonsaction = () => {
+        if (localStorage.getItem("modeedit") != null) {
+            btnsaveeditdatagen.classList.remove('d-none');
+            btnsavedatagen.classList.add('d-none');
+            btnsaveeditdataimss.classList.remove('d-none');
+            btnsavedataimss.classList.add('d-none');
+            btnsavedatanomina.classList.add('d-none');
+            btnsaveeditdatanomina.classList.remove('d-none');
+            btnsavedataall.classList.add('d-none');
+            btnsaveeditdataest.classList.remove('d-none');
+        }
     }
+    fvalidatebuttonsaction();
     /* FUNCION QUE CARGA LOS DATOS GENERALES DEL EMPLEADO SELECCIONADO A EDICION */
     floaddatatabgeneral = (paramid) => {
         try {
@@ -413,6 +450,8 @@
             allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
         }).then((acepta) => {
             if (acepta.value) {
+                searchemployekey.value = '';
+                resultemployekey.innerHTML = '';
                 $("#searchemploye").modal('hide');
                 localStorage.removeItem('tabSelected');
                 localStorage.removeItem('objectTabDataGen');
@@ -420,9 +459,10 @@
                 localStorage.removeItem('objectDataTabNom');
                 localStorage.removeItem('objectDataTabEstructure');
                 let timerInterval;
+                //fvalidatebuttonsaction();
                 Swal.fire({
                     title: 'Cargando información',
-                    html: 'Terminando en <b></b> segundos.',
+                    html: 'Terminando en <b></b> milisegundos.',
                     timer: 5000, timerProgressBar: true,
                     onBeforeOpen: () => {
                         Swal.showLoading();
@@ -732,7 +772,7 @@
                         fshowtypealert('Atención', 'Selecciona una opción de ' + String(attrselect), 'warning', arrInput[t], 0);
                         validatedatanom = 1;
                         break;
-                    } 
+                    }
                     if (arrInput[t].value == "n" && arrInput[t].id == "tipper") {
                         const attrselect = arrInput[t].getAttribute('tp-select');
                         fshowtypealert('Atención', 'Selecciona una opción de ' + String(attrselect), 'warning', arrInput[t], 0);
@@ -910,7 +950,7 @@
                 Swal.fire({
                     title: "No hay nada que editar", icon: "info",
                     showClass: { popup: 'animated fadeInDown faster' },
-                    hideClass: { popup: 'animated fadeOutUp faster' }, 
+                    hideClass: { popup: 'animated fadeOutUp faster' },
                     confirmButtonText: "Aceptar", allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
                 }).then((acepta) => {
                     $("html, body").animate({

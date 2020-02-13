@@ -49,11 +49,11 @@
         navDataNomTab = document.getElementById('nav-datanom-tab'),
         navEstructureTab = document.getElementById('nav-estructure-tab');
 
-    const btnsaveedit         = document.getElementById('btn-save-edit'),
-        btnClearLocSto        = document.getElementById('btn-clear-localstorage'),
-        btnSaveDataGen        = document.getElementById('btn-save-data-gen'),
-        btnSaveDataImss       = document.getElementById('btn-save-data-imss'),
-        btnSaveDataNomina     = document.getElementById('btn-save-data-nomina'),
+    const btnsaveedit = document.getElementById('btn-save-edit'),
+        btnClearLocSto = document.getElementById('btn-clear-localstorage'),
+        btnSaveDataGen = document.getElementById('btn-save-data-gen'),
+        btnSaveDataImss = document.getElementById('btn-save-data-imss'),
+        btnSaveDataNomina = document.getElementById('btn-save-data-nomina'),
         btnSaveDataEstructure = document.getElementById('btn-save-data-estructure');
 
     let objectDataTabDataGen = {},
@@ -64,12 +64,12 @@
     // Variables formulario Datos Generales \\ 
     const clvemp = document.getElementById('clvemp'),
         name = document.getElementById('name'), apep = document.getElementById('apepat'),
-        apem = document.getElementById('apemat'),   fnaci = document.getElementById('fnaci'),
+        apem = document.getElementById('apemat'), fnaci = document.getElementById('fnaci'),
         lnaci = document.getElementById('lnaci'),
         title = document.getElementById('title'),
-        sex = document.getElementById('sex'),       nacion = document.getElementById('nacion'),
+        sex = document.getElementById('sex'), nacion = document.getElementById('nacion'),
         estciv = document.getElementById('estciv'), codpost = document.getElementById('codpost'),
-        state = document.getElementById('state'),   city = document.getElementById('city'),
+        state = document.getElementById('state'), city = document.getElementById('city'),
         colony = document.getElementById('colony'),
         street = document.getElementById('street'), numberst = document.getElementById('numberst'),
         telfij = document.getElementById('telfij'),
@@ -77,10 +77,11 @@
         mailus = document.getElementById('mailus'),
         tipsan = document.getElementById('tipsan'),
         fecmat = document.getElementById('fecmat');
+    const btnsaveeditdatagen = document.getElementById('btn-save-edit-data-gen');
 
 
     const vardatagen = [clvemp, name, apep, apem, fnaci, lnaci, title, sex, nacion, estciv, codpost, state, city, colony, street, numberst,
-       telfij, telmov, mailus, tipsan, fecmat];
+        telfij, telmov, mailus, tipsan, fecmat];
 
     fclearfieldsvar1 = () => {
         for (let i = 0; i < vardatagen.length; i++) {
@@ -90,14 +91,14 @@
                 vardatagen[i].value = "";
             }
         }
-    } 
+    }
 
     // Variables formulario IMSS \\
     const clvimss = document.getElementById('clvimss'), fechefecactimss = document.getElementById('fechefecactimss'), imss = document.getElementById('regimss'),
-        rfc = document.getElementById('rfc'),       curp = document.getElementById('curp'),
+        rfc = document.getElementById('rfc'), curp = document.getElementById('curp'),
         nivest = document.getElementById('nivest'), nivsoc = document.getElementById('nivsoc'),
         fecefe = document.getElementById('fecefe');
-
+    const btnsaveeditdataimss = document.getElementById('btn-save-edit-data-imss');
     const vardataimss = [clvimss, fechefecactimss, fecefe, imss, rfc, curp, nivest, nivsoc];
     fclearfieldsvar2 = () => {
         for (let i = 0; i < vardataimss.length; i++) {
@@ -120,6 +121,7 @@
         vencon = document.getElementById('vencon'),
         //estats = document.getElementById('estats'),
         tipcontra = document.getElementById('tipcontra'), motinc = document.getElementById('motinc');
+    const btnsaveeditdatanomina = document.getElementById('btn-save-edit-data-nomina');
 
     const vardatanomina = [clvnom, fechefectact, fecefecnom, tipper, salmen, tipemp, nivemp, tipjor, tipcon, fecing, fecant, vencon, tipcontra];
     fclearfieldsvar3 = () => {
@@ -141,8 +143,9 @@
         tippag = document.getElementById('tippag'), banuse = document.getElementById('banuse'),
         cunuse = document.getElementById('cunuse'), clvbank = document.getElementById('clvbank'),
         localty = document.getElementById('localty'), fechefectpos = document.getElementById('fechefectpos');
-        fechinipos = document.getElementById('fechinipos'); fechefecposact = document.getElementById('fechefecposact');
-
+    fechinipos = document.getElementById('fechinipos'); fechefecposact = document.getElementById('fechefecposact');
+    const btnsavedataall = document.getElementById('btn-save-data-all');
+    const btnsaveeditdataest = document.getElementById('btn-save-edit-dataest');
     const vardataestructure = [clvstract, clvposasig, clvstr, numpla, depaid, puesid, emprep, report, depart, pueusu, localty, fechefectpos, fechinipos, fechefecposact];
     fclearfieldsvar4 = () => {
         for (let i = 0; i < vardataestructure.length; i++) {
@@ -186,7 +189,7 @@
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    String.prototype.capitalize = function() {
+    String.prototype.capitalize = function () {
         return this.replace(/(^|\s)([a-z])/g, function (m, p1, p2) { return p1 + p2.toUpperCase(); });
     };
 
@@ -221,7 +224,7 @@
                 $("#nav-imss-tab").click();
             } else if (localStoTab === "datanom") {
                 navEstructureTab.classList.add('disabled'); +
-                fviewlaerttabcontinue('data-nomina');
+                    fviewlaerttabcontinue('data-nomina');
                 $("#nav-datanom-tab").click();
             } else if (localStoTab === "dataestructure") {
                 fviewlaerttabcontinue('data-estructure');
@@ -237,19 +240,19 @@
             const getDataTabDataGen = JSON.parse(localStorage.getItem('objectTabDataGen'));
             for (i in getDataTabDataGen) {
                 if (getDataTabDataGen[i].key === "general") {
-                    clvemp.value   = getDataTabDataGen[i].data.clvemp;
-                    name.value     = getDataTabDataGen[i].data.name; apep.value = getDataTabDataGen[i].data.apep;
-                    apem.value     = getDataTabDataGen[i].data.apem; fnaci.value = getDataTabDataGen[i].data.fnaci;
-                    lnaci.value    = getDataTabDataGen[i].data.lnaci;
-                    title.value    = getDataTabDataGen[i].data.title;
-                    sex.value      = getDataTabDataGen[i].data.sex; nacion.value = getDataTabDataGen[i].data.nacion;
-                    estciv.value   = getDataTabDataGen[i].data.estciv; codpost.value = getDataTabDataGen[i].data.codpost;
-                    state.value    = getDataTabDataGen[i].data.state; city.value = getDataTabDataGen[i].data.city;
-                    street.value   = getDataTabDataGen[i].data.street;
+                    clvemp.value = getDataTabDataGen[i].data.clvemp;
+                    name.value = getDataTabDataGen[i].data.name; apep.value = getDataTabDataGen[i].data.apep;
+                    apem.value = getDataTabDataGen[i].data.apem; fnaci.value = getDataTabDataGen[i].data.fnaci;
+                    lnaci.value = getDataTabDataGen[i].data.lnaci;
+                    title.value = getDataTabDataGen[i].data.title;
+                    sex.value = getDataTabDataGen[i].data.sex; nacion.value = getDataTabDataGen[i].data.nacion;
+                    estciv.value = getDataTabDataGen[i].data.estciv; codpost.value = getDataTabDataGen[i].data.codpost;
+                    state.value = getDataTabDataGen[i].data.state; city.value = getDataTabDataGen[i].data.city;
+                    street.value = getDataTabDataGen[i].data.street;
                     numberst.value = getDataTabDataGen[i].data.numberst;
-                    telfij.value   = getDataTabDataGen[i].data.telfij; telmov.value = getDataTabDataGen[i].data.telmov;
-                    mailus.value   = getDataTabDataGen[i].data.mailus; tipsan.value = getDataTabDataGen[i].data.tipsan;
-                    fecmat.value   = getDataTabDataGen[i].data.fecmat;
+                    telfij.value = getDataTabDataGen[i].data.telfij; telmov.value = getDataTabDataGen[i].data.telmov;
+                    mailus.value = getDataTabDataGen[i].data.mailus; tipsan.value = getDataTabDataGen[i].data.tipsan;
+                    fecmat.value = getDataTabDataGen[i].data.fecmat;
                 }
             }
             document.getElementById('icouser').classList.remove('d-none');
@@ -317,31 +320,100 @@
 
     floaddatatabs();
 
-    fclearlocsto = () => {
-        localStorage.removeItem('modeedit');
-        localStorage.removeItem('tabSelected');
-        localStorage.removeItem('objectTabDataGen');
-        localStorage.removeItem('objectDataTabImss');
-        localStorage.removeItem('objectDataTabNom');
-        localStorage.removeItem('objectDataTabEstructure');
-        localStorage.removeItem('modedit');
-        fchecklocalstotab();
-        fselectlocalstotab();
-        floaddatatabs();
-        fclearfieldsvar1();
-        fclearfieldsvar2();
-        fclearfieldsvar3();
-        fclearfieldsvar4();
-        document.getElementById('icouser').classList.add('d-none');
-        document.getElementById('nameuser').textContent = '';
-        //if (localStorage.getItem('modedit') != null) {
-        //    document.getElementById('btn-save-data-all').disabled = false;
-        //}
+    fasignsdates = () => {
+        if (localStorage.getItem('modeedit') == null) {
+            const d = new Date();
+            let frmonth;
+            if (d.getMonth() + 1 < 10) { frmonth = "0" + (d.getMonth() + 1); } else { frmonth = d.getMonth() + 1; }
+            const fechact = d.getFullYear() + '-' + frmonth + '-' + d.getDate();
+            fecefe.disabled = true;
+            fecefe.value = fechact;
+            fecefecnom.disabled = true;
+            fecefecnom.value = fechact;
+            fechefectpos.disabled = true;
+            fechefectpos.value = fechact;
+            fechinipos.disabled = true;
+            fechinipos.value = fechact;
+        }
     }
 
-    btnClearLocSto.addEventListener('click', fclearlocsto);
+    fasignsdates();
+
+    fvalidatebuttonsactionmain = () => {
+        if (localStorage.getItem("modeedit") == null) {
+            btnsaveeditdatagen.classList.add('d-none');
+            btnSaveDataGen.classList.remove('d-none');
+            btnsaveeditdataimss.classList.add('d-none');
+            btnSaveDataImss.classList.remove('d-none');
+            btnSaveDataNomina.classList.remove('d-none');
+            btnsaveeditdatanomina.classList.add('d-none');
+            btnsavedataall.classList.remove('d-none');
+            btnsaveeditdataest.classList.add('d-none');
+        }
+    }
+
+    fclearlocsto = (type) => {
+        let timerInterval;
+        localStorage.removeItem('modeedit');
+        localStorage.removeItem('tabSelected');
+        localStorage.removeItem('objectTabDataGen'); localStorage.removeItem('objectDataTabImss');
+        localStorage.removeItem('objectDataTabNom'); localStorage.removeItem('objectDataTabEstructure');
+        localStorage.removeItem('modedit');
+        fchecklocalstotab(); fselectlocalstotab(); floaddatatabs();
+        fclearfieldsvar1(); fclearfieldsvar2(); fclearfieldsvar3(); fclearfieldsvar4();
+        document.getElementById('icouser').classList.add('d-none');
+        document.getElementById('nameuser').textContent = '';
+        fvalidatebuttonsactionmain();
+        if (type == 1) {
+            Swal.fire({
+                title: "Esta seguro", text: "de limpiar los campos?", icon: "warning",
+                confirmButtonText: "Aceptar", showCancelButton: true, cancelButtonText: "Cancelar",
+                allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire({
+                        title: "Limpiando campos", html: "<b></b>",
+                        timer: 2000, timerProgressBar: true,
+                        allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
+                        onBeforeOpen: () => {
+                            Swal.showLoading();
+                            timerInterval = setInterval(() => { const content = Swal.getContent(); }, 100);
+                        }, onClose: () => { clearInterval(timerInterval); }
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            Swal.fire({
+                                title: "Correcto", showConfirmButton: false, timer: 1500, icon: "success",
+                                allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false
+                            });
+                        }
+                    });
+                } else {
+                    Swal.fire({ title: "Bien", text: "Todo sigue igual", timer: 1000, showConfirmButton: false, allowEnterKey: false, allowEscapeKey: false, allowOutsideClick: false });
+                }
+            });
+        }
+    }
+
+    btnClearLocSto.addEventListener('click', () => { fclearlocsto(1); });
 
     let validate = 0;
+
+    fshowalertcontinue = (texttoastr) => {
+        Swal.fire({
+            position: "top-end",
+            html: "<b></b>",
+            icon: "info",
+            showConfirmButton: false,
+            timer: 2000,
+            onBeforeOpen: () => {
+                const content = Swal.getContent();
+                if (content) {
+                    const b = content.querySelector('b');
+                    if (b) { b.textContent = String(texttoastr); }
+                }
+            }
+        });
+    }
 
     toastr.options = {
         "closeButton": false, "debug": false,
@@ -357,10 +429,11 @@
 
 
     gotoppage = (element, idtab, texttoastr) => {
+        fshowalertcontinue(texttoastr);
         element.classList.remove('disabled');
         $('body, html').animate({ scrollTop: '0px' }, 1000);
         setTimeout(() => { $(" " + idtab + " ").click(); }, 2000);
-        Command: toastr["info"](String(texttoastr));
+        //Command: toastr["info"](String(texttoastr));
     }
 
     String.prototype.reverse = function () {
@@ -376,23 +449,13 @@
     fshowtypealert = (title, text, icon, element, clear) => {
         Swal.fire({
             title: title, text: text, icon: icon,
-            showClass: { popup: 'animated fadeInDown faster' },
-            hideClass: { popup: 'animated fadeOutUp faster' },
+            showClass: { popup: 'animated fadeInDown faster' }, hideClass: { popup: 'animated fadeOutUp faster' },
             confirmButtonText: "Aceptar", allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
         }).then((acepta) => {
-            $("html, body").animate({
-                scrollTop: $(`#${element.id}`).offset().top - 50
-            }, 1000);
-            if (clear == 1) {
-                setTimeout(() => {
-                    element.focus();
-                    setTimeout(() => { element.value = ""; }, 300);
-                }, 1200);
-            } else {
-                setTimeout(() => {
-                    element.focus();
-                }, 1200);
-            }
+            $("html, body").animate({ scrollTop: $(`#${element.id}`).offset().top - 50 }, 1000);
+            if (clear == 1) { setTimeout(() => { element.focus(); setTimeout(() => { element.value = ""; }, 300); }, 1200); }
+            else { setTimeout(() => { element.focus(); }, 1200); }
+            if (element.id == "numpla") { setTimeout(() => { $("#btn-search-table-num-posicion").click(); }, 1500); }
         });
     }
 
@@ -524,7 +587,7 @@
                 if (arrInput[t].value == "0") {
                     const attrselect = arrInput[t].getAttribute('tp-select');
                     fshowtypealert('Atención', 'Selecciona una opción de ' + String(attrselect), 'warning', arrInput[t], 0);
-                    validate = 1; 
+                    validate = 1;
                     break;
                 }
                 if (arrInput[t].id == "tippag") {
@@ -634,17 +697,22 @@
                         validate = 1;
                         break;
                     }
-                }
-                else {
+                } else {
                     fshowtypealert('Atencion', 'Completa el campo ' + String(arrInput[a].placeholder), 'warning', arrInput[a], 0);
                     validate = 1;
                     break;
                 }
             } else {
                 if (arrInput[a].value == '') {
-                    fshowtypealert('Atencion', 'Completa el campo ' + String(arrInput[a].placeholder), 'warning', arrInput[a], 0);
-                    validate = 1;
-                    break;
+                    if (arrInput[a].id == "clvstr") {
+                        fshowtypealert('Atencion', 'Completa el campo ' + String(arrInput[a].placeholder), 'warning', numpla, 0);
+                        validate = 1;
+                        break;
+                    } else {
+                        fshowtypealert('Atencion', 'Completa el campo ' + String(arrInput[a].placeholder), 'warning', arrInput[a], 0);
+                        validate = 1;
+                        break;
+                    }
                 }
             }
         }

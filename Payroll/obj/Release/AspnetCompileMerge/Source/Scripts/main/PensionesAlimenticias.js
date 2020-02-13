@@ -131,6 +131,12 @@
         }
     });
 
+    //$("#modalLiveSearchEmpleado").on("hide", function () {
+    //    $("#resultSearchEmpleados").empty();
+    //    document.getElementById("#inputSearchEmpleados").innerHTML = "";
+    //    console.log("yes");
+    //});
+
 });
 
 function MostrarDatosEmpleado(idE) {
@@ -162,6 +168,7 @@ function tabPensiones() {
         dataType: "json",
         success: (data) => {
             console.log(data);
+            $("#tabody").empty();
             for (var i = 0; i < data.length; i++) {
                 document.getElementById("tabody").innerHTML += "<tr><td>" + data[i]["Beneficiaria"] + "</td><td>" + data[i]["No_Oficio"] + "</td><td>" + data[i]["Fecha_Oficio"] + "</td><td>$ " + data[i]["Cuota_Fija"] + " - % " + data[i]["Porcentaje"] +"</td><td><div class='btn btn-secondary btn-sm btn-editar-pensiones' onclick='eliminarPension( " + data[i]["IdIdPension"] + " );'><i class='far fa-edit'></i></div></td></tr>";
                 console.log(data[i]["Tipo_Ausentismo_id"]);
