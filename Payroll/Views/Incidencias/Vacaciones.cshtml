@@ -258,9 +258,21 @@
                     for (var i = 0; i < data.length; i++) {
                         
                         if (data[i]["Agendadas"] = "True") {
-                            document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td><td><div class='fas fa-check'></div></td><td></tr>";
+                            document.getElementById("tabBody").innerHTML += "<tr>"+
+                                    "<td>" + data[i]["Dias"] + " < input type = 'hidden' class='btn_IdPer_vac_Dist' value = ' " + data[i]["IdPer_vac_Dist"] + " ' > </td>" +
+                                    " <td>" + data[i]["Fecha_Inicio"] + "</td>" +
+                                    " <td>" + data[i]["Fecha_Fin"] + "</td>" +
+                                    " <td><div class='fas fa-check'></div></td>" +
+                                    "<td><div class='fas fa-exchange-alt'></div></td>"
+                                "</tr > ";
                         } else {
-                            document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td></td><td><td><div class='fas fa-check'></div></tr>";
+                            document.getElementById("tabBody").innerHTML += "<tr>" +
+                                    "<td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td>" +
+                                    "<td>" + data[i]["Fecha_Inicio"] + "</td>" +
+                                    "<td>" + data[i]["Fecha_Fin"] + "</td>" +
+                                    "<td></td>" +
+                                    "<td><div class='fas fa-check'></td>" +
+                                "</tr>";
                         }
                     }
                     
@@ -336,11 +348,23 @@
             success: (data) => {
                 document.getElementById("tabBody").innerHTML = "";
                 for (var i = 0; i < data.length; i++) {
-                    if (data[i]["Agendadas"] = "True") {
-                        document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td><td><div class='fas fa-check'></div></td><td></tr>";
-                    } else {
-                        document.getElementById("tabBody").innerHTML += "<tr><td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td><td>" + data[i]["Fecha_Inicio"] + "</td><td>" + data[i]["Fecha_Fin"] + "</td></td><td><td><div class='fas fa-check'></div></tr>";
-                    }
+                     if (data[i]["Agendadas"] = "True") {
+                            document.getElementById("tabBody").innerHTML += "<tr>"+
+                                    "<td>" + data[i]["Dias"] + " <input type = 'hidden' class='btn_IdPer_vac_Dist' value = ' " + data[i]["IdPer_vac_Dist"] + " ' > </td>" +
+                                    " <td>" + data[i]["Fecha_Inicio"] + "</td>" +
+                                    " <td>" + data[i]["Fecha_Fin"] + "</td>" +
+                                    " <td><div class='fas fa-check'></div></td>" +
+                                    "<td><div class='fas fa-exchange-alt btn btn-success btn-sm btn-change-status'></div></td>"+
+                                "</tr > ";
+                        } else {
+                            document.getElementById("tabBody").innerHTML += "<tr>" +
+                                    "<td>" + data[i]["Dias"] + " <input type='hidden' class='btn_IdPer_vac_Dist' value=' " + data[i]["IdPer_vac_Dist"] + " '> </td>" +
+                                    "<td>" + data[i]["Fecha_Inicio"] + "</td>" +
+                                    "<td>" + data[i]["Fecha_Fin"] + "</td>" +
+                                    "<td></td>" +
+                                    "<td><div class='fas fa-check'></div></td>" +
+                                "</tr>";
+                        }
 
                     
                 }
