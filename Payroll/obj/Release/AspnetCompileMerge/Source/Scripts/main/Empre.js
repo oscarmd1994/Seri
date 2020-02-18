@@ -179,7 +179,8 @@
             alert("no valido");
             form.classList.add("was-validated");
         } else {
-            alert("valido");
+            console.log("valido");
+            console.log(datos);
         }
         //$.ajax({
         //    url: "../Empresas/Update_Registro_Patronal",
