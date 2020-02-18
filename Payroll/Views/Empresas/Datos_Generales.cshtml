@@ -13,29 +13,29 @@
     <div class="col-md-12 p-3 m-0 form-group row rounded" style="background-color:#E8EAF6;color:black;">
             <label class="font-weight-bold col-md-2 py-0">Id Empresa : </label>
             <label class="text-left col-md-4 py-0" id="l-01"></label>
-            <label class="font-weight-bold col-md-2 py-0">Nombre empresa : </label>
+            <label class="font-weight-bold col-md-2 py-0">Nombre corto : </label>
             <label class="text-left col-md-4 py-0" id="l-02"></label>
             <label class="font-weight-bold col-md-2">Razón Social : </label>
             <label class="text-left col-md-4" id="l-03"></label>
-            <label class="font-weight-bold col-md-2">Estado : </label>
+            <label class="font-weight-bold col-md-2">Codigo Postal : </label>
             <label class="text-left col-md-4" id="l-04"></label>
-            <label class="font-weight-bold col-md-2">Ciudad : </label>
+            <label class="font-weight-bold col-md-2">Estado : </label>
             <label class="text-left col-md-4" id="l-05"></label>
-            <label class="font-weight-bold col-md-2">Delegación : </label>
+            <label class="font-weight-bold col-md-2">Cuidad : </label>
             <label class="text-left col-md-4" id="l-06"></label>
-            <label class="font-weight-bold col-md-2">Colonia : </label>
+            <label class="font-weight-bold col-md-2">Delegacion : </label>
             <label class="text-left col-md-4" id="l-07"></label>
-            <label class="font-weight-bold col-md-2">Calle : </label>
+            <label class="font-weight-bold col-md-2">Colonia : </label>
             <label class="text-left col-md-4" id="l-08"></label>
-            <label class="font-weight-bold col-md-2">Giro : </label>
+            <label class="font-weight-bold col-md-2">Calle : </label>
             <label class="text-left col-md-4" id="l-09"></label>
-            <label class="font-weight-bold col-md-2">RFC : </label>
+            <label class="font-weight-bold col-md-2">Giro : </label>
             <label class="text-left col-md-4" id="l-10"></label>
-            <label class="font-weight-bold col-md-2">Fecha Alta : </label>
+            <label class="font-weight-bold col-md-2">RFC : </label>
             <label class="text-left col-md-4" id="l-11"></label>
-            <label class="font-weight-bold col-md-2">Regimen Fiscal : </label>
+            <label class="font-weight-bold col-md-2">Fecha alta : </label>
             <label class="text-left col-md-4" id="l-12"></label>
-            <label class="font-weight-bold col-md-2">Nombre de la empresa</label>
+            <label class="font-weight-bold col-md-2">Regimen Fiscal : </label>
             <label class="text-left col-md-4" id="l-13"></label>
             <div class="col-md-6 font-labels d-flex justify-content-end" ><div class="btn btn-outline-success font-weight-bold" style="font-size:12px;">Editar  <i class="pl-1 far fa-edit"></i> </div></div>
     </div>
@@ -349,7 +349,7 @@
             document.getElementById("l-09").innerHTML = data[8];
             document.getElementById("l-10").innerHTML = data[9];
             document.getElementById("l-11").innerHTML = data[10];
-            document.getElementById("l-12").innerHTML = data[11];
+            document.getElementById("l-12").innerHTML = data[11].substring(0,10);
             document.getElementById("l-13").innerHTML = data[12];
         }
     });
