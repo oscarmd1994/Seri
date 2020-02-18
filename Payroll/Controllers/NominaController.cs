@@ -285,8 +285,8 @@ namespace Payroll.Controllers
             return Json(bean);
 
         }
-        [HttpPost]
-        public JsonResult UpdatePtDefinicionNl(int iIdDefinicionln, int iIdEmpresa, int iTipodeperiodo, int iIdperiodo, int iRenglon, int iEsespejo, int iIdAcumulado)
+        //[HttpPost]
+        //public JsonResult UpdatePtDefinicionNl(int iIdDefinicionln, int iIdEmpresa, int iTipodeperiodo, int iIdperiodo, int iRenglon, int iEsespejo, int iIdAcumulado)
         [HttpPost]
         public JsonResult DeleteDefinicionNl(int iIdDefinicionln)
         {
