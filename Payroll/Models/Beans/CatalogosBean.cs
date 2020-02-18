@@ -517,4 +517,14 @@ namespace Payroll.Models.Beans
         public string sDescripcion { get; set; }
         public string sMensaje { get; set; }
     }
+    public class TipoEmpleadoBean { 
+        public int IdTipo_Empleado { get; set; }
+        public string Descripcion { get; set; }
+    }
+    public class MotivoBajaBean
+    {
+        public int IdMotivo_Baja { get; set; }
+        public string Descripcion { get; set; }
+        public int TipoEmpleado_id { get; set; }
+    }
 }

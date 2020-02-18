@@ -95,6 +95,32 @@ input {
     color: #020F59 !important;
     box-shadow: 2px 2px #ddd;
 }
+.btn-subm {
+    background-color: #7e57c2 !important;
+    color: white !important;
+}
+
+.btn-subm:hover {
+    background-color: #673ab7 !important;
+    color: white !important;
+}
+.btn-subm1 {
+    background-color: #4caf50 !important;
+    color: white !important;
+}
+
+    .btn-subm1:hover {
+        background-color: #2e7d32 !important;
+        color: white !important;
+    }
+.btn-m {
+    background-color: #020F59 !important;
+    color: #ECEFF1 !important;
+}
+    .btn-m:hover {
+        background-color: #ECEFF1 !important;
+        color: #020F59 !important;
+    }
 .font-button {
     font-family: 'Noto Sans KR', sans-serif;
 }

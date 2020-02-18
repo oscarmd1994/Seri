@@ -181,14 +181,12 @@
     <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\jquery.dataTables.css" />
     <Content Include="Content\responsive.dataTables.css" />
-    <Content Include="Content\resumenv.txt" />
     <Content Include="Content\scroller.dataTables.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\styles\home.css" />
     <Content Include="Content\styles\login.css" />
     <Content Include="Content\styles\main.css" />
     <Content Include="Content\toastr\toastr.min.css" />
-    <Content Include="Content\vacaciones.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -690,6 +688,7 @@
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\jqx.web.css" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\jqx.windowsphone.css" />
     <Content Include="Scripts\main\Ausentismos.js" />
+    <Content Include="Scripts\main\BajasEmpleados.js" />
     <Content Include="Scripts\main\branchoffices.js" />
     <Content Include="Scripts\main\catalogos.js" />
     <Content Include="Scripts\main\departments.js" />
@@ -775,6 +774,7 @@
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\jquery-1.11.1.min.map" />
     <Content Include="Views\Nomina\Ejecucion.cshtml" />
+    <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

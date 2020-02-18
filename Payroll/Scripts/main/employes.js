@@ -88,6 +88,9 @@
     /* CONSTANTES BUSQUEDA EN TIEMPO REAL DE LOS EMPLEADOS */
     const searchemployekey = document.getElementById('searchemployekey');
     const resultemployekey = document.getElementById('resultemployekey');
+    const labsearchemp     = document.getElementById('labsearchemp');
+    const filtronumber     = document.getElementById('filtronumber');
+    const filtroname       = document.getElementById('filtroname');
     /* CONSTANTES BOTONES DE LA VENTANA MODAL DE BUSQUEDA DE EMPLEADOS */
     const btnmodalsearchemploye = document.getElementById('btn-modal-search-employe');
     const icoclosesearchemployesbtn = document.getElementById('ico-close-searchemployes-btn');
@@ -465,6 +468,7 @@
                     title: 'Cargando información',
                     html: 'Terminando en <b></b> milisegundos.',
                     timer: 5000, timerProgressBar: true,
+                    allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
                     onBeforeOpen: () => {
                         Swal.showLoading();
                         timerInterval = setInterval(() => {
@@ -489,15 +493,34 @@
         alert('Listo para generar reporte de ' + String(paramid));
         console.log(paramid)
     }
+    /* FUNCION QUE COMPRUEBA QUE TIPO DE FILTRO SE APLICARA A LA BUSQUEDA DE EMPLEADOS */
+    fselectfilterdsearchemploye = () => {
+        const filtered = $("input:radio[name=filtroemp]:checked").val();
+        if (filtered == "numero") {
+            searchemployekey.placeholder = "NUMERO DEL EMPLEADO";
+            labsearchemp.textContent     = "Numero";
+        } else if (filtered == "nombre") {
+            searchemployekey.placeholder = "NOMBRE DEL EMPLEADO";
+            labsearchemp.textContent     = "Nombre";
+        }
+        searchemployekey.value     = "";
+        resultemployekey.innerHTML = "";
+        setTimeout(() => { searchemployekey.focus() }, 500);
+    }
+    /* EJECUCION DE FUNCION QUE APLICA FILTRO A LA BUSQUEDA DE LOS EMPLEADOS */
+    filtroname.addEventListener('click', fselectfilterdsearchemploye);
+    filtronumber.addEventListener('click', fselectfilterdsearchemploye);
     /* FUNCION QUE EJECUTA LA BUSUQEDA REAL DE LOS EMPLEADOS */
     fsearchemployes = () => {
+        const filtered = $("input:radio[name=filtroemp]:checked").val();
+        console.log(filtered.trim());
         try {
             resultemployekey.innerHTML = '';
             if (searchemployekey.value != "") {
                 $.ajax({
                     url: "../SearchDataCat/SearchEmploye",
                     type: "POST",
-                    data: { wordsearch: searchemployekey.value },
+                    data: { wordsearch: searchemployekey.value, filtered: filtered.trim() },
                     success: (data) => {
                         if (data.length > 0) {
                             let number = 0;
@@ -505,7 +528,7 @@
                                 number += 1;
                                 resultemployekey.innerHTML += `
                                     <button class="list-group-item d-flex justify-content-between mb-1 align-items-center shadow rounded cg-back">
-                                        ${number}. - ${data[i].sNombreEmpleado}
+                                        ${number}. ${data[i].iIdEmpleado} - ${data[i].sNombreEmpleado}
                                        <span>
                                              <i title="Editar" class="fas fa-edit ml-2 text-warning fa-lg shadow" onclick="fselectemploye(${data[i].iIdEmpleado}, '${data[i].sNombreEmpleado}')"></i> 
                                              <i title="Reporte" class="fas fa-eye ml-2 col-ico fa-lg shadow" onclick="fviewdetailsemploye(${data[i].iIdEmpleado})"></i>

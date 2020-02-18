@@ -12,20 +12,19 @@ namespace Payroll.Controllers
         {
             return PartialView();
         }
-
-    
+        public PartialViewResult BajasEmpleados()
+        {
+            return PartialView();
+        }
         public PartialViewResult Consulta()
         {
             return PartialView();
         }
-
-        public PartialViewResult Ejecucion( )
+        public PartialViewResult Ejecucion()
         {
-          
+
             return PartialView();
         }
-
-
         //Guarda los datos de la Definicion
         [HttpPost]
         public JsonResult DefiNomina(string sNombreDefinicion, string sDescripcion, int iAno, int iCancelado)
@@ -33,12 +32,12 @@ namespace Payroll.Controllers
             NominahdBean bean = new NominahdBean();
             FuncionesNomina dao = new FuncionesNomina();
             int usuario = int.Parse(Session["iIdUsuario"].ToString());
-            bean   =  dao.sp_DefineNom_insert_DefineNom(sNombreDefinicion, sDescripcion, iAno, iCancelado,usuario);
-         
+            bean = dao.sp_DefineNom_insert_DefineNom(sNombreDefinicion, sDescripcion, iAno, iCancelado, usuario);
+
             return Json(bean);
         }
-
         // llena  listado de empresas
+        [HttpPost]
         public JsonResult LisEmpresas()
         {
             List<EmpresasBean> LE = new List<EmpresasBean>();
@@ -46,7 +45,6 @@ namespace Payroll.Controllers
             LE = Dao.sp_CEmpresas_Retrieve_Empresas();
             return Json(LE);
         }
-
         // regresa el listado del periodo
         [HttpPost]
         public JsonResult LisTipPeriodo(string Ctrsvalor)
@@ -65,7 +63,6 @@ namespace Payroll.Controllers
             LR = Dao.sp_CRenglones_Retrieve_CRenglones(sNombreEmpresa);
             return Json(LR);
         }
-
         // regresa el listado de acumulado 
         [HttpPost]
         public JsonResult LisAcumulado(string sNombreEmpresa, int iIdRenglon)
@@ -75,8 +72,8 @@ namespace Payroll.Controllers
             LAc = Dao.sp_CAcumuladoREnglones_Retrieve_CAcumuladoREnglones(sNombreEmpresa, iIdRenglon);
             return Json(LAc);
         }
-
         // devuelve el ultimo ID
+        [HttpPost]
         public JsonResult IdmaxDefiniconNom()
         {
             List<NominahdBean> Idmax = new List<NominahdBean>();
@@ -84,8 +81,8 @@ namespace Payroll.Controllers
             Idmax = Dao.sp_IdDefinicionNomina_Retrieve_IdDefinicionNomina();
             return Json(Idmax);
         }
-        
         //Devuelve el valor de la columna cancelado del ultimo regristro 
+        [HttpPost]
         public JsonResult DefCancelado(int iIdFinicion)
         {
             List<NominahdBean> DefCancelado = new List<NominahdBean>();
@@ -93,10 +90,9 @@ namespace Payroll.Controllers
             DefCancelado = Dao.sp_DefCancelados_Retrieve_DefCancelados(iIdFinicion);
             return Json(DefCancelado);
         }
-
         //Guarda los datos de la DefinicionLn
         [HttpPost]
-        public JsonResult insertDefinicioNl(int iIdDefinicionHd, int iIdEmpresa, int iTipodeperiodo, int iIdperiodo,int iRenglon,int iCancelado, int iElementonomina,int iEsespejo,int iIdAcumulado)
+        public JsonResult insertDefinicioNl(int iIdDefinicionHd, int iIdEmpresa, int iTipodeperiodo, int iIdperiodo, int iRenglon, int iCancelado, int iElementonomina, int iEsespejo, int iIdAcumulado)
         {
             NominaLnBean bean = new NominaLnBean();
             FuncionesNomina dao = new FuncionesNomina();
@@ -105,30 +101,26 @@ namespace Payroll.Controllers
 
             return Json(bean);
         }
-
         // Regresa el listado de perido
         [HttpPost]
-
         public JsonResult ListPeriodo(int iIdEmpresesas, int ianio, int iTipoPeriodo)
         {
-            List<CInicioFechasPeriodoBean> LPe = new List<CInicioFechasPeriodoBean>();       
-            FuncionesNomina dao = new FuncionesNomina();       
-            LPe= dao.sp_Cperiodo_Retrieve_Cperiodo(iIdEmpresesas, ianio, iTipoPeriodo);
+            List<CInicioFechasPeriodoBean> LPe = new List<CInicioFechasPeriodoBean>();
+            FuncionesNomina dao = new FuncionesNomina();
+            LPe = dao.sp_Cperiodo_Retrieve_Cperiodo(iIdEmpresesas, ianio, iTipoPeriodo);
             return Json(LPe);
 
         }
-
         // llena datos de la tabla de Percepciones
-
         [HttpPost]
-
         public JsonResult listdatosPercesiones(int iIdDefinicionln)
         {
             List<NominaLnDatBean> Dt = new List<NominaLnDatBean>();
             List<NominaLnDatBean> DA = new List<NominaLnDatBean>();
             FuncionesNomina dao = new FuncionesNomina();
             Dt = dao.sp_DefinicionesNomLn_Retrieve_DefinicionesNomLn(iIdDefinicionln);
-            if (Dt != null) {
+            if (Dt != null)
+            {
                 for (int i = 0; i < Dt.Count; i++)
                 {
 
@@ -157,11 +149,11 @@ namespace Payroll.Controllers
 
                     }
 
-                }                 
-            
+                }
+
             }
-          
-            
+
+
 
             return Json(Dt);
         }
@@ -210,22 +202,25 @@ namespace Payroll.Controllers
 
             return Json(Dta);
         }
+        [HttpPost]
+        public JsonResult ListadoNomDefinicion()
+        {
 
-        public JsonResult ListadoNomDefinicion() {
-
-            List<NominahdBean> LNND= new List<NominahdBean>();
+            List<NominahdBean> LNND = new List<NominahdBean>();
             FuncionesNomina Dao = new FuncionesNomina();
             LNND = Dao.sp_DefinicionNombresHd_Retrieve_DefinicionNombresHd();
             return Json(LNND);
         }
-
-        public JsonResult TpDefinicionNomina() {
+        [HttpPost]
+        public JsonResult TpDefinicionNomina()
+        {
 
             List<NominahdBean> LNH = new List<NominahdBean>();
             FuncionesNomina dao = new FuncionesNomina();
             LNH = dao.sp_TpDefinicionesNom_Retrieve_TpDefinicionNom();
 
-            for (int i = 0; i < LNH.Count; i++) {
+            for (int i = 0; i < LNH.Count; i++)
+            {
 
                 if (LNH[i].iCancelado == "True")
                 {
@@ -241,10 +236,11 @@ namespace Payroll.Controllers
 
             return Json(LNH);
         }
-
         [HttpPost]
-        public JsonResult TpDefinicionNominaQry(string sNombreDefinicion , int iCancelado) {
-            if (sNombreDefinicion == "Selecciona") {
+        public JsonResult TpDefinicionNominaQry(string sNombreDefinicion, int iCancelado)
+        {
+            if (sNombreDefinicion == "Selecciona")
+            {
                 sNombreDefinicion = "";
             }
 
@@ -252,26 +248,26 @@ namespace Payroll.Controllers
             FuncionesNomina dao = new FuncionesNomina();
             TD = dao.sp_DeficionNominaCancelados_Retrieve_DeficionNominaCancelados(sNombreDefinicion, iCancelado);
 
-            if (TD != null) { 
-
-              for (int i = 0; i < TD.Count; i++)
+            if (TD != null)
             {
 
-                if (TD[i].iCancelado == "True")
+                for (int i = 0; i < TD.Count; i++)
                 {
-                    TD[i].iCancelado = "Si";
-                }
 
-                else if (TD[i].iCancelado == "False")
-                {
-                    TD[i].iCancelado = "No";
+                    if (TD[i].iCancelado == "True")
+                    {
+                        TD[i].iCancelado = "Si";
+                    }
+
+                    else if (TD[i].iCancelado == "False")
+                    {
+                        TD[i].iCancelado = "No";
+                    }
                 }
-              }
             }
 
             return Json(TD);
         }
-
         [HttpPost]
         public JsonResult UpdatePtDefinicion(string sNombreDefinicion, string sDescripcion, int iAno, int iCancelado, int iIdDefinicionhd)
         {
@@ -280,9 +276,7 @@ namespace Payroll.Controllers
             bean = dao.sp_TpDefinicion_Update_TpDefinicion(sNombreDefinicion, sDescripcion, iAno, iCancelado, iIdDefinicionhd);
             return Json(bean);
         }
-
         [HttpPost]
-
         public JsonResult DeleteDefinicion(int iIdDefinicionhd)
         {
             NominahdBean bean = new NominahdBean();
@@ -291,16 +285,8 @@ namespace Payroll.Controllers
             return Json(bean);
 
         }
-
-        [HttpPost]
-        public JsonResult UpdatePtDefinicionNl(int iIdDefinicionln, int iIdEmpresa, int iTipodeperiodo, int iIdperiodo, int iRenglon , int iEsespejo,int iIdAcumulado)
-        {
-            NominaLnBean bean = new NominaLnBean();
-            FuncionesNomina dao = new FuncionesNomina();
-            bean = dao.sp_TpDefinicionNomLn_Update_TpDefinicionNomLn(iIdDefinicionln, iIdEmpresa, iTipodeperiodo, iIdperiodo, iRenglon, iEsespejo, iIdAcumulado);
-            return Json(bean);
-        }
-
+        //[HttpPost]
+        //public JsonResult UpdatePtDefinicionNl(int iIdDefinicionln, int iIdEmpresa, int iTipodeperiodo, int iIdperiodo, int iRenglon, int iEsespejo, int iIdAcumulado)
         [HttpPost]
         public JsonResult DeleteDefinicionNl(int iIdDefinicionln)
         {
@@ -309,9 +295,7 @@ namespace Payroll.Controllers
             Bean = dao.sp_EliminarDefinicionNl_Delete_EliminarDefinicionNl(iIdDefinicionln);
             return Json(Bean);
         }
-
         [HttpPost]
-
         public JsonResult CompruRegistroExit(int iIdDefinicionHd)
         {
             List<TpCalculosHd> LNND = new List<TpCalculosHd>();
@@ -320,18 +304,16 @@ namespace Payroll.Controllers
             return Json(LNND);
 
         }
-
         //Guarda los datos de TpCalculos
         [HttpPost]
         public JsonResult InsertDatTpCalculos(int iIdDefinicionHd, int iNominaCerrada)
         {
             TpCalculosHd bean = new TpCalculosHd();
-            FuncionesNomina dao = new FuncionesNomina();            
+            FuncionesNomina dao = new FuncionesNomina();
             bean = dao.sp_TpCalculos_Insert_TpCalculos(iIdDefinicionHd, iNominaCerrada);
             return Json(bean);
-            
-        }
 
+        }
         // Actualiza PTCalculoshd
         [HttpPost]
         public JsonResult UpdateCalculoshd(int iIdDefinicionHd, int iNominaCerrada)
@@ -341,8 +323,7 @@ namespace Payroll.Controllers
             bean = dao.sp_TpCalculos_update_TpCalculos(iIdDefinicionHd, iNominaCerrada);
             return Json(bean);
         }
-
-
+        [HttpPost]
         public JsonResult TpDefinicionnl()
         {
             List<NominaLnDatBean> Dta = new List<NominaLnDatBean>();
@@ -397,7 +378,22 @@ namespace Payroll.Controllers
 
             return Json(Dta);
         }
-
-
+        //Carga motivos de baja para select
+        [HttpPost]
+        public JsonResult LoadMotivoBaja()
+        {
+            List<MotivoBajaBean> bean;
+            FuncionesNomina dao = new FuncionesNomina();
+            bean = dao.sp_Cgeneral_Retrieve_MotivoBajas();
+            return Json(bean);
+        }
+        [HttpPost]
+        public JsonResult LoadTipoBaja()
+        {
+            List<TipoEmpleadoBean> bean;
+            FuncionesNomina dao = new FuncionesNomina();
+            bean = dao.sp_Cgeneral_Retrieve_TipoEmpleadosBajas();
+            return Json(bean);
+        }
     }
 }

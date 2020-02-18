@@ -932,7 +932,78 @@ namespace Payroll.Models.Daos
             }
             return list;
         }
-
+        public List<TipoEmpleadoBean> sp_Cgeneral_Retrieve_TipoEmpleadosBajas()
+        {
+            List<TipoEmpleadoBean> list = new List<TipoEmpleadoBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Cgeneral_Retrieve_TipoEmpleadosBajas", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        TipoEmpleadoBean ls = new TipoEmpleadoBean();
+                        {
+                            ls.IdTipo_Empleado = int.Parse(data["IdValor"].ToString());
+                            ls.Descripcion = data["Valor"].ToString();
+                        };
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                data.Close();  conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+        }
+        public List<MotivoBajaBean> sp_Cgeneral_Retrieve_MotivoBajas()
+        {
+            List<MotivoBajaBean> list = new List<MotivoBajaBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Cgeneral_Retrieve_MotivoBajas", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        MotivoBajaBean ls = new MotivoBajaBean();
+                        {
+                            ls.IdMotivo_Baja = int.Parse(data["IdValor"].ToString());
+                            ls.Descripcion = data["Valor"].ToString();
+                        };
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                data.Close();  conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+        }
     }
 }
 

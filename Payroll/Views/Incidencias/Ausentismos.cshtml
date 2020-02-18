@@ -44,14 +44,20 @@
                         <label for="inComentariosAusentismo">Comentarios</label>
                         <input type="text" name="inComentariosAusentismo" id="inComentariosAusentismo" value="" class="form-control" placeholder="Escriba un comentario" required />
                     </div>
-                    <div class="d-flex form-group col-md-12 justify-content-end">
-                        <button type="button" class="btn btn-primary mb-2 font-button btn-sm form-control" id="btnRegistroAusentismo"><span class="far fa-edit"></span> Registrar Ausentismo</button>
+                    <div class="form-group  col-md-12 d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary mb-2 btn-sm form-control" id="btnRegistroAusentismo"><span class="far fa-edit"></span> Registrar Ausentismo</button>
+                    </div>
+                    <div class="form-group col-md-6 d-flex justify-content-center">
+                        <div class="btn btn-sm btn-warning form-control"><i class="fas fa-eraser"></i> Limpiar</div>
+                    </div>
+                    <div class="form-group col-md-6 d-flex justify-content-center">
+                        <div class="btn btn-sm btn-success form-control">Actualizar</div>
                     </div>
                 </div>
             </form>
         </div>
         <div class="col-md-6">
-            <table class="table table-sm font-labels text-center" id="tabAusentismos">
+            <table class="table table-sm font-labels text-center table-striped border-bottom" id="tabAusentismos">
                 <thead>
                     <tr>
                         <th scope="col">Motivo</th>

@@ -134,6 +134,47 @@ namespace Payroll.Models.Daos
 
             return list;
         }
+        public List<string> sp_CEmpresas_Retrieve_EmpresaD(int IdEmpresa)
+        {
+            List<string> empresa = new List<string>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_CEmpresas_Retrieve_EmpresaD", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpresa_id", IdEmpresa));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+
+                    empresa.Add(data["IdEmpresa"].ToString());
+                    empresa.Add(data["NombreEmpresa"].ToString());
+                    empresa.Add(data["RazonSocial"].ToString());
+                    empresa.Add(data["CodigoPostal"].ToString());
+                    empresa.Add(data["Estado"].ToString());
+                    empresa.Add(data["Ciudad"].ToString());
+                    empresa.Add(data["Delegacion"].ToString());
+                    empresa.Add(data["Colonia"].ToString());
+                    empresa.Add(data["Calle"].ToString());
+                    empresa.Add(data["Giro"].ToString());
+                    empresa.Add(data["RFC"].ToString());
+                    empresa.Add(data["FechaAlta"].ToString());
+                    empresa.Add(data["Descripcion"].ToString());
+                    
+                }
+            }
+            else
+            {
+                empresa = null;
+            }
+            data.Close();
+
+            return empresa;
+        }
         public List<string> sp_Insert_FirstStep_Empresas(string inNombre_empresa, string inNomCorto_empresa, string inRfc_empresa, string inGiro_empresa, int inRegimenFiscal_Empresa, int inCodigo_postal, int inEstado_empresa, int inMunicipio_empresa, string inCiudad_empresa, string inDelegacion, int inColonia_empresa, string inCalle_Empresa, string inAfiliacionesIMSS, string inNombre_Afiliacion, string inRiesgoTrabajo, int usuario_id, int inClase)
         {
             List<string> res = new List<string>();
@@ -656,6 +697,34 @@ namespace Payroll.Models.Daos
             data.Close();
 
             return lista;
+        }
+        public List<string> sp_TPeriodosVacaciones_Dist_Set_PeriodoDisfrutado(int IdPer_vac_Dist)
+        {
+            List<string> list = new List<string>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_TPeriodosVacaciones_Dist_Set_PeriodoDisfrutado", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlIdPer_vac_Dist", IdPer_vac_Dist));
+
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    string ls = data["sRespuesta"].ToString();
+                    list.Add(ls);
+                }
+            }
+            else
+            {
+                list = null;
+            }
+            data.Close();
+
+            return list;
         }
 
         public List<string> sp_TPeriodosDist_Insert_Periodo(int PerVacLn_id, string FechaInicio, string FechaFin, int Dias)

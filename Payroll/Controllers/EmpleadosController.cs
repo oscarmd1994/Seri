@@ -77,11 +77,11 @@ namespace Payroll.Controllers
         }
 
         [HttpPost]
-        public JsonResult LoadBanks(int state, string type, int keyban)
+        public JsonResult LoadBanks(int keyban)
         {
             BancosDao banDao = new BancosDao();
             List<BancosBean> banBean = new List<BancosBean>();
-            banBean = banDao.sp_Bancos_Retrieve_Bancos(state, type, keyban);
+            banBean = banDao.sp_Bancos_Retrieve_Bancos(keyban);
             return Json(banBean);
         }
 

@@ -141,7 +141,8 @@
         emprep = document.getElementById('emprep'), report = document.getElementById('report'),
         depart = document.getElementById('depart'), pueusu = document.getElementById('pueusu'),
         tippag = document.getElementById('tippag'), banuse = document.getElementById('banuse'),
-        cunuse = document.getElementById('cunuse'), clvbank = document.getElementById('clvbank'),
+        cunuse = document.getElementById('cunuse'),
+        //clvbank = document.getElementById('clvbank'),
         localty = document.getElementById('localty'), fechefectpos = document.getElementById('fechefectpos');
     fechinipos = document.getElementById('fechinipos'); fechefecposact = document.getElementById('fechefecposact');
     const btnsavedataall = document.getElementById('btn-save-data-all');
@@ -251,8 +252,8 @@
                 }
             }
             document.getElementById('icouser').classList.remove('d-none');
-            if (localStorage.getItem('modedit') != null) {
-                document.getElementById('nameuser').textContent = "Editando al Empleado: " + name.value + " " + apep.value + " " + apem.value + ".";
+            if (localStorage.getItem('modeedit') != null) {
+                document.getElementById('nameuser').textContent = "Editando al Empleado: " + clvemp.value + " - " + name.value + " " + apep.value + " " + apem.value + ".";
             } else {
                 document.getElementById('nameuser').textContent = "Empleado: " + name.value + " " + apep.value + " " + apem.value + ".";
             }
@@ -286,11 +287,11 @@
                     tipcontra.value = getDataTabNom[i].data.tipcontra;
                     motinc.value = getDataTabNom[i].data.motinc; tippag.value = getDataTabNom[i].data.tippag;
                     banuse.value = getDataTabNom[i].data.banuse; cunuse.value = getDataTabNom[i].data.cunuse;
-                    clvbank.textContent = getDataTabNom[i].data.clvbank;
+                    //clvbank.textContent = getDataTabNom[i].data.clvbank;
                     if (getDataTabNom[i].data.tippag == idcuentach) {
                         cunuse.setAttribute("maxlength", 11);
                     } else if (getDataTabNom[i].data.tippag == idcuentaah) {
-                        cunuse.setAttribute("maxlength", 15);
+                        cunuse.setAttribute("maxlength", 18);
                     }
                 }
             }
@@ -602,7 +603,7 @@
                     }
                 }
                 if (arrInput[t].value == idcuentaah) {
-                    if (cunuse.value.length < 15) {
+                    if (cunuse.value.length < 18) {
                         fshowtypealert('Atención', 'El numero de cuenta de ahorro debe de contener 18 digitos y solo tiene ' + String(cunuse.value.length) + ' digitos.', 'warning', cunuse, 0);
                         validate = 1;
                         break;
@@ -658,7 +659,7 @@
                     tipcontra: tipcontra.value,
                     motinc: motinc.value, tippag: tippag.value,
                     banuse: banuse.value, cunuse: cunuse.value,
-                    clvbank: clvbank.textContent
+                    //clvbank: clvbank.textContent
                 }
             };
             objectDataTabNom.datanom = dataLocSto;

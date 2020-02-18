@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+    console.log('Funcionando')
     // ** Configuracion toastrjs ** \\
 
     toastr.options = {
