@@ -292,6 +292,47 @@ namespace Payroll.Models.Daos
 
             return list;
         }
+        public List<AusentismosEmpleadosBean> sp_TAusentismos_Retrieve_Ausentismo_Empleado(int Empresa_id, int Empleado_id, int IdAusentismo)
+        {
+            List<AusentismosEmpleadosBean> list = new List<AusentismosEmpleadosBean>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_TAusentismos_Retrieve_Ausentismo_Empleado", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpresa_id", Empresa_id));
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpleado_id", Empleado_id));
+            cmd.Parameters.Add(new SqlParameter("@ctrlAusentismo_id", IdAusentismo));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    AusentismosEmpleadosBean lista = new AusentismosEmpleadosBean();
+
+                    lista.IdAusentismo = int.Parse(data["IdAusentismo"].ToString());
+                    lista.Tipo_Ausentismo_id = int.Parse(data["Tipo_Ausentismo_id"].ToString());
+                    lista.RecuperaAusentismo = data["Recupera_Ausentismo"].ToString();
+                    lista.Empleado_id = int.Parse(data["Empleado_id"].ToString());
+                    lista.Empresa_id = int.Parse(data["Empresa_id"].ToString());
+                    lista.Fecha_Ausentismo = data["Fecha_Ausentismo"].ToString();
+                    lista.Dias_Ausentismo = int.Parse(data["Dias_Ausentismo"].ToString());
+                    lista.Certificado_imss = data["Certificado_imss"].ToString();
+                    lista.Comentarios_imss = data["Comentarios_imss"].ToString();
+                    lista.Causa_FaltaInjustificada = data["Causa_FaltaInjustificada"].ToString();
+
+                    list.Add(lista);
+                }
+            }
+            else
+            {
+                list = null;
+            }
+            data.Close();
+
+            return list;
+        }
         public List<AusentismosEmpleadosBean> sp_TAusentismos_Retrieve_Ausentismos()
         {
             List<AusentismosEmpleadosBean> list = new List<AusentismosEmpleadosBean>();
@@ -408,7 +449,7 @@ namespace Payroll.Models.Daos
             {
                 while (data.Read())
                 {
-                    list.Add( data["iFlag"].ToString());
+                    list.Add(data["iFlag"].ToString());
                     list.Add(data["sRespuesta"].ToString());
                 }
             }
@@ -445,10 +486,10 @@ namespace Payroll.Models.Daos
                     if (data["Cuota_fija"].ToString().Length == 0) { list.Cuota_Fija = ""; } else { list.Cuota_Fija = data["Cuota_fija"].ToString(); }
                     if (data["Porcentaje"].ToString().Length == 0) { list.Porcentaje = 0; } else { list.Porcentaje = int.Parse(data["Porcentaje"].ToString()); }
                     if (data["AplicaEn"].ToString().Length == 0) { list.AplicaEn = ""; } else { list.AplicaEn = data["AplicaEn"].ToString(); }
-                        
+
                     list.Descontar_en_Finiquito = data["Descontar_en_Finiquito"].ToString();
                     list.No_Oficio = data["No_Oficio"].ToString();
-                    list.Fecha_Oficio = data["Fecha_Oficio"].ToString().Substring(0,10);
+                    list.Fecha_Oficio = data["Fecha_Oficio"].ToString().Substring(0, 10);
                     list.Tipo_Calculo = data["Tipo_Calculo"].ToString();
                     list.Aumentar_segun_salario_minimo_general = data["Aumentar_segun_salario_minimo_general"].ToString();
                     list.Aumentar_segun_aumento_de_sueldo = data["Aumentar_segun_aumento_de_sueldo"].ToString();
@@ -457,7 +498,7 @@ namespace Payroll.Models.Daos
                     if (data["Sucursal"].ToString().Length == 0) { list.Sucursal = ""; } else { list.Sucursal = data["Sucursal"].ToString(); }
                     if (data["Tarjeta_vales"].ToString().Length == 0) { list.Tarjeta_vales = ""; } else { list.Tarjeta_vales = data["Tarjeta_vales"].ToString(); }
                     if (data["Cuenta_cheques"].ToString().Length == 0) { list.Cuenta_cheques = ""; } else { list.Cuenta_cheques = data["Cuenta_cheques"].ToString(); }
-                    if (data["Fecha_baja"].ToString().Length == 0) { list.Fecha_baja = ""; } else { list.Fecha_baja = data["Fecha_baja"].ToString().Substring(0,10); }
+                    if (data["Fecha_baja"].ToString().Length == 0) { list.Fecha_baja = ""; } else { list.Fecha_baja = data["Fecha_baja"].ToString().Substring(0, 10); }
 
                     lista.Add(list);
 

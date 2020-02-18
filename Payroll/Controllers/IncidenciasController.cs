@@ -76,6 +76,15 @@ namespace Payroll.Controllers
             return Json(lista);
         }
         [HttpPost]
+        public JsonResult setDisfrutadas(int IdPer_vac_Dist)
+        {
+            List<string> lista = new List<string>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            lista = Dao.sp_TPeriodosVacaciones_Dist_Set_PeriodoDisfrutado(IdPer_vac_Dist);
+            return Json(lista);
+
+        }
+        [HttpPost]
         public JsonResult SavePeriodosVac(int PerVacLn_id, string FechaInicio, string FechaFin, int Dias)
         {
             List<string> lista = new List<string>();
@@ -113,6 +122,16 @@ namespace Payroll.Controllers
             int id1 = int.Parse(Session["Empleado_id"].ToString());
             int id2 = int.Parse(Session["IdEmpresa"].ToString());
             lista = Dao.sp_TAusentismos_Retrieve_Ausentismos_Empleado(id2,id1);
+            return Json(lista);
+        }
+        [HttpPost]
+        public JsonResult LoadAusentismo(int IdAusentismo)
+        {
+            List<AusentismosEmpleadosBean> lista = new List<AusentismosEmpleadosBean>();
+            pruebaEmpleadosDao Dao = new pruebaEmpleadosDao();
+            int id1 = int.Parse(Session["Empleado_id"].ToString());
+            int id2 = int.Parse(Session["IdEmpresa"].ToString());
+            lista = Dao.sp_TAusentismos_Retrieve_Ausentismo_Empleado(id2,id1,IdAusentismo);
             return Json(lista);
         }
         [HttpPost]

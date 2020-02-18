@@ -4,7 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
+    @*<title>@ViewBag.Title</title>*@
+    <title>IPSNet</title>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <link rel="icon" type="image/png" href="~/Content/img/icon-payroll.png" />
     <link rel="stylesheet" href="~/Content/jquery-ui.css">
@@ -37,12 +38,18 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
-        <form class="form-inline ml-5">
+        <form class="form-inline ml-5 justify-content-between">
             <div class="text-white font-menu-prin">
                 <i class="fas fa-user mr-ico-05"></i> @Session["sUsuario"]
             </div>
-            <div class="text-white font-menu-prin btnNameEmpresaSelected pl-3">
+            <div class="ml-4 text-white">
                 <i class="fas fa-building"></i>
+            </div>
+            <div class="ml-2 text-white font-menu-prin btnNameEmpresaSelected" id="btnNameEmpresaSelected">
+                
+            </div>
+            <div class="btn btn-sm btn-m mx-2 text-white border border-white" id="btn-cambiar-empresas" title="Cambiar empresa">
+                <i class="fas fa-exchange-alt"></i>
             </div>
             <span class="text-white ml-3 font-menu-prin" id="dateact"></span>
         </form>

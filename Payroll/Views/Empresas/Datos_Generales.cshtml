@@ -1,160 +1,214 @@
-﻿<div class="container bg-white pb-3 rounded">
-    <div class="h4 px-5 py-3 font-button " style="font-size:14px;">Datos generales de la nueva empresa</div>
+﻿<div class="container bg-white pb-3 rounded font-labels">
+    <div class="d-flex justify-content-between">
+        <div class="h4 px-5 py-3 font-button " style="font-size:14px;">Datos generales de la empresa</div>
+
+        <div class="collapsed" data-toggle="collapse" data-target="#collapseAddEmpresa" aria-expanded="false" aria-controls="collapseAddEmpresa">
+            <div class="d-flex justify-content-end ">
+                <div class="btn btn-link pr-1 btnadd font-labels" id="btnadd" href="#inNombre_Empresa">
+                    Agregar empresa <i class='text-success fas fa-plus-circle'></i>
+                </div>       
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 p-3 m-0 form-group row rounded" style="background-color:#E8EAF6;color:black;">
+            <label class="font-weight-bold col-md-2 py-0">Id Empresa : </label>
+            <label class="text-left col-md-4 py-0" id="l-01"></label>
+            <label class="font-weight-bold col-md-2 py-0">Nombre empresa : </label>
+            <label class="text-left col-md-4 py-0" id="l-02"></label>
+            <label class="font-weight-bold col-md-2">Razón Social : </label>
+            <label class="text-left col-md-4" id="l-03"></label>
+            <label class="font-weight-bold col-md-2">Estado : </label>
+            <label class="text-left col-md-4" id="l-04"></label>
+            <label class="font-weight-bold col-md-2">Ciudad : </label>
+            <label class="text-left col-md-4" id="l-05"></label>
+            <label class="font-weight-bold col-md-2">Delegación : </label>
+            <label class="text-left col-md-4" id="l-06"></label>
+            <label class="font-weight-bold col-md-2">Colonia : </label>
+            <label class="text-left col-md-4" id="l-07"></label>
+            <label class="font-weight-bold col-md-2">Calle : </label>
+            <label class="text-left col-md-4" id="l-08"></label>
+            <label class="font-weight-bold col-md-2">Giro : </label>
+            <label class="text-left col-md-4" id="l-09"></label>
+            <label class="font-weight-bold col-md-2">RFC : </label>
+            <label class="text-left col-md-4" id="l-10"></label>
+            <label class="font-weight-bold col-md-2">Fecha Alta : </label>
+            <label class="text-left col-md-4" id="l-11"></label>
+            <label class="font-weight-bold col-md-2">Regimen Fiscal : </label>
+            <label class="text-left col-md-4" id="l-12"></label>
+            <label class="font-weight-bold col-md-2">Nombre de la empresa</label>
+            <label class="text-left col-md-4" id="l-13"></label>
+            <div class="col-md-6 font-labels d-flex justify-content-end" ><div class="btn btn-outline-success font-weight-bold" style="font-size:12px;">Editar  <i class="pl-1 far fa-edit"></i> </div></div>
+    </div>
     <div class="dropdown-divider mb-3"></div>
-    <form id="form_inEmpresa" class="needs-validation font-labels" novalidate>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inNombre_empresa" class=" col-form-label font-labels">Nombre Empresa</label>
-                <input class="form-control font-labels" type="text" name="inNombre_empresa" id="inNombre_empresa" placeholder="Escribe la razón social de la empresa" required>
-                <div class="invalid-feedback">
-                    Ingrese la razon social de la empresa
+    <div class="">
+
+    </div>
+    <div class="accordion" id="accordionExample">
+        <div class=" col-md-12">
+            
+            <div id="collapseAddEmpresa" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="col-md-12">
+                    Agregar datos de la nueva empresa
                 </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inNomCorto_empresa" class="col-form-label font-labels">Nombre Corto</label>
-                <input type="text" class="form-control font-labels" name="inNomCorto_empresa" id="inNomCorto_empresa" placeholder="Escribe el nombre corto de la empresa" required>
-                <div class="valid-feedback">
+                <div class="dropdown-divider mb-3"></div>
+                <form id="form_inEmpresa" class="needs-validation font-labels" novalidate>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inNombre_empresa" class=" col-form-label font-labels">Nombre Empresa</label>
+                            <input class="form-control font-labels" type="text" name="inNombre_empresa" id="inNombre_empresa" placeholder="Escribe la razón social de la empresa" required>
+                            <div class="invalid-feedback">
+                                Ingrese la razon social de la empresa
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inNomCorto_empresa" class="col-form-label font-labels">Nombre Corto</label>
+                            <input type="text" class="form-control font-labels" name="inNomCorto_empresa" id="inNomCorto_empresa" placeholder="Escribe el nombre corto de la empresa" required>
+                            <div class="valid-feedback">
 
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inRfc_empresa">RFC de la empresa</label>
-                <input type="text" class="form-control font-labels" name="inRfc_empresa" id="inRfc_empresa" placeholder="Escribe en RFC de la empresa" maxlength="12" required>
-                <div class="valid-feedback">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inRfc_empresa">RFC de la empresa</label>
+                            <input type="text" class="form-control font-labels" name="inRfc_empresa" id="inRfc_empresa" placeholder="Escribe en RFC de la empresa" maxlength="12" required>
+                            <div class="valid-feedback">
 
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inGiro_empresa">Giro de la empresa</label>
-                <input type="text" class="form-control font-labels" name="inGiro_empresa" id="inGiro_empresa" placeholder="Escribe en giro de la empresa" required>
-                <div class="valid-feedback">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inGiro_empresa">Giro de la empresa</label>
+                            <input type="text" class="form-control font-labels" name="inGiro_empresa" id="inGiro_empresa" placeholder="Escribe en giro de la empresa" required>
+                            <div class="valid-feedback">
 
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inGiro_empresa">Regimen Fiscal</label>
-                <select type="text" class="form-control font-labels" name="inRFiscal_empresa" id="inRFiscal_empresa" required>
-                </select>
-                <div class="valid-feedback">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inGiro_empresa">Regimen Fiscal</label>
+                            <select type="text" class="form-control font-labels" name="inRFiscal_empresa" id="inRFiscal_empresa" required>
+                            </select>
+                            <div class="valid-feedback">
 
-                </div>
-            </div>
-            <div class="h5 px-5 py-3 text-dark font-labels col-md-12"><span class="fas fa-circle"></span> Direccion de la empresa</div>
-            <div class="dropdown-divider mb-3"></div>
-            <div class="form-group col-md-2">
-                <label for="inCodigo_postal">Codigo Postal</label>
-                <input type="text" maxlength="5" size="5" class="form-control input-number font-labels" min="0" name="inCodigo_postal" id="inCodigo_postal" required>
-                <div class="invalid-feedback">
-                </div>
-            </div>
-            <div class="form-group col-md-2">
-                <label for="">Validar CP</label>
-                <button class="form-control btn btn-secondary font-button font-labels" type="button" id="btnValidaCpEstado">
-                    &nbsp;Valida CP
-                </button>
-            </div>
-            <div class="form-group col-md-5">
-                <label for="inEstado_empresa">Estado</label>
-                <select class="form-control custom-select font-labels" name="inEstado_empresa" id="inEstado_empresa" required>
-                </select>
-                <div class="invalid-feedback">
+                            </div>
+                        </div>
+                        <div class="h5 px-5 py-3 text-dark font-labels col-md-12"><span class="fas fa-circle"></span> Direccion de la empresa</div>
+                        <div class="dropdown-divider mb-3"></div>
+                        <div class="form-group col-md-2">
+                            <label for="inCodigo_postal">Codigo Postal</label>
+                            <input type="text" maxlength="5" size="5" class="form-control input-number font-labels" min="0" name="inCodigo_postal" id="inCodigo_postal" required>
+                            <div class="invalid-feedback">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">Validar CP</label>
+                            <button class="form-control btn btn-secondary font-button font-labels" type="button" id="btnValidaCpEstado">
+                                &nbsp;Valida CP
+                            </button>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inEstado_empresa">Estado</label>
+                            <select class="form-control custom-select font-labels" name="inEstado_empresa" id="inEstado_empresa" required>
+                            </select>
+                            <div class="invalid-feedback">
 
-                </div>
-            </div>
+                            </div>
+                        </div>
 
-            <div class="form-group col-md-3">
-                <label for="inDelegacion_empresa">Municipio</label>
-                <select class="form-control custom-select font-labels" name="inMunicipio_empresa" id="inMunicipio_empresa">
-                </select>
-                <div class="valid-feedback">
+                        <div class="form-group col-md-3">
+                            <label for="inDelegacion_empresa">Municipio</label>
+                            <select class="form-control custom-select font-labels" name="inMunicipio_empresa" id="inMunicipio_empresa">
+                            </select>
+                            <div class="valid-feedback">
 
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inCiudad_empresa">Cuidad</label>
-                <select class="form-control custom-select font-labels" name="inCiudad_empresa" id="inCiudad_empresa" required>
-                </select>
-                <div class="invalid-feedback">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inCiudad_empresa">Cuidad</label>
+                            <select class="form-control custom-select font-labels" name="inCiudad_empresa" id="inCiudad_empresa" required>
+                            </select>
+                            <div class="invalid-feedback">
 
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inColonia_empresa">Colonia</label>
-                <select class="form-control  custom-select font-labels" name="inColonia_empresa" id="inColonia_empresa" required>
-                    <option value="">Selecciona</option>
-                </select>
-                <div class="valid-feedback">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inColonia_empresa">Colonia</label>
+                            <select class="form-control  custom-select font-labels" name="inColonia_empresa" id="inColonia_empresa" required>
+                                <option value="">Selecciona</option>
+                            </select>
+                            <div class="valid-feedback">
 
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inCalle_Empresa">Delegacion</label>
-                <input class="form-control font-labels" type="text" name="inDelegacion_Empresa" id="inDelegacion_Empresa" value="" placeholder="Ingrese la delegación" autocomplete="off" required />
-                <div class="invalid-feedback">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inCalle_Empresa">Delegacion</label>
+                            <input class="form-control font-labels" type="text" name="inDelegacion_Empresa" id="inDelegacion_Empresa" value="" placeholder="Ingrese la delegación" autocomplete="off" required />
+                            <div class="invalid-feedback">
 
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inCalle_Empresa">Calle</label>
-                <input class="form-control font-labels" type="text" name="inCalle_Empresa" id="inCalle_Empresa" placeholder="Ingrese la calle" autocomplete="off" required />
-                <div class="invalid-feedback">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inCalle_Empresa">Calle</label>
+                            <input class="form-control font-labels" type="text" name="inCalle_Empresa" id="inCalle_Empresa" placeholder="Ingrese la calle" autocomplete="off" required />
+                            <div class="invalid-feedback">
 
-                </div>
-            </div>
-            <div class="form-group col-md-12">
-                <div class="h5 px-5 pt-3 text-dark font-labels"><span class="fas fa-circle"></span> Asignar Registro Patronal</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="h5 px-5 pt-3 text-dark font-labels"><span class="fas fa-circle"></span> Asignar Registro Patronal</div>
 
-            </div>
+                        </div>
 
-            <div class="form-gruop col-md-6">
-                <div class="form-group">
-                    <label for="inAfiliacionIMSS">Afiliacion IMSS</label>
-                    <input type="text" class="form-control" id="inAfiliacionIMSS" maxlength="12" placeholder="Ingresa en Numero de afiliación al IMSS" required>
-                    <div class="invalid-feedback">
+                        <div class="form-gruop col-md-6">
+                            <div class="form-group">
+                                <label for="inAfiliacionIMSS">Afiliacion IMSS</label>
+                                <input type="text" class="form-control" id="inAfiliacionIMSS" maxlength="12" placeholder="Ingresa en Numero de afiliación al IMSS" required>
+                                <div class="invalid-feedback">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-gruop col-md-6">
+                            <div class="form-group">
+                                <label for="inNombreAfiliacionIMSS">Nombre Afiliacion</label>
+                                <input type="text" class="form-control" id="inNombreAfiliacionIMSS" placeholder="Ingresa en Nombre de la afiliación al IMSS" required>
+                                <div class="invalid-feedback">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-gruop col-md-6">
+                            <div class="form-group">
+                                <label for="inRiesgoTrabajo">Riesgo de trabajo</label>
+                                <input type="text" class="form-control" id="inRiesgoTrabajo" placeholder="Ingresa el riesgo de trabajo" required>
+                                <div class="invalid-feedback">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-gruop col-md-6">
+                            <div class="form-group">
+                                <label for="inClase">Clase </label>
+                                <select class="form-control custom-select font-labels" id="inClase" required>
+                                    <option value="">Selecciona</option>
+                                </select>
+                                <div class="invalid-feedback">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="invisible"> INF ONLY</label>
+                            <input class="btn btn-primary form-control font-button" type="submit" name="btn_saveEmpresa" id="btn_saveEmpresa" value="Guardar Empresa" />
+                        </div>
+                        <div class="form-group col-md-12 d-flex justify-content-end">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
 
                     </div>
-                </div>
-            </div>
-            <div class="form-gruop col-md-6">
-                <div class="form-group">
-                    <label for="inNombreAfiliacionIMSS">Nombre Afiliacion</label>
-                    <input type="text" class="form-control" id="inNombreAfiliacionIMSS" placeholder="Ingresa en Nombre de la afiliación al IMSS" required>
-                    <div class="invalid-feedback">
-
-                    </div>
-                </div>
-            </div>
-            <div class="form-gruop col-md-6">
-                <div class="form-group">
-                    <label for="inRiesgoTrabajo">Riesgo de trabajo</label>
-                    <input type="text" class="form-control" id="inRiesgoTrabajo" placeholder="Ingresa el riesgo de trabajo" required>
-                    <div class="invalid-feedback">
-
-                    </div>
-                </div>
-            </div>
-            <div class="form-gruop col-md-6">
-                <div class="form-group">
-                    <label for="inClase">Clase </label>
-                    <select class="form-control custom-select font-labels" id="inClase" required>
-                        <option value="">Selecciona</option>
-                    </select>
-                    <div class="invalid-feedback">
-
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label class="invisible"> INF ONLY</label>
-                <input class="btn btn-primary form-control font-button" type="submit" name="btn_saveEmpresa" id="btn_saveEmpresa" value="Guardar Empresa" />
-            </div>
-            <div class="form-group col-md-12 d-flex justify-content-end">
+                </form>
             </div>
         </div>
-        <div class="d-flex justify-content-end">
-
-        </div>
-    </form>
+    </div>
+    
 </div>
 
 <script>
@@ -277,7 +331,28 @@
     $('.input-number').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
-
+    $.ajax({
+        url: "../Empresas/LoadDatosEmpresa",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        success: (data) => {
+            console.log("datos empresa");
+            console.log(data);
+            document.getElementById("l-01").innerHTML = data[0];
+            document.getElementById("l-02").innerHTML = data[1];
+            document.getElementById("l-03").innerHTML = data[2];
+            document.getElementById("l-04").innerHTML = data[3];
+            document.getElementById("l-05").innerHTML = data[4];
+            document.getElementById("l-06").innerHTML = data[5];
+            document.getElementById("l-07").innerHTML = data[6];
+            document.getElementById("l-08").innerHTML = data[7];
+            document.getElementById("l-09").innerHTML = data[8];
+            document.getElementById("l-10").innerHTML = data[9];
+            document.getElementById("l-11").innerHTML = data[10];
+            document.getElementById("l-12").innerHTML = data[11];
+            document.getElementById("l-13").innerHTML = data[12];
+        }
+    });
     $.ajax({
         url: "../Empresas/LoadClasesRP",
         type: "POST",
@@ -390,6 +465,22 @@
                 }
             });
         }
+    });
+
+    $(".collapse").on("show", function () {
+        //document.getElementById("btnadd").innerHTML = "Ocultar agregar empresa";
+        console.log("show");
+        $("#inNombre_empresa").focus();
+        document.getElementById("inNombre_empresa").focus();
+    });
+    $("#btnadd").on("click", function () {
+        document.getElementById("btnadd").innerHTML = "Ocultar agregar empresa <i class='text-danger fas fa-minus-circle'></i>";
+        console.log("show");
+        
+    });
+    $('#collapseAddEmpresa').on('hidden.bs.collapse', function () {
+        document.getElementById("btnadd").innerHTML = "Agregar empresa <i class='text-success fas fa-plus-circle'></i>";
+        console.log("was hide");
     });
 </script>
 
