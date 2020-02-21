@@ -80,6 +80,7 @@ namespace Payroll.Controllers
         {
             List<EmpresasBean> listEmpresasBean = new List<EmpresasBean>();
             EmpresasDao empresasDao = new EmpresasDao();
+            int keyempresa = int.Parse(Session["IdEmpresa"].ToString());
             listEmpresasBean = empresasDao.sp_Empresas_Retrieve_Empresas(state, type, keyemp);
             return Json(listEmpresasBean);
         }
@@ -190,6 +191,16 @@ namespace Payroll.Controllers
             sucursalBean = regionDao.sp_Sucursales_Retrieve_Sucursales();
             var data = new { data = sucursalBean };
             return Json(data);
+        }
+
+        [HttpPost]
+        public JsonResult SaveSucursal(string desc, string clav)
+        {
+            SucursalesBean sucursalBean = new SucursalesBean();
+            SucursalesDao  sucursalDao  = new SucursalesDao();
+            int usuario = int.Parse(Session["iIdUsuario"].ToString());
+            sucursalBean = sucursalDao.sp_Sucursales_Insert_Sucursales(desc, clav, usuario);
+            return Json(sucursalBean);
         }
     }
 }

@@ -618,7 +618,7 @@ namespace Payroll.Models.Daos
             try
             {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Empresas_Retrieve_Empresas", this.conexion)
+                SqlCommand cmd = new SqlCommand("sp_Empresas_RetrieveFiltro_Empresas", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -633,12 +633,6 @@ namespace Payroll.Models.Daos
                         EmpresasBean empresaBean = new EmpresasBean();
                         empresaBean.iIdEmpresa = Convert.ToInt32(data["IdEmpresa"].ToString());
                         empresaBean.sNombreEmpresa = data["NombreEmpresa"].ToString();
-                        if (keyemp != 0)
-                        {
-                            empresaBean.iEstadoEmpresa = Convert.ToInt32(data["EstadoEmpresa"].ToString());
-                            empresaBean.sUsuarioRegistro = data["UsuarioRegistroEmpresa"].ToString();
-                            empresaBean.sFechaRegistro = data["FechaRegistroEmpres"].ToString();
-                        }
                         listEmpresasBean.Add(empresaBean);
                     }
                 }
@@ -1138,7 +1132,8 @@ namespace Payroll.Models.Daos
                         localidadBean.iIdEmpresa = Convert.ToInt32(data["Empresa_id"].ToString());
                         localidadBean.iCodigoLocalidad = Convert.ToInt32(data["Codigo_Localidad"].ToString());
                         localidadBean.sDescripcion = data["Descripcion"].ToString();
-                        localidadBean.dTazIva = Convert.ToDouble(data["TasaIva"].ToString());
+                        localidadBean.sRegistroPatronal = data["Afiliacion_IMSS"].ToString();
+                        //localidadBean.dTazIva = Convert.ToDouble(data["TasaIva"].ToString());
                         if (data["RegistroPatronal_id"].ToString().Length != 0)
                         {
                             localidadBean.iRegistroPatronal_id = Convert.ToInt32(data["RegistroPatronal_id"].ToString());
@@ -1595,12 +1590,14 @@ namespace Payroll.Models.Daos
                 cmd.Parameters.Add(new SqlParameter("@ctrlDescripcion", descsucursal));
                 cmd.Parameters.Add(new SqlParameter("@ctrlClaveSucursal", clasucursal));
                 cmd.Parameters.Add(new SqlParameter("@ctrlUsuario", usuario));
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    sucursalBean.sMensaje = "success";
-                }
-                else
-                {
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.Read()) {
+                    if (data["sRespuesta"].ToString() == "") {
+                        sucursalBean.sMensaje = "success";
+                    } else {
+                        sucursalBean.sMensaje = data["sRespuesta"].ToString();
+                    }
+                } else {
                     sucursalBean.sMensaje = "error";
                 }
                 cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
