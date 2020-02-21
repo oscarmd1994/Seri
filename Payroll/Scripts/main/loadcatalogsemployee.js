@@ -148,7 +148,6 @@
                     }
                     if (quantity > 0) {
                         for (i = 0; i < data.length; i++) {
-                            console.log(data[i]);
                             if (fieldval == data[i].iId) {
                                 element.innerHTML += `<option selected value="${data[i].iId}">${data[i].sValor}</option>`;
                             } else {
