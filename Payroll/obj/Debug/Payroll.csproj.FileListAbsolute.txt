@@ -128,8 +128,6 @@ D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\vbc.exe.config
 D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\vbc.rsp
 D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\VBCSCompiler.exe
 D:\IPSNet\Repositorio\Seri\Payroll\bin\roslyn\VBCSCompiler.exe.config
-D:\IPSNet\Repositorio\Seri\Payroll\bin\Payroll.dll.CodeAnalysisLog.xml
-D:\IPSNet\Repositorio\Seri\Payroll\bin\Payroll.dll.lastcodeanalysissucceeded
 D:\IPSNet\Repositorio\Seri\Payroll\bin\Antlr3.Runtime.dll
 D:\IPSNet\Repositorio\Seri\Payroll\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\IPSNet\Repositorio\Seri\Payroll\bin\Microsoft.Web.Infrastructure.dll
@@ -163,3 +161,4 @@ D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.csproj.CoreCompileInputs.ca
 D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.csproj.CopyComplete
 D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.dll
 D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.pdb
+D:\IPSNet\Repositorio\Seri\Payroll\obj\Debug\Payroll.csprojAssemblyReference.cache
