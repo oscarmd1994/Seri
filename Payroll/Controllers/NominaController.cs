@@ -405,5 +405,15 @@ namespace Payroll.Controllers
             bean = dao.sp_Cgeneral_Retrieve_MotivoBajasxTe();
             return Json(bean);
         }
+        [HttpPost]
+        public JsonResult LoadDatosBaja()
+        {
+            List<string> bean;
+            FuncionesNomina dao = new FuncionesNomina();
+            var Empresa_id = int.Parse(Session["IdEmpresa"].ToString());
+            var Empleado_id = int.Parse(Session["Empleado_id"].ToString());
+            bean = dao.sp_TEmpleado_Nomina_Retrieve_DatosBaja(Empresa_id,Empleado_id);
+            return Json(bean);
+        }
     }
 }
