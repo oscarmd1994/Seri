@@ -775,6 +775,7 @@
     <Content Include="Scripts\jqxGrid\jqwidgets\jquery-1.11.1.min.map" />
     <Content Include="Views\Nomina\Ejecucion.cshtml" />
     <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
+    <Content Include="Views\Incidencias\Incidencias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

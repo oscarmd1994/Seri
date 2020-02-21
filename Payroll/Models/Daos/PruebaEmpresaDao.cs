@@ -175,6 +175,47 @@ namespace Payroll.Models.Daos
 
             return empresa;
         }
+        public List<string> sp_CEmpresas_Retrieve_Empresa(int IdEmpresa)
+        {
+            List<string> empresa = new List<string>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_CEmpresas_Retrieve_Empresa", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrliIdEmpresa", IdEmpresa));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+
+                    empresa.Add(data["IdEmpresa"].ToString());
+                    empresa.Add(data["NombreEmpresa"].ToString());
+                    empresa.Add(data["RazonSocial"].ToString());
+                    empresa.Add(data["CodigoPostal"].ToString());
+                    empresa.Add(data["Estado_id"].ToString());
+                    empresa.Add(data["Ciudad"].ToString());
+                    empresa.Add(data["Delegacion"].ToString());
+                    empresa.Add(data["Colonia_id"].ToString());
+                    empresa.Add(data["Calle"].ToString());
+                    empresa.Add(data["Giro"].ToString());
+                    empresa.Add(data["RFC"].ToString());
+                    empresa.Add(data["FechaAlta"].ToString());
+                    empresa.Add(data["Regimen_Fiscal_id"].ToString());
+                    
+                }
+            }
+            else
+            {
+                empresa = null;
+            }
+            data.Close();
+
+            return empresa;
+        }
         public List<string> sp_Insert_FirstStep_Empresas(string inNombre_empresa, string inNomCorto_empresa, string inRfc_empresa, string inGiro_empresa, int inRegimenFiscal_Empresa, int inCodigo_postal, int inEstado_empresa, int inMunicipio_empresa, string inCiudad_empresa, string inDelegacion, int inColonia_empresa, string inCalle_Empresa, string inAfiliacionesIMSS, string inNombre_Afiliacion, string inRiesgoTrabajo, int usuario_id, int inClase)
         {
             List<string> res = new List<string>();
