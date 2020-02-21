@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Payroll.Models.Beans;
+﻿using Payroll.Models.Beans;
 using Payroll.Models.Utilerias;
-using System.Data.SqlClient;
+using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Web.Mvc;
+using System.Data.SqlClient;
 
 
 namespace Payroll.Models.Daos
@@ -603,7 +600,8 @@ namespace Payroll.Models.Daos
             return list;
         }
 
-        public List<NominahdBean> sp_DeficionNominaCancelados_Retrieve_DeficionNominaCancelados(string CrtlsNombreDefinicio, int CrtliCanceldo) {
+        public List<NominahdBean> sp_DeficionNominaCancelados_Retrieve_DeficionNominaCancelados(string CrtlsNombreDefinicio, int CrtliCanceldo)
+        {
 
             List<NominahdBean> list = new List<NominahdBean>();
             try
@@ -751,7 +749,8 @@ namespace Payroll.Models.Daos
 
         }
 
-        public NominaLnBean sp_EliminarDefinicionNl_Delete_EliminarDefinicionNl(int CtrliIdDefinicionNl) {
+        public NominaLnBean sp_EliminarDefinicionNl_Delete_EliminarDefinicionNl(int CtrliIdDefinicionNl)
+        {
             NominaLnBean bean = new NominaLnBean();
             try
             {
@@ -868,7 +867,7 @@ namespace Payroll.Models.Daos
                 };
                 cmd.Parameters.Add(new SqlParameter("@CtrliIdDedinicionHD", CtrliIdDedinicionHD));
                 cmd.Parameters.Add(new SqlParameter("@CtrliNominacerrada", CtrliNominacerrada));
-              
+
                 if (cmd.ExecuteNonQuery() > 0)
                 {
                     bean.sMensaje = "success";
@@ -907,16 +906,16 @@ namespace Payroll.Models.Daos
                     {
                         NominaLnDatBean ls = new NominaLnDatBean();
                         {
-                        ls.iIdDefinicionln = data["IdDefinicion_Ln"].ToString();
-                        ls.IdEmpresa = data["NombreEmpresa"].ToString();
-                        ls.iRenglon = data["NombreRenglon"].ToString();
-                        ls.iElementonomina = data["Cg_Elemento_Nomina_id"].ToString();
-                        ls.iTipodeperiodo = data["Valor"].ToString();
-                        ls.iIdperiodo = data["Periodo_id"].ToString();
-                        ls.iIdAcumulado = data["Acumulado_id"].ToString();
-                        ls.iEsespejo = data["Es_Espejo"].ToString();
+                            ls.iIdDefinicionln = data["IdDefinicion_Ln"].ToString();
+                            ls.IdEmpresa = data["NombreEmpresa"].ToString();
+                            ls.iRenglon = data["NombreRenglon"].ToString();
+                            ls.iElementonomina = data["Cg_Elemento_Nomina_id"].ToString();
+                            ls.iTipodeperiodo = data["Valor"].ToString();
+                            ls.iIdperiodo = data["Periodo_id"].ToString();
+                            ls.iIdAcumulado = data["Acumulado_id"].ToString();
+                            ls.iEsespejo = data["Es_Espejo"].ToString();
 
-                    };
+                        };
                         list.Add(ls);
                     }
                 }
@@ -960,7 +959,7 @@ namespace Payroll.Models.Daos
                 {
                     list = null;
                 }
-                data.Close();  conexion.Close();
+                data.Close(); conexion.Close();
             }
             catch (Exception exc)
             {
@@ -985,10 +984,10 @@ namespace Payroll.Models.Daos
                     while (data.Read())
                     {
                         MotivoBajaBean ls = new MotivoBajaBean();
-                        {
-                            ls.IdMotivo_Baja = int.Parse(data["IdValor"].ToString());
-                            ls.Descripcion = data["Valor"].ToString();
-                        };
+                        
+                        ls.IdMotivo_Baja = int.Parse(data["IdValor"].ToString());
+                        ls.Descripcion = data["Valor"].ToString();
+                        
                         list.Add(ls);
                     }
                 }
@@ -996,7 +995,98 @@ namespace Payroll.Models.Daos
                 {
                     list = null;
                 }
-                data.Close();  conexion.Close();
+                data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+        }
+        public List<MotivoBajaBean> sp_Cgeneral_Retrieve_MotivoBajasxTe()
+        {
+            List<MotivoBajaBean> list = new List<MotivoBajaBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Cgeneral_Retrieve_MotivoBajas", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        MotivoBajaBean ls = new MotivoBajaBean();
+                        
+
+                        switch (int.Parse(data["IdValor"].ToString()))
+                        {
+                            case 0:
+                            case 3: 
+                            case 10:
+                            case 11:
+                            case 12:
+                            case 13:
+                            case 14:
+                            case 15:
+                            case 16:
+                            case 20:
+                            case 21:
+                            case 22:
+                                ls.IdMotivo_Baja = int.Parse(data["IdValor"].ToString());
+                                ls.TipoEmpleado_id = 21;
+                                ls.Descripcion = data["Valor"].ToString();
+                                break;
+                            case 4:
+                            case 5:
+                                ls.IdMotivo_Baja = int.Parse(data["IdValor"].ToString());
+                                ls.TipoEmpleado_id = 22;
+                                ls.Descripcion = data["Valor"].ToString();
+                                break;
+                            case 18:
+                                ls.IdMotivo_Baja = int.Parse(data["IdValor"].ToString());
+                                ls.TipoEmpleado_id = 25;
+                                ls.Descripcion = data["Valor"].ToString();
+                                break;
+                            case 19:
+                                ls.IdMotivo_Baja = int.Parse(data["IdValor"].ToString());
+                                ls.TipoEmpleado_id = 27;
+                                ls.Descripcion = data["Valor"].ToString();
+                                break;
+                            case 6:
+                            case 7:
+                            case 8:
+                            case 9:
+                                ls.IdMotivo_Baja = int.Parse(data["IdValor"].ToString());
+                                ls.TipoEmpleado_id = 29;
+                                ls.Descripcion = data["Valor"].ToString();
+                                break;
+                            case 17:
+                            case 23:
+                                ls.IdMotivo_Baja = int.Parse(data["IdValor"].ToString());
+                                ls.TipoEmpleado_id = 30;
+                                ls.Descripcion = data["Valor"].ToString();
+                                break;
+                            case 1:
+                            case 2:
+                                ls.IdMotivo_Baja = int.Parse(data["IdValor"].ToString());
+                                ls.TipoEmpleado_id = 31;
+                                ls.Descripcion = data["Valor"].ToString();
+                                break;
+                        }
+                        
+                        
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                data.Close(); conexion.Close();
             }
             catch (Exception exc)
             {
@@ -1007,4 +1097,3 @@ namespace Payroll.Models.Daos
     }
 }
 
-   

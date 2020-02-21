@@ -101,7 +101,7 @@ namespace Payroll.Controllers
 
             return Json(bean);
         }
-        // Regresa el listado de perido
+        // Regresa el listado de periodo
         [HttpPost]
         public JsonResult ListPeriodo(int iIdEmpresesas, int ianio, int iTipoPeriodo)
         {
@@ -387,12 +387,22 @@ namespace Payroll.Controllers
             bean = dao.sp_Cgeneral_Retrieve_MotivoBajas();
             return Json(bean);
         }
+        //Carga tipos empleado para select
         [HttpPost]
         public JsonResult LoadTipoBaja()
         {
             List<TipoEmpleadoBean> bean;
             FuncionesNomina dao = new FuncionesNomina();
             bean = dao.sp_Cgeneral_Retrieve_TipoEmpleadosBajas();
+            return Json(bean);
+        }
+        //Carga tipos empleado para select x tipo de empleado
+        [HttpPost]
+        public JsonResult LoadMotivoBajaxTe()
+        {
+            List<MotivoBajaBean> bean;
+            FuncionesNomina dao = new FuncionesNomina();
+            bean = dao.sp_Cgeneral_Retrieve_MotivoBajasxTe();
             return Json(bean);
         }
     }

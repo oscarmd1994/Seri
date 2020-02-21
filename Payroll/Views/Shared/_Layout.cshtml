@@ -19,26 +19,16 @@
 </head>
 <body style="padding-right: 0 !important;">
     <nav class="navbar nav-backcolor navbar-expand-lg">
-        <span class="navbar-text text-white">
+        
+        <div class="navbar-brand text-white">
             <a href="" class="text-white txt-none">
                 <h2 class="title-navbar">
                     <i class="fas fa-money-check-alt mr-ico-05 ml-ico-05"></i> IPSNet
                 </h2>
             </a>
-        </span>
-        <form class="form-inline ml-5 invisible">
-            <input class="form-control mr-sm-2 form-control-sm" type="search" placeholder="Buscar por empresa" aria-label="Search">
-            <button class="btn btn-light my-2 my-sm-0 btn-sm" type="submit">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
-        <form class="form-inline ml-5 invisible">
-            <input class="form-control mr-sm-2 form-control-sm" type="search" placeholder="Buscar por empleado" aria-label="Search">
-            <button class="btn btn-light my-2 my-sm-0 btn-sm" type="submit">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
-        <form class="form-inline ml-5 justify-content-between">
+        </div>
+        
+        <form class="form-inline ml-5 ">
             <div class="text-white font-menu-prin">
                 <i class="fas fa-user mr-ico-05"></i> @Session["sUsuario"]
             </div>
@@ -46,18 +36,19 @@
                 <i class="fas fa-building"></i>
             </div>
             <div class="ml-2 text-white font-menu-prin btnNameEmpresaSelected" id="btnNameEmpresaSelected">
-                
+
             </div>
             <div class="btn btn-sm btn-m mx-2 text-white border border-white" id="btn-cambiar-empresas" title="Cambiar empresa">
                 <i class="fas fa-exchange-alt"></i>
             </div>
             <span class="text-white ml-3 font-menu-prin" id="dateact"></span>
-        </form>
-        <div class="form-inline ml-5">
+            <div class="form-inline ml-5">
             <a href="../Login/Logout" class="btn btn-light btn-sm">
                 Salir <i class="fas fa-sign-out-alt ml-ico-05"></i>
             </a>
         </div>
+        </form>
+        
     </nav>
 
     <div class="body-content">

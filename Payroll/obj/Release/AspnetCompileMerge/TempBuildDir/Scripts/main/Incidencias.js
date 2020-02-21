@@ -74,10 +74,6 @@
                 contentType: "application/json; charset=utf-8",
                 success: (data) => {
 
-                    
-
-
-
                     console.log(data[0]["iFlag"]);
                     $("#resultSearchEmpleados").empty();
                     if (data[0]["iFlag"] == 0) {

@@ -92,6 +92,15 @@ namespace Payroll.Controllers
             return Json(empresas);
         }
         [HttpPost]
+        public JsonResult LoadEmpresa()
+        {
+            List<string> empresas = new List<string>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            int IdEmpresa = int.Parse(Session["IdEmpresa"].ToString());
+            empresas = Dao.sp_CEmpresas_Retrieve_Empresa(IdEmpresa);
+            return Json(empresas);
+        }
+        [HttpPost]
         public JsonResult Insert_Empresa_FirstStep(string inNombre_empresa, string inNomCorto_empresa, string inRfc_empresa, string inGiro_empresa,int inRegimenFiscal_Empresa, int inCodigo_postal, int inEstado_empresa, int inMunicipio_empresa, string inCiudad_empresa, int inColonia_empresa, string inDelegacion_Empresa, string inCalle_Empresa, string inAfiliacionIMSS,string inNombre_Afiliacion, string inRiesgoTrabajo, int inClase )
         {
             List<string> empresas = new List<string>();
