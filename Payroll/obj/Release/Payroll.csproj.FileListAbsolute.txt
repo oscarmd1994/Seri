@@ -80,3 +80,4 @@ D:\IPSNet\Repositorio\Seri\Payroll\obj\Release\Payroll.csproj.CoreCompileInputs.
 D:\IPSNet\Repositorio\Seri\Payroll\obj\Release\Payroll.csproj.CopyComplete
 D:\IPSNet\Repositorio\Seri\Payroll\obj\Release\Payroll.dll
 D:\IPSNet\Repositorio\Seri\Payroll\obj\Release\Payroll.pdb
+D:\IPSNet\Repositorio\Seri\Payroll\obj\Release\Payroll.csprojAssemblyReference.cache
