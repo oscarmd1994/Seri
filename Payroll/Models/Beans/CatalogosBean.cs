@@ -331,6 +331,7 @@ namespace Payroll.Models.Beans
         public string sDescripcion { get; set; }
         public double dTazIva { get; set; }
         public int iRegistroPatronal_id { get; set; }
+        public string sRegistroPatronal { get; set; }
         public int iRegional_id { get; set; }
         public int iZonaEconomica_id { get; set; }
         public int iSucursal_id { get; set; }

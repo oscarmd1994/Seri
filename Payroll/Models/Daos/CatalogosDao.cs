@@ -1132,6 +1132,7 @@ namespace Payroll.Models.Daos
                         localidadBean.iIdEmpresa = Convert.ToInt32(data["Empresa_id"].ToString());
                         localidadBean.iCodigoLocalidad = Convert.ToInt32(data["Codigo_Localidad"].ToString());
                         localidadBean.sDescripcion = data["Descripcion"].ToString();
+                        localidadBean.sRegistroPatronal = data["Afiliacion_IMSS"].ToString();
                         //localidadBean.dTazIva = Convert.ToDouble(data["TasaIva"].ToString());
                         if (data["RegistroPatronal_id"].ToString().Length != 0)
                         {

@@ -24,7 +24,7 @@
     btnclosesearchlocalitys.addEventListener('click', fclearsearchresults);
     icoclosesearchlocalitys.addEventListener('click', fclearsearchresults);
     /* FUNCION  QUE CARGA LOS DATOS DE LA LOCALIDAD SELECCIONADA EN EL FORMULARIO DE REGISTRO DE NUEVA POSICION */
-    fselectlocality = (paramid, paramstr) => {
+    fselectlocality = (paramid, paramstr, paramregpat, paramstrregpat) => {
         try {
             $("#searchlocalidad").modal('hide'); 
             searchlocalityadd.value     = '';
@@ -32,6 +32,7 @@
             $("#registerposition").modal('show');
             localityr.value    = paramid;
             localityrtxt.value = paramstr;
+            document.getElementById('regpatcla').innerHTML = `<option value="${paramregpat}">${paramstrregpat}</option>`;
         } catch (error) {
             if (error instanceof TypeError) {
                 console.log('TypeError ', error);
@@ -55,14 +56,11 @@
                     type: "POST",
                     data: { wordsearch: searchlocalityadd.value },
                     success: (data) => {
-                        console.log(data);
-                        console.log(searchlocalityadd.value)
                         if (data.length > 0) {
                             let number = 0;
                             for (let i = 0; i < data.length; i++) { 
-                                console.log(data[i]);
                                 number += 1;
-                                resultlocalityadd.innerHTML += `<button class="list-group-item d-flex justify-content-between mb-1 align-items-center shadow rounded cg-back">${number}. ${data[i].iCodigoLocalidad} - ${data[i].sDescripcion} <i class="fas fa-check-circle ml-2 col-ico fa-lg" onclick="fselectlocality(${data[i].iIdLocalidad}, '${data[i].sDescripcion}')"></i> </button>`;
+                                resultlocalityadd.innerHTML += `<button class="list-group-item d-flex justify-content-between mb-1 align-items-center shadow rounded cg-back">${number}. ${data[i].iCodigoLocalidad} - ${data[i].sDescripcion} <i class="fas fa-check-circle ml-2 col-ico fa-lg" onclick="fselectlocality(${data[i].iIdLocalidad}, '${data[i].sDescripcion}',${data[i].iRegistroPatronal_id}, '${data[i].sRegistroPatronal}')"></i> </button>`;
                             }
                         }
                     }, error: (jqXHR, exception) => {
