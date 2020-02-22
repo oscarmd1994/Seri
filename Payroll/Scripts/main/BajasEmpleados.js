@@ -73,21 +73,24 @@
             success: (emp) => {
                 //console.log(data);
                 document.getElementById("nameuser").innerHTML = emp[0].Nombre_Empleado + " " + emp[0].Apellido_Paterno_Empleado + " " + emp[0].Apellido_Materno_Empleado;
-
-                //$.ajax({
-                //    url: "../Nomina/LoadMotivoBaja",
-                //    type: "POST",
-                //    data: JSON.stringify(),
-                //    dataType: "json",
-                //    contentType: "application/json; charset=utf-8",
-                //    success: (motiv) => {
-                //        console.log(motiv);
-                //        document.getElementById("inMotivosBaja").innerHTML = "";
-                //        for (var i = 0; i < motiv.length; i++) {
-                //            document.getElementById("inMotivosBaja").innerHTML += "<option value='" + motiv[i]["IdMotivo_Baja"] + "'>" + motiv[i]["Descripcion"] + "</option>";
-                //        }
-                //    }
-                //});
+                //carga datos de header para baja
+                $.ajax({
+                    url: "../Nomina/LoadDatosBaja",
+                    type: "POST",
+                    data: JSON.stringify(),
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: (res) => {
+                        console.log(res);
+                        document.getElementById("id_emp").innerHTML = res[0];
+                        document.getElementById("sueldo_emp").innerHTML = res[2].substring(0, res[2].length - 2);
+                        document.getElementById("aumento_emp").innerHTML = res[3];
+                        document.getElementById("antiguedad_emp").innerHTML = res[4];
+                        document.getElementById("nivel_emp").innerHTML = res[5];
+                        document.getElementById("posicion_emp").innerHTML = res[6];
+                    }
+                });
+                //carga select tipo Baja
                 $.ajax({
                     url: "../Nomina/LoadTipoBaja",
                     type: "POST",
@@ -102,6 +105,7 @@
                         }
                     }
                 });
+
                 $("#modalLiveSearchEmpleado").modal("hide");
             }
         });

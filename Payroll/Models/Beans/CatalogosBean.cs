@@ -474,6 +474,7 @@ namespace Payroll.Models.Beans
     {
         public int IdAusentismo { get; set; }
         public int Tipo_Ausentismo_id { get; set; }
+        public string Nombre_Ausentismo { get; set; }
         public int Empleado_id { get; set; }
         public int Empresa_id { get; set; }
         public string RecuperaAusentismo { get; set; }

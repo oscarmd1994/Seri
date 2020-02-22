@@ -273,6 +273,7 @@ namespace Payroll.Models.Daos
 
                     lista.IdAusentismo = int.Parse(data["IdAusentismo"].ToString());
                     lista.Tipo_Ausentismo_id = int.Parse(data["Tipo_Ausentismo_id"].ToString());
+                    lista.Nombre_Ausentismo = data["Descripcion"].ToString();
                     lista.Empleado_id = int.Parse(data["Empleado_id"].ToString());
                     lista.Empresa_id = int.Parse(data["Empresa_id"].ToString());
                     lista.Fecha_Ausentismo = data["Fecha_Ausentismo"].ToString();
