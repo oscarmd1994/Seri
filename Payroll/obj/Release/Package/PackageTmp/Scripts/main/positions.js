@@ -307,7 +307,7 @@
         }
     }
     /* EJECUCION DE FUNCION QUE CARGA LOS REGISTROS PATRONALES */
-    floadregpatclases(regpatcla);
+    //floadregpatclases(regpatcla);
     /* FUNCION QUE CARGA LOS DATOS DE LA POSICION SELECCIONADA AL AÑADIR UNA NUEVA */
     fselectpositionadd = (paramid, paramstr) => {
         try {
@@ -496,7 +496,7 @@
     });
     /* FUNCION QUE CARGA LOS DATOS DE LA POSICION SELECCIONADA PARA SER EDITADA */
     fviewdatailspos = (paramid) => {
-        floadregpatclases(editatcla);
+        //floadregpatclases(editatcla);
         floadbusiness(0, 'Active/Desactive', 0, edireportempr);
         $("#searchpositions").modal('hide');
         try {
@@ -514,14 +514,13 @@
                         departedit.value = data.sNombreDepartamento;
                         //puesidedit.value  = data.iPuesto_id;
                         pueusuedit.value = data.sNombrePuesto;
-                        editatcla.value = data.iIdRegistroPat;
+                        editatcla.innerHTML = `<option value="${data.iIdRegistroPat}">${data.sRegistroPat}</option>`;
                         //editlocalityr.value = data.iIdLocalidad;
                         edilocalityrtxt.value = data.sLocalidad;
                         //emprepedit.value = data.iIdReportaAPosicion;
                         emprepregtxtedit.value = data.sCodRepPosicion;
                         edireportempr.value = data.iIdReportaAEmpresa;
                         //setTimeout(() => { edicodposic.focus(); }, 1000);
-                        console.log(data);
                     }, error: (jqXHR, exception) => {
                         fcaptureaerrorsajax(jqXHR, exception);
                     }

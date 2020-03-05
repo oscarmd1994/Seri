@@ -767,12 +767,14 @@
 
     function validarInput(input) {
         var curp = input.value.toUpperCase();
-        if (curpValida(curp)) {
-            input.classList.remove('is-invalid');
-            btnSaveDataImss.disabled = false;
-        } else {
-            input.classList.add('is-invalid');
-            btnSaveDataImss.disabled = true;
+        if (curp.length > 0) {
+            if (curpValida(curp)) {
+                input.classList.remove('is-invalid');
+                btnSaveDataImss.disabled = false;
+            } else {
+                input.classList.add('is-invalid');
+                btnSaveDataImss.disabled = true;
+            }
         }
     }
 
@@ -788,11 +790,11 @@
                 let formatcurp = String(curp.value).substring(0, 10);
                 if (formatrfc == formatcurp) {
                     curp.classList.remove('is-invalid');
-                    rfc.classList.remove('is-invalid');
+                    //rfc.classList.remove('is-invalid');
                     btnSaveDataImss.disabled = false;
                 } else {
                     curp.classList.add('is-invalid');
-                    rfc.classList.add('is-invalid');
+                    //rfc.classList.add('is-invalid');
                     btnSaveDataImss.disabled = true;
                 }
             }
@@ -805,11 +807,11 @@
                 let formatrfc = String(rfc.value).substring(0, 10);
                 let formatcurp = String(curp.value).substring(0, 10);
                 if (formatrfc == formatcurp) {
-                    curp.classList.remove('is-invalid');
+                    //curp.classList.remove('is-invalid');
                     rfc.classList.remove('is-invalid');
                     btnSaveDataImss.disabled = false;
                 } else {
-                    curp.classList.add('is-invalid');
+                    //curp.classList.add('is-invalid');
                     rfc.classList.add('is-invalid');
                     btnSaveDataImss.disabled = true;
                 }
