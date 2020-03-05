@@ -759,8 +759,6 @@
     <Content Include="Views\Empresas\Registros_Patronales.cshtml" />
     <Content Include="Views\Empresas\Localidades.cshtml" />
     <Content Include="Views\Incidencias\Creditos.cshtml" />
-    <Content Include="Views\Nomina\AltaDefinicion.cshtml" />
-    <Content Include="Views\Nomina\Consulta.cshtml" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\colorpicker\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\darkness\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\le-frog\Thumbs.db" />
@@ -773,9 +771,10 @@
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\jquery-1.11.1.min.map" />
-    <Content Include="Views\Nomina\Ejecucion.cshtml" />
-    <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
     <Content Include="Views\Incidencias\Incidencias.cshtml" />
+    <Content Include="Views\Nomina\AltaDefinicion.cshtml" />
+    <Content Include="Views\Nomina\Consulta.cshtml" />
+    <Content Include="Views\Nomina\Ejecucion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
