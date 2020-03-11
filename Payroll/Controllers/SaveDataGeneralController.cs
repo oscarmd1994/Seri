@@ -91,14 +91,14 @@ namespace Payroll.Controllers
 
         //Guarda los datos de la nomina del empleado
         [HttpPost]
-        public JsonResult DataNomina(string fecefecnom, double salmen, int tipemp, int nivemp, int tipjor, int tipcon, string fecing, string fecant, string vencon, string estats, string empleado, string apepat, string apemat, string fechanaci, int tipper, int tipcontra, int motinc, int tippag, int banuse, string cunuse, int position, int clvemp)
+        public JsonResult DataNomina(string fecefecnom, double salmen, int tipemp, int nivemp, int tipjor, int tipcon, string fecing, string fecant, string vencon, string estats, string empleado, string apepat, string apemat, string fechanaci, int tipper, int tipcontra, int tippag, int banuse, string cunuse, int position, int clvemp)
         {
             DatosNominaBean addDatoNomina = new DatosNominaBean();
             DatosNominaDao datoNominaDao = new DatosNominaDao();
             //Reemplazar por la session de la empresa
             int keyemp = 5;
             int usuario = Convert.ToInt32(Session["iIdUsuario"].ToString());
-            addDatoNomina = datoNominaDao.sp_DatosNomina_Insert_DatoNomina(fecefecnom, salmen, tipemp, nivemp, tipjor, tipcon, fecing, fecant, vencon, estats, usuario, empleado, apepat, apemat, fechanaci, keyemp, tipper, tipcontra, motinc, tippag, banuse, cunuse, position, clvemp);
+            addDatoNomina = datoNominaDao.sp_DatosNomina_Insert_DatoNomina(fecefecnom, salmen, tipemp, nivemp, tipjor, tipcon, fecing, fecant, vencon, estats, usuario, empleado, apepat, apemat, fechanaci, keyemp, tipper, tipcontra, tippag, banuse, cunuse, position, clvemp);
             var data = new { result = addDatoNomina.sMensaje };
             return Json(data);
         }

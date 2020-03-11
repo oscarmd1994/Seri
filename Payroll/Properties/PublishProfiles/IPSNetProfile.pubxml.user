@@ -16,10 +16,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/11/2020 13:20:46</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>02/21/2020 18:23:08</publishTime>
+      <publishTime>03/05/2020 17:20:01</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>02/21/2020 18:23:08</publishTime>
+      <publishTime>03/05/2020 17:20:01</publishTime>
     </File>
     <File Include="bin/es/System.Web.Helpers.resources.dll">
       <publishTime>02/11/2020 13:20:46</publishTime>
@@ -52,10 +52,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/11/2020 13:20:46</publishTime>
     </File>
     <File Include="bin/Payroll.dll">
-      <publishTime>02/21/2020 18:22:53</publishTime>
+      <publishTime>03/05/2020 17:19:41</publishTime>
     </File>
     <File Include="bin/Payroll.pdb">
-      <publishTime>02/21/2020 18:22:53</publishTime>
+      <publishTime>03/05/2020 17:19:41</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>02/11/2020 13:20:46</publishTime>
@@ -331,7 +331,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/11/2020 13:20:46</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>02/21/2020 18:22:57</publishTime>
+      <publishTime>03/05/2020 17:19:46</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>02/11/2020 13:20:45</publishTime>
@@ -1903,7 +1903,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/21/2020 17:22:51</publishTime>
     </File>
     <File Include="Scripts/main/employes.js">
-      <publishTime>02/18/2020 11:25:13</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Scripts/main/Empre.js">
       <publishTime>02/12/2020 19:21:53</publishTime>
@@ -1927,7 +1927,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/18/2020 11:25:13</publishTime>
     </File>
     <File Include="Scripts/main/loadcatalogsemployee.js">
-      <publishTime>02/21/2020 18:01:10</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Scripts/main/loaddatatables.js">
       <publishTime>02/11/2020 13:20:46</publishTime>
@@ -1942,7 +1942,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/21/2020 17:22:51</publishTime>
     </File>
     <File Include="Scripts/main/main.js">
-      <publishTime>02/18/2020 11:25:13</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Scripts/main/PensionesAlimenticias.js">
       <publishTime>02/12/2020 17:23:48</publishTime>
@@ -1957,7 +1957,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/11/2020 13:20:46</publishTime>
     </File>
     <File Include="Scripts/main/savedatageneral.js">
-      <publishTime>02/18/2020 11:25:13</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Scripts/main/startMenu.js">
       <publishTime>02/11/2020 13:20:46</publishTime>
@@ -1966,13 +1966,13 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/11/2020 13:20:46</publishTime>
     </File>
     <File Include="Scripts/Nomoper/NomOperConsulta.js">
-      <publishTime>02/11/2020 13:20:45</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Scripts/Nomoper/OperNom.js">
-      <publishTime>02/11/2020 13:20:45</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Scripts/Nomoper/OperNomEjecucion.js">
-      <publishTime>02/12/2020 17:23:48</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Scripts/sweetalert/sweetalert.min.js">
       <publishTime>02/11/2020 13:20:46</publishTime>
@@ -1984,7 +1984,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/21/2020 18:01:10</publishTime>
     </File>
     <File Include="Views/Empleados/Datos_Generales.cshtml">
-      <publishTime>02/21/2020 18:01:10</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Views/Empleados/Datos_Nomina.cshtml">
       <publishTime>02/11/2020 13:20:46</publishTime>
@@ -2029,16 +2029,16 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/18/2020 11:25:13</publishTime>
     </File>
     <File Include="Views/Nomina/AltaDefinicion.cshtml">
-      <publishTime>02/11/2020 13:20:46</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Views/Nomina/BajasEmpleados.cshtml">
       <publishTime>02/21/2020 18:01:10</publishTime>
     </File>
     <File Include="Views/Nomina/Consulta.cshtml">
-      <publishTime>02/11/2020 13:20:46</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Views/Nomina/Ejecucion.cshtml">
-      <publishTime>02/12/2020 17:23:48</publishTime>
+      <publishTime>03/05/2020 17:17:26</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>02/11/2020 13:20:46</publishTime>

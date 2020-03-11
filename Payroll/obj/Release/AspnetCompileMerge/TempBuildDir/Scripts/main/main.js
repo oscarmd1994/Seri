@@ -120,7 +120,8 @@
         fecing = document.getElementById('fecing'), fecant = document.getElementById('fecant'),
         vencon = document.getElementById('vencon'),
         //estats = document.getElementById('estats'),
-        tipcontra = document.getElementById('tipcontra'), motinc = document.getElementById('motinc');
+        tipcontra = document.getElementById('tipcontra');
+        //motinc = document.getElementById('motinc')
     const btnsaveeditdatanomina = document.getElementById('btn-save-edit-data-nomina');
 
     const vardatanomina = [clvnom, fechefectact, fecefecnom, tipper, salmen, tipemp, nivemp, tipjor, tipcon, fecing, fecant, vencon, tipcontra];
@@ -285,7 +286,8 @@
                     fecant.value = getDataTabNom[i].data.fecant; vencon.value = getDataTabNom[i].data.vencon;
                     //estats.value = getDataTabNom[i].data.estats;
                     tipcontra.value = getDataTabNom[i].data.tipcontra;
-                    motinc.value = getDataTabNom[i].data.motinc; tippag.value = getDataTabNom[i].data.tippag;
+                    //motinc.value = getDataTabNom[i].data.motinc;
+                    tippag.value = getDataTabNom[i].data.tippag;
                     banuse.value = getDataTabNom[i].data.banuse; cunuse.value = getDataTabNom[i].data.cunuse;
                     //clvbank.textContent = getDataTabNom[i].data.clvbank;
                     if (getDataTabNom[i].data.tippag == idcuentach) {
@@ -575,7 +577,7 @@
     });
 
     btnSaveDataNomina.addEventListener('click', () => {
-        const arrInput = [fecefecnom, salmen, tipper, tipemp, nivemp, tipjor, tipcon, fecing, tipcontra, motinc, tippag];
+        const arrInput = [fecefecnom, salmen, tipper, tipemp, nivemp, tipjor, tipcon, fecing, tipcontra, tippag];
         let validate = 0;
         for (let t = 0; t < arrInput.length; t++) {
             if (arrInput[t].hasAttribute("tp-select")) {
@@ -657,7 +659,8 @@
                     fecant: fecant.value, vencon: vencon.value,
                     //estats: estats.value,
                     tipcontra: tipcontra.value,
-                    motinc: motinc.value, tippag: tippag.value,
+                    //motinc: motinc.value,
+                    tippag: tippag.value,
                     banuse: banuse.value, cunuse: cunuse.value,
                     //clvbank: clvbank.textContent
                 }

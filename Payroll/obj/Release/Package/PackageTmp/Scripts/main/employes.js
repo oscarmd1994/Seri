@@ -60,7 +60,7 @@
     const vencon = document.getElementById('vencon');
     const tipcontra = document.getElementById('tipcontra');
     //const estats = document.getElementById('estats');
-    const motinc = document.getElementById('motinc');
+    //const motinc = document.getElementById('motinc');
     const tippag = document.getElementById('tippag');
     const banuse = document.getElementById('banuse');
     const cunuse = document.getElementById('cunuse');
@@ -184,7 +184,8 @@
                 salmen: salmen.value, tipper: tipper.value,
                 tipemp: tipemp.value, nivemp: nivemp.value,
                 tipjor: tipjor.value, tipcon: tipcon.value,
-                tipcontra: tipcontra.value, motinc: motinc.value,
+                tipcontra: tipcontra.value,
+                //motinc: motinc.value,
                 fecing: fecing.value,
                 fecant: fecant.value, vencon: vencon.value,
                 //estats: estats.value,
@@ -306,7 +307,7 @@
                         tipjor.value = data.iTipoJornada_id;
                         tipcon.value = data.iTipoContrato_id;
                         tipcontra.value = data.iTipoContratacion_id;
-                        motinc.value = data.iMotivoIncremento_id;
+                        //motinc.value = data.iMotivoIncremento_id;
                         fecing.value = data.sFechaIngreso;
                         fecant.value = data.sFechaAntiguedad;
                         vencon.value = data.sVencimientoContrato;
@@ -343,6 +344,8 @@
                 type: "POST",
                 data: { keyemploye: paramid },
                 success: (data) => {
+                    console.log('Imss data')
+                    console.log(data);
                     if (localStorage.getItem('modeedit') != null) {
                         btnsaveeditdataimss.classList.remove('d-none');
                         btnsavedataimss.classList.add('d-none');
@@ -771,14 +774,16 @@
                 tipjor: tipjor.value, tipcon: tipcon.value, fecing: fecing.value, fecant: fecant.value, vencon: vencon.value,
                 //estats: estats.value,
                 empleado: name.value, apepat: apepat.value, apemat: apemat.value, fechanaci: fnaci.value, tipper: tipper.value, tipcontra: tipcontra.value,
-                motinc: motinc.value, tippag: tippag.value, banuse: banco, cunuse: cunuse.value, position: clvstr.value, clvemp: clvemp.value
+                //motinc: motinc.value,
+                tippag: tippag.value, banuse: banco, cunuse: cunuse.value, position: clvstr.value, clvemp: clvemp.value
             };
         } else {
             url = "../EditDataGeneral/EditDataNomina";
             datasend = {
                 fecefecnom: fecefecnom.value, fechefectact: fechefectact.value, salmen: salmen.value, tipper: tipper.value, tipemp: tipemp.value,
                 nivemp: nivemp.value, tipjor: tipjor.value, tipcon: tipcon.value, tipcontra: tipcontra.value,
-                motinc: motinc.value, fecing: fecing.value, fecant: fecant.value, vencon: vencon.value, tippag: tippag.value, banuse: banuse.value,
+                //motinc: motinc.value,
+                fecing: fecing.value, fecant: fecant.value, vencon: vencon.value, tippag: tippag.value, banuse: banuse.value,
                 cunuse: cunuse.value, clvnom: clvnom.value, position: clvstr.value
             };
         }

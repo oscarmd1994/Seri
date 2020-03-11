@@ -104,7 +104,7 @@
     const tipjor = document.getElementById('tipjor');
     const tipcon = document.getElementById('tipcon');
     const tipcontra = document.getElementById('tipcontra');
-    const motinc = document.getElementById('motinc');
+    //const motinc = document.getElementById('motinc');
 
 
     /* 
@@ -204,7 +204,7 @@
     floaddatagentype(tipcontra, 0, 'Active/Desactive', 0, 19, 'nom');
 
     // ** Ejecución de la carga de los datos deL motivo de incremento del empleado M -> DATOS NOMINA ** \\
-    floaddatagentype(motinc, 0, 'Active/Desactive', 0, 21, 'nom');
+    //floaddatagentype(motinc, 0, 'Active/Desactive', 0, 21, 'nom');
 
     // ** Ejecución de la carga de los datos del tipo de pago M ->  DATOS NOMINA ** \\
     floaddatagentype(tippag, 0, 'Active/Desactive', 0, 22, 'nom');

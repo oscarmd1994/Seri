@@ -69,19 +69,19 @@ namespace Payroll.Models.Beans
 
 
     public class CAcumuladosRenglon
-    { 
-     public int iIdEmpresa { get; set; }
-     public int iIdRenglon { get; set; }
-     public int iIdAcumulado { get; set; } 
-     public string sDesAcumulado { get; set; }
-     public string sCuentaContable { get; set; }
-     public string sDesConcepto { get; set; }
-     public string sMensaje { get; set; }
+    {
+        public int iIdEmpresa { get; set; }
+        public int iIdRenglon { get; set; }
+        public int iIdAcumulado { get; set; }
+        public string sDesAcumulado { get; set; }
+        public string sCuentaContable { get; set; }
+        public string sDesConcepto { get; set; }
+        public string sMensaje { get; set; }
 
     }
 
     public class CInicioFechasPeriodoBean
-    { 
+    {
         public int iId { get; set; }
         public int iIdEmpresesas { get; set; }
         public int ianio { get; set; }
@@ -93,8 +93,8 @@ namespace Payroll.Models.Beans
         public string sFechaProceso { get; set; }
         public string sFechaPago { get; set; }
         public int iDiasEfectivos { get; set; }
-       
-    
+
+
     }
 
     public class NominaLnDatBean
@@ -133,14 +133,79 @@ namespace Payroll.Models.Beans
 
     public class TpCalculosHd
     {
-
         public int iIdCalculosHd { get; set; }
         public int iIdDefinicionHd { get; set; }
         public int iInicioCalculos { get; set; }
         public int iFinCalculos { get; set; }
         public int iNominaCerrada { get; set; }
         public string sMensaje { get; set; }
+    }
 
+    public class TpCalculosLn
+    {
+
+        public int iIdCalculosLn { get; set; }
+        public int iIdCalculosHd { get; set; }
+        public int iIdEmpresa { get; set; }
+        public int iIdEmpleado { get; set; }
+        public int iAnio { get; set; }
+        public int iIdTipoPeriodo { get; set; }
+        public int iPeriodo { get; set; }
+        public int iConsecutivo { get; set; }
+        public int iIdRenglon { get; set; }
+        public string iImporte { get; set; }
+        public string iSaldo { get; set; }
+        public string iGravado { get; set; }
+        public string iExcento { get; set; }
+        public string sFecha { get; set; }
+        public string sMensaje { get; set; }
+
+    }
+
+    public class TPProcesos
+    {
+        public int iIdTarea { get; set; }
+        public int iIdJobs { get; set; }
+        public string sEstatusJobs { get; set; }
+        public string sNombre { get; set; }
+        public string sParametros { get; set; }
+        public string sMensaje { get; set; }
+
+    }
+
+
+    public class HangfireJobs
+    {
+        public int iId { get; set; }
+        public int iStateldId { get; set; }
+        public string sArguments { get; set; }
+        public string sInvocacionData { get; set; }
+        public string sCreatedAt { get; set; }
+        public string sMensaje { get; set; }
+
+    }
+
+    public class EmisorReceptorBean
+    {
+
+        public string sNombreEmpresa { get; set; }
+        public string sCalle { get; set; }
+        public string sColonia { get; set; }
+        public string sCiudad { get; set; }
+        public string sRFC { get; set; }
+        public string sAfiliacionIMSS { get; set; }
+        public string sNombreComp { get; set; }
+        public string sRFCEmpleado { get; set; }
+        public int iIdEmpleado { get; set; }
+        public string sDescripcionDepartamento { get; set; }
+        public string sNombrePuesto { get; set; }
+        public string sFechaIngreso { get; set; }
+        public string sTipoContrato { get; set; }
+        public string sCentroCosto { get; set; }
+        public decimal dSalarioMensual { get; set; }
+        public string sRegistroImss { get; set; }
+        public string sCURP { get; set; }
+        public string sMensaje { get; set; }
 
     }
 
