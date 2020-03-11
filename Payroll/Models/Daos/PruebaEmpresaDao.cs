@@ -799,5 +799,44 @@ namespace Payroll.Models.Daos
 
             return list;
         }
+        public List<string> sp_CInicio_Fechas_Periodo_Verify_id(int Empresa_id)
+        {
+            List<string> periodo = new List<string>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_CInicio_Fechas_Periodo_Verify_id", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpresa_id", Empresa_id));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+
+                    periodo.Add(data["Id"].ToString());
+                    periodo.Add(data["Empresa_id"].ToString());
+                    periodo.Add(data["Anio"].ToString());
+                    periodo.Add(data["Tipo_periodo_id"].ToString());
+                    periodo.Add(data["Periodo"].ToString());
+                    periodo.Add(data["Nomina_Cerrada"].ToString());
+                    periodo.Add(data["Fecha_Inicio"].ToString());
+                    periodo.Add(data["Fecha_Final"].ToString());
+                    periodo.Add(data["Fecha_Proceso"].ToString());
+                    periodo.Add(data["Fecha_Pago"].ToString());
+                    periodo.Add(data["Dias_Efectivos"].ToString());
+
+                }
+            }
+            else
+            {
+                periodo = null;
+            }
+            data.Close();
+
+            return periodo;
+        }
     }
 }

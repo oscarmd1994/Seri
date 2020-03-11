@@ -513,5 +513,96 @@ namespace Payroll.Models.Daos
 
             return lista;
         }
+        public List<VW_TipoIncidenciaBean> sp_VW_tipo_Incidencia_Retrieve_LoadTipoIncidencia(int Empresa_id)
+        {
+            List<VW_TipoIncidenciaBean> list = new List<VW_TipoIncidenciaBean>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_VW_tipo_Incidencia_Retrieve_LoadTipoIncidencia", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpresa_id", Empresa_id));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    VW_TipoIncidenciaBean lista = new VW_TipoIncidenciaBean();
+                    lista.Ren_incid_id = int.Parse(data["Ren_incid_id"].ToString());
+                    lista.Descripcion = data["Descripcion"].ToString();
+                    list.Add(lista);
+                }
+            }
+            else
+            {
+                list = null;
+            }
+            data.Close();
+
+            return list;
+        }
+        public List<string> sp_TRegistro_incidencias_Insert_Incidencia(int Empresa_id, int Empleado_id, int Renglon, int Cantidad, int Plazos, string Leyenda, string Referencia, string Fecha_Aplicacion)
+        {
+            List<string> list = new List<string>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_TRegistro_incidencias_Insert_Incidencia", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpresa_id", Empresa_id));
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpleado_id", Empleado_id));
+            cmd.Parameters.Add(new SqlParameter("@ctrlTipoIncidencia", Renglon));
+            cmd.Parameters.Add(new SqlParameter("@ctrlCantidad", Cantidad));
+            cmd.Parameters.Add(new SqlParameter("@ctrlPlazos", Plazos));
+            cmd.Parameters.Add(new SqlParameter("@ctrlLeyenda", Leyenda));
+            cmd.Parameters.Add(new SqlParameter("@ctrlReferencia", Referencia));
+            cmd.Parameters.Add(new SqlParameter("@ctrlFechaAplicacion", Fecha_Aplicacion));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    list.Add(data["iFlag"].ToString());
+                    list.Add(data["Descripcion"].ToString());
+                }
+            }
+            else
+            {
+                list = null;
+            }
+            data.Close();
+            return list;
+        }
+        public List<VW_TipoIncidenciaBean> sp_TRegistro_incidencias_Update_Incidencia( int Empresa_id, int Empleado_id, int Renglon, int Cantidad, int Plazos, string Descripcion, string Referencia, string Fecha_Aplicacion)
+        {
+            List<VW_TipoIncidenciaBean> list = new List<VW_TipoIncidenciaBean>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_TRegistro_incidencias_Update_Incidencia", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpresa_id", Empresa_id));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    VW_TipoIncidenciaBean lista = new VW_TipoIncidenciaBean();
+                    lista.Ren_incid_id = int.Parse(data["Ren_incid_id"].ToString());
+                    lista.Descripcion = data["Descripcion"].ToString();
+                    list.Add(lista);
+                }
+            }
+            else
+            {
+                list = null;
+            }
+            data.Close();
+
+            return list;
+        }
     }
 }

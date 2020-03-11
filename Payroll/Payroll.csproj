@@ -691,6 +691,7 @@
     <Content Include="Scripts\main\BajasEmpleados.js" />
     <Content Include="Scripts\main\branchoffices.js" />
     <Content Include="Scripts\main\catalogos.js" />
+    <Content Include="Scripts\main\Creditos.js" />
     <Content Include="Scripts\main\departments.js" />
     <Content Include="Scripts\main\employes.js" />
     <Content Include="Scripts\main\Empre.js" />
@@ -776,6 +777,7 @@
     <Content Include="Views\Nomina\Ejecucion.cshtml" />
     <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
     <Content Include="Views\Incidencias\Incidencias.cshtml" />
+    <Content Include="Views\Incidencias\RegistrarIncidencias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿$(document).ready(function () { 
+﻿$(function () { 
     
 
 
@@ -99,7 +99,7 @@
                     contentType: "application/json; charset=utf-8",
                     success: (tipo) => {
                         console.log(tipo);
-                        document.getElementById("inTiposBaja").innerHTML = "";
+                        document.getElementById("inTiposBaja").innerHTML = "<option value='' > Seleciona </option>";
                         for (var i = 0; i < tipo.length; i++) {
                             document.getElementById("inTiposBaja").innerHTML += "<option value='" + tipo[i]["IdTipo_Empleado"] + "'>" + tipo[i]["Descripcion"] + "</option>";
                         }
