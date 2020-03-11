@@ -1,65 +1,15 @@
-﻿$(document).ready(function () {
+﻿$(function () {
+    var ren_incidencia = document.getElementById("inRenglon");
+    var concepto_incidencia = document.getElementById("inConcepto_incidencia");
+    var cantidad_incidencia = document.getElementById("inCantidad");
+    var plazos_incidencia = document.getElementById("inPlazos");
+    var leyenda_incidencia = document.getElementById("inLeyenda");
+    var referencia_incidencia = document.getElementById("inReferencia");
+    var fecha_incidencia = document.getElementById("inFechaA");
 
     $("#modalLiveSearchEmpleado").modal("show");
-    
-    //Eventos 
-    $("#btnSaveCredito").on("click", function () {
-        var tdescuento = document.getElementById("inTipoDescuento");
-        var aseguro = document.getElementById("inAplicaSeguro");
-        var descuento = document.getElementById("inDescuento");
-        var ncredito = document.getElementById("inNoCredito");
-        var fechaa = document.getElementById("inFechaAprovacionCredito");
-        var descontar = document.getElementById("inDescontar");
-        var fechab = document.getElementById("inFechaBajaCredito");
-        var fechar = document.getElementById("inFechaReinicioCredito");
-        var aseg;
-        if ($("#inAplicaSeguro").is(":checked")) {
-            aseg = 1;
-        } else {
-            aseg = 0;
-        }
-        $.ajax({
-            url: "../Incidencias/SaveCredito",
-            data: JSON.stringify({
-                TipoDescuento: tdescuento.value,
-                SeguroVivienda: aseg,
-                Descuento: descuento.value,
-                NoCredito: ncredito.value,
-                FechaAprovacion: fechaa.value,
-                Descontar: descontar.value,
-                FechaBaja: fechab.value,
-                FechaReinicio: fechar.value
-            }),
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            success: (data) => {
-                //Refresca la tabla
-                $.ajax({
-                    method: "POST",
-                    url: "../Incidencias/LoadCreditosEmpleado",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: (data) => {
-                        document.getElementById("tcbody").innerHTML = "";
-                        for (var i = 0; i < data.length; i++) {
-                            document.getElementById("tcbody").innerHTML += "<tr><td>" + data[i]["NoCredito"] + "</td><td>" + data[i]["TipoDescuento"] + "</td><td>" + data[i]["Descuento"] + "</td><td>" + data[i]["FechaBaja"] + "</td><td><div class='btn btn-danger btn-sm'><i class='far fa-check-square'></i></div></td></tr>";
-                        }
-                    }
-                });
 
-
-
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Completado!',
-                    text: 'Credito agregado con éxito'
-                });
-            }
-        });
-        
-       
-    });
-        //Busqueda de empleado
+    //Busqueda de empleado
     $("#inputSearchEmpleados").on("keyup", function () {
         $("#inputSearchEmpleados").empty();
         var txt = $("#inputSearchEmpleados").val();
@@ -90,9 +40,81 @@
             $("#resultSearchEmpleados").empty();
         }
     });
-
+    //VALIDACION DE CAMPOS NUMERICOS
+    $('.input-number').on('input', function () {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
     //CARGA CONCEPTO 
-    
+    $.ajax({
+        url: "../Incidencias/LoadTipoIncidencia",
+        type: "POST",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: (data) => {
+            document.getElementById("inConcepto_incidencia").innerHTML = "<option class='' value=''> Selecciona </option>"
+            for (var i = 0; i < data.length; i++) {
+                document.getElementById("inConcepto_incidencia").innerHTML += "<option class='' value='" + data[i]["Ren_incid_id"] + "'> " + data[i]["Descripcion"] + "</option>";
+                console.log(data[i]["Descripcion"]);
+            }
+        }
+    });
+    //CAMBIOS EN EL SELECT Y EL RENGLON
+    $("#inConcepto_incidencia").on("change", function() {
+        ren_incidencia.value = concepto_incidencia.value;
+    });
+    //GUARDAR INCIDENCIA
+    $("#btnSaveIncidencias").on("click", function () {
+        var form = document.getElementById("frmIncidencias");
+        if (form.checkValidity() == false) {
+            setTimeout( () => {
+                form.classList.add("was-validated");
+                console.log("no valido");
+            }, 5000);
+        } else {
+            
+            console.log("Boton guardar");
+            var Vform = $("#frmIncidencias").serialize();
+            console.log(Vform);
+            $.ajax({
+                url: "../Incidencias/SaveRegistroIncidencia",
+                type: "POST",
+                data: JSON.stringify({
+                    inRenglon: concepto_incidencia.value,
+                    inCantidad: cantidad_incidencia.value,
+                    inPlazos: plazos_incidencia.value,
+                    inLeyenda: leyenda_incidencia.value,
+                    inReferencia: referencia_incidencia.value,
+                    inFechaA: fecha_incidencia.value
+                    }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: (data) => {
+                    console.log(data);
+                    if (data[0] == '0') {
+                        Swal.fire({
+                            icon: 'danger',
+                            title: 'Error!',
+                            text: data[1],
+                            timer: 1000
+                        });
+                    } else if (data[0] == '1') {
+                        concepto_incidencia.value = '';
+                        cantidad_incidencia.value = '';
+                        plazos_incidencia.value = '';
+                        leyenda_incidencia.value = '';
+                        referencia_incidencia.value = '';
+                        fecha_incidencia.value = '';
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Completado!',
+                            text: data[1],
+                            timer: 1000
+                        });
+                    }
+                }
+            });
+        }
+    });
 });
 
 
@@ -109,31 +131,24 @@ function MostrarDatosEmpleado(idE) {
         contentType: "application/json; charset=utf-8",
         success: (data) => {
             document.getElementById("EmpDes").innerHTML = "<i class='far fa-user-circle text-primary'></i> " + data[0]["Nombre_Empleado"] + " " + data[0]["Apellido_Paterno_Empleado"] + ' ' + data[0]["Apellido_Materno_Empleado"] + "   -   <small class='text-muted'> " + data[0]["DescripcionDepartamento"] + "</small> - <small class='text-muted'>" + data[0]["DescripcionPuesto"] + "</small>";
-            $("#modalLiveSearchEmpleado").modal("hide");
-            createTab();
+            $("#modalLiveSearchEmpleado").modal("hide");   
+        } 
+    });
+}
+function createTab() {
+    $.ajax({
+        method: "POST",
+        url: "../Incidencias/LoadIncidenciasEmpleado",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: (data) => {
+            document.getElementById("tabIncidenciasBody").innerHTML = "";
+            for (var i = 0; i < data.length; i++) {
+                document.getElementById("tabIncidenciasBody").innerHTML += "<tr><td>" + data[i]["NoCredito"] + "</td><td>" + data[i]["TipoDescuento"] + "</td><td>" + data[i]["Descuento"] + "</td><td>" + data[i]["FechaBaja"] + "</td><td><div class='btn btn-danger btn-sm'><i class='far fa-check-square'></i></div></td></tr>";
+            }
         }
-        
     });
 
 }
-function createTab() {
-        $.ajax({
-            method: "POST",
-            url: "../Incidencias/LoadCreditosEmpleado",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: (data) => {
-                //console.log(data["data"][0]["Empresa_id"]);
-                console.log(data[0]["Empresa_id"]);
-                //$("#tcbody").empty();
-                document.getElementById("tcbody").innerHTML = "";
-                for (var i = 0; i < data.length; i++) {
-                    document.getElementById("tcbody").innerHTML += "<tr><td>" + data[i]["NoCredito"] + "</td><td>" + data[i]["TipoDescuento"] + "</td><td>" + data[i]["Descuento"] + "</td><td>" + data[i]["FechaBaja"] + "</td><td><div class='btn btn-danger btn-sm'><i class='far fa-check-square'></i></div></td></tr>";
-                }
-                
-                
-            }
-        });
-    
-}
+
 
