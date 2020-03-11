@@ -92,12 +92,12 @@ namespace Payroll.Controllers
         }
         //Guarda los datos de la DefinicionLn
         [HttpPost]
-        public JsonResult insertDefinicioNl(int iIdDefinicionHd, int iIdEmpresa, int iTipodeperiodo, int iIdperiodo, int iRenglon, int iCancelado, int iElementonomina, int iEsespejo, int iIdAcumulado)
+        public JsonResult insertDefinicioNl(int iIdDefinicionHd, int iIdEmpresa, int iTipodeperiodo, int iRenglon, int iCancelado, int iElementonomina, int iEsespejo, int iIdAcumulado)
         {
             NominaLnBean bean = new NominaLnBean();
             FuncionesNomina dao = new FuncionesNomina();
             int usuario = int.Parse(Session["iIdUsuario"].ToString());
-            bean = dao.sp_CDefinicionLN_insert_CDefinicionLN(iIdDefinicionHd, iIdEmpresa, iTipodeperiodo, iIdperiodo, iRenglon, iCancelado, usuario, iElementonomina, iEsespejo, iIdAcumulado);
+            bean = dao.sp_CDefinicionLN_insert_CDefinicionLN(iIdDefinicionHd, iIdEmpresa, iTipodeperiodo, iRenglon, iCancelado, usuario, iElementonomina, iEsespejo, iIdAcumulado);
 
             return Json(bean);
         }
@@ -285,8 +285,14 @@ namespace Payroll.Controllers
             return Json(bean);
 
         }
-        //[HttpPost]
-        //public JsonResult UpdatePtDefinicionNl(int iIdDefinicionln, int iIdEmpresa, int iTipodeperiodo, int iIdperiodo, int iRenglon, int iEsespejo, int iIdAcumulado)
+        [HttpPost]
+        public JsonResult UpdatePtDefinicionNl(int iIdDefinicionln, int iIdEmpresa, int iTipodeperiodo, int iRenglon, int iEsespejo, int iIdAcumulado)
+        {
+            NominaLnBean bean = new NominaLnBean();
+            FuncionesNomina dao = new FuncionesNomina();
+            bean = dao.sp_TpDefinicionNomLn_Update_TpDefinicionNomLn(iIdDefinicionln, iIdEmpresa, iTipodeperiodo, iRenglon, iEsespejo, iIdAcumulado);
+            return Json(bean);
+        }
         [HttpPost]
         public JsonResult DeleteDefinicionNl(int iIdDefinicionln)
         {
