@@ -10,17 +10,18 @@
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Selecciona la empresa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h4 class="modal-title">Selecciona la empresa</h4>
+                
             </div>
             <div class="modal-body row">
                 <div class="col-12 mb-3">
-                    <input type="text" name="inputSearchEmpleados" id="inputSearchEmpleados" placeholder="Escriba el nombre de la empresa" class="form-control" />
-                    <div id="resultSearchEmpleados" name="resultSearchEmpleados" class="list-group"></div>
+                    <input type="text" name="inputSearchEmpleados" id="inputSearchEmpleados" placeholder="Escriba el nombre de la empresa" class="form-control invisible" />
+                    <div id="resultSearchEmpleados" name="resultSearchEmpleados" class="list-group invisible"></div>
                 </div>
                 <div class="col-md-12" id="mbody"></div>
+            </div>
+            <div class="modal-footer">
+                <samll class=" text-muted font-italic">*Es necesario elegir una empresa para iniciar</samll>
             </div>
         </div>
     </div>
@@ -45,28 +46,41 @@
     function btnsEmpresas( id ,nombre) {
 
         console.log(id, nombre);
-        document.getElementById("btnNameEmpresaSelected").innerHTML = nombre;
-        $("#modalBtns").modal('hide');
+        
+        
         
         try {
-                $.ajax({
-                    url: "../Empresas/DefineEmpresa",
-                    type: "POST",
-                    data: JSON.stringify({ IdEmpresa: id, NombreEmpresa: nombre }),
-                    contentType: "application/json; charset=utf-8"
-                    
-                });
-            } catch (err) {
-                if (err instanceof TypeError) {
-                    console.log("TypeError ", err);
-                } else if (err instanceof EvalError) {
-                    console.log("EvalError ", err);
-                } else if (err instanceof RangeError) {
-                    console.log("RangeError ", err);
-                } else {
-                    console.log("Error ", err);
+            $.ajax({
+                url: "../Empresas/DefineEmpresa",
+                type: "POST",
+                data: JSON.stringify({ IdEmpresa: id, NombreEmpresa: nombre }),
+                contentType: "application/json; charset=utf-8",
+                success: (data) => {
+                    console.log(data[4]);
+                    $.ajax({
+                        url: "../Empresas/DefinePeriodoActual",
+                        type: "POST",
+                        data: JSON.stringify({ IdPeriodo: data[4] }),
+                        contentType: "application/json; charset=utf-8",
+                        success: (dat) => {
+                            document.getElementById("btnNameEmpresaSelected").innerHTML = nombre;
+                            document.getElementById("lblPeriodoId").innerHTML = data[4];
+                            $("#modalBtns").modal('hide');
+                        }
+                    });
                 }
+            });
+        } catch (err) {
+            if (err instanceof TypeError) {
+                console.log("TypeError ", err);
+            } else if (err instanceof EvalError) {
+                console.log("EvalError ", err);
+            } else if (err instanceof RangeError) {
+                console.log("RangeError ", err);
+            } else {
+                console.log("Error ", err);
             }
+        }
     }
 </script>
 <script>

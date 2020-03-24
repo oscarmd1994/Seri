@@ -8,12 +8,10 @@
     var coment = document.getElementById("inComentariosAusentismo");
     var btnc = document.getElementById("btnClear");
     var btnu = document.getElementById("btnUpdate");
-
     certif.disabled = true;
     coment.disabled = true;
     btnc.classList.add("invisible");
     btnu.classList.add("invisible");
-
     //Busqueda de empleado
     $("#inputSearchEmpleados").on("keyup", function () {
         $("#inputSearchEmpleados").empty();
@@ -38,6 +36,7 @@
                     else {
                         $("#resultSearchEmpleados").append("<button type='button' class='list-group-item list-group-item-action btnListEmpleados font-labels'  >" + data[0]["Nombre_Empleado"] + "<br><small class='text-muted'>" + data[0]["DescripcionPuesto"] + "</small> </button>");
                     }
+
                 }
             });
         } else {
@@ -180,6 +179,7 @@ function MostrarDatosEmpleado(idE) {
             document.getElementById("resultSearchEmpleados").innerHTML = "";
             document.getElementById("inputSearchEmpleados").value = "";
             tabAusentismo();
+            document.getElementById("nameuser").innerHTML = "<div class='text-uppercase'>" + data[0]["Nombre_Empleado"] + " " + data[0]["Apellido_Paterno_Empleado"] + ' ' + data[0]["Apellido_Materno_Empleado"] + "<small class='text-muted'>" + data[0]["DescripcionPuesto"] + "</small></div>";
         }
     });
     //Funcion para validar solo numeros 
