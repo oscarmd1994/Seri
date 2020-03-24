@@ -135,10 +135,13 @@ namespace Payroll.Models.Beans
         public string sRazonSocial { get; set; }
         public int iIdEstado { get; set; }
         public int iIdCiudad { get; set; }
+        public string sCiudad { get; set; }
         public string sCalle { get; set; }
+        public string sColonia { get; set; }
         public string sGiro { get; set; }
         public string fRfc { get; set; }
         public int iIdRegistroPatronal { get; set; }
+        public string sRegistroPatronal { get; set; }
         public int iNominaAutomaticaUltimo { get; set; }
         public int iNominaAutomaticaInicial { get; set; }
         public int iNominaAutomaticaFinal { get; set; }
@@ -529,4 +532,7 @@ namespace Payroll.Models.Beans
         public string Descripcion { get; set; }
         public int TipoEmpleado_id { get; set; }
     }
+
+
+
 }

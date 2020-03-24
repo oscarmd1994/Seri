@@ -5,7 +5,7 @@
     // Declaracion de variables 
 
     //const EjeNombreDef = document.getElementById('EjeNombreDef');
-    const EjeCerrada = document.getElementById('EjeCerrada');
+    //const EjeCerrada = document.getElementById('EjeCerrada');
     const TxtBInicioClculo = document.getElementById('TxtBInicioClculo');
     const TxtBFinClculo = document.getElementById('TxtBFinClculo');
     const btnlimpDat = document.getElementById('btnlimpDat');
@@ -13,12 +13,13 @@
     const navEjecuciontab = document.getElementById('nav-Ejecucion-tab');
     const navVisCalculotab = document.getElementById('nav-VisCalculo-tab');
     const btnFloEjecutar = document.getElementById('btnFloEjecutar');
+    const btnFloCerrarNom = document.getElementById('btnFloCerrarNom');
+
     var DatoEjeCerrada;
     var IdDropList;
     var RowsGrid;
     var exitRow;
     var opTab = 1;
-
 
     // funcion llena lisbox de Ejecucin Nombre de Definicion
 
@@ -38,8 +39,7 @@
                 }
             }
         });
-
-    }
+    };
 
     FlistNombreDef();
 
@@ -89,7 +89,6 @@
                     width: 550,
                     source: dataAdapter,
                     columnsresize: true,
-
                     columns: [
                         { text: 'No. Registro', datafield: 'iIdDefinicionhd', width: 50 },
                         { text: 'Nombre de Definición', datafield: 'sNombreDefinicion', width: 100 },
@@ -100,7 +99,7 @@
                 });
             },
         });
-    }
+    };
     FLlenaGrid();
 
     $('#EjeNombreDef').change(function () {
@@ -108,18 +107,15 @@
     });
 
     // Funcion Limpia Campos
+
     FLimpiaCampos = () => {
 
-        if (opTab == 1) {
+        EjeCerrada.value = "0";
+        TxtBInicioClculo.value = '';
+        TxtBFinClculo.value = '';
+        IdDropList = 0;
+        $("#2").empty();
 
-            EjeCerrada.value = "0";
-            TxtBInicioClculo.value = '';
-            TxtBFinClculo.value = '';
-            //FLlenaGrid();
-            IdDropList = 0;
-            $("#2").empty();
-        }
-        
 
     };
 
@@ -143,12 +139,8 @@
 
     // Funcion de guardar 
     Fguardar = () => {
+        DatoEjeCerrada = 0;
 
-        if (opTab == 1) { 
-
-        DatoEjeCerrada = EjeCerrada.value;
-        console.log(IdDropList);
-        console.log(DatoEjeCerrada);
         if (IdDropList > 0) {
             const dataSend = { iIdDefinicionHd: IdDropList };
             $.ajax({
@@ -156,10 +148,7 @@
                 type: "POST",
                 data: dataSend,
                 success: (data) => {
-                    console.log('imprime');
-                    console.log(data);
-                    console.log('imprime variable')
-                    console.log(data[0].iIdCalculosHd)
+
                     if (data[0].iIdCalculosHd == 1) {
                         exitRow = "1";
                     }
@@ -169,16 +158,9 @@
 
                     }
 
-                    console.log('imprime resutado')
-                    console.log(exitRow);
                     if (exitRow == "1") {
 
-                        console.log('update')
-
-
                         //mensaje
-
-
                         Swal.fire({
                             title: 'Seguro que deseas actualizar la ejecución?',
                             text: "Si es asi da clic en aceptar!",
@@ -193,21 +175,17 @@
                                     'Ejecución!',
                                     'actualizada.',
                                     'success'
-                                )
-
+                                );
                                 const dataSend3 = { iIdDefinicionHd: IdDropList, iNominaCerrada: DatoEjeCerrada };
-                                console.log(dataSend3);
-
                                 $.ajax({
                                     url: "../Nomina/UpdateCalculoshd",
                                     type: "POST",
                                     data: dataSend3,
-
                                     success: (data) => {
                                         console.log('termino');
                                         if (data.sMensaje == "success") {
                                             console.log(data);
-                                
+
                                         }
                                         else {
                                             fshowtypealert('Error', 'Contacte a sistemas', 'error');
@@ -221,18 +199,12 @@
                                 });
 
                             }
-                        })
-
+                        });
 
                     }
 
                     if (exitRow == "0") {
-
-
-
                         const dataSend2 = { iIdDefinicionHd: IdDropList, iNominaCerrada: DatoEjeCerrada };
-                        console.log(dataSend2);
-
                         $.ajax({
                             url: "../Nomina/InsertDatTpCalculos",
                             type: "POST",
@@ -241,7 +213,7 @@
                             success: (data) => {
                                 console.log('termino');
                                 if (data.sMensaje == "success") {
-                                    console.log(data);
+
                                     fshowtypealert('Registro correcto!', 'Calculo guardado', 'success');
 
                                 }
@@ -256,49 +228,37 @@
                             }
                         });
 
-
-
-
                     }
-
                 },
-
-
             });
 
         }
         else {
             fshowtypealert('Selecciona un nombre definición !', '', 'warning');
-
-            }
-
         }
 
-    }
+    };
 
-    btnFloGuardar.addEventListener('click', Fguardar)
+    btnFloGuardar.addEventListener('click', Fguardar);
 
-
-    
     /// tab Calculo
 
 
     //var exampleTheme = theme;
     //var exampleTheme = theme;
- 
+
     FllenagripTpDefinicionLN = () => {
 
-        IdDropList
-      
-        const dataSend = {iIdEmpresa:IdDropList};
-        console.log(dataSend);
+        IdDropList;
+
+        const dataSend = { iIdEmpresa: IdDropList };
 
         $.ajax({
             url: "../Nomina/ListTpCalculoln",
             type: "POST",
             data: dataSend,
             success: (data) => {
-               
+
                 var source =
                 {
                     localdata: data,
@@ -319,10 +279,13 @@
                             { name: 'iGravado', type: 'int' },
                             { name: 'iExcento', type: 'int' },
                             { name: 'sFecha', type: 'string' },
-                           
+                            { name: 'iInactivo', type: 'string' },
+                            { name: 'iTipoEmpleado', type: 'int' },
+                            { name: 'iIdDepartamento', type: 'int' },
+                            { name: 'EsEspejo', typre: 'string' }
 
                         ],
-                    datatype: "array",
+
                     updaterow: function (rowid, rowdata) {
                         // synchronize with the server - send update command   
                     }
@@ -345,7 +308,7 @@
                         localdata: adapter.records,
                         datatype: "array",
                         async: false
-                    }
+                    };
                     var dataadapter = new $.jqx.dataAdapter(dataSource,
                         {
                             autoBind: false,
@@ -391,25 +354,25 @@
                         }
                         textInput.val("");
                     });
-                }
+                };
 
                 $("#TbCalculos").jqxGrid({
                     width: 1050,
                     source: dataAdapter,
                     columnsresize: true,
                     source: dataAdapter,
-                        columnsresize: true,
-                        filterable: true,
-                        sortable: true,
-                        //autoheight: true,
-                        //autowidth:true,
-                        //columns: columns,
-                        sortable: true,
-                        filterable: true,
-                        altrows: true,
-                        sortable: true,
-                        ready: function () {
-                        },
+                    columnsresize: true,
+                    filterable: true,
+                    sortable: true,
+                    //autoheight: true,
+                    //autowidth:true,
+                    //columns: columns,
+                    sortable: true,
+                    filterable: true,
+                    altrows: true,
+                    sortable: true,
+                    ready: function () {
+                    },
 
                     columns: [
                         { text: 'IdCalculoLn', datafield: 'iIdCalculosLn', width: 100 },
@@ -418,7 +381,7 @@
                         { text: 'IdEmpleado', datafield: 'iIdEmpleado', whidt: 100 },
                         { text: 'Año', datafield: 'iAnio', width: 80 },
                         { text: 'Id Periodo', datafield: 'iIdTipoPeriodo', width: 100 },
-                        { text: 'Periodo', datafield: 'iPeriodo', width:80 },
+                        { text: 'Periodo', datafield: 'iPeriodo', width: 80 },
                         { text: 'Consecutivo', datafield: 'iConsecutivo', width: 100 },
                         { text: 'Id Renglon', datafield: 'iIdRenglon', width: 100 },
                         { text: 'Importe', datafield: 'iImporte', width: 100 },
@@ -426,150 +389,34 @@
                         { text: 'Gravado', datafield: 'iGravado', width: 100 },
                         { text: 'Excento', datafield: 'iExcento', width: 100 },
                         { text: 'Fecha', datafield: 'sFecha', width: 100 },
+                        { text: 'Inactivo', datafield: 'iInactivo', Width: 100 },
+                        { text: 'Tipo de empleado', datafield: 'iTipoEmpleado', Width: 100 },
+                        { text: 'Departamento', datafield: 'iIdDepartamento', Width: 100 },
+                        { text: 'Espejo', datafield: 'EsEspejo', Whidth: 100 }
                     ]
                 });
             },
         });
 
+    };
 
-
-        //$.ajax({
-        //    url: "../Nomina/ListTpCalculoln",
-        //    type: "POST",
-        //    data: dataSend,
-        //    contentType: "application/json; charset=utf-8",
-        //    success: (data) => {
-        //        console.log(data);
-
-        //        var source =
-        //        {
-
-        //            localdata: data,
-        //            datatype: "array",
-        //            datafields:
-        //                [
-        //                    { name: 'iIdDefinicionln', type: 'string' },
-        //                    { name: 'IdEmpresa', type: 'string' },
-        //                    { name: 'iRenglon', type: 'string' },
-        //                    { name: 'iElementonomina', type: 'string' },
-        //                    { name: 'iTipodeperiodo', type: 'string' },
-        //                    { name: 'iIdperiodo', type: 'string' },
-        //                    { name: 'iIdAcumulado', type: 'string' },
-        //                    { name: 'iEsespejo', type: 'string' }
-        //                ]
-        //        };
-        //        var dataAdapter = new $.jqx.dataAdapter(source);
-
-        //        var buildFilterPanel = function (filterPanel, datafield) {
-        //            var textInput = $("<input style='margin:5px;'/>");
-        //            var applyinput = $("<div class='filter' style='height: 25px; margin-left: 20px; margin-top: 7px;'></div>");
-        //            var filterbutton = $('<span tabindex="0" style="padding: 4px 12px; margin-left: 2px;">Filtrar</span>');
-        //            applyinput.append(filterbutton);
-        //            var filterclearbutton = $('<span tabindex="0" style="padding: 4px 12px; margin-left: 5px;">Limpiar</span>');
-        //            applyinput.append(filterclearbutton);
-        //            filterPanel.append(textInput);
-        //            filterPanel.append(applyinput);
-        //            filterbutton.jqxButton({ theme: exampleTheme, height: 20 });
-        //            filterclearbutton.jqxButton({ theme: exampleTheme, height: 20 });
-        //            var dataSource =
-        //            {
-        //                localdata: adapter.records,
-        //                datatype: "array",
-        //                async: false
-        //            }
-        //            var dataadapter = new $.jqx.dataAdapter(dataSource,
-        //                {
-        //                    autoBind: false,
-        //                    autoSort: true,
-        //                    autoSortField: datafield,
-        //                    async: false,
-        //                    uniqueDataFields: [datafield]
-        //                });
-        //            var column = $("#TbCalculos").jqxGrid('getcolumn', datafield);
-        //            textInput.jqxInput({ theme: exampleTheme, placeHolder: "Enter " + column.text, popupZIndex: 9999999, displayMember: datafield, source: dataadapter, height: 23, width: 175 });
-        //            textInput.keyup(function (event) {
-        //                if (event.keyCode === 13) {
-        //                    filterbutton.trigger('click');
-        //                }
-        //            });
-        //            filterbutton.click(function () {
-        //                var filtergroup = new $.jqx.filter();
-        //                var filter_or_operator = 1;
-        //                var filtervalue = textInput.val();
-        //                var filtercondition = 'contains';
-        //                var filter1 = filtergroup.createfilter('stringfilter', filtervalue, filtercondition);
-        //                filtergroup.addfilter(filter_or_operator, filter1);
-        //                // add the filters.
-        //                $("#TbCalculos").jqxGrid('addfilter', datafield, filtergroup);
-        //                // apply the filters.
-        //                $("#TbCalculos").jqxGrid('applyfilters');
-        //                $("#TbCalculos").jqxGrid('closemenu');
-        //            });
-        //            filterbutton.keydown(function (event) {
-        //                if (event.keyCode === 13) {
-        //                    filterbutton.trigger('click');
-        //                }
-        //            });
-        //            filterclearbutton.click(function () {
-        //                $("#TbCalculos").jqxGrid('removefilter', datafield);
-        //                // apply the filters.
-        //                $("#TbCalculos").jqxGrid('applyfilters');
-        //                $("#TbCalculos").jqxGrid('closemenu');
-        //            });
-        //            filterclearbutton.keydown(function (event) {
-        //                if (event.keyCode === 13) {
-        //                    filterclearbutton.trigger('click');
-        //                }
-        //                textInput.val("");
-        //            });
-        //        }
-
-        //        $("#TbCalculos").jqxGrid(
-        //            {
-        //                width: 1050,
-                       
-        //                source: dataAdapter,
-        //                columnsresize: true,
-        //                filterable: true,
-        //                sortable: true,
-        //                //autoheight: true,
-        //                //autowidth:true,
-        //                //columns: columns,
-        //                sortable: true,
-        //                filterable: true,
-        //                altrows: true,
-        //                sortable: true,
-        //                ready: function () {
-        //                },
-
-        //                columns: [
-        //                    { text: 'No.Linea', datafield: 'iIdDefinicionln', width: 70 },
-        //                    { text: 'Empresa', datafield: 'IdEmpresa', width: 120 },
-        //                    { text: 'Renglon ', datafield: 'iRenglon', width: 350 },
-        //                    { text: 'Elemento de Nomina', datafield: 'iElementonomina', width: 150 },
-        //                    { text: 'Tipo de periodo', datafield: 'iTipodeperiodo', width: 120 },
-        //                    { text: 'Periodo', datafield: 'iIdperiodo', width: 60 },
-        //                    { text: 'Acumulado', datafield: 'iIdAcumulado', width: 250 },
-        //                    { text: 'Esespejo', datafield: 'iEsespejo', width: 80 }
-        //                ]
-        //            });
-        //    }
-        //});
-    }
-  
 
     Ftabopcion1 = () => {
 
-        opTab = 1;
-       
+        btnFloGuardar.style.visibility = 'visible';
+        btnlimpDat.style.visibility = 'visible';
+        btnFloEjecutar.style.visibility = 'visible';
 
-    }
+
+    };
     Ftabopcion2 = () => {
 
-        opTab = 2;
-        
-    }
- 
+        btnFloGuardar.style.visibility = 'hidden';
+        btnlimpDat.style.visibility = 'hidden';
+        btnFloEjecutar.style.visibility = 'hidden';
+
+    };
+
     navEjecuciontab.addEventListener('click', Ftabopcion1);
     navVisCalculotab.addEventListener('click', Ftabopcion2);
 
@@ -577,26 +424,162 @@
 
     Fejecucion = () => {
 
-        if (opTab == 1) {
-            $("#nav-Ejecucion-tab").removeClass("active");
-            $("#nav-VisCalculo-tab").removeClass("active");
-            FllenagripTpDefinicionLN();
 
-            $.ajax({
-                url: "../Nomina/ProcesosPots",
-                type: "POST",
-                data: JSON.stringify(),
-                contentType: "application/json; charset=utf-8",
-                success: (data) => {
-                }
-            });
+        $("#nav-Ejecucion-tab").removeClass("active");
+        $("#nav-VisCalculo-tab").removeClass("active");
+        FllenagripTpDefinicionLN();
+        //$.ajax({
+        //    url: "../Nomina/ProcesosPots",
+        //    type: "POST",
+        //    data: JSON.stringify(),
+        //    contentType: "application/json; charset=utf-8",
+        //    success: (data) => {
+        //    }
+        //});       
 
-         
-        }
-
-    }
+    };
 
     btnFloEjecutar.addEventListener('click', Fejecucion);
+
+    //// funcion de cerrar nomina 
+
+    FCerrarNom = () => {
+       
+
+       
+
+
+
+    };
+
+    btnFloCerrarNom.addEventListener('click', FCerrarNom);
+
+    FValorChec = () => {
+        console.log('imprime el valor del checked');
+
+        var ValorChek = document.getElementById('ChNCerrada');
+
+        if (ValorChek.checked == true) {
+            
+
+            Swal.fire({
+                title: 'Seguro que deseas cerrar la Nomina?',
+                text: "Si es asi da clic en aceptar!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar!'
+            }).then((result) => {
+                if (result.value) {
+
+                    const dataSend = { iIdEmpresa: IdDropList };
+                    var rows;
+                    $.ajax({
+                        url: "../Nomina/ListTpCalculoln",
+                        type: "POST",
+                        data: dataSend,
+                        success: (data) => {
+                            if (data[0].sMensaje == "success") {
+                                rows = data.length;
+                                console.log(rows);
+                                if (rows > 0) {
+
+                                    Swal.fire(
+                                        'Nomina!',
+                                        'Cerrada.',
+                                        'success'
+                                    );
+                                    //const dataSend3 = { iIdDefinicionHd: IdDropList, iNominaCerrada: 1 };
+                                    //$.ajax({
+                                    //    url: "../Nomina/UpdateCalculoshd",
+                                    //    type: "POST",
+                                    //    data: dataSend3,
+                                    //    success: (data) => {
+                                    //     
+                                    //        if (data.sMensaje == "success") {
+                                    //            console.log(data);
+
+                                    //        }
+                                    //        else {
+                                    //            fshowtypealert('Error', 'Contacte a sistemas', 'error');
+
+                                    //        }
+                                    //    },
+
+                                    //    error: function (jqXHR, exception) {
+                                    //        fcaptureaerrorsajax(jqXHR, exception);
+                                    //    }
+                                    //});
+
+                                }
+                            }
+                            else {
+                                  console.log('no hay calculos');
+                                  Swal.fire('La Nomina!','No contiene ningun calculo','warning');                
+                                 }
+                        }                        
+                    });
+                }
+
+                else {
+                    ValorChek.checked = false;
+
+                }
+            });
+                   
+
+
+        }
+
+        if (ValorChek.checked == false) {
+
+            Swal.fire({
+                title: 'Seguro que deseas abrir la Nomina?',
+                text: "Si es asi da clic en aceptar!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar!'
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire(
+                        'Nomina!',
+                        'Abierta.',
+                        'success'
+                    );
+                    const dataSend3 = { iIdDefinicionHd: IdDropList, iNominaCerrada: 0 };
+                    $.ajax({
+                        url: "../Nomina/UpdateCalculoshd",
+                        type: "POST",
+                        data: dataSend3,
+                        success: (data) => {
+                            console.log('termino');
+                            if (data.sMensaje == "success") {
+                                console.log(data);
+
+                            }
+                            else {
+                                fshowtypealert('Error', 'Contacte a sistemas', 'error');
+
+                            }
+                        },
+
+                        error: function (jqXHR, exception) {
+                            fcaptureaerrorsajax(jqXHR, exception);
+                        }
+                    });
+
+                }
+            });
+            
+
+        }
+
+    };
+
+    ChNCerrada.addEventListener('click', FValorChec);
 
     /// VALIDACIONES 
     //$("#TxtBInicioClculo").keyup(function () {
@@ -605,6 +588,8 @@
     //$("#TxtBFinClculo").keyup(function () {
     //    this.value = (this.value + '').replace(/[^0-9]/g, '');
     //});
+
+
     /* FUNCION QUE MUESTRA ALERTAS */
     fshowtypealert = (title, text, icon) => {
         Swal.fire({
@@ -613,6 +598,7 @@
             hideClass: { popup: 'animated fadeOutUp faster' },
             confirmButtonText: "Aceptar", allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
         }).then((acepta) => {
+
             //  Nombrede.value       = '';
             // Descripcionde.value  = '';
             //iAnode.value         = '';
@@ -631,7 +617,7 @@
             //    }, 1200);
             //}
         });
-    }
+    };
 
 
 
