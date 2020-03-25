@@ -60,16 +60,16 @@ namespace Payroll.Models.Daos
                     PruebaEmpresaBean listEmpresas = new PruebaEmpresaBean();
                     //
                     //--------------QUITAR ESTE FILTRO UNA VEZ QUE SE ARREGLEN LAS EMPRESAS Y LOS EMPLEADOS 
-                    if (int.Parse(data["IdEmpresa"].ToString()) > 3 )
+                    if (int.Parse(data["IdEmpresa"].ToString()) > 3)
                     {
                         listEmpresas.IdEmpresa = int.Parse(data["IdEmpresa"].ToString());
                         listEmpresas.RazonSocial = data["RazonSocial"].ToString();
                         listEmpresas.NombreEmpresa = data["NombreEmpresa"].ToString();
                         list.Add(listEmpresas);
                     }
-                    
-                    
-                    
+
+
+
                 }
             }
             else
@@ -134,6 +134,88 @@ namespace Payroll.Models.Daos
 
             return list;
         }
+        public List<string> sp_CEmpresas_Retrieve_EmpresaD(int IdEmpresa)
+        {
+            List<string> empresa = new List<string>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_CEmpresas_Retrieve_EmpresaD", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpresa_id", IdEmpresa));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+
+                    empresa.Add(data["IdEmpresa"].ToString());
+                    empresa.Add(data["NombreEmpresa"].ToString());
+                    empresa.Add(data["RazonSocial"].ToString());
+                    empresa.Add(data["CodigoPostal"].ToString());
+                    empresa.Add(data["Estado"].ToString());
+                    empresa.Add(data["Ciudad"].ToString());
+                    empresa.Add(data["Delegacion"].ToString());
+                    empresa.Add(data["Colonia"].ToString());
+                    empresa.Add(data["Calle"].ToString());
+                    empresa.Add(data["Giro"].ToString());
+                    empresa.Add(data["RFC"].ToString());
+                    empresa.Add(data["FechaAlta"].ToString());
+                    empresa.Add(data["Descripcion"].ToString());
+                    
+                }
+            }
+            else
+            {
+                empresa = null;
+            }
+            data.Close();
+
+            return empresa;
+        }
+        public List<string> sp_CEmpresas_Retrieve_Empresa(int IdEmpresa)
+        {
+            List<string> empresa = new List<string>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_CEmpresas_Retrieve_Empresa", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrliIdEmpresa", IdEmpresa));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+
+                    empresa.Add(data["IdEmpresa"].ToString());
+                    empresa.Add(data["NombreEmpresa"].ToString());
+                    empresa.Add(data["RazonSocial"].ToString());
+                    empresa.Add(data["CodigoPostal"].ToString());
+                    empresa.Add(data["Estado_id"].ToString());
+                    empresa.Add(data["Ciudad"].ToString());
+                    empresa.Add(data["Delegacion"].ToString());
+                    empresa.Add(data["Colonia_id"].ToString());
+                    empresa.Add(data["Calle"].ToString());
+                    empresa.Add(data["Giro"].ToString());
+                    empresa.Add(data["RFC"].ToString());
+                    empresa.Add(data["FechaAlta"].ToString());
+                    empresa.Add(data["Regimen_Fiscal_id"].ToString());
+                    
+                }
+            }
+            else
+            {
+                empresa = null;
+            }
+            data.Close();
+
+            return empresa;
+        }
         public List<string> sp_Insert_FirstStep_Empresas(string inNombre_empresa, string inNomCorto_empresa, string inRfc_empresa, string inGiro_empresa, int inRegimenFiscal_Empresa, int inCodigo_postal, int inEstado_empresa, int inMunicipio_empresa, string inCiudad_empresa, string inDelegacion, int inColonia_empresa, string inCalle_Empresa, string inAfiliacionesIMSS, string inNombre_Afiliacion, string inRiesgoTrabajo, int usuario_id, int inClase)
         {
             List<string> res = new List<string>();
@@ -197,6 +279,45 @@ namespace Payroll.Models.Daos
                     {
                         IdRegPat = int.Parse(data["IdRegPat"].ToString()),
                         Afiliacion_IMSS = data["Afiliacion_IMSS"].ToString(),
+                        Nombre_Afiliacion = data["Nombre_Afiliacion"].ToString(),
+                        Empresa_id = int.Parse(data["Empresa_id"].ToString()),
+                        Riesgo_Trabajo = data["Riesgo_Trabajo"].ToString(),
+                        ClasesRegPat_id = int.Parse(data["ClasesRegPat_id"].ToString()),
+                        Cancelado = data["Cancelado"].ToString()
+                    };
+                    lista.Add(list);
+                }
+            }
+            else
+            {
+                lista = null;
+            }
+            data.Close();
+
+            return lista;
+        }
+        public List<RegistroPatronalBean> sp_Registro_Patronal_Retrieve_Registro_Patronal(int Empresa_id, int IdRegPat)
+        {
+            List<RegistroPatronalBean> lista = new List<RegistroPatronalBean>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_Registro_Patronal_Retrieve_Registro_Patronal", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpresa_id", Empresa_id));
+            cmd.Parameters.Add(new SqlParameter("@ctrlIdRegPat", IdRegPat));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    RegistroPatronalBean list = new RegistroPatronalBean
+                    {
+                        IdRegPat = int.Parse(data["IdRegPat"].ToString()),
+                        Afiliacion_IMSS = data["Afiliacion_IMSS"].ToString(),
+                        Nombre_Afiliacion = data["Nombre_Afiliacion"].ToString(),
                         Empresa_id = int.Parse(data["Empresa_id"].ToString()),
                         Riesgo_Trabajo = data["Riesgo_Trabajo"].ToString(),
                         ClasesRegPat_id = int.Parse(data["ClasesRegPat_id"].ToString()),
@@ -561,46 +682,6 @@ namespace Payroll.Models.Daos
                 {
                     PVacacionesBean list = new PVacacionesBean
                     {
-                        Periodo = data["aniversario_anterior"].ToString().Substring(0,10) +" a "+ data["aniversario_proximo"].ToString().Substring(0,10),
-                        DiasPrima = int.Parse(data["DiasPrima"].ToString()),
-                        DiasDisfrutados = int.Parse(data["DiasDisfrutados"].ToString()),
-                        DiasRestantes = int.Parse(data["DiasRestantes"].ToString()),
-                        Id_Per_Vac_Ln = int.Parse(data["IdPer_Vac_Ln"].ToString())
-                        
-                    };
-                    lista.Add(list);
-                }
-            }
-            else
-            {
-                lista = null;
-            }
-            data.Close();
-
-            return lista;
-        }
-        
-        public List<PVacacionesBean> sp_TPeriodosDist_Insert_Periodo(int PerVacLn_id,string FechaInicio,string FechaFin, int Dias)
-        {
-            List<PVacacionesBean> lista = new List<PVacacionesBean>();
-            this.Conectar();
-            SqlCommand cmd = new SqlCommand("sp_TPeriodos_Verify_AllPeriods", this.conexion)
-            {
-                CommandType = CommandType.StoredProcedure
-            };
-            cmd.Parameters.Add(new SqlParameter("@ctrlPerVacLn_id", PerVacLn_id));
-            cmd.Parameters.Add(new SqlParameter("@ctrlFechaInicio", FechaInicio));
-            cmd.Parameters.Add(new SqlParameter("@ctrlFechaFin", FechaFin));
-            cmd.Parameters.Add(new SqlParameter("@ctrlDias", Dias));
-
-            SqlDataReader data = cmd.ExecuteReader();
-            cmd.Dispose();
-            if (data.HasRows)
-            {
-                while (data.Read())
-                {
-                    PVacacionesBean list = new PVacacionesBean
-                    {
                         Periodo = data["aniversario_anterior"].ToString().Substring(0, 10) + " a " + data["aniversario_proximo"].ToString().Substring(0, 10),
                         DiasPrima = int.Parse(data["DiasPrima"].ToString()),
                         DiasDisfrutados = int.Parse(data["DiasDisfrutados"].ToString()),
@@ -618,6 +699,144 @@ namespace Payroll.Models.Daos
             data.Close();
 
             return lista;
+        }
+        public List<PeriodosVacacionesBean> sp_Retrieve_TPeriodosVacacionesDist_Retrieve_VacacionesDist(int PerVacLn_id)
+        {
+            List<PeriodosVacacionesBean> lista = new List<PeriodosVacacionesBean>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_Retrieve_TPeriodosVacacionesDist_Retrieve_VacacionesDist", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlPerVacLn_id", PerVacLn_id));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    PeriodosVacacionesBean list = new PeriodosVacacionesBean
+                    {
+                        IdPer_vac_Dist = int.Parse(data["IdPer_vac_Dist"].ToString()),
+                        Per_vac_Ln_id = int.Parse(data["Per_vac_Ln_id"].ToString()),
+                        Fecha_Inicio = data["Fecha_Inicio"].ToString(),
+                        Fecha_Fin = data["Fecha_Fin"].ToString(),
+                        Dias = int.Parse(data["Dias"].ToString()),
+                        Agendadas = data["Agendadas"].ToString(),
+                        Disfrutadas = data["Disfrutadas"].ToString(),
+                        Cancelado = data["Cancelado"].ToString()
+
+                    };
+                    lista.Add(list);
+                }
+            }
+            else
+            {
+                lista = null;
+            }
+            data.Close();
+
+            return lista;
+        }
+        public List<string> sp_TPeriodosVacaciones_Dist_Set_PeriodoDisfrutado(int IdPer_vac_Dist)
+        {
+            List<string> list = new List<string>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_TPeriodosVacaciones_Dist_Set_PeriodoDisfrutado", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlIdPer_vac_Dist", IdPer_vac_Dist));
+
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    string ls = data["sRespuesta"].ToString();
+                    list.Add(ls);
+                }
+            }
+            else
+            {
+                list = null;
+            }
+            data.Close();
+
+            return list;
+        }
+
+        public List<string> sp_TPeriodosDist_Insert_Periodo(int PerVacLn_id, string FechaInicio, string FechaFin, int Dias)
+        {
+            List<string> list = new List<string>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_TPeriodosDist_Insert_Periodo", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlPerVacLn_id", PerVacLn_id));
+            cmd.Parameters.Add(new SqlParameter("@ctrlFechaInicio", FechaInicio));
+            cmd.Parameters.Add(new SqlParameter("@ctrlFechaFin", FechaFin));
+            cmd.Parameters.Add(new SqlParameter("@ctrlDias", Dias));
+
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+                    string ls = data["sRespuesta"].ToString();
+                    list.Add(ls);
+                }
+            }
+            else
+            {
+                list = null;
+            }
+            data.Close();
+
+            return list;
+        }
+        public List<string> sp_CInicio_Fechas_Periodo_Verify_id(int Empresa_id)
+        {
+            List<string> periodo = new List<string>();
+            this.Conectar();
+            SqlCommand cmd = new SqlCommand("sp_CInicio_Fechas_Periodo_Verify_id", this.conexion)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            cmd.Parameters.Add(new SqlParameter("@ctrlEmpresa_id", Empresa_id));
+            SqlDataReader data = cmd.ExecuteReader();
+            cmd.Dispose();
+
+            if (data.HasRows)
+            {
+                while (data.Read())
+                {
+
+                    periodo.Add(data["Id"].ToString());
+                    periodo.Add(data["Empresa_id"].ToString());
+                    periodo.Add(data["Anio"].ToString());
+                    periodo.Add(data["Tipo_periodo_id"].ToString());
+                    periodo.Add(data["Periodo"].ToString());
+                    periodo.Add(data["Nomina_Cerrada"].ToString());
+                    periodo.Add(data["Fecha_Inicio"].ToString());
+                    periodo.Add(data["Fecha_Final"].ToString());
+                    periodo.Add(data["Fecha_Proceso"].ToString());
+                    periodo.Add(data["Fecha_Pago"].ToString());
+                    periodo.Add(data["Dias_Efectivos"].ToString());
+
+                }
+            }
+            else
+            {
+                periodo = null;
+            }
+            data.Close();
+
+            return periodo;
         }
     }
 }

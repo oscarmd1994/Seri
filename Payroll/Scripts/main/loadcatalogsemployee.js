@@ -1,5 +1,4 @@
 ﻿$(function () {
-
     // Comentar cuando el proyecto este en produccion \\
     //const idefectivo = 1115;
     //const idcuentach = 1116;
@@ -47,7 +46,7 @@
     const cunuse   = document.getElementById('cunuse');
     const tippag   = document.getElementById('tippag');
     const nivtab   = document.getElementById('nivtab');
-    const clvbank  = document.getElementById('clvbank');
+    //const clvbank  = document.getElementById('clvbank');
     const curp     = document.getElementById('curp');
 
     const btnVerifCodPost = document.getElementById('btn-verif-codpost');
@@ -105,7 +104,7 @@
     const tipjor = document.getElementById('tipjor');
     const tipcon = document.getElementById('tipcon');
     const tipcontra = document.getElementById('tipcontra');
-    const motinc = document.getElementById('motinc');
+    //const motinc = document.getElementById('motinc');
 
 
     /* 
@@ -205,7 +204,7 @@
     floaddatagentype(tipcontra, 0, 'Active/Desactive', 0, 19, 'nom');
 
     // ** Ejecución de la carga de los datos deL motivo de incremento del empleado M -> DATOS NOMINA ** \\
-    floaddatagentype(motinc, 0, 'Active/Desactive', 0, 21, 'nom');
+    //floaddatagentype(motinc, 0, 'Active/Desactive', 0, 21, 'nom');
 
     // ** Ejecución de la carga de los datos del tipo de pago M ->  DATOS NOMINA ** \\
     floaddatagentype(tippag, 0, 'Active/Desactive', 0, 22, 'nom');
@@ -580,7 +579,7 @@
             $.ajax({
                 url: "../Empleados/LoadBanks",
                 type: "POST",
-                data: { state: 1, type: 'Active/Desactive', keyban: 0 },
+                data: { keyban: 0 },
                 success: (data) => {
                     const quantity = data.length;
                     let banused = 0;
@@ -601,7 +600,7 @@
                             }
                         }
                     } else {
-                        console.error('Ocurrio un problema al cargar');
+                        console.error('No se encontro ningun registro');
                     }
                 }, error: (jqXHR, exception) => {
                     fcaptureaerrorsajax(jqXHR, exception);
@@ -645,17 +644,17 @@
                 infobankch.classList.remove('d-none');
                 infobankct.classList.add('d-none');
             } else if (tippag.value == idcuentaah) {
-                cunuse.setAttribute("maxlength", 15);
+                cunuse.setAttribute("maxlength", 18);
                 infobankct.classList.remove('d-none');
                 infobankch.classList.add('d-none');
             }
-            clvbank.textContent = '';
+            //clvbank.textContent = '';
             cunuse.value = "";
             banuse.value = "0";
         } else {
             banuse.value = 0;
             cunuse.value = "";
-            clvbank.textContent = '';
+            //clvbank.textContent = '';
             infobankch.classList.add('d-none');
             infobankct.classList.add('d-none');
             fdatabank(true);
@@ -680,21 +679,21 @@
         this.value = (this.value + '').replace(/[^0-9]/g, '');
     });
 
-    banuse.addEventListener('change', () => {
-        if (tippag.value == idcuentaah) {
-            for (i = 0; i < arrbank.length; i++) {
-                if (arrbank[i].iIdBanco == banuse.value) {
-                    if (String(arrbank[i].iClave).length == 2) {
-                        clvbank.textContent = String(0) + String(arrbank[i].iClave);
-                    } else if (String(arrbank[i].iClave).length == 1) {
-                        clvbank.textContent = String(0) + String(0) + String(arrbank[i].iClave);
-                    } else {
-                        clvbank.textContent = arrbank[i].iClave;
-                    }
-                }
-            }
-        }
-    });
+    //banuse.addEventListener('change', () => {
+    //    if (tippag.value == idcuentaah) {
+    //        for (i = 0; i < arrbank.length; i++) {
+    //            if (arrbank[i].iIdBanco == banuse.value) {
+    //                if (String(arrbank[i].iClave).length == 2) {
+    //                    clvbank.textContent = String(0) + String(arrbank[i].iClave);
+    //                } else if (String(arrbank[i].iClave).length == 1) {
+    //                    clvbank.textContent = String(0) + String(0) + String(arrbank[i].iClave);
+    //                } else {
+    //                    clvbank.textContent = arrbank[i].iClave;
+    //                }
+    //            }
+    //        }
+    //    }
+    //});
 
     String.prototype.reverse = function () {
         var x = this.length;
@@ -768,12 +767,14 @@
 
     function validarInput(input) {
         var curp = input.value.toUpperCase();
-        if (curpValida(curp)) {
-            input.classList.remove('is-invalid');
-            btnSaveDataImss.disabled = false;
-        } else {
-            input.classList.add('is-invalid');
-            btnSaveDataImss.disabled = true;
+        if (curp.length > 0) {
+            if (curpValida(curp)) {
+                input.classList.remove('is-invalid');
+                btnSaveDataImss.disabled = false;
+            } else {
+                input.classList.add('is-invalid');
+                btnSaveDataImss.disabled = true;
+            }
         }
     }
 
@@ -789,11 +790,11 @@
                 let formatcurp = String(curp.value).substring(0, 10);
                 if (formatrfc == formatcurp) {
                     curp.classList.remove('is-invalid');
-                    rfc.classList.remove('is-invalid');
+                    //rfc.classList.remove('is-invalid');
                     btnSaveDataImss.disabled = false;
                 } else {
                     curp.classList.add('is-invalid');
-                    rfc.classList.add('is-invalid');
+                    //rfc.classList.add('is-invalid');
                     btnSaveDataImss.disabled = true;
                 }
             }
@@ -806,11 +807,11 @@
                 let formatrfc = String(rfc.value).substring(0, 10);
                 let formatcurp = String(curp.value).substring(0, 10);
                 if (formatrfc == formatcurp) {
-                    curp.classList.remove('is-invalid');
+                    //curp.classList.remove('is-invalid');
                     rfc.classList.remove('is-invalid');
                     btnSaveDataImss.disabled = false;
                 } else {
-                    curp.classList.add('is-invalid');
+                    //curp.classList.add('is-invalid');
                     rfc.classList.add('is-invalid');
                     btnSaveDataImss.disabled = true;
                 }

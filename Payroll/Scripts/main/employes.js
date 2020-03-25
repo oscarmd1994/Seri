@@ -1,4 +1,5 @@
 ﻿$(function () {
+
     const idefectivo = 218;
     const idcuentach = 219;
     const idcajeroau = 220;
@@ -7,18 +8,18 @@
      * Variables apartado datos generales
      */
     const clvemp = document.getElementById('clvemp');
-    const name   = document.getElementById('name');
+    const name = document.getElementById('name');
     const apepat = document.getElementById('apepat');
     const apemat = document.getElementById('apemat');
-    const sex    = document.getElementById('sex');
+    const sex = document.getElementById('sex');
     const estciv = document.getElementById('estciv');
-    const fnaci  = document.getElementById('fnaci');
-    const lnaci  = document.getElementById('lnaci');
-    const title  = document.getElementById('title');
+    const fnaci = document.getElementById('fnaci');
+    const lnaci = document.getElementById('lnaci');
+    const title = document.getElementById('title');
     const nacion = document.getElementById('nacion');
-    const state  = document.getElementById('state');
+    const state = document.getElementById('state');
     const codpost = document.getElementById('codpost');
-    const city   = document.getElementById('city');
+    const city = document.getElementById('city');
     const colony = document.getElementById('colony');
     const street = document.getElementById('street');
     const numberst = document.getElementById('numberst');
@@ -34,14 +35,14 @@
      */
     const clvimss = document.getElementById('clvimss');
     const fechefecactimss = document.getElementById('fechefecactimss');
-    const fecefe  = document.getElementById('fecefe');
+    const fecefe = document.getElementById('fecefe');
     const regimss = document.getElementById('regimss');
-    const rfc     = document.getElementById('rfc');
-    const curp    = document.getElementById('curp');
-    const nivest  = document.getElementById('nivest');
-    const nivsoc  = document.getElementById('nivsoc');
+    const rfc = document.getElementById('rfc');
+    const curp = document.getElementById('curp');
+    const nivest = document.getElementById('nivest');
+    const nivsoc = document.getElementById('nivsoc');
     const btnsaveeditdataimss = document.getElementById('btn-save-edit-data-imss');
-    const btnsavedataimss     = document.getElementById('btn-save-data-imss');
+    const btnsavedataimss = document.getElementById('btn-save-data-imss');
     /*
      * Variables del apartado datos de nomina
      */
@@ -59,7 +60,7 @@
     const vencon = document.getElementById('vencon');
     const tipcontra = document.getElementById('tipcontra');
     //const estats = document.getElementById('estats');
-    const motinc = document.getElementById('motinc');
+    //const motinc = document.getElementById('motinc');
     const tippag = document.getElementById('tippag');
     const banuse = document.getElementById('banuse');
     const cunuse = document.getElementById('cunuse');
@@ -69,7 +70,7 @@
     /*
      * Variables apartado estructura
      */
-    const clvstract  = document.getElementById('clvstract');
+    const clvstract = document.getElementById('clvstract');
     const clvposasig = document.getElementById('clvposasig');
     const fechefecposact = document.getElementById('fechefecposact');
     const fechefectpos = document.getElementById('fechefectpos');
@@ -87,8 +88,11 @@
     /* CONSTANTES BUSQUEDA EN TIEMPO REAL DE LOS EMPLEADOS */
     const searchemployekey = document.getElementById('searchemployekey');
     const resultemployekey = document.getElementById('resultemployekey');
+    const labsearchemp     = document.getElementById('labsearchemp');
+    const filtronumber     = document.getElementById('filtronumber');
+    const filtroname       = document.getElementById('filtroname');
     /* CONSTANTES BOTONES DE LA VENTANA MODAL DE BUSQUEDA DE EMPLEADOS */
-    const btnmodalsearchemploye     = document.getElementById('btn-modal-search-employe');
+    const btnmodalsearchemploye = document.getElementById('btn-modal-search-employe');
     const icoclosesearchemployesbtn = document.getElementById('ico-close-searchemployes-btn');
     const btnclosesearchemployesbtn = document.getElementById('btn-close-searchemployes-btn');
     /* EJECUCION DE EVENTO QUE ACTIVA EL CAMPOS DE BUSQUEDA DE EMPLEADOS */
@@ -97,7 +101,7 @@
     });
     /* FUNCION QUE LIMPIA LA CAJA DE BUSQUEDA DE EMPLEADOS Y LA LISTA DE LOS RESULTADOS */
     fclearsearchresults = () => {
-        searchemployekey.value     = '';
+        searchemployekey.value = '';
         resultemployekey.innerHTML = '';
     }
     /* EJECUCION DE FUNCION QUE LIMPIA LA CAJA DE BUSQUEDA Y LA LISTA DE RESULTADOS */
@@ -108,6 +112,40 @@
         navImssTab = document.getElementById('nav-imss-tab'),
         navDataNomTab = document.getElementById('nav-datanom-tab'),
         navEstructureTab = document.getElementById('nav-estructure-tab');
+    /* FUNCION QUE EJECUTA UN SP PARA ACTUALIZAR LA POSICION DEL EMPLEADO EN TB -> EMPLEADO_NOMINA */
+    fupdateposnew = () => {
+        try {
+            if (clvemp.value != "" && clvemp.value > 0) {
+                $.ajax({
+                    url: "../Empleados/UpdatePosicionAct",
+                    type: "POST",
+                    data: { clvemp: clvemp.value },
+                    success: (data) => {
+                        if (data.result == "success") {
+                            floaddatatabgeneral(data.empleado);
+                        }
+                    }, complete: (comp) => {
+                        //console.log(comp);
+                        //console.log('Finalizado');
+                    }, error: (jqXHR, exception) => {
+                        fcaptureaerrorsajax(jqXHR, exception);
+                    }
+                });
+            }
+        } catch (error) {
+            if (error instanceof TypeError) {
+                console.log('TypeError ', error);
+            } else if (error instanceof RangeError) {
+                console.log('RangeError ', error);
+            } else if (error instanceof EvalError) {
+                console.log('EvalError ', error);
+            } else {
+                console.log('Error ', error);
+            }
+        }
+    }
+    /* EJECUCION DE FUNCTION QUE ACTUALIZA LA POSICION */
+    fupdateposnew();
     /* VARIABLES ALMACENA LOCAL STORAGE */
     let objectDataTabDataGen = {},
         objectDataTabImss = {},
@@ -146,7 +184,8 @@
                 salmen: salmen.value, tipper: tipper.value,
                 tipemp: tipemp.value, nivemp: nivemp.value,
                 tipjor: tipjor.value, tipcon: tipcon.value,
-                tipcontra: tipcontra.value, motinc: motinc.value,
+                tipcontra: tipcontra.value,
+                //motinc: motinc.value,
                 fecing: fecing.value,
                 fecant: fecant.value, vencon: vencon.value,
                 //estats: estats.value,
@@ -268,7 +307,7 @@
                         tipjor.value = data.iTipoJornada_id;
                         tipcon.value = data.iTipoContrato_id;
                         tipcontra.value = data.iTipoContratacion_id;
-                        motinc.value = data.iMotivoIncremento_id;
+                        //motinc.value = data.iMotivoIncremento_id;
                         fecing.value = data.sFechaIngreso;
                         fecant.value = data.sFechaAntiguedad;
                         vencon.value = data.sVencimientoContrato;
@@ -305,6 +344,8 @@
                 type: "POST",
                 data: { keyemploye: paramid },
                 success: (data) => {
+                    console.log('Imss data')
+                    console.log(data);
                     if (localStorage.getItem('modeedit') != null) {
                         btnsaveeditdataimss.classList.remove('d-none');
                         btnsavedataimss.classList.add('d-none');
@@ -336,16 +377,19 @@
             }
         }
     }
-    if (localStorage.getItem("modeedit") != null) {
-        btnsaveeditdatagen.classList.remove('d-none');
-        btnsavedatagen.classList.add('d-none');
-        btnsaveeditdataimss.classList.remove('d-none');
-        btnsavedataimss.classList.add('d-none');
-        btnsavedatanomina.classList.add('d-none');
-        btnsaveeditdatanomina.classList.remove('d-none');
-        btnsavedataall.classList.add('d-none');
-        btnsaveeditdataest.classList.remove('d-none');
+    fvalidatebuttonsaction = () => {
+        if (localStorage.getItem("modeedit") != null) {
+            btnsaveeditdatagen.classList.remove('d-none');
+            btnsavedatagen.classList.add('d-none');
+            btnsaveeditdataimss.classList.remove('d-none');
+            btnsavedataimss.classList.add('d-none');
+            btnsavedatanomina.classList.add('d-none');
+            btnsaveeditdatanomina.classList.remove('d-none');
+            btnsavedataall.classList.add('d-none');
+            btnsaveeditdataest.classList.remove('d-none');
+        }
     }
+    fvalidatebuttonsaction();
     /* FUNCION QUE CARGA LOS DATOS GENERALES DEL EMPLEADO SELECCIONADO A EDICION */
     floaddatatabgeneral = (paramid) => {
         try {
@@ -413,6 +457,8 @@
             allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
         }).then((acepta) => {
             if (acepta.value) {
+                searchemployekey.value = '';
+                resultemployekey.innerHTML = '';
                 $("#searchemploye").modal('hide');
                 localStorage.removeItem('tabSelected');
                 localStorage.removeItem('objectTabDataGen');
@@ -420,10 +466,12 @@
                 localStorage.removeItem('objectDataTabNom');
                 localStorage.removeItem('objectDataTabEstructure');
                 let timerInterval;
+                //fvalidatebuttonsaction();
                 Swal.fire({
                     title: 'Cargando información',
-                    html: 'Terminando en <b></b> segundos.',
+                    html: 'Terminando en <b></b> milisegundos.',
                     timer: 5000, timerProgressBar: true,
+                    allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
                     onBeforeOpen: () => {
                         Swal.showLoading();
                         timerInterval = setInterval(() => {
@@ -448,15 +496,34 @@
         alert('Listo para generar reporte de ' + String(paramid));
         console.log(paramid)
     }
+    /* FUNCION QUE COMPRUEBA QUE TIPO DE FILTRO SE APLICARA A LA BUSQUEDA DE EMPLEADOS */
+    fselectfilterdsearchemploye = () => {
+        const filtered = $("input:radio[name=filtroemp]:checked").val();
+        if (filtered == "numero") {
+            searchemployekey.placeholder = "NUMERO DEL EMPLEADO";
+            labsearchemp.textContent     = "Numero";
+        } else if (filtered == "nombre") {
+            searchemployekey.placeholder = "NOMBRE DEL EMPLEADO";
+            labsearchemp.textContent     = "Nombre";
+        }
+        searchemployekey.value     = "";
+        resultemployekey.innerHTML = "";
+        setTimeout(() => { searchemployekey.focus() }, 500);
+    }
+    /* EJECUCION DE FUNCION QUE APLICA FILTRO A LA BUSQUEDA DE LOS EMPLEADOS */
+    filtroname.addEventListener('click', fselectfilterdsearchemploye);
+    filtronumber.addEventListener('click', fselectfilterdsearchemploye);
     /* FUNCION QUE EJECUTA LA BUSUQEDA REAL DE LOS EMPLEADOS */
     fsearchemployes = () => {
+        const filtered = $("input:radio[name=filtroemp]:checked").val();
+        console.log(filtered.trim());
         try {
             resultemployekey.innerHTML = '';
             if (searchemployekey.value != "") {
                 $.ajax({
                     url: "../SearchDataCat/SearchEmploye",
                     type: "POST",
-                    data: { wordsearch: searchemployekey.value },
+                    data: { wordsearch: searchemployekey.value, filtered: filtered.trim() },
                     success: (data) => {
                         if (data.length > 0) {
                             let number = 0;
@@ -464,7 +531,7 @@
                                 number += 1;
                                 resultemployekey.innerHTML += `
                                     <button class="list-group-item d-flex justify-content-between mb-1 align-items-center shadow rounded cg-back">
-                                        ${number}. - ${data[i].sNombreEmpleado}
+                                        ${number}. ${data[i].iIdEmpleado} - ${data[i].sNombreEmpleado}
                                        <span>
                                              <i title="Editar" class="fas fa-edit ml-2 text-warning fa-lg shadow" onclick="fselectemploye(${data[i].iIdEmpleado}, '${data[i].sNombreEmpleado}')"></i> 
                                              <i title="Reporte" class="fas fa-eye ml-2 col-ico fa-lg shadow" onclick="fviewdetailsemploye(${data[i].iIdEmpleado})"></i>
@@ -707,14 +774,16 @@
                 tipjor: tipjor.value, tipcon: tipcon.value, fecing: fecing.value, fecant: fecant.value, vencon: vencon.value,
                 //estats: estats.value,
                 empleado: name.value, apepat: apepat.value, apemat: apemat.value, fechanaci: fnaci.value, tipper: tipper.value, tipcontra: tipcontra.value,
-                motinc: motinc.value, tippag: tippag.value, banuse: banco, cunuse: cunuse.value, position: clvstr.value, clvemp: clvemp.value
+                //motinc: motinc.value,
+                tippag: tippag.value, banuse: banco, cunuse: cunuse.value, position: clvstr.value, clvemp: clvemp.value
             };
         } else {
             url = "../EditDataGeneral/EditDataNomina";
             datasend = {
                 fecefecnom: fecefecnom.value, fechefectact: fechefectact.value, salmen: salmen.value, tipper: tipper.value, tipemp: tipemp.value,
                 nivemp: nivemp.value, tipjor: tipjor.value, tipcon: tipcon.value, tipcontra: tipcontra.value,
-                motinc: motinc.value, fecing: fecing.value, fecant: fecant.value, vencon: vencon.value, tippag: tippag.value, banuse: banuse.value,
+                //motinc: motinc.value,
+                fecing: fecing.value, fecant: fecant.value, vencon: vencon.value, tippag: tippag.value, banuse: banuse.value,
                 cunuse: cunuse.value, clvnom: clvnom.value, position: clvstr.value
             };
         }
@@ -732,7 +801,7 @@
                         fshowtypealert('Atención', 'Selecciona una opción de ' + String(attrselect), 'warning', arrInput[t], 0);
                         validatedatanom = 1;
                         break;
-                    } 
+                    }
                     if (arrInput[t].value == "n" && arrInput[t].id == "tipper") {
                         const attrselect = arrInput[t].getAttribute('tp-select');
                         fshowtypealert('Atención', 'Selecciona una opción de ' + String(attrselect), 'warning', arrInput[t], 0);
@@ -910,7 +979,7 @@
                 Swal.fire({
                     title: "No hay nada que editar", icon: "info",
                     showClass: { popup: 'animated fadeInDown faster' },
-                    hideClass: { popup: 'animated fadeOutUp faster' }, 
+                    hideClass: { popup: 'animated fadeOutUp faster' },
                     confirmButtonText: "Aceptar", allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
                 }).then((acepta) => {
                     $("html, body").animate({

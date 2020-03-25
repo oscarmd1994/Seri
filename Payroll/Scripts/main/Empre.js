@@ -32,7 +32,21 @@
         var Afrp = document.getElementById("inAfiliacionImssRP");
         var Emrp = document.getElementById("inEmpresaRP");
         var Rtrp = document.getElementById("inRiesgoTrabajoRP");
+        var NomRP = document.getElementById("inNombreAfiliacionRP");
         Afrp.value = dato.Afiliacion_IMSS;
+        $.ajax({
+            url: "../Empresas/LoadRegistroPatronal",
+            type: "POST",
+            data: JSON.stringify({ IdRegPat: dato.IdRegPat }),
+            contentType: "application/json; charset=utf-8",
+            success: (data) => {
+                console.log(data);
+                console.log(data[0]["Nombre_Afiliacion"]);
+                NomRP.value = data[0]["Nombre_Afiliacion"];
+            }
+        });
+
+
         $.ajax({
             url: "../Empresas/LoadClasesRP",
             type: "POST",
@@ -79,6 +93,32 @@
         document.getElementById("btnUpdateRP").classList.remove("invisible");
         document.getElementById("btnClearRP").classList.remove("invisible");
     });
+    //
+    $("#btnClearRP").on("click", function () {
+        document.getElementById("inAfiliacionImssRP").value = "";
+        
+        document.getElementById("inRiesgoTrabajoRP").value = "";
+        document.getElementById("inNombreAfiliacionRP").value = "";
+        document.getElementById("inClase").innerHTML = "";
+        //Clases
+        $.ajax({
+            url: "../Empresas/LoadClasesRP",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: (data) => {
+                
+                for (i = 0; i < data.length; i++) {
+                    document.getElementById("inClase").innerHTML += `<option value='${data[i].IdClase}'>${data[i].Nombre_Clase}</option>`;
+
+                    //document.getElementById("btnUpdateRP").classList.add("invisible");
+                }
+            }
+        });
+        document.getElementById("btnGuardarRP").classList.remove("invisible");
+        document.getElementById("btnUpdateRP").classList.add("invisible");
+        document.getElementById("btnClearRP").classList.add("invisible");
+    });
+    //
     $("#inStatusRP").on("click", function () {
         if ($(this).is(':checked')) {
             //document.getElementById("lblinStatusRP").innerHTML = "Activo";
@@ -98,6 +138,7 @@
         if ($("#inStatusRP").is(':checked')) {
             Strp = 1;
         } else {
+
             Strp = 0;
         }
         var datos = { Afiliacion_IMSS: Afrp.value, Nombre_Afiliacion: NomAf.value, Empresa_id: Emrp.value, Riesgo_Trabajo: Rtrp.value, ClasesRegPat: Clrp.value, Status: Strp };
@@ -121,9 +162,6 @@
             });
 
         }
-
-        
-
     });
     //Funcionalidad boton Actualizar Registro patronal
     $("#btnUpdateRP").on("click", function () {
@@ -139,7 +177,8 @@
             alert("no valido");
             form.classList.add("was-validated");
         } else {
-            alert("valido");
+            console.log("valido");
+            console.log(datos);
         }
         //$.ajax({
         //    url: "../Empresas/Update_Registro_Patronal",
@@ -286,8 +325,7 @@
             { "defaultContent": "<button class='btneditar btn btn-outline-success btn-sm text-center shadow rounded' title='Editar Registro' > <i class='fas fa-edit'></i> </button>" }
         ]
     });
-//});
-//$(function () {
+
     SelectLoaderFromLocalidades = () => {
         //Regionales
         $.ajax({

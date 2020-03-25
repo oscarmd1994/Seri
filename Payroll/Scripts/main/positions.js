@@ -4,21 +4,32 @@
     fselectposition = (param) => {
         console.log(param);
         try {
+            searchpositionkey.value = '';
+            resultpositions.innerHTML = '';
             $.ajax({
                 url: "../SearchDataCat/DataSelectPosition",
                 type: "POST",
                 data: { clvposition: param },
                 success: (data) => {
-                    document.getElementById('depart').value = data.sNombreDepartamento;
-                    document.getElementById('pueusu').value = data.sNombrePuesto;
-                    document.getElementById('numpla').value = data.sPosicionCodigo;
-                    document.getElementById('clvstr').value = data.iIdPosicion;
-                    document.getElementById('emprep').value = data.sRegistroPat;
-                    document.getElementById('localty').value = data.sLocalidad;
-                    document.getElementById('report').value = data.iIdReportaAPosicion;
-                    document.getElementById('msjfech').classList.remove('d-none');
-                    $("#searchpositionstab").modal('hide');
-                    console.log(data);
+                    if (data.iIdPosicion != 0) {
+                        document.getElementById('depart').value = data.sNombreDepartamento;
+                        document.getElementById('pueusu').value = data.sNombrePuesto;
+                        document.getElementById('numpla').value = data.sPosicionCodigo;
+                        document.getElementById('clvstr').value = data.iIdPosicion;
+                        document.getElementById('emprep').value = data.sRegistroPat;
+                        document.getElementById('localty').value = data.sLocalidad;
+                        document.getElementById('report').value = data.iIdReportaAPosicion;
+                        document.getElementById('msjfech').classList.remove('d-none');
+                        $("#searchpositionstab").modal('hide');
+                        console.log(data);
+                    } else {
+                        Swal.fire({
+                            title: "Atencion", text: "No se encontro resultado con tu busqueda", icon: "warning",
+                            allowEnterKey: false, allowEscapeKey: false, allowOutsideClick: false
+                        }).then((acepta) => {
+                            setTimeout(() => { searchpositionkey.focus(); }, 1000);
+                        });
+                    }
                 }, error: (jqXHR, exception) => {
                     fcaptureaerrorsajax(jqXHR, exception);
                 }
@@ -36,40 +47,40 @@
         }
     }
     /* CONSTANTES REGISTRO DE POSICIONES */
-    const codposic     = document.getElementById('codposic');
-    const regpatcla    = document.getElementById('regpatcla');
-    const departreg    = document.getElementById('departreg');
-    const pueusureg    = document.getElementById('pueusureg');
-    const depaid       = document.getElementById('depaid');
-    const puesid       = document.getElementById('puesid');
+    const codposic = document.getElementById('codposic');
+    const regpatcla = document.getElementById('regpatcla');
+    const departreg = document.getElementById('departreg');
+    const pueusureg = document.getElementById('pueusureg');
+    const depaid = document.getElementById('depaid');
+    const puesid = document.getElementById('puesid');
     const fechefectpos = document.getElementById('fechefectpos');
-    const localityr    = document.getElementById('localityr');
+    const localityr = document.getElementById('localityr');
     const localityrtxt = document.getElementById('localityrtxt');
-    const emprepreg    = document.getElementById('emprepreg');
+    const emprepreg = document.getElementById('emprepreg');
     const emprepregtxt = document.getElementById('emprepregtxt');
-    const report       = document.getElementById('report');
-    const reportempr   = document.getElementById('reportempr');
+    const report = document.getElementById('report');
+    const reportempr = document.getElementById('reportempr');
     /* CONSTANTES EDICION DE POSICIONES */
-    const codtxtinf     = document.getElementById('codtxtinf');
-    const clvposition   = document.getElementById('clvposition');
-    const edicodposic   = document.getElementById('edicodposic');
-    const depaidedit    = document.getElementById('depaidedit');
-    const departedit    = document.getElementById('departedit');
-    const puesidedit    = document.getElementById('puesidedit');
-    const pueusuedit    = document.getElementById('pueusuedit');
-    const editatcla     = document.getElementById('editatcla');
+    const codtxtinf = document.getElementById('codtxtinf');
+    const clvposition = document.getElementById('clvposition');
+    const edicodposic = document.getElementById('edicodposic');
+    const depaidedit = document.getElementById('depaidedit');
+    const departedit = document.getElementById('departedit');
+    const puesidedit = document.getElementById('puesidedit');
+    const pueusuedit = document.getElementById('pueusuedit');
+    const editatcla = document.getElementById('editatcla');
     const editlocalityr = document.getElementById('editlocalityr');
     const edilocalityrtxt = document.getElementById('edilocalityrtxt');
-    const emprepedit    = document.getElementById('emprepedit');
+    const emprepedit = document.getElementById('emprepedit');
     const emprepregtxtedit = document.getElementById('emprepregtxtedit');
     const edireportempr = document.getElementById('edireportempr');
     const btnsearchdepartamentoedit = document.getElementById('btn-search-departamento-edit');
-    const btnsearchpuestoedit       = document.getElementById('btn-search-puesto-edit');
-    const btnsearchlocalityedit     = document.getElementById('btn-search-localidad-edit');
-    const btnsearchpositionedit     = document.getElementById('btn-search-positionadd-edit');
-    const btnclearpositionsedit     = document.getElementById('btn-clear-positions-edit');
-    const icoclearpositionsedit     = document.getElementById('ico-clear-positions-edit');
-    const btnsavepositionedit       = document.getElementById('btnsavepositionedit');
+    const btnsearchpuestoedit = document.getElementById('btn-search-puesto-edit');
+    const btnsearchlocalityedit = document.getElementById('btn-search-localidad-edit');
+    const btnsearchpositionedit = document.getElementById('btn-search-positionadd-edit');
+    const btnclearpositionsedit = document.getElementById('btn-clear-positions-edit');
+    const icoclearpositionsedit = document.getElementById('ico-clear-positions-edit');
+    const btnsavepositionedit = document.getElementById('btnsavepositionedit');
     /* FUNCION QUE ELIMINA EL LOCALSTORAGE MODALBTNPOSITIONS */
     fremovelocalstclear = () => {
         searchpositionkeybtn.value = '';
@@ -100,20 +111,20 @@
     /* CONSTANTES BOTONES REGISTRO DE POSICIONES */
     const btnclearfieldspositions = document.getElementById('btn-clear-fields-positions');
     const icoclearfieldspositions = document.getElementById('ico-clear-fields-positions');
-    const btnsaveposition         = document.getElementById('btnsaveposition');
+    const btnsaveposition = document.getElementById('btnsaveposition');
     /* FUNCION QUE LIMPIA LOS CAMPOS DE REGISTRO DE UNA NUEVA POSICION */
     fclearfieldsregpositions = () => {
-        codposic.value     = '';
-        depaid.value       = '';
-        departreg.value    = '';
-        puesid.value       = '';
-        pueusureg.value    = '';
-        regpatcla.value    = '0';
-        localityr.value    = '';
+        codposic.value = '';
+        depaid.value = '';
+        departreg.value = '';
+        puesid.value = '';
+        pueusureg.value = '';
+        regpatcla.value = '0';
+        localityr.value = '';
         localityrtxt.value = '';
-        emprepreg.value    = '';
+        emprepreg.value = '';
         emprepregtxt.value = '';
-        reportempr.value   = '0';
+        reportempr.value = '0';
     }
     /* EJECUCION DE FUNCION QUE LIMPIA LOS CAMPOS DE REGISTRO DE UNA NUEVA POSICION */
     btnclearfieldspositions.addEventListener('click', fclearfieldsregpositions);
@@ -130,13 +141,13 @@
     const btnsearchtableposition = document.getElementById('btn-search-table-num-posicion');
     /* CONSTANTES BUSQUEDA DE POSICION AL AÑADIR UNA NUEVA */
     const searchpositionkeyadd = document.getElementById('searchpositionkeyadd');
-    const resultpositionsadd   = document.getElementById('resultpositionsadd');
+    const resultpositionsadd = document.getElementById('resultpositionsadd');
     const btnsearchpositionadd = document.getElementById('btn-search-positionadd');
     const icoclosesearchpositionsadd = document.getElementById('ico-close-search-positionsadd');
     const btnclosesearchpositionsadd = document.getElementById('btn-close-search-positionsadd');
     /* FUNCION QUE LIMPIA EL CAMPO DE BUSQUEDA Y LA LISTA DE RESULTADOS */
     fclearsearchresults = () => {
-        searchpositionkeyadd.value   = '';
+        searchpositionkeyadd.value = '';
         resultpositionsadd.innerHTML = '';
         $("#searchpositionsadd").modal('hide');
         $("#registerposition").modal('show');
@@ -149,11 +160,11 @@
     });
     /* CONSTANTES DE BUSQUEDA DE POSICIONES POR MEDIO DE BOTON */
     const btnmodalsearchpositions = document.getElementById('btn-modal-search-positions');
-    const searchpositionkeybtn    = document.getElementById('searchpositionkeybtn');
-    const resultpositionsbtn      = document.getElementById('resultpositionsbtn');
+    const searchpositionkeybtn = document.getElementById('searchpositionkeybtn');
+    const resultpositionsbtn = document.getElementById('resultpositionsbtn');
     const icoclosesearchpositionsbtn = document.getElementById('ico-close-searchpositions-btn');
     const btnclosesearchpositionsbtn = document.getElementById('btn-close-searchpositions-btn');
-    const btnregisterpositionbtnadd  = document.getElementById('btnregisterpositionbtnadd');
+    const btnregisterpositionbtnadd = document.getElementById('btnregisterpositionbtnadd');
     /* EJECUCION DE EVENTO QUE ACTIVA EL CAMPO DE BUSQUEDA AL HACER CLICK EN EL BOTON DE POSICIONES */
     btnmodalsearchpositions.addEventListener('click', () => {
         localStorage.setItem('modalbtnpositions', 1);
@@ -161,7 +172,7 @@
     });
     /* FUNCION QUE LIMPIA EL CAMPO DE BUSQUEDA Y LA LISTA DE RESULTADOS DE LAS POSICIONES BTN */
     fclearsearchresultsbtn = () => {
-        searchpositionkeybtn.value   = '';
+        searchpositionkeybtn.value = '';
         resultpositionsbtn.innerHTML = '';
     }
     localStorage.removeItem('modalbtnpositions');
@@ -187,7 +198,7 @@
     icoCloseSearchPositions.addEventListener('click', () => { searchpositions.value = ''; resultpositions.innerHTML = ''; });
     /* EJECUCION DE FUNCION QUE OCULTA LA BUSUQUEDA DE POSICIONES */
     btnregisterpositions.addEventListener('click', () => {
-        searchpositions.value     = '';
+        searchpositions.value = '';
         resultpositions.innerHTML = '';
         $("#searchpositionstab").modal('hide');
         setTimeout(() => { codposic.focus(); }, 1000);
@@ -296,11 +307,11 @@
         }
     }
     /* EJECUCION DE FUNCION QUE CARGA LOS REGISTROS PATRONALES */
-    floadregpatclases(regpatcla);
+    //floadregpatclases(regpatcla);
     /* FUNCION QUE CARGA LOS DATOS DE LA POSICION SELECCIONADA AL AÑADIR UNA NUEVA */
     fselectpositionadd = (paramid, paramstr) => {
         try {
-            searchpositionkeyadd.value   = '';
+            searchpositionkeyadd.value = '';
             resultpositionsadd.innerHTML = '';
             $("#searchpositionsadd").modal('hide');
             $("#registerposition").modal('show');
@@ -485,7 +496,7 @@
     });
     /* FUNCION QUE CARGA LOS DATOS DE LA POSICION SELECCIONADA PARA SER EDITADA */
     fviewdatailspos = (paramid) => {
-        floadregpatclases(editatcla);
+        //floadregpatclases(editatcla);
         floadbusiness(0, 'Active/Desactive', 0, edireportempr);
         $("#searchpositions").modal('hide');
         try {
@@ -500,17 +511,16 @@
                         codtxtinf.textContent = data.sPosicionCodigo;
                         edicodposic.value = data.sPosicionCodigo;
                         //depaidedit.value  = data.iDepartamento_id;
-                        departedit.value  = data.sNombreDepartamento;
+                        departedit.value = data.sNombreDepartamento;
                         //puesidedit.value  = data.iPuesto_id;
-                        pueusuedit.value  = data.sNombrePuesto;
-                        editatcla.value   = data.iIdRegistroPat;
+                        pueusuedit.value = data.sNombrePuesto;
+                        editatcla.innerHTML = `<option value="${data.iIdRegistroPat}">${data.sRegistroPat}</option>`;
                         //editlocalityr.value = data.iIdLocalidad;
                         edilocalityrtxt.value = data.sLocalidad;
                         //emprepedit.value = data.iIdReportaAPosicion;
                         emprepregtxtedit.value = data.sCodRepPosicion;
                         edireportempr.value = data.iIdReportaAEmpresa;
                         //setTimeout(() => { edicodposic.focus(); }, 1000);
-                        console.log(data);
                     }, error: (jqXHR, exception) => {
                         fcaptureaerrorsajax(jqXHR, exception);
                     }

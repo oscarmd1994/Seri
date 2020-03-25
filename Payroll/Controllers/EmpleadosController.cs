@@ -77,11 +77,11 @@ namespace Payroll.Controllers
         }
 
         [HttpPost]
-        public JsonResult LoadBanks(int state, string type, int keyban)
+        public JsonResult LoadBanks(int keyban)
         {
             BancosDao banDao = new BancosDao();
             List<BancosBean> banBean = new List<BancosBean>();
-            banBean = banDao.sp_Bancos_Retrieve_Bancos(state, type, keyban);
+            banBean = banDao.sp_Bancos_Retrieve_Bancos(keyban);
             return Json(banBean);
         }
 
@@ -198,6 +198,17 @@ namespace Payroll.Controllers
             NacionalidadesDao nacionDao = new NacionalidadesDao();
             nacionBean = nacionDao.sp_Nacionalidades_Retrieve_Nacionalidades();
             return Json(nacionBean);
+        }
+        [HttpPost]
+        public JsonResult UpdatePosicionAct(int clvemp)
+        {
+            EmpleadosBean empleadoBean = new EmpleadosBean();
+            EmpleadosDao empleadoDao = new EmpleadosDao();
+            // Reemplazar por la sesion de la empresa
+            int keyemp = int.Parse(Session["IdEmpresa"].ToString());
+            empleadoBean = empleadoDao.sp_Empleado_Update_PosicionNomina(clvemp, keyemp);
+            var data = new { empleado = clvemp, result = empleadoBean.sMensaje };
+            return Json(data);
         }
     }
 }

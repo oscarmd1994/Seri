@@ -253,7 +253,7 @@ namespace Payroll.Models.Daos
 
     public class BancosDao : Conexion
     {
-        public List<BancosBean> sp_Bancos_Retrieve_Bancos(int state, string type, int keyban)
+        public List<BancosBean> sp_Bancos_Retrieve_Bancos(int keyban)
         {
             List<BancosBean> listBanBean = new List<BancosBean>();
             try
@@ -263,8 +263,6 @@ namespace Payroll.Models.Daos
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.Add(new SqlParameter("@ctrlEstadoBanco", state));
-                cmd.Parameters.Add(new SqlParameter("@ctrlTipoFiltro", type));
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdBanco", keyban));
                 SqlDataReader data = cmd.ExecuteReader();
                 if (data.HasRows)
@@ -273,18 +271,7 @@ namespace Payroll.Models.Daos
                     {
                         BancosBean banBean = new BancosBean();
                         banBean.iIdBanco = Convert.ToInt32(data["IdBanco"].ToString());
-                        banBean.sNombreBanco = data["NombreBanco"].ToString();
-                        banBean.iClave = Convert.ToInt32(data["Clave"].ToString());
-                        if (keyban != 0)
-                        {
-                            banBean.iEstadoBanco = Convert.ToInt32(data["EstadoBanco"].ToString());
-                            banBean.sUsuarioRegistroBanco = data["UsuarioRegistroBanco"].ToString();
-                            banBean.sFechaRegistroBanco = data["FechaRegistroBanco"].ToString();
-                            banBean.sUsuarioModificaBanco = (String.IsNullOrEmpty(data["UsuarioModificaBanco"].ToString())) ? "Sin resultado"
-                                : data["UsuarioModificaBanco"].ToString();
-                            banBean.sFechaModificaBanco = (String.IsNullOrEmpty(data["FechaModificaBanco"].ToString())) ? "Sin resultado"
-                                : data["FechaModificaBanco"].ToString();
-                        }
+                        banBean.sNombreBanco = data["Descripcion"].ToString();
                         listBanBean.Add(banBean);
                     }
                 }
@@ -529,7 +516,7 @@ namespace Payroll.Models.Daos
             try
             {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Empresas_Retrieve_Empresas", this.conexion)
+                SqlCommand cmd = new SqlCommand("sp_Empresas_RetrieveFiltro_Empresas", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -544,12 +531,6 @@ namespace Payroll.Models.Daos
                         EmpresasBean empresaBean = new EmpresasBean();
                         empresaBean.iIdEmpresa = Convert.ToInt32(data["IdEmpresa"].ToString());
                         empresaBean.sNombreEmpresa = data["NombreEmpresa"].ToString();
-                        if (keyemp != 0)
-                        {
-                            empresaBean.iEstadoEmpresa = Convert.ToInt32(data["EstadoEmpresa"].ToString());
-                            empresaBean.sUsuarioRegistro = data["UsuarioRegistroEmpresa"].ToString();
-                            empresaBean.sFechaRegistro = data["FechaRegistroEmpres"].ToString();
-                        }
                         listEmpresasBean.Add(empresaBean);
                     }
                 }
@@ -744,4 +725,541 @@ namespace Payroll.Models.Daos
         }
     }
 
+<<<<<<< HEAD
+=======
+        public List<LocalidadesBean2> sp_Localidades_Retrieve_Search_Localidades(string wordsearch, int keyemp)
+        {
+            List<LocalidadesBean2> listLocalidadesBean = new List<LocalidadesBean2>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Localidades_Retrieve_Search_Localidades", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@ctrlWordSearch", wordsearch));
+                cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpresa", keyemp));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        LocalidadesBean2 localidadBean = new LocalidadesBean2();
+                        localidadBean.iIdLocalidad = Convert.ToInt32(data["IdLocalidad"].ToString());
+                        localidadBean.iIdEmpresa = Convert.ToInt32(data["Empresa_id"].ToString());
+                        localidadBean.iCodigoLocalidad = Convert.ToInt32(data["Codigo_Localidad"].ToString());
+                        localidadBean.sDescripcion = data["Descripcion"].ToString();
+                        localidadBean.sRegistroPatronal = data["Afiliacion_IMSS"].ToString();
+                        //localidadBean.dTazIva = Convert.ToDouble(data["TasaIva"].ToString());
+                        if (data["RegistroPatronal_id"].ToString().Length != 0)
+                        {
+                            localidadBean.iRegistroPatronal_id = Convert.ToInt32(data["RegistroPatronal_id"].ToString());
+                        }
+                        else
+                        {
+                            localidadBean.iRegistroPatronal_id = 0;
+                        }
+                        if (data["Regional_id"].ToString().Length != 0)
+                        {
+                            localidadBean.iRegional_id = Convert.ToInt32(data["Regional_id"].ToString());
+                        }
+                        else
+                        {
+                            localidadBean.iRegional_id = 0;
+                        }
+                        if (data["ZonaEconomica_id"].ToString().Length != 0)
+                        {
+                            localidadBean.iZonaEconomica_id = Convert.ToInt32(data["ZonaEconomica_id"].ToString());
+                        }
+                        else
+                        {
+                            localidadBean.iZonaEconomica_id = 0;
+                        }
+                        if (data["Sucursal_id"].ToString().Length != 0)
+                        {
+                            localidadBean.iSucursal_id = Convert.ToInt32(data["Sucursal_id"].ToString());
+                        }
+                        else
+                        {
+                            localidadBean.iSucursal_id = 0;
+                        }
+                        if (data["Cg_Estado_id"].ToString().Length != 0)
+                        {
+                            localidadBean.iEstado_id = Convert.ToInt32(data["Cg_Estado_id"].ToString());
+                        }
+                        else
+                        {
+                            localidadBean.iEstado_id = 0;
+                        }
+                        listLocalidadesBean.Add(localidadBean);
+                    }
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return listLocalidadesBean;
+        }
+
+        public List<LocalidadesBean2> sp_TLocalicades_Retrieve_Localidades(int keyemp)
+        {
+            List<LocalidadesBean2> listLocalidadesBean = new List<LocalidadesBean2>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_TLocalicades_Retrieve_Localidades", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@ctrliIdEmpresa", keyemp));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        LocalidadesBean2 localidadBean = new LocalidadesBean2();
+                        localidadBean.iIdLocalidad = Convert.ToInt32(data["IdLocalidad"].ToString());
+                        localidadBean.iIdEmpresa = Convert.ToInt32(data["Empresa_id"].ToString());
+                        localidadBean.iCodigoLocalidad = Convert.ToInt32(data["Codigo_Localidad"].ToString());
+                        localidadBean.sDescripcion = data["Descripcion"].ToString();
+                        localidadBean.dTazIva = Convert.ToDouble(data["TasaIva"].ToString());
+                        if (data["RegistroPatronal_id"].ToString().Length != 0)
+                        {
+                            localidadBean.iRegistroPatronal_id = Convert.ToInt32(data["RegistroPatronal_id"].ToString());
+                        }
+                        else
+                        {
+                            localidadBean.iRegistroPatronal_id = 0;
+                        }
+                        if (data["Regional_id"].ToString().Length != 0)
+                        {
+                            localidadBean.iRegional_id = Convert.ToInt32(data["Regional_id"].ToString());
+                        }
+                        else
+                        {
+                            localidadBean.iRegional_id = 0;
+                        }
+                        if (data["ZonaEconomica_id"].ToString().Length != 0)
+                        {
+                            localidadBean.iZonaEconomica_id = Convert.ToInt32(data["ZonaEconomica_id"].ToString());
+                        }
+                        else
+                        {
+                            localidadBean.iZonaEconomica_id = 0;
+                        }
+                        if (data["Sucursal_id"].ToString().Length != 0)
+                        {
+                            localidadBean.iSucursal_id = Convert.ToInt32(data["Sucursal_id"].ToString());
+                        }
+                        else
+                        {
+                            localidadBean.iSucursal_id = 0;
+                        }
+                        if (data["Cg_Estado_id"].ToString().Length != 0)
+                        {
+                            localidadBean.iEstado_id = Convert.ToInt32(data["Cg_Estado_id"].ToString());
+                        }
+                        else
+                        {
+                            localidadBean.iEstado_id = 0;
+                        }
+                        listLocalidadesBean.Add(localidadBean);
+                    }
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return listLocalidadesBean;
+        }
+    }
+    public class RegistroPatronalDao : Conexion
+    {
+        public List<RegistroPatronalBean2> sp_Registro_Patronal_Retrieve_Registros_Patronales(int keyemp)
+        {
+            List<RegistroPatronalBean2> listRegPatronal = new List<RegistroPatronalBean2>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Registro_Patronal_Retrieve_Registros_Patronales", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@ctrliEmpresa_id", keyemp));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        RegistroPatronalBean2 regPatronal = new RegistroPatronalBean2();
+                        regPatronal.iIdRegPat = Convert.ToInt32(data["IdRegPat"].ToString());
+                        regPatronal.iEmpresaid = Convert.ToInt32(data["Empresa_id"].ToString());
+                        regPatronal.sAfiliacionIMSS = data["Afiliacion_IMSS"].ToString();
+                        regPatronal.sNombreAfiliacion = data["Nombre_Afiliacion"].ToString();
+                        regPatronal.sRiesgoTrabajo = data["Riesgo_Trabajo"].ToString();
+                        regPatronal.iClasesRegPat_id = Convert.ToInt32(data["ClasesRegPat_id"].ToString());
+                        regPatronal.sCancelado = data["Cancelado"].ToString();
+                        listRegPatronal.Add(regPatronal);
+                    }
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return listRegPatronal;
+        }
+    }
+    public class RegionesDao : Conexion
+    {
+        public List<RegionalesBean> sp_Regionales_Retrieve_Search_Regionales(string wordsearch, int keyemp)
+        {
+            List<RegionalesBean> listRegionalesBean = new List<RegionalesBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Regionales_Retrieve_Search_Regionales", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@ctrlWordSearch", wordsearch));
+                cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpresa", keyemp));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        RegionalesBean regionalBean = new RegionalesBean();
+                        regionalBean.iIdRegional = Convert.ToInt32(data["IdRegional"].ToString());
+                        regionalBean.iEmpresaId = Convert.ToInt32(data["Empresa_id"].ToString());
+                        regionalBean.sDescripcionRegional = data["Descripcion_Regional"].ToString();
+                        regionalBean.sClaveRegional = data["Clave_Regional"].ToString();
+                        regionalBean.iUsuarioAltaId = Convert.ToInt32(data["Usuario_Alta_Id"].ToString());
+                        regionalBean.sFechaAlta = data["Fecha_Alta"].ToString();
+                        listRegionalesBean.Add(regionalBean);
+                    }
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return listRegionalesBean;
+        }
+
+        public RegionalesBean sp_Regionales_Retrieve_Regional(int clvregion)
+        {
+            RegionalesBean regionalBean = new RegionalesBean();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Regionales_Retrieve_Regional", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@ctrlIdRegional", clvregion));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.Read())
+                {
+                    regionalBean.iIdRegional = Convert.ToInt32(data["IdRegional"].ToString());
+                    regionalBean.iEmpresaId = Convert.ToInt32(data["Empresa_id"].ToString());
+                    regionalBean.sDescripcionRegional = data["Descripcion_Regional"].ToString();
+                    regionalBean.sClaveRegional = data["Clave_Regional"].ToString();
+                    regionalBean.iUsuarioAltaId = Convert.ToInt32(data["Usuario_Alta_Id"].ToString());
+                    regionalBean.sFechaAlta = data["Fecha_Alta"].ToString();
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return regionalBean;
+        }
+        public List<RegionalesBean> sp_Regionales_Retrieve_Regionales()
+        {
+            List<RegionalesBean> listRegionalesBean = new List<RegionalesBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Regionales_Retrieve_Regionales", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        RegionalesBean regionalBean = new RegionalesBean();
+                        regionalBean.iIdRegional = Convert.ToInt32(data["IdRegional"].ToString());
+                        regionalBean.sDescripcionRegional = data["Descripcion_Regional"].ToString();
+                        regionalBean.sClaveRegional = data["Clave_Regional"].ToString();
+                        regionalBean.iUsuarioAltaId = Convert.ToInt32(data["Usuario_Alta_Id"].ToString());
+                        regionalBean.sFechaAlta = data["Fecha_Alta"].ToString();
+                        listRegionalesBean.Add(regionalBean);
+                    }
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return listRegionalesBean;
+        }
+
+        public RegionalesBean sp_Regionales_Insert_Regionales(string descregion, string claregion, int usuario, int keyemp)
+        {
+            RegionalesBean regionBean = new RegionalesBean();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Regionales_Insert_Regionales", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@ctrlDescripcion", descregion));
+                cmd.Parameters.Add(new SqlParameter("@ctrlClaveRegion", claregion));
+                cmd.Parameters.Add(new SqlParameter("@ctrlUsuario", usuario));
+                cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpresa", keyemp));
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    regionBean.sMensaje = "success";
+                }
+                else
+                {
+                    regionBean.sMensaje = "error";
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return regionBean;
+        }
+    }
+    public class SucursalesDao : Conexion
+    {
+
+        public List<SucursalesBean> sp_Sucursales_Retrieve_Search_Sucursales(string wordsearch)
+        {
+            List<SucursalesBean> listSucursalesBean = new List<SucursalesBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Sucursales_Retrieve_Search_Sucursales", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@ctrlWordSearch", wordsearch));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        SucursalesBean sucursalBean = new SucursalesBean();
+                        sucursalBean.iIdSucursal = Convert.ToInt32(data["IdSucursal"].ToString());
+                        sucursalBean.sDescripcionSucursal = data["Descripcion_Sucursal"].ToString();
+                        sucursalBean.sClaveSucursal = data["Clave_Sucursal"].ToString();
+                        sucursalBean.iUsuarioAltaId = Convert.ToInt32(data["Usuario_Alta_Id"].ToString());
+                        sucursalBean.sFechaAlta = data["Fecha_Alta"].ToString();
+                        listSucursalesBean.Add(sucursalBean);
+                    }
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return listSucursalesBean;
+        }
+
+        public SucursalesBean sp_Sucursales_Retrieve_Sucursal(int clvsucursal)
+        {
+            SucursalesBean sucursalBean = new SucursalesBean();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Sucursales_Retrieve_Sucursal", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@ctrlIdSucursal", clvsucursal));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.Read())
+                {
+                    sucursalBean.iIdSucursal = Convert.ToInt32(data["IdSucursal"].ToString());
+                    sucursalBean.sDescripcionSucursal = data["Descripcion_Sucursal"].ToString();
+                    sucursalBean.sClaveSucursal = data["Clave_Sucursal"].ToString();
+                    sucursalBean.iUsuarioAltaId = Convert.ToInt32(data["Usuario_Alta_Id"].ToString());
+                    sucursalBean.sFechaAlta = data["Fecha_Alta"].ToString();
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return sucursalBean;
+        }
+        public List<SucursalesBean> sp_Sucursales_Retrieve_Sucursales()
+        {
+            List<SucursalesBean> listSucursalesBean = new List<SucursalesBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Sucursales_Retrieve_Sucursales", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        SucursalesBean sucursalBean = new SucursalesBean();
+                        sucursalBean.iIdSucursal = Convert.ToInt32(data["IdSucursal"].ToString());
+                        sucursalBean.sDescripcionSucursal = data["Descripcion_Sucursal"].ToString();
+                        sucursalBean.sClaveSucursal = data["Clave_Sucursal"].ToString();
+                        sucursalBean.iUsuarioAltaId = Convert.ToInt32(data["Usuario_Alta_Id"].ToString());
+                        sucursalBean.sFechaAlta = data["Fecha_Alta"].ToString();
+                        listSucursalesBean.Add(sucursalBean);
+                    }
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return listSucursalesBean;
+        }
+
+        public SucursalesBean sp_Sucursales_Insert_Sucursales(string descsucursal, string clasucursal, int usuario)
+        {
+            SucursalesBean sucursalBean = new SucursalesBean();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Sucursales_Insert_Sucursales", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@ctrlDescripcion", descsucursal));
+                cmd.Parameters.Add(new SqlParameter("@ctrlClaveSucursal", clasucursal));
+                cmd.Parameters.Add(new SqlParameter("@ctrlUsuario", usuario));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.Read()) {
+                    if (data["sRespuesta"].ToString() == "") {
+                        sucursalBean.sMensaje = "success";
+                    } else {
+                        sucursalBean.sMensaje = data["sRespuesta"].ToString();
+                    }
+                } else {
+                    sucursalBean.sMensaje = "error";
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                string origenerror = "CatalogosDao";
+                string mensajeerror = exc.ToString();
+                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
+                CapturaErrores capturaErrorDao = new CapturaErrores();
+                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+                Console.WriteLine(exc);
+            }
+            return sucursalBean;
+        }
+
+    }
+    public class NacionalidadesDao : Conexion
+    {
+        public List<NacionalidadesBean> sp_Nacionalidades_Retrieve_Nacionalidades()
+        {
+            List<NacionalidadesBean> listNacionBean = new List<NacionalidadesBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Nacionalidades_Retrieve_Nacionalidades", this.conexion) { CommandType = CommandType.StoredProcedure };
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        NacionalidadesBean nacionBean = new NacionalidadesBean();
+                        nacionBean.iIdNacionalidad = Convert.ToInt32(data["IdNacionalidad"].ToString());
+                        nacionBean.sDescripcion = data["Descripcion"].ToString();
+                        listNacionBean.Add(nacionBean);
+                    }
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return listNacionBean;
+        }
+    }
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
 }

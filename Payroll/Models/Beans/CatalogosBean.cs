@@ -316,6 +316,72 @@
         public string sFechaRegistroPosicion { get; set; }
         public string sMensaje { get; set; }
     }
+<<<<<<< HEAD
+=======
+    public class TipoPeriodosBean
+    {
+        public int iId { get; set; }
+        public string sValor { get; set; }
+    }
+    public class LocalidadesBean
+    {
+        public int IdLocalidad { get; set; }
+        public int Empresa_id { get; set; }
+        public int Codigo_Localidad { get; set; }
+        public string Descripcion { get; set; }
+        public string TasaIva { get; set; }
+        public int RegistroPatronal_id { get; set; }
+        public int Regional_id { get; set; }
+        public int ZonaEconomica_id { get; set; }
+        public int Sucursal_id { get; set; }
+        public int Estado_id { get; set; }
+    }
+    public class LocalidadesBean2
+    {
+        public int iIdLocalidad { get; set; }
+        public int iIdEmpresa { get; set; }
+        public int iCodigoLocalidad { get; set; }
+        public string sDescripcion { get; set; }
+        public double dTazIva { get; set; }
+        public int iRegistroPatronal_id { get; set; }
+        public string sRegistroPatronal { get; set; }
+        public int iRegional_id { get; set; }
+        public int iZonaEconomica_id { get; set; }
+        public int iSucursal_id { get; set; }
+        public int iEstado_id { get; set; }
+    }
+    public class RegistroPatronalBean
+    {
+        public int IdRegPat { get; set; }
+        public int Empresa_id { get; set; }
+        public string Afiliacion_IMSS { get; set; }
+        public string Nombre_Afiliacion { get; set; }
+        public string Riesgo_Trabajo { get; set; }
+        public int ClasesRegPat_id { get; set; }
+        public string Cancelado { get; set; }
+    }
+    public class RegistroPatronalBean2
+    {
+        public int iIdRegPat { get; set; }
+        public int iEmpresaid { get; set; }
+        public string sAfiliacionIMSS { get; set; }
+        public string sNombreAfiliacion { get; set; }
+        public string sRiesgoTrabajo { get; set; }
+        public int iClasesRegPat_id { get; set; }
+        public string sCancelado { get; set; }
+    }
+    public class CClases_RegPatBean
+    {
+        public int IdClase { get; set; }
+        public string Nombre_Clase { get; set; }
+        public string Descripcion_Clase { get; set; }
+    }
+    public class RegimenFiscalBean
+    {
+        public int IdRegimenFiscal { get; set; }
+        public string Descripcion { get; set; }
+    }
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
     public class RegionalesBean
     {
         public int iIdRegional { get; set; }
@@ -336,5 +402,165 @@
         public string sFechaAlta { get; set; }
         public string sMensaje { get; set; }
     }
+<<<<<<< HEAD
 
+=======
+    public class ZonaEconomicaBean
+    {
+        public int iIdZonaEconomica { get; set; }
+        public string sDescripcion { get; set; }
+
+    }
+    public class AusentismosBean
+    {
+        public int iIdTipoAusentismo { get; set; }
+        public string sNombreAusentismo { get; set; }
+        public string sDescripcionAusentismo { get; set; }
+
+    }
+    public class DescEmpleadoVacacionesBean
+    {
+        public int iFlag { get; set; }
+        public int IdEmpleado { get; set; }
+        public string Nombre_Empleado { get; set; }
+        public string Apellido_Materno_Empleado { get; set; }
+        public string Apellido_Paterno_Empleado { get; set; }
+        public string DescripcionDepartamento { get; set; }
+        public string DescripcionPuesto { get; set; }
+        public string FechaIngreso { get; set; }
+        //
+        public int Id_Per_Vac { get; set; }
+        public string Fecha_Aniversario { get; set; }
+        public int Id_Per_Vac_Ln { get; set; }
+        public int Anio { get; set; }
+        public int DiasPrima { get; set; }
+        public int DiasDisfrutados { get; set; }
+        public int DiasRestantes { get; set; }
+
+
+    }
+    public class PVacacionesBean
+    {
+        public int iFlag { get; set; }
+        public int IdEmpleado { get; set; }
+        public string Nombre_Empleado { get; set; }
+        public string Apellido_Materno_Empleado { get; set; }
+        public string Apellido_Paterno_Empleado { get; set; }
+        public string DescripcionDepartamento { get; set; }
+        public string DescripcionPuesto { get; set; }
+        public string FechaIngreso { get; set; }
+        public int Id_Per_Vac { get; set; }
+        public string FechaAntiguedad { get; set; }
+        public string aniversario_proximo { get; set; }
+        public string aniversario_anterior { get; set; }
+        public int Id_Per_Vac_Ln { get; set; }
+        public string Periodo { get; set; }
+        public int DiasPrima { get; set; }
+        public int DiasDisfrutados { get; set; }
+        public int DiasRestantes { get; set; }
+
+
+    }
+    public class PeriodosVacacionesBean
+    {
+        public int IdPer_vac_Dist {get;set;}
+        public int Per_vac_Ln_id { get; set; }
+        public string Fecha_Inicio { get; set; }
+        public string Fecha_Fin { get; set; }
+        public int Dias { get; set; }
+        public string Agendadas { get; set; }
+        public string Disfrutadas { get; set; }
+        public string Cancelado { get; set; }
+
+    }
+    public class CreditosBean
+    {
+        public int IdCredito { get; set; }
+        public int Empleado_id { get; set; }
+        public int Empresa_id { get; set; }
+        public string TipoDescuento { get; set; }
+        public string SeguroVivienda { get; set; }
+        public string Descuento { get; set; }
+        public string NoCredito { get; set; }
+        public string FechaAprovacionCredito { get; set; }
+        public string Descontar { get; set; }
+        public string FechaBaja { get; set; }
+        public string FechaReinicio { get; set; }
+        public string Finalizado { get; set; }
+    }
+    public class AusentismosEmpleadosBean
+    {
+        public int IdAusentismo { get; set; }
+        public int Tipo_Ausentismo_id { get; set; }
+        public string Nombre_Ausentismo { get; set; }
+        public int Empleado_id { get; set; }
+        public int Empresa_id { get; set; }
+        public string RecuperaAusentismo { get; set; }
+        public string Fecha_Ausentismo { get; set; }
+        public int Dias_Ausentismo { get; set; }
+        public string Certificado_imss { get; set; }
+        public string Comentarios_imss { get; set; }
+        public string Causa_FaltaInjustificada { get; set; }
+    }
+    public class PensionesAlimentariasBean
+    {
+        public int IdPension { get; set; }
+        public int Empleado_id { get; set; }
+        public int Empresa_id { get; set; }
+        public string Cuota_Fija { get; set; }
+        public int Porcentaje { get; set; }
+        public string AplicaEn { get; set; }
+        public string Descontar_en_Finiquito { get; set; }
+        public string No_Oficio { get; set; }
+        public string Fecha_Oficio { get; set; }
+        public string Tipo_Calculo { get; set; }
+        public string Aumentar_segun_salario_minimo_general { get; set; }
+        public string Aumentar_segun_aumento_de_sueldo { get; set; }
+        public string Beneficiaria { get; set; }
+        public int Banco { get; set; }
+        public string Sucursal { get; set; }
+        public string Tarjeta_vales { get; set; }
+        public string Cuenta_cheques { get; set; }
+        public string Fecha_baja { get; set; }
+    }
+    public class CapturaErroresBean
+    {
+        public int iIdCapturaError { get; set; }
+        public string sOrigenError { get; set; }
+        public string sMensajeError { get; set; }
+        public DateTime dFechaError { get; set; }
+        public string sMensaje { get; set; }
+    }
+    public class NacionalidadesBean
+    {
+        public int iIdNacionalidad { get; set; }
+        public string sDescripcion { get; set; }
+        public string sMensaje { get; set; }
+    }
+    public class TipoEmpleadoBean { 
+        public int IdTipo_Empleado { get; set; }
+        public string Descripcion { get; set; }
+    }
+    public class MotivoBajaBean
+    {
+        public int IdMotivo_Baja { get; set; }
+        public string Descripcion { get; set; }
+        public int TipoEmpleado_id { get; set; }
+    }
+    public class IncidenciaBean
+    {
+        public int IdTRegistro_Incidencia { get; set; }
+        public int Renglon { get; set; }
+        public int Cantidad { get; set; }
+        public int Plazos { get; set; }
+        public string Descripcion { get; set; }
+        public string Referencia { get; set; }
+        public string Fecha_Aplicacion { get; set; }
+    }
+    public class VW_TipoIncidenciaBean
+    {
+        public int Ren_incid_id { get; set; }
+        public string Descripcion {get;set;}
+    }
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
 }

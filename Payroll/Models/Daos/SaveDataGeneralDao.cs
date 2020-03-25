@@ -191,6 +191,39 @@ namespace Payroll.Models.Daos
             }
             return empleadoBean;
         }
+        public EmpleadosBean sp_Empleado_Update_PosicionNomina(int clvemp, int keyemp)
+        {
+            EmpleadosBean empleadoBean = new EmpleadosBean();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Empleado_Update_PosicionNomina", this.conexion) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Add(new SqlParameter("@IdEmpleado", clvemp));
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", keyemp));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.Read())
+                {
+                    if (data["sRespuesta"].ToString() == "success")
+                    {
+                        empleadoBean.sMensaje = "Actualizado";
+                    }
+                    else
+                    {
+                        empleadoBean.sMensaje = data["sRespuesta"].ToString();
+                    }
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc.Message.ToString());
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return empleadoBean;
+        }
     }
     public class ImssDao : Conexion
     {
@@ -233,7 +266,7 @@ namespace Payroll.Models.Daos
     }
     public class DatosNominaDao : Conexion
     {
-        public DatosNominaBean sp_DatosNomina_Insert_DatoNomina(string fecefecnom, double salmen, int tipemp,  int nivemp, int tipjor, int tipcon, string fecing, string fecant, string vencon, string estats, int usuario, string empleado, string apepat, string apemat, string fechanaci, int keyemp, int tipper, int tipcontra, int motinc, int tippag, int banuse, string cunuse, int position, int clvemp)
+        public DatosNominaBean sp_DatosNomina_Insert_DatoNomina(string fecefecnom, double salmen, int tipemp,  int nivemp, int tipjor, int tipcon, string fecing, string fecant, string vencon, string estats, int usuario, string empleado, string apepat, string apemat, string fechanaci, int keyemp, int tipper, int tipcontra, int tippag, int banuse, string cunuse, int position, int clvemp)
         {
             DatosNominaBean datoNominaBean = new DatosNominaBean();
             try {
@@ -249,7 +282,6 @@ namespace Payroll.Models.Daos
                 cmd.Parameters.Add(new SqlParameter("@ctrlTipoJornada", tipjor));
                 cmd.Parameters.Add(new SqlParameter("@ctrlTipoContrato", tipcon));
                 cmd.Parameters.Add(new SqlParameter("@ctrlTipoContratacion", tipcontra));
-                cmd.Parameters.Add(new SqlParameter("@ctrlMotivoInc", motinc));
                 cmd.Parameters.Add(new SqlParameter("@ctrlFechaIngreso", fecing));
                 cmd.Parameters.Add(new SqlParameter("@ctrlFechaAntiguedad", fecant));
                 cmd.Parameters.Add(new SqlParameter("@ctrlVencimientoCont", vencon));

@@ -18,11 +18,22 @@ namespace Payroll.Controllers
 
             return Json(empresas);
         }
-        public void DefineEmpresa(int IdEmpresa, string NombreEmpresa)
+        [HttpPost]
+        public JsonResult DefineEmpresa(int IdEmpresa, string NombreEmpresa)
         {
             @Session["IdEmpresa"] = IdEmpresa;
             @Session["sEmpresa"] = NombreEmpresa;
+            List<string> Periodo;
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            Periodo = Dao.sp_CInicio_Fechas_Periodo_Verify_id(IdEmpresa);
+            return Json(Periodo);
         }
+        [HttpPost]
+        public void DefinePeriodoActual(int IdPeriodo)
+        {
+            @Session["Periodo_id"] = IdPeriodo;
+        }
+
         public PartialViewResult Datos_Generales()
         {
             if (Session["iIdUsuario"] == null)
@@ -40,12 +51,13 @@ namespace Payroll.Controllers
             int ClaveEmpresa = Dao.sp_Retrieve_ClaveEmpresa();
             return Json(ClaveEmpresa);
         }
+        [HttpPost]
         public JsonResult LoadEmpresas()
         {
             List<PruebaEmpresaBean> empresas;
             PruebaEmpresaDao Dao = new PruebaEmpresaDao();
             empresas = Dao.sp_Retrieve_NombreEmpresas();
-            string btnsEmpresas = "<div class='row'>";
+            string btnsEmpresas = "<div class='row'>"; 
             foreach (var item in empresas)
             {
                 btnsEmpresas += "" +
@@ -56,7 +68,7 @@ namespace Payroll.Controllers
                             "</div>" +
                             "<div class='form-control btn btn-menu btnsEmpresas' onclick='btnsEmpresas(\"" + item.IdEmpresa + "\",\"" + item.NombreEmpresa + "\")'>" +
 
-                                "<small class='badge p-0 m-0 text-wrap'>" + item.NombreEmpresa + "</small>" +
+                                "<small class='badge p-0 m-0 text-wrap'>" + item.NombreEmpresa + "&nbsp;&nbsp;&nbsp; <small class='badge badge-pill badge-light text-center aling-middle'> " + item.IdEmpresa + " </small></small>" +
                             "</div>" +
                         "</div>" +
                     "</div>" +
@@ -65,14 +77,6 @@ namespace Payroll.Controllers
             btnsEmpresas += "</div>";
             return Json(btnsEmpresas);
         }
-        //[HttpPost]
-        //public JsonResult SearchEmpresas(int txt)
-        //{
-        //    List<PruebaEmpresaBean> empresas = new List<PruebaEmpresaBean>();
-        //    PruebaEmpresaDao Dao = new PruebaEmpresaDao();
-        //    empresas = Dao.sp_Retrieve_NombreEmpresa(txt);
-        //    return Json(empresas);
-        //}
         [HttpPost]
         public JsonResult SearchEmpresa()
         {
@@ -80,6 +84,24 @@ namespace Payroll.Controllers
             List<PruebaEmpresaBean> empresas = new List<PruebaEmpresaBean>();
             PruebaEmpresaDao Dao = new PruebaEmpresaDao();
             empresas = Dao.sp_Retrieve_NombreEmpresa(IdEmpresa = int.Parse(Session["IdEmpresa"].ToString()));
+            return Json(empresas);
+        }
+        [HttpPost]
+        public JsonResult LoadDatosEmpresa()
+        {
+            List<string> empresas = new List<string>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            int IdEmpresa = int.Parse(Session["IdEmpresa"].ToString());
+            empresas = Dao.sp_CEmpresas_Retrieve_EmpresaD(IdEmpresa);
+            return Json(empresas);
+        }
+        [HttpPost]
+        public JsonResult LoadEmpresa()
+        {
+            List<string> empresas = new List<string>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            int IdEmpresa = int.Parse(Session["IdEmpresa"].ToString());
+            empresas = Dao.sp_CEmpresas_Retrieve_Empresa(IdEmpresa);
             return Json(empresas);
         }
         [HttpPost]
@@ -111,6 +133,13 @@ namespace Payroll.Controllers
             List<RegistroPatronalBean> RP = new List<RegistroPatronalBean>();
             PruebaEmpresaDao Dao = new PruebaEmpresaDao();
             RP = Dao.sp_Registro_Patronal_Retrieve_Registros_Patronales(int.Parse(Session["IdEmpresa"].ToString()));
+            return Json(RP);
+        }public JsonResult LoadRegistroPatronal( int IdRegPat)
+        {
+            List<RegistroPatronalBean> RP = new List<RegistroPatronalBean>();
+            PruebaEmpresaDao Dao = new PruebaEmpresaDao();
+            int Empresa_id = int.Parse(Session["IdEmpresa"].ToString());
+            RP = Dao.sp_Registro_Patronal_Retrieve_Registro_Patronal(Empresa_id, IdRegPat);
             return Json(RP);
         }
         [HttpPost]

@@ -1,12 +1,12 @@
 ﻿<div class="mt-4 mb-5 container-fluid">
 
     <div>
-        <button class="flotanteleft rounded btn btn-outline-danger animated fadeIn delay-1s" title="LOGS" id="btn-logs">
+        @*<button class="flotanteleft rounded btn btn-outline-danger animated fadeIn delay-1s" title="LOGS" id="btn-logs">
             <i class="fas fa-times"></i>
-        </button>
-        <button class="flotante0 rounded btn btn-outline-success animated fadeIn delay-1s" title="Guardar cambios" id="btn-save-edit">
+        </button>*@
+        @*<button class="flotante0 rounded btn btn-outline-success animated fadeIn delay-1s" title="Guardar cambios" id="btn-save-edit">
             <i class="fas fa-user-check"></i>
-        </button>
+        </button>*@
         <button class="flotante rounded btn btn-outline-success" title="Continuar" id="btn-save-data">
             <i class="fas fa-check"></i>
         </button>
@@ -41,7 +41,7 @@
                         <a class="nav-item nav-link active font-navs" id="nav-empleado-tab" data-toggle="tab" href="#nav-empleado" role="tab" aria-controls="nav-home" aria-selected="true">
                             Empleado
                         </a>
-                        <a class="nav-item nav-link font-navs" id="nav-inicidencias-tab" data-toggle="tab" href="#nav-inicidencias" role="tab" aria-controls="nav-profile" aria-selected="false">
+                        @*<a class="nav-item nav-link font-navs" id="nav-inicidencias-tab" data-toggle="tab" href="#nav-inicidencias" role="tab" aria-controls="nav-profile" aria-selected="false">
                             Ausentismo/Incidencias
                         </a>
                         <a class="nav-item nav-link font-navs" id="nav-nomina-tab" data-toggle="tab" href="#nav-nomina" role="tab" aria-controls="nav-contact" aria-selected="false">
@@ -55,7 +55,7 @@
                         </a>
                         <a class="nav-item nav-link font-navs" id="nav-kiosko-tab" data-toggle="tab" href="#nav-kiosko" role="tab" aria-controls="nav-kiosko" aria-selected="false">
                             Kiosko
-                        </a>
+                        </a>*@
                     </div>
                 </nav>
                 <div class="tab-content bg-white" id="nav-tabContent">
@@ -77,7 +77,7 @@
                                 <a class="nav-item nav-link disabled" id="nav-estructure-tab" data-toggle="tab" href="#nav-estructure" role="tab" aria-controls="nav-estructure" aria-selected="false">
                                     <div class="text-right">
                                         <i class="fas fa-user-edit text-primary mr-ico-05 d-none" id="icouser"></i>
-                                        <span id="nameuser" class="text-capitalize"></span>
+                                        <span id="nameuser" class="text-capitalize" style="font-size:13px;"></span>
                                     </div>
                                 </a>
                             </div>
@@ -385,7 +385,7 @@
                                             <div class="col-sm-8">
                                                 <input placeholder="C.U.R.P" type="text" id="curp" class="form-control form-control-sm text-uppercase" maxlength="18" />
                                                 <div class="invalid-feedback">
-                                                    Introduzca una curp valida, compruebe que los primeros 10 digitos del rfc concuerden con los de la curp.
+                                                    Introduzca una curp valida. Si los primeros 10 digitos de su rfc con los primeros 10 digitos de su curp son correctos compruebe que sea una curp valida.
                                                 </div>
                                             </div>
                                         </div>
@@ -546,7 +546,7 @@
                                                     </select>
                                                 </div>
                                             </div>*@
-                                        <div class="form-group row">
+                                        @*<div class="form-group row">
                                             <label for="motinc" class="col-sm-4 col-form-label font-labels">
                                                 Motivo de incremento:
                                             </label>
@@ -555,7 +555,7 @@
                                                     <option selected value="0">Selecciona</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div>*@
                                         <div class="form-group row">
                                             <label for="fecing" class="col-sm-4 col-form-label font-labels">
                                                 Fecha de ingreso:
@@ -619,15 +619,15 @@
                                                     Cuenta:
                                                 </label>
                                                 <div class="col-sm-8">
-                                                    <div class="input-group mb-2">
+                                                    <input placeholder="Cuenta" type="text" id="cunuse" class="form-control form-control-sm" />
+                                                    @*<div class="input-group mb-2">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text">
                                                                 <small id="clvbank">
                                                                 </small>
                                                             </div>
                                                         </div>
-                                                        <input placeholder="Cuenta" type="text" id="cunuse" class="form-control form-control-sm" />
-                                                    </div>
+                                                    </div>*@
                                                 </div>
                                             </div>
                                             <div class="form-group text-center d-none animated fadeIn" id="infobankch">
@@ -787,11 +787,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade p-3" id="nav-inicidencias" role="tabpanel" aria-labelledby="nav-inicidencias-tab">Opcion2</div>
+                    @*<div class="tab-pane fade p-3" id="nav-inicidencias" role="tabpanel" aria-labelledby="nav-inicidencias-tab">Opcion2</div>
                     <div class="tab-pane fade p-3" id="nav-nomina" role="tabpanel" aria-labelledby="nav-nomina-tab">Opcion3</div>
                     <div class="tab-pane fade p-3" id="nav-catalogos" role="tabpanel" aria-labelledby="nav-catalogos-tab">Opcion4</div>
                     <div class="tab-pane fade p-3" id="nav-reportes" role="tabpanel" aria-labelledby="nav-reportes-tab">Opcion5</div>
-                    <div class="tab-pane fade p-3" id="nav-kiosko" role="tabpanel" aria-labelledby="nav-kiosko-tab">Opcion6</div>
+                    <div class="tab-pane fade p-3" id="nav-kiosko" role="tabpanel" aria-labelledby="nav-kiosko-tab">Opcion6</div>*@
                 </div>
             </div>
         </div>
@@ -1600,19 +1600,36 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="offset-1 col-md-10">
-                            <div class="form-group row">
+                        <div class="col-md-12">
+                            <div class="form-group row mb-4">
+                                <div class="col-md-12 mb-3">
+                                    <h6 class="text-center">Aplicar filtro</h6>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="filtroemp" id="filtronumber" value="numero" />
+                                        <label class="form-check-label" for="filtronumber">Buscar por numero de empleado.</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="filtroemp" id="filtroname" value="nombre" checked/>
+                                        <label class="form-check-label" for="filtroname">Buscar por nombre del empleado.</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row mt-4">
                                 <label for="searchemployekey" class="col-form-label col-md-5">
-                                    <i class="fas fa-terminal mr-1"></i> Empleado:
+                                    <i class="fas fa-terminal mr-1"></i> <span id="labsearchemp">Nombre:</span>
                                 </label>
                                 <div class="col-md-7">
-                                    <input type="text" class="form-control form-control-sm text-uppercase" id="searchemployekey" placeholder="EMPLEADO" onkeypress="return check(event)" />
+                                    <input type="text" class="form-control form-control-sm text-uppercase" id="searchemployekey" placeholder="NOMBRE DEL EMPLEADO" onkeypress="return check(event)" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="offset-1 col-md-10">
+                        <div class="col-md-12">
                             <div class="list-group animated fadeIn modal-dialog-scrollable" id="resultemployekey">
                             </div>
                         </div>

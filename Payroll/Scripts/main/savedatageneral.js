@@ -17,16 +17,16 @@
         navDataNomTab = document.getElementById('nav-datanom-tab'),
         navEstructureTab = document.getElementById('nav-estructure-tab');
 
-    const btnsaveedit = document.getElementById('btn-save-edit');
+    //const btnsaveedit = document.getElementById('btn-save-edit');
 
-    const icoedit1 = document.getElementById('icoedit1'), 
-          icoedit2 = document.getElementById('icoedit2'),
-          icoedit3 = document.getElementById('icoedit3'),
-          icoedit4 = document.getElementById('icoedit4'),
-          txtedit1 = document.getElementById('txtedit1'),
-          txtedit2 = document.getElementById('txtedit2'),
-          txtedit3 = document.getElementById('txtedit3'),
-          txtedit4 = document.getElementById('txtedit4');
+    const icoedit1 = document.getElementById('icoedit1'),
+        icoedit2 = document.getElementById('icoedit2'),
+        icoedit3 = document.getElementById('icoedit3'),
+        icoedit4 = document.getElementById('icoedit4'),
+        txtedit1 = document.getElementById('txtedit1'),
+        txtedit2 = document.getElementById('txtedit2'),
+        txtedit3 = document.getElementById('txtedit3'),
+        txtedit4 = document.getElementById('txtedit4');
 
     fcleareditstyle = () => {
         icoedit1.classList.remove('text-success');
@@ -76,7 +76,7 @@
         const format = date;
         let fyear = format.substring(6, 10);
         let fmont = format.substring(3, 5);
-        let fday  = format.substring(0, 2);
+        let fday = format.substring(0, 2);
         let dateret = fyear + "-" + fmont + "-" + fday;
         if (dateret == "1900-01-01") {
             dateret = "";
@@ -260,9 +260,9 @@
                     if (data.sMensaje === "success") {
                         clvimss.value = data.iIdImss;
                         regimss.value = data.sRegistroImss;
-                        rfc.value     = data.sRfc;
-                        curp.value    = data.sCurp;
-                        nivest.value  = data.iNivelEstudio_id;
+                        rfc.value = data.sRfc;
+                        curp.value = data.sCurp;
+                        nivest.value = data.iNivelEstudio_id;
                         nivsoc.value = data.iNivelSocioeconomico_id;
                         floaddatatabnomina(paramid);
                         flocalstodatatabimss();
@@ -287,29 +287,29 @@
             $.ajax({
                 url: "../Empleados/DataTabGenEmploye",
                 type: "POST",
-                data: {keyemploye : paramid},
+                data: { keyemploye: paramid },
                 success: (data) => {
                     console.log('Datos del empleado con el id: ' + String(paramid));
                     console.log(data);
                     if (data.sMensaje === "success") {
-                        clvemp.value   = data.iIdEmpleado;
-                        name.value     = data.sNombreEmpleado;
-                        apepat.value   = data.sApellidoPaterno;
-                        apemat.value   = data.sApellidoMaterno;
-                        fnaci.value    = fformatdate(data.sFechaNacimiento);
-                        lnaci.value    = data.sLugarNacimiento;
-                        title.value    = data.iTitulo_id;
-                        sex.value      = data.iGeneroEmpleado;
-                        nacion.value   = data.sNacionalidad;
-                        estciv.value   = data.iEstadoCivil;
-                        codpost.value  = data.sCodigoPostal;
-                        state.value    = data.iEstado_id;
-                        city.value     = data.sCiudad; 
-                        street.value   = data.sCalle;
+                        clvemp.value = data.iIdEmpleado;
+                        name.value = data.sNombreEmpleado;
+                        apepat.value = data.sApellidoPaterno;
+                        apemat.value = data.sApellidoMaterno;
+                        fnaci.value = fformatdate(data.sFechaNacimiento);
+                        lnaci.value = data.sLugarNacimiento;
+                        title.value = data.iTitulo_id;
+                        sex.value = data.iGeneroEmpleado;
+                        nacion.value = data.sNacionalidad;
+                        estciv.value = data.iEstadoCivil;
+                        codpost.value = data.sCodigoPostal;
+                        state.value = data.iEstado_id;
+                        city.value = data.sCiudad;
+                        street.value = data.sCalle;
                         numberst.value = data.sNumeroCalle;
-                        telfij.value   = data.sTelefonoFijo;
-                        telmov.value   = data.sTelefonoMovil;
-                        mailus.value   = data.sCorreoElectronico;
+                        telfij.value = data.sTelefonoFijo;
+                        telmov.value = data.sTelefonoMovil;
+                        mailus.value = data.sCorreoElectronico;
                         fvalidatestatecodpost();
                         setTimeout(() => {
                             floaddatatabimss(paramid);
@@ -390,7 +390,7 @@
                 localStorage.removeItem('objectDataTabImss');
                 localStorage.removeItem('objectDataTabNom');
                 localStorage.removeItem('objectDataTabEstructure');
-                let timerInterval; 
+                let timerInterval;
                 Swal.fire({
                     title: 'Cargando información',
                     html: 'Terminando en <b></b> segundos.',
@@ -410,39 +410,39 @@
                         }, 1000);
                     }
                 })
-            } 
+            }
         });
     });
 
     /*
      * Variables apartado datos generales
      */
-    const clvemp   = document.getElementById('clvemp');
-    const name     = document.getElementById('name');
-    const apepat   = document.getElementById('apepat');
-    const apemat   = document.getElementById('apemat');
-    const sex      = document.getElementById('sex');
-    const estciv   = document.getElementById('estciv');
-    const fnaci    = document.getElementById('fnaci');
-    const lnaci    = document.getElementById('lnaci');
-    const title    = document.getElementById('title');
-    const nacion   = document.getElementById('nacion');
-    const state    = document.getElementById('state');
-    const codpost  = document.getElementById('codpost');
-    const city     = document.getElementById('city');
-    const colony   = document.getElementById('colony');
-    const street   = document.getElementById('street');
+    const clvemp = document.getElementById('clvemp');
+    const name = document.getElementById('name');
+    const apepat = document.getElementById('apepat');
+    const apemat = document.getElementById('apemat');
+    const sex = document.getElementById('sex');
+    const estciv = document.getElementById('estciv');
+    const fnaci = document.getElementById('fnaci');
+    const lnaci = document.getElementById('lnaci');
+    const title = document.getElementById('title');
+    const nacion = document.getElementById('nacion');
+    const state = document.getElementById('state');
+    const codpost = document.getElementById('codpost');
+    const city = document.getElementById('city');
+    const colony = document.getElementById('colony');
+    const street = document.getElementById('street');
     const numberst = document.getElementById('numberst');
-    const telfij   = document.getElementById('telfij');
-    const telmov   = document.getElementById('telmov');
-    const mailus   = document.getElementById('mailus');
-    const tipsan   = document.getElementById('tipsan');
-    const fecmat   = document.getElementById('fecmat');
-        
+    const telfij = document.getElementById('telfij');
+    const telmov = document.getElementById('telmov');
+    const mailus = document.getElementById('mailus');
+    const tipsan = document.getElementById('tipsan');
+    const fecmat = document.getElementById('fecmat');
+
     /*
      * Variables de botones 
      */
-    const btnsavedata    = document.getElementById('btn-save-data');
+    const btnsavedata = document.getElementById('btn-save-data');
     const btnsavedataall = document.getElementById('btn-save-data-all');
 
     /*
@@ -507,12 +507,12 @@
      * Variables apartado imss
      */
     const clvimss = document.getElementById('clvimss');
-    const fecefe  = document.getElementById('fecefe');
+    const fecefe = document.getElementById('fecefe');
     const regimss = document.getElementById('regimss');
-    const rfc     = document.getElementById('rfc');
-    const curp    = document.getElementById('curp');
-    const nivest  = document.getElementById('nivest');
-    const nivsoc  = document.getElementById('nivsoc');
+    const rfc = document.getElementById('rfc');
+    const curp = document.getElementById('curp');
+    const nivest = document.getElementById('nivest');
+    const nivsoc = document.getElementById('nivsoc');
 
     /*
      * Funcion que guarda los datos del imss
@@ -579,7 +579,7 @@
     const vencon = document.getElementById('vencon');
     //const estats = document.getElementById('estats');
     const tipcontra = document.getElementById('tipcontra');
-    const motinc = document.getElementById('motinc');
+    //const motinc = document.getElementById('motinc');
     const tippag = document.getElementById('tippag');
     const banuse = document.getElementById('banuse');
     const cunuse = document.getElementById('cunuse');
@@ -600,7 +600,8 @@
             tipjor: tipjor.value, tipcon: tipcon.value, fecing: fecing.value, fecant: fecant.value, vencon: vencon.value,
             //estats: estats.value,
             empleado: name.value, apepat: apepat.value, apemat: apemat.value, fechanaci: fnaci.value, tipper: tipper.value, tipcontra: tipcontra.value,
-            motinc: motinc.value, tippag: tippag.value, banuse: banco, cunuse: cunuse.value, position: clvstr.value, clvemp: 0
+            //motinc: motinc.value,
+            tippag: tippag.value, banuse: banco, cunuse: cunuse.value, position: clvstr.value, clvemp: 0
         };
         try {
             document.getElementById('txtsave3').textContent = 'Guardando';
@@ -644,7 +645,7 @@
      * Variables apartado estructura
      */
     const fechefectpos = document.getElementById('fechefectpos');
-    const fechinipos   = document.getElementById('fechinipos');
+    const fechinipos = document.getElementById('fechinipos');
     const numpla = document.getElementById('numpla');
     const depaid = document.getElementById('depaid');
     const depart = document.getElementById('depart');
@@ -656,7 +657,7 @@
     /*
      * Funcion que guarda los datos del apartado estructura
      */
-    fsavedataestructure = () => {   
+    fsavedataestructure = () => {
         var acepta = 0;
         const dataSend = {
             clvstr: clvstr.value, fechefectpos: fechefectpos.value, fechinipos: fechinipos.value,
@@ -679,9 +680,8 @@
                             $("#processsave").modal('hide');
                             document.getElementById('successdiv').classList.add('d-none');
                             tableEmployes.ajax.reload();
-                            //fclearlocsto();
+                            fclearlocsto(2);
                             fclearsavestyle();
-                            //freloadtables();
                         }, 1500);
                     } else {
                         console.log(data);
@@ -791,7 +791,7 @@
                     }
                 }
                 if (validatedataimss == 0) {
-                    const arrInput = [fecefecnom, salmen, tipper, tipemp, nivemp, tipjor, tipcon, fecing, tipcontra, motinc, tippag];
+                    const arrInput = [fecefecnom, salmen, tipper, tipemp, nivemp, tipjor, tipcon, fecing, tipcontra, tippag];
                     for (let t = 0; t < arrInput.length; t++) {
                         if (arrInput[t].hasAttribute("tp-select")) {
                             let textpag;
@@ -1280,6 +1280,6 @@
         } else { $("#nav-datagen-tab").click(); }
     }
 
-    btnsaveedit.addEventListener('click', fvalidatefieldsedit);
+   //btnsaveedit.addEventListener('click', fvalidatefieldsedit);
 
 });

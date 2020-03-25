@@ -162,12 +162,12 @@ namespace Payroll.Controllers
         }
 
         [HttpPost]
-        public JsonResult SearchEmploye(string wordsearch)
+        public JsonResult SearchEmploye(string wordsearch, string filtered)
         {
             List<EmpleadosBean> empleadoBean = new List<EmpleadosBean>();
             ListEmpleadosDao empleadoDao = new ListEmpleadosDao();
             int keyemp = int.Parse(Session["IdEmpresa"].ToString());
-            empleadoBean = empleadoDao.sp_Empleados_Retrieve_Search_Empleados(keyemp, wordsearch);
+            empleadoBean = empleadoDao.sp_Empleados_Retrieve_Search_Empleados(keyemp, wordsearch, filtered);
             return Json(empleadoBean);
         }
 
