@@ -797,14 +797,14 @@
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\jquery-1.11.1.min.map" />
     <Content Include="Views\Nomina\Ejecucion.cshtml" />
-<<<<<<< HEAD
+
     <Content Include="Views\Nomina\MonitorProcesos.cshtml" />
     <Content Include="Views\Empleados\RecibosNomina.cshtml" />
-=======
+
     <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
     <Content Include="Views\Incidencias\Incidencias.cshtml" />
     <Content Include="Views\Incidencias\RegistrarIncidencias.cshtml" />
->>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

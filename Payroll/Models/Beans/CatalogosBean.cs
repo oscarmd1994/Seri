@@ -532,11 +532,7 @@ namespace Payroll.Models.Beans
         public string Descripcion { get; set; }
         public int TipoEmpleado_id { get; set; }
     }
-<<<<<<< HEAD
 
-
-
-=======
     public class IncidenciaBean
     {
         public int IdTRegistro_Incidencia { get; set; }
@@ -552,5 +548,5 @@ namespace Payroll.Models.Beans
         public int Ren_incid_id { get; set; }
         public string Descripcion {get;set;}
     }
->>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
+
 }
