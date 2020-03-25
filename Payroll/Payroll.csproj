@@ -805,6 +805,10 @@
     <Content Include="Views\Incidencias\Incidencias.cshtml" />
     <Content Include="Views\Incidencias\RegistrarIncidencias.cshtml" />
 
+    <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
+    <Content Include="Views\Incidencias\Incidencias.cshtml" />
+    <Content Include="Views\Incidencias\RegistrarIncidencias.cshtml" />
+    
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
