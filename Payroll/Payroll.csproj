@@ -160,6 +160,7 @@
     <Compile Include="Models\Utilerias\Conexion.cs" />
     <Compile Include="Models\Utilerias\Encriptamiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate\animate.css" />
@@ -198,6 +199,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <None Include="packages.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\dataTables.autoFill.js" />
     <Content Include="Scripts\dataTables.bootstrap.js" />
@@ -321,6 +323,7 @@
     <Content Include="Scripts\jqxGrid\jqwidgets\jqxtreemap.js" />
     <Content Include="Scripts\jqxGrid\jqwidgets\jqxvalidator.js" />
     <Content Include="Scripts\jqxGrid\jqwidgets\jqxwindow.js" />
+    <Content Include="Scripts\jqxGrid\jqwidgets\jspdf.min.js" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\backgroundTop.png" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\backImage.png" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\bg_black.png" />
@@ -727,18 +730,12 @@
     <Content Include="Scripts\main\savedatageneral.js" />
     <Content Include="Scripts\main\startMenu.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Nomoper\MonitorProcesos.js" />
     <Content Include="Scripts\Nomoper\NomOperConsulta.js" />
     <Content Include="Scripts\Nomoper\OperNom.js" />
     <Content Include="Scripts\Nomoper\OperNomEjecucion.js" />
     <Content Include="Scripts\sweetalert\sweetalert.min.js" />
     <Content Include="Scripts\toastr\toastr.min.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -759,8 +756,6 @@
     <Content Include="Views\Empresas\Registros_Patronales.cshtml" />
     <Content Include="Views\Empresas\Localidades.cshtml" />
     <Content Include="Views\Incidencias\Creditos.cshtml" />
-    <Content Include="Views\Nomina\AltaDefinicion.cshtml" />
-    <Content Include="Views\Nomina\Consulta.cshtml" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\colorpicker\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\darkness\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\le-frog\Thumbs.db" />
@@ -773,7 +768,18 @@
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\jquery-1.11.1.min.map" />
+    <Content Include="Views\Empleados\RecibosNomina.cshtml" />
+    <Content Include="Views\Nomina\AltaDefinicion.cshtml" />
+    <Content Include="Views\Nomina\Consulta.cshtml" />
     <Content Include="Views\Nomina\Ejecucion.cshtml" />
+    <Content Include="Views\Nomina\MonitorProcesos.cshtml" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -789,7 +795,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>

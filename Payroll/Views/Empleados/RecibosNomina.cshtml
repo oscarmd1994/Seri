@@ -1,0 +1,124 @@
+﻿<div class="container bg-white">
+
+    @*Botones Flotantes*@
+    <div>
+
+        <button class="flotante rounded btn btn-outline-success" title="Buscar" id="btnFloBuscar" type="button" data-toggle="modal" data-target="#BRecibosNominaP" value="1">
+            <i class="fas fa-search"></i>
+        </button>
+        <button class="flotante2 rounded btn btn-outline-danger" title="Limpiar todos los campos" id="btnFloLimpiar" type="button" btvisible="true" value="1">
+            <i class="fas fa-eraser"></i>
+        </button>
+    </div>
+
+    <div>
+        <div class="text-center">
+            <h5 class="col-ico">
+                <b>
+                    Consulta De Recibos De Nomina
+                </b>
+            </h5>
+            <hr />
+        </div>
+
+    </div>
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="form-group row" style="margin-left:2%">
+                    <label for="EmpresaNom" class="col-sm-4 col-form-label font-labels">
+                        Empresa:
+                    </label>
+                    <div class="col-sm-4">
+                        <select placeholder="Empresa" tp-select="EmpresaNom" class="form-control form-control-sm" id="EmpresaNom">
+                            <option value="0">Selecciona</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-left:2%">
+                    <label for="anoNom" class="col-sm-4 col-form-label font-labels">
+                        Año:
+                    </label>
+                    <div class="col-sm-4">
+                        <input placeholder="Año" maxlength="4" tvvisible="false" type="text" id="anoNom" class="form-control form-control-sm text-capitalize" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label for="EmpleadoNom" class="col-sm-4 col-form-label font-labels">
+                        Empleados:
+                    </label>
+                    <div class="col-sm-4">
+                        <select placeholder="Empleados" tp-select="EmpleadosNom" class="form-control form-control-sm" id="EmpleadosNom">
+                            <option value="0">Selecciona</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="peridoNom" class="col-sm-4 col-form-label font-labels">
+                        Perido:
+                    </label>
+                    <div class="col-sm-4">
+                        <select placeholder="Perido" tp-select="PeridoNom" class="form-control form-control-sm" id="PeridoNom">
+                            <option value="0">Selecciona</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- Pantalla De Recibos de nomina  -->
+
+
+    <div class="modal fade" data-backdrop="static" id="BRecibosNominaP" tabindex="-1" role="dialog" aria-labelledby="BRecibosNominaP" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="BRecibos"> <i class="fas fa-money-check-alt mr-2"></i> Recibo de Nomina</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div id="Pdfrow">
+                                <label for="peridoNom" class="col-sm-4 col-form-label font-labels">
+                                    Perido:
+                                </label>
+                                <div class="table-responsive" style="text-align:center">
+                                    <div id="TbRecibosNomina" class="table-responsive"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button data-toggle="modal" data-target="#GeneraPDF" type="button" class="btn btn-outline-success btn-sm" id="BtbGeneraPDF" style="visibility:visible"> <i class="far fa-file-pdf mr-2"></i>Generar PDF</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal" id="btnCierraRecibio"> <i class="fas fa-times mr-2"></i> Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/main/RecibosNomina.js"></script>
+<script src="~/Scripts/jqxGrid/jqwidgets/jspdf.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxcore.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxbuttons.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxscrollbar.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxmenu.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxcheckbox.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxgrid.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxgrid.selection.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxgrid.columnsresize.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxdata.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxdata.export.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxgrid.export.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxexport.js"></script>
+<script type="text/javascript" src="~/Scripts/jqxGrid/jqwidgets/jqxgrid.sort.js"></script>

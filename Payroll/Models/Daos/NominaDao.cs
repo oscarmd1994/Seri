@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,14 +10,17 @@ using System.Data;
 using System.Web.Mvc;
 
 
+
 namespace Payroll.Models.Daos
 {
+   
     public class NominaDao
     {
     }
 
     public class FuncionesNomina : Conexion
     {
+
         public NominahdBean sp_DefineNom_insert_DefineNom(string CtrsNombre, string CtrsDEscripcion, int CtriAno, int ctrlsCancelado, int iIdusario)
         {
             NominahdBean bean = new NominahdBean();
@@ -90,7 +94,6 @@ namespace Payroll.Models.Daos
             return list;
         }
 
-
         public List<CTipoPeriodoBean> sp_CTipoPeriod_Retrieve_TiposPeriodos(string Ctrsvalor)
         {
             List<CTipoPeriodoBean> list = new List<CTipoPeriodoBean>();
@@ -132,7 +135,6 @@ namespace Payroll.Models.Daos
             }
             return list;
         }
-
 
         public List<CRenglonesBean> sp_CRenglones_Retrieve_CRenglones(string ctrlsNombreEmpresa)
         {
@@ -299,7 +301,7 @@ namespace Payroll.Models.Daos
             return list;
         }
 
-        public NominaLnBean sp_CDefinicionLN_insert_CDefinicionLN(int CtriIdDefinicion, int CtriIdEmpresaid, int CtriIdTipoPeriodo, int CtriIdPeriodo, int CtriIdRenglon, int CtriCancelado, int CtriIdUsuarioAlta, int sCtriIdElementoNomina, int ctrliEspejo, int ctrliIDAcumulado)
+        public NominaLnBean sp_CDefinicionLN_insert_CDefinicionLN(int CtriIdDefinicion, int CtriIdEmpresaid, int CtriIdTipoPeriodo, /*int CtriIdPeriodo,*/ int CtriIdRenglon, int CtriCancelado, int CtriIdUsuarioAlta, int sCtriIdElementoNomina, int ctrliEspejo, int ctrliIDAcumulado)
         {
             NominaLnBean bean = new NominaLnBean();
 
@@ -313,7 +315,7 @@ namespace Payroll.Models.Daos
                 cmd.Parameters.Add(new SqlParameter("@CtriIdDefinicion", CtriIdDefinicion));
                 cmd.Parameters.Add(new SqlParameter("@CtriIdEmpresaid", CtriIdEmpresaid));
                 cmd.Parameters.Add(new SqlParameter("@CtriIdTipoPeriodo", CtriIdTipoPeriodo));
-                cmd.Parameters.Add(new SqlParameter("@CtriIdPeriodo", CtriIdPeriodo));
+                //cmd.Parameters.Add(new SqlParameter("@CtriIdPeriodo", CtriIdPeriodo));
                 cmd.Parameters.Add(new SqlParameter("@CtriIdRenglon", CtriIdRenglon));
                 cmd.Parameters.Add(new SqlParameter("@CtriCancelado", CtriCancelado));
                 cmd.Parameters.Add(new SqlParameter("@CtriIdUsuarioAlta", CtriIdUsuarioAlta));
@@ -360,7 +362,9 @@ namespace Payroll.Models.Daos
                         CInicioFechasPeriodoBean LP = new CInicioFechasPeriodoBean();
                         {
                             LP.iId = int.Parse(data["Id"].ToString());
-                            LP.iPeriodo = int.Parse(data["Periodo"].ToString());
+                            if (CtrliIdTipoPeriodo != 0) { LP.iPeriodo = int.Parse(data["Periodo"].ToString()); }
+                            if (CtrliIdTipoPeriodo == 0) { LP.sFechaFinal = data["Periodo"].ToString(); }
+                           
 
                         };
 
@@ -407,7 +411,6 @@ namespace Payroll.Models.Daos
                             LDN.IdEmpresa = data["NombreEmpresa"].ToString();
                             LDN.iRenglon = data["NombreRenglon"].ToString();
                             LDN.iTipodeperiodo = data["Valor"].ToString();
-                            LDN.iIdperiodo = data["Periodo_id"].ToString();
                             LDN.iIdAcumulado = data["Acumulado_id"].ToString();
                             LDN.iEsespejo = data["Es_Espejo"].ToString();
                         };
@@ -497,7 +500,7 @@ namespace Payroll.Models.Daos
                             LDN.IdEmpresa = data["NombreEmpresa"].ToString();
                             LDN.iRenglon = data["NombreRenglon"].ToString();
                             LDN.iTipodeperiodo = data["Valor"].ToString();
-                            LDN.iIdperiodo = data["Periodo_id"].ToString();
+                            //LDN.iIdperiodo = data["Periodo_id"].ToString();
                             LDN.iIdAcumulado = data["Acumulado_id"].ToString();
                             LDN.iEsespejo = data["Es_Espejo"].ToString();
 
@@ -715,7 +718,7 @@ namespace Payroll.Models.Daos
 
         }
 
-        public NominaLnBean sp_TpDefinicionNomLn_Update_TpDefinicionNomLn(int CtrlIdDefinicionLn, int CtriIdEmpresaid, int CtriIdTipoPeriodo, int CtriIdPeriodo, int CtriIdRenglon, int ctrliEspejo, int ctrliIDAcumulado)
+        public NominaLnBean sp_TpDefinicionNomLn_Update_TpDefinicionNomLn(int CtrlIdDefinicionLn, int CtriIdEmpresaid, int CtriIdTipoPeriodo, /*int CtriIdPeriod,*/ int CtriIdRenglon, int ctrliEspejo, int ctrliIDAcumulado)
         {
             NominaLnBean bean = new NominaLnBean();
             try
@@ -728,7 +731,7 @@ namespace Payroll.Models.Daos
                 cmd.Parameters.Add(new SqlParameter("@CtrlIdDefinicionLn", CtrlIdDefinicionLn));
                 cmd.Parameters.Add(new SqlParameter("@CtriIdEmpresaid", CtriIdEmpresaid));
                 cmd.Parameters.Add(new SqlParameter("@CtriIdTipoPeriodo", CtriIdTipoPeriodo));
-                cmd.Parameters.Add(new SqlParameter("@CtriIdPeriodo", CtriIdPeriodo));
+                //cmd.Parameters.Add(new SqlParameter("@CtriIdPeriodo", CtriIdPeriodo));
                 cmd.Parameters.Add(new SqlParameter("@CtriIdRenglon", CtriIdRenglon));
                 cmd.Parameters.Add(new SqlParameter("@ctrliEspejo", ctrliEspejo));
                 cmd.Parameters.Add(new SqlParameter("@ctrliIDAcumulado", ctrliIDAcumulado));
@@ -887,7 +890,6 @@ namespace Payroll.Models.Daos
             return bean;
         }
 
-
         public List<NominaLnDatBean> sp_TpDefinicionNomins_Retrieve_TpDefinicionNomins()
         {
             List<NominaLnDatBean> list = new List<NominaLnDatBean>();
@@ -931,6 +933,244 @@ namespace Payroll.Models.Daos
                 Console.WriteLine(exc);
             }
             return list;
+           
+        }
+
+        public TPProcesos Sp_TPProcesosJobs_insert_TPProcesosJobs(int CtrliIdJobs, string CtrlsEstatusJobs, string CtrilsNombreJobs, string CtrlsParametrosJobs)
+        {
+            TPProcesos bean = new TPProcesos();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("Sp_TPProcesosJobs_insert_TPProcesosJobs", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@CtrliIdJobs", CtrliIdJobs));
+                cmd.Parameters.Add(new SqlParameter("@CtrlsEstatusJobs", CtrlsEstatusJobs));
+                cmd.Parameters.Add(new SqlParameter("@CtrilsNombreJobs", CtrilsNombreJobs));
+                cmd.Parameters.Add(new SqlParameter("@CtrlsParametrosJobs", CtrlsParametrosJobs));
+
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    bean.sMensaje = "success";
+                }
+                else
+                {
+                    bean.sMensaje = "error";
+                }
+                cmd.Dispose(); conexion.Close(); //cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+
+            return bean;
+        }
+
+        public List<TPProcesos> sp_TPProcesosJobs_Retrieve_TPProcesosJobs(int Crtliop1, int Crtliop2, int Crtliop3 , int CrtliIdJobs, int CtrliIdTarea)
+        {
+            List<TPProcesos> list = new List<TPProcesos>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_TPProcesosJobs_Retrieve_TPProcesosJobs", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@Crtliop1", Crtliop1));
+                cmd.Parameters.Add(new SqlParameter("@Crtliop2", Crtliop2));
+                cmd.Parameters.Add(new SqlParameter("@Crtliop3", Crtliop3));
+                cmd.Parameters.Add(new SqlParameter("@CrtliIdJobs", CrtliIdJobs));
+                cmd.Parameters.Add(new SqlParameter("@CtrliIdTarea", CtrliIdTarea));
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        TPProcesos ls = new TPProcesos();
+                        {
+                            ls.iIdTarea = int.Parse(data["IdTarea"].ToString());
+                            ls.iIdJobs = int.Parse( data["IdJobs"].ToString());
+                            ls.sEstatusJobs = data["EstatusJobs"].ToString();
+                            ls.sNombre = data["NombreJobs"].ToString();
+                            ls.sParametros = data["ParametrosJobs"].ToString();
+                        };
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                data.Close(); cmd.Dispose(); conexion.Close(); //cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+        }
+
+        public List<HangfireJobs> sp_IdJobsHangfireJobs_Retrieve_IdJobsHangfireJobs(string CtrlsFecha)
+        {
+            List<HangfireJobs> list = new List<HangfireJobs>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_IdJobsHangfireJobs_Retrieve_IdJobsHangfireJobs", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@CtrlsFecha", CtrlsFecha));
+              
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        HangfireJobs ls = new HangfireJobs();
+                        {
+                            ls.iId = int.Parse(data["Id"].ToString());
+                
+                        };
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                data.Close(); cmd.Dispose(); conexion.Close(); //cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+
+        }
+
+        public List<TpCalculosLn> sp_IdEmpresasTPCalculoshd_Retrieve_IdEmpresasTPCalculoshd(int CtrliIdEmpresa)
+        {
+            List<TpCalculosLn> list = new List<TpCalculosLn>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_IdEmpresasTPCalculoshd_Retrieve_IdEmpresasTPCalculoshd", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@CtrliIdEmpresa", CtrliIdEmpresa));
+          
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        TpCalculosLn ls = new TpCalculosLn();
+                        {
+                            ls.iIdCalculosLn = int.Parse(data["IdCalculos_Ln"].ToString());
+                            ls.iIdCalculosHd = int.Parse(data["Calculos_Hd_id"].ToString());
+                            ls.iIdEmpresa = int.Parse(data["Empresa_id"].ToString());
+                            ls.iIdEmpleado = int.Parse(data["Empleado_id"].ToString());
+                            ls.iAnio = int.Parse(data["Anio"].ToString());
+                            ls.iIdTipoPeriodo = int.Parse(data["Tipo_Periodo_id"].ToString());
+                            ls.iPeriodo = int.Parse(data["Periodo"].ToString());
+                            ls.iConsecutivo = int.Parse(data["Consecutivo"].ToString());
+                            ls.iIdRenglon = int.Parse(data["Renglon_id"].ToString());
+                            ls.iImporte = data["Importe"].ToString();
+                            ls.iSaldo = data["Saldo"].ToString();
+                            ls.iGravado = data["Gravado"].ToString();
+                            ls.iExcento = data["Excento"].ToString();
+                            ls.sFecha = data["Fecha"].ToString();
+                        };
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                data.Close(); cmd.Dispose(); conexion.Close(); //cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+        }
+
+        public List<TPProcesos> sp_EstatusJobsTbProcesos_retrieve_EstatusJobsTbProcesos()
+        {
+            List<TPProcesos> list = new List<TPProcesos>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_EstatusJobsTbProcesos_retrieve_EstatusJobsTbProcesos", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };            
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        TPProcesos ls = new TPProcesos();
+                        {
+                            ls.iIdTarea = int.Parse(data["TotalJbos"].ToString());
+                            ls.sEstatusJobs = data["EstatusJobs"].ToString();
+                        };
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                data.Close(); cmd.Dispose(); conexion.Close(); //cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+        }
+
+        public TPProcesos sp_EstatusTpProcesosJobs_Update_EstatusTpProcesosJobs()
+        {
+            TPProcesos bean = new TPProcesos();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_EstatusTpProcesosJobs_Update_EstatusTpProcesosJobs", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                //cmd.Parameters.Add(new SqlParameter("@CtrliIdDefinicionHd", CtrliIdDefinicionHd));
+
+
+                if (cmd.ExecuteNonQuery() > 0)
+                {
+                    bean.sMensaje = "success";
+                }
+                else
+                {
+                    bean.sMensaje = "error";
+                }
+                cmd.Dispose(); conexion.Close(); //cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+
+            return bean;
         }
 
     }
