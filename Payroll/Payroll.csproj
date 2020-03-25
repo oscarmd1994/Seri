@@ -711,6 +711,7 @@
     <Content Include="Scripts\main\BajasEmpleados.js" />
     <Content Include="Scripts\main\branchoffices.js" />
     <Content Include="Scripts\main\catalogos.js" />
+    <Content Include="Scripts\main\Creditos.js" />
     <Content Include="Scripts\main\departments.js" />
     <Content Include="Scripts\main\employes.js" />
     <Content Include="Scripts\main\Empre.js" />
@@ -781,6 +782,8 @@
     <Content Include="Views\Empresas\Registros_Patronales.cshtml" />
     <Content Include="Views\Empresas\Localidades.cshtml" />
     <Content Include="Views\Incidencias\Creditos.cshtml" />
+    <Content Include="Views\Nomina\AltaDefinicion.cshtml" />
+    <Content Include="Views\Nomina\Consulta.cshtml" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\colorpicker\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\darkness\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\le-frog\Thumbs.db" />
@@ -793,12 +796,15 @@
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\jquery-1.11.1.min.map" />
-    <Content Include="Views\Incidencias\Incidencias.cshtml" />
-    <Content Include="Views\Nomina\AltaDefinicion.cshtml" />
-    <Content Include="Views\Nomina\Consulta.cshtml" />
     <Content Include="Views\Nomina\Ejecucion.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Nomina\MonitorProcesos.cshtml" />
     <Content Include="Views\Empleados\RecibosNomina.cshtml" />
+=======
+    <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
+    <Content Include="Views\Incidencias\Incidencias.cshtml" />
+    <Content Include="Views\Incidencias\RegistrarIncidencias.cshtml" />
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

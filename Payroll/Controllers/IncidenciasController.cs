@@ -28,6 +28,10 @@ namespace Payroll.Controllers
         {
             return PartialView();
         }
+        public PartialViewResult RegistrarIncidencias()
+        {
+            return PartialView();
+        }
 
         //Retorno de datos
         [HttpPost]
@@ -50,13 +54,21 @@ namespace Payroll.Controllers
             }
             return Json(tabla);
         }
-        
         [HttpPost]
         public JsonResult LoadAusentismos()
         {
             List<AusentismosBean> lista = new List<AusentismosBean>();
             PruebaEmpresaDao Dao = new PruebaEmpresaDao();
             lista =  Dao.sp_TiposAusentimo_Retrieve_TiposAusentismo();
+            return Json(lista);
+        }
+        [HttpPost]
+        public JsonResult LoadTipoIncidencia()
+        {
+            List<VW_TipoIncidenciaBean> lista = new List<VW_TipoIncidenciaBean>();
+            pruebaEmpleadosDao Dao = new pruebaEmpleadosDao();
+            int IdEmpresa = int.Parse(Session["IdEmpresa"].ToString());
+            lista =  Dao.sp_VW_tipo_Incidencia_Retrieve_LoadTipoIncidencia(IdEmpresa);
             return Json(lista);
         }
         [HttpPost]
@@ -92,7 +104,6 @@ namespace Payroll.Controllers
             lista = Dao.sp_TPeriodosDist_Insert_Periodo(PerVacLn_id, FechaInicio, FechaFin, Dias);
             return Json(lista);
         }
-
         [HttpPost]
         public JsonResult LoadCreditosEmpleado()
         {
@@ -182,7 +193,16 @@ namespace Payroll.Controllers
             res = Dao.sp_TPensiones_Alimenticias_Retrieve_Pensiones(Empresa_id, Empleado_id);
             return Json(res);
         }
-
+        [HttpPost]
+        public JsonResult SaveRegistroIncidencia( int inRenglon, int inCantidad, int inPlazos, string inLeyenda, string inReferencia, string inFechaA)
+        {
+            List<string> res = new List<string>();
+            pruebaEmpleadosDao Dao = new pruebaEmpleadosDao();
+            int Empleado_id = int.Parse(Session["Empleado_id"].ToString());
+            int Empresa_id = int.Parse(Session["IdEmpresa"].ToString());
+            res = Dao.sp_TRegistro_incidencias_Insert_Incidencia( Empresa_id, Empleado_id, inRenglon, inCantidad, inPlazos, inLeyenda, inReferencia, inFechaA);
+            return Json(res);
+        }
 
     }
 }
