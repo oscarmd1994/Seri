@@ -548,4 +548,5 @@ namespace Payroll.Models.Beans
         public int Ren_incid_id { get; set; }
         public string Descripcion {get;set;}
     }
+
 }

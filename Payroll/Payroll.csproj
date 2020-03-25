@@ -800,6 +800,11 @@
 
     <Content Include="Views\Nomina\MonitorProcesos.cshtml" />
     <Content Include="Views\Empleados\RecibosNomina.cshtml" />
+
+    <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
+    <Content Include="Views\Incidencias\Incidencias.cshtml" />
+    <Content Include="Views\Incidencias\RegistrarIncidencias.cshtml" />
+
     <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
     <Content Include="Views\Incidencias\Incidencias.cshtml" />
     <Content Include="Views\Incidencias\RegistrarIncidencias.cshtml" />
