@@ -200,7 +200,8 @@ namespace Payroll.Controllers
             pruebaEmpleadosDao Dao = new pruebaEmpleadosDao();
             int Empleado_id = int.Parse(Session["Empleado_id"].ToString());
             int Empresa_id = int.Parse(Session["IdEmpresa"].ToString());
-            res = Dao.sp_TRegistro_incidencias_Insert_Incidencia( Empresa_id, Empleado_id, inRenglon, inCantidad, inPlazos, inLeyenda, inReferencia, inFechaA);
+            int Periodo = int.Parse(Session["Periodo_id"].ToString());
+            res = Dao.sp_TRegistro_incidencias_Insert_Incidencia( Empresa_id, Empleado_id, inRenglon, inCantidad, inPlazos, inLeyenda, inReferencia, inFechaA, Periodo);
             return Json(res);
         }
 

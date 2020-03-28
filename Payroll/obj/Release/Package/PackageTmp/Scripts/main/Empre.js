@@ -138,6 +138,7 @@
         if ($("#inStatusRP").is(':checked')) {
             Strp = 1;
         } else {
+
             Strp = 0;
         }
         var datos = { Afiliacion_IMSS: Afrp.value, Nombre_Afiliacion: NomAf.value, Empresa_id: Emrp.value, Riesgo_Trabajo: Rtrp.value, ClasesRegPat: Clrp.value, Status: Strp };
@@ -161,9 +162,6 @@
             });
 
         }
-
-        
-
     });
     //Funcionalidad boton Actualizar Registro patronal
     $("#btnUpdateRP").on("click", function () {

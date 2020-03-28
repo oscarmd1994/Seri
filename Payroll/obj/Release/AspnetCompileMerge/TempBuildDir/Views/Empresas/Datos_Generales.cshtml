@@ -470,7 +470,6 @@
             });
         }
     });
-
     $(".collapse").on("show", function () {
         //document.getElementById("btnadd").innerHTML = "Ocultar agregar empresa";
         console.log("show");
@@ -486,7 +485,6 @@
         document.getElementById("btnadd").innerHTML = "Agregar empresa <i class='text-success fas fa-plus-circle'></i>";
         console.log("was hide");
     });
-
     $("#btnEditarEmpresa").on("click", function () {
         var nomEmp = document.getElementById("inNombre_empresa");
         var nomEmpc = document.getElementById("inNomCorto_empresa");
@@ -519,8 +517,10 @@
                 giroEmp.value = empresa[9];
                 delEmp.value = empresa[6];
                 callEmp.value = empresa[8];
-                if (empresa[3].length < 5 ) {
+                if (empresa[3].length < 5) {
                     cpEmp.value = "0" + empresa[3];
+                } else {
+                    cpEmp.value = empresa[3];
                 }
                 $("#btnValidaCpEstado").click();
                 document.getElementById("feedback_rg").innerHTML = "<p class='text-danger'>*Para editar el Registro Patronal favor de ir al modulo de Registros Patronales</p>"
@@ -555,6 +555,9 @@
             }
         });
         
+    });
+    $("#btnClear").on(function () {
+        console.log("Entra al limpiar");
     });
 </script>
 

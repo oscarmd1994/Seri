@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+    localStorage.removeItem('modalbtnsucursal');
     /* FUNCION QUE CARGA LOS DATOS DE LA SUCURSAL SELECCIONADA POR EL USUARIO */
     fselectoffice = (param) => {
         console.log(param);
@@ -41,6 +41,7 @@
     const clasucursaledit  = document.getElementById('clasucursaledit');
     const descsucursal     = document.getElementById('descsucursal');
     const clasucursal      = document.getElementById('clasucursal');
+    const btnsavesucursal  = document.getElementById('btnsavesucursal');
     const btnsavesucursaledit = document.getElementById('btnsavesucursaledit');
     const btnmodalsearchsucursales = document.getElementById('btn-modal-search-sucursales');
     const btnregistersucursalbtn   = document.getElementById('btnregistersucursalbtn');
@@ -111,6 +112,85 @@
     }
     /* EJECUCION DE LA BUSQUEDA EN TIEMPO REAL */
     searchofficekey.addEventListener('keyup', fsearchkeyupoffices);
+    /* GUARDA EL REGISTRO DE UNA NUEVA SUCURSAL */
+    btnsavesucursal.addEventListener('click', () => {
+        try {
+            const arrInput = [descsucursal, clasucursal];
+            let validate = 0;
+            for (let i = 0; i < arrInput.length; i++) {
+                if (arrInput[i].value == "") {
+                    fshowtypealert('Atención', 'Completa el campo ' + arrInput[i].placeholder, 'warning', arrInput[i], 0);
+                    validate = 1;
+                    break;
+                }
+            }
+            if (validate == 0) {
+                const dataSend = { desc: descsucursal.value, clav: clasucursal.value };
+                $.ajax({
+                    url: "../CatalogsTables/SaveSucursal",
+                    type: "POST",
+                    data: dataSend,
+                    success: (data) => {
+                        if (data.sMensaje === "success") {
+                            Swal.fire({
+                                title: 'Sucursal registrada', icon: 'success',
+                                showClass: { popup: 'animated fadeInDown faster' }, hideClass: { popup: 'animated fadeOutUp faster' },
+                                confirmButtonText: "Aceptar", allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
+                            }).then((acepta) => {
+                                $("#registersucursal").modal('hide');
+                                fclearfieldssucursal();
+                                setTimeout(() => {
+                                    if (JSON.parse(localStorage.getItem('modalbtnsucursal')) != null) {
+                                        $("#searchsucursales").modal('show');
+                                        setTimeout(() => { searchofficekey.focus(); }, 1000);
+                                    }
+                                }, 1000);
+                            });
+                        } else if (data.sMensaje === "existe") {
+                            Swal.fire({
+                                title: 'La sucursal con clave ' + String(clasucursal.value) + " ya se encuentra registrada", icon: 'warning',
+                                showClass: { popup: 'animated fadeInDown faster' }, hideClass: { popup: 'animated fadeOutUp faster' },
+                                confirmButtonText: "Aceptar", allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
+                            }).then((acepta) => {
+                                setTimeout(() => {
+                                    clasucursal.focus();
+                                }, 1000);
+                            });
+                        } else if (data.sMensaje === "error") {
+                            Swal.fire({
+                                title: 'Error', text: 'Contacte a sistemas', icon: 'error',
+                                showClass: { popup: 'animated fadeInDown faster' }, hideClass: { popup: 'animated fadeOutUp faster' },
+                                confirmButtonText: "Aceptar", allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
+                            }).then((acepta) => {
+                                $("#registersucursal").modal('hide');
+                                fclearfieldssucursal();
+                                setTimeout(() => {
+                                    if (JSON.parse(localStorage.getItem('modalbtnsucursal')) != null) {
+                                        $("#searchsucursales").modal('show');
+                                        setTimeout(() => { searchofficekey.focus(); }, 1000);
+                                    }
+                                }, 1000);
+                            });
+                        } else {
+                            console.log(data.sMensaje);
+                        }
+                    }, error: (jqXHR, exception) => {
+                        fcaptureaerrorsajax(jqXHR, exception);
+                    }
+                });
+            }
+        } catch (error) {
+            if (error instanceof EvalError) {
+                console.log('EvalError ', error);
+            } else if (error instanceof RangeError) {
+                console.log('RangeError ', error);
+            } else if (error instanceof TypeError) {
+                console.log('TypeError ', error);
+            } else {
+                console.log('Error ', error);
+            }
+        }
+    });
     /* GUARDA LA EDICION DE LA SUCURSAL */
     btnsavesucursaledit.addEventListener('click', () => {
         try {

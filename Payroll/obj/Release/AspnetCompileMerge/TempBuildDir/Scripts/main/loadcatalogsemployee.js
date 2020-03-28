@@ -104,7 +104,7 @@
     const tipjor = document.getElementById('tipjor');
     const tipcon = document.getElementById('tipcon');
     const tipcontra = document.getElementById('tipcontra');
-    const motinc = document.getElementById('motinc');
+    //const motinc = document.getElementById('motinc');
 
 
     /* 
@@ -204,7 +204,7 @@
     floaddatagentype(tipcontra, 0, 'Active/Desactive', 0, 19, 'nom');
 
     // ** Ejecución de la carga de los datos deL motivo de incremento del empleado M -> DATOS NOMINA ** \\
-    floaddatagentype(motinc, 0, 'Active/Desactive', 0, 21, 'nom');
+    //floaddatagentype(motinc, 0, 'Active/Desactive', 0, 21, 'nom');
 
     // ** Ejecución de la carga de los datos del tipo de pago M ->  DATOS NOMINA ** \\
     floaddatagentype(tippag, 0, 'Active/Desactive', 0, 22, 'nom');
@@ -767,12 +767,14 @@
 
     function validarInput(input) {
         var curp = input.value.toUpperCase();
-        if (curpValida(curp)) {
-            input.classList.remove('is-invalid');
-            btnSaveDataImss.disabled = false;
-        } else {
-            input.classList.add('is-invalid');
-            btnSaveDataImss.disabled = true;
+        if (curp.length > 0) {
+            if (curpValida(curp)) {
+                input.classList.remove('is-invalid');
+                btnSaveDataImss.disabled = false;
+            } else {
+                input.classList.add('is-invalid');
+                btnSaveDataImss.disabled = true;
+            }
         }
     }
 
@@ -788,11 +790,11 @@
                 let formatcurp = String(curp.value).substring(0, 10);
                 if (formatrfc == formatcurp) {
                     curp.classList.remove('is-invalid');
-                    rfc.classList.remove('is-invalid');
+                    //rfc.classList.remove('is-invalid');
                     btnSaveDataImss.disabled = false;
                 } else {
                     curp.classList.add('is-invalid');
-                    rfc.classList.add('is-invalid');
+                    //rfc.classList.add('is-invalid');
                     btnSaveDataImss.disabled = true;
                 }
             }
@@ -805,11 +807,11 @@
                 let formatrfc = String(rfc.value).substring(0, 10);
                 let formatcurp = String(curp.value).substring(0, 10);
                 if (formatrfc == formatcurp) {
-                    curp.classList.remove('is-invalid');
+                    //curp.classList.remove('is-invalid');
                     rfc.classList.remove('is-invalid');
                     btnSaveDataImss.disabled = false;
                 } else {
-                    curp.classList.add('is-invalid');
+                    //curp.classList.add('is-invalid');
                     rfc.classList.add('is-invalid');
                     btnSaveDataImss.disabled = true;
                 }

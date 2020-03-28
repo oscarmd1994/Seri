@@ -165,10 +165,11 @@
                     const quantity = data.length;
                     if (quantity > 0) {
                         for (let i = 0; i < data.length; i++) {
+                            console.log(data[i]);
                             if (val == data[i].sNivelEstructura) {
-                                elementid.innerHTML += `<option selected value="${data[i].sNivelEstructura}">${data[i].sNivelEstructura}</option>`;
+                                elementid.innerHTML += `<option selected value="${data[i].sNivelEstructura}">${data[i].sNivelEstructura} - ${data[i].sDescripcion}</option>`;
                             } else {
-                                elementid.innerHTML += `<option value="${data[i].sNivelEstructura}">${data[i].sNivelEstructura}</option>`;
+                                elementid.innerHTML += `<option value="${data[i].sNivelEstructura}">${data[i].sNivelEstructura} - ${data[i].sDescripcion}</option>`;
                             }
                         }
                     }
