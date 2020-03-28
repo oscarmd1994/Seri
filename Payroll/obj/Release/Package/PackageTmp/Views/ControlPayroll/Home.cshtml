@@ -63,6 +63,7 @@
                         data: JSON.stringify({ IdPeriodo: data[4] }),
                         contentType: "application/json; charset=utf-8",
                         success: (dat) => {
+                            console.log(dat);
                             document.getElementById("btnNameEmpresaSelected").innerHTML = nombre;
                             document.getElementById("lblPeriodoId").innerHTML = data[4];
                             $("#modalBtns").modal('hide');

@@ -1,0 +1,42 @@
+﻿
+<link rel="stylesheet" href="~/Scripts/jqxGrid/jqwidgets/styles/jqx.base.css" type="text/css" />
+<div class="container bg-white">
+    <div>
+        <div class="text-center">
+            <h5 class="col-ico">
+                <b>
+                    Monitor de Procesos
+                </b>
+            </h5>
+            <hr />
+        </div>
+        @*//////////////////////////////////////////Progresbar de Procesos//////////////////////////*@
+        <div class="container embed-responsive">
+            <div id='jqxWidget' style="font-size: 13px;">
+                <div style='margin-top: 10px; margin-left:30px'><b>Procesos terminados:</b>-.</div>
+                <div style='margin-top: 10px; margin-left:30px ;text-align:center' id='jqxProgressBar2'></div>
+            </div>
+        </div>
+        @*//////////////////////////////////////////tabla de Procesos//////////////////////////*@
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive" style="text-align:center">
+                            <div id="TbProcesos" class="table-responsive"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+     <script src="~/Scripts/Nomoper/MonitorProcesos.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxscrollbar.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxcore.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxprogressbar.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxbuttons.js"></script>
+    <script src="~/Scripts/jqxGrid/jqwidgets/jqxcheckbox.js"></script>
+
+

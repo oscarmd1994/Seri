@@ -31,7 +31,7 @@
             }
         });
 
-    }
+    };
     FlistNombreDef();
 
     // Funcion llena el grip de Nomina Definicion.
@@ -82,12 +82,12 @@
 
 
 
-    }
+    };
 
     // Abre ventana de Actualizacion
 
     botonActu = () => {
-        
+
         btnAgregarDefinicion.style.visibility = 'hidden';
         btnActualizarDefinicion.style.visibility = 'visible';
 
@@ -103,7 +103,7 @@
                 cande.selectedIndex = i;
             }
         }
-    }
+    };
     BActu.addEventListener('click', botonActu)
 
     // Eliminar Registro de Definicion de la Plantilla BD
@@ -145,13 +145,13 @@
 
     FRecargaGrip = () => {
 
-       
+
 
         console.log('Dato de seleccion');
         var opDeNombre = DeNombre.options[DeNombre.selectedIndex].text;
         var opDeNombreint = DeNombre.value;
         var opDeCancelados = DeCancelados.value;
-        
+
 
         const dataSend = { sNombreDefinicion: opDeNombre, iCancelado: opDeCancelados };
 
@@ -177,21 +177,22 @@
                 var dataAdapter = new $.jqx.dataAdapter(source);
 
                 $("#TpDefinicion").jqxGrid({
-                        width: 980,
-                        source: dataAdapter,
-                        columnsresize: true,
-                        
-                        columns: [
-                            { text: 'No. Registro', datafield: 'iIdDefinicionhd', width: 50 },
-                            { text: 'Nombre de Definición', datafield: 'sNombreDefinicion', width: 230 },
-                            { text: 'Descripción ', datafield: 'sDescripcion', whidth: 500 },
-                            { text: 'año', datafield: 'iAno', whidt: 80 },
-                            { text: 'Cancelado', datafield: 'iCancelado', whidt: 50 },
-                        ]
+                    width: 980,
+                    source: dataAdapter,
+                    columnsresize: true,
+                    autorowheight: true,
+                    autoheight: true,
+                    columns: [
+                        { text: 'No. Registro', datafield: 'iIdDefinicionhd', width: 50 },
+                        { text: 'Nombre de Definición', datafield: 'sNombreDefinicion', width: 230 },
+                        { text: 'Descripción ', datafield: 'sDescripcion', whidth: 500 },
+                        { text: 'año', datafield: 'iAno', whidt: 80 },
+                        { text: 'Cancelado', datafield: 'iCancelado', whidt: 50 },
+                    ]
                 });
             },
         });
-    }
+    };
 
     Fllenagrip();
 
@@ -214,7 +215,7 @@
     $("#TpDefinicion").on('rowselect', function (event) {
         var args = event.args;
         var row = $("#TpDefinicion").jqxGrid('getrowdata', args.rowindex);
-
+        console.log(args);
         $("#unselectrowindex").text(row['iIdDefinicionhd'] + row['sNombreDefinicion']);
         dato = row['sNombreDefinicion'];
         IdDh = row['iIdDefinicionhd'];
@@ -259,10 +260,7 @@
     // FAgrega datos de definicion en BD
 
     FAgregaDef = () => {
-
         if (Nombrede.value != "" && Nombrede.value != " " && Descripcionde.value != "" && Descripcionde.value != " " && iAnode.value != "" && iAnode.value != " ") {
-
-
             const dataSend = {
                 sNombreDefinicion: Nombrede.value, sDescripcion: Descripcionde.value,
                 iAno: iAnode.value, iCancelado: cande.value
@@ -274,6 +272,7 @@
                 data: dataSend,
                 success: function (data) {
                     if (data.sMensaje == "success") {
+
                         fshowtypealert('Registro correcto!', 'Definicion plantilla guardada', 'success');
                         Nombrede.value = '';
                         Descripcionde.value = '';
@@ -291,17 +290,11 @@
             });
 
         }
-
-
         else {
-            console.log('mesaje de error')
+            console.log('mesaje de error');
             fshowtypealert('warning', 'Introduce todos los campos', 'warning');
 
         }
-
-
-
-
     };
 
     btnAgregarDefinicion.addEventListener('click', FAgregaDef);
@@ -316,23 +309,19 @@
         cande.value = '';
     };
 
-    btnCierraDefinicion.addEventListener('click',CerrarPantDef)
+    btnCierraDefinicion.addEventListener('click', CerrarPantDef);
 
     // Actualiza Definicion de platilla 
 
     FActualiza = () => {
 
         var opselesc = cande.options[cande.selectedIndex].text;
-
         if (DatoNombrede != Nombrede.value || DatoDescripcion != Descripcionde.value || Datoano != iAnode.value || DatoCancel != opselesc  ) {
-
             const dataSend = {
                 sNombreDefinicion: Nombrede.value, sDescripcion: Descripcionde.value,
                 iAno: iAnode.value, iCancelado: cande.value, iIdDefinicionhd: IdDh
             };
 
-            
-            console.log(dataSend);
             $.ajax({
                 url: "../Nomina/UpdatePtDefinicion",
                 type: "POST",
@@ -351,18 +340,16 @@
                 }
             });
         }
-
-
     };
-    btnActualizarDefinicion.addEventListener('click', FActualiza)
+
+    btnActualizarDefinicion.addEventListener('click', FActualiza);
 
                            // Pantalla  Percepciones
 
     // llena el grip de Percepciones
 
-    const navPercepcionestab = document.getElementById('nav-Percepciones-tab')
+    const navPercepcionestab = document.getElementById('nav-Percepciones-tab');
     var RosCountPer;
-
     FcargaPercepciones = () => {
 
      
@@ -445,28 +432,27 @@
 
     // fincion de llenado el droplist de empresa de persepciones
     LisEmpresa = () => {
-
         $.ajax({
             url: "../Nomina/LisEmpresas",
             type: "POST",
             data: JSON.stringify(),
             contentType: "application/json; charset=utf-8",
             success: (data) => {
-           
                 for (i = 0; i < data.length; i++) {
                     document.getElementById("RegEmpresa").innerHTML += `<option value='${data[i].iIdEmpresa}'>${data[i].sNombreEmpresa}</option>`;
                 }
             }
         });
+    };
 
-    }
     LisEmpresa();
 
     // llenado de lista droplist de tipo de periodo
     RecargaLisperiodo = () => {
 
         var op = RegEmpresa.options[RegEmpresa.selectedIndex].text;
-        const dataSend = { Ctrsvalor: op };
+        var opval = RegEmpresa.value;
+        const dataSend = { IdEmpresa: opval };
         $("#RegTipoperiodo1").empty();
         $('#RegTipoperiodo1').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -482,15 +468,15 @@
                 fcaptureaerrorsajax(jqXHR, exception);
             }
         });
-    }
+    };
 
     // llenado del droplist de renglon
 
     RecargaLisRenglon = () => {
 
         var OpRenglon = RegEmpresa.options[RegEmpresa.selectedIndex].text;
-        console.log(OpRenglon);
-        const dataSend = { sNombreEmpresa: OpRenglon };
+        var opval = RegEmpresa.value;
+        const dataSend = { IdEmpresa: opval };
         $("#RegRenglon").empty();
         $('#RegRenglon').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -507,7 +493,7 @@
             }
         });
 
-    }
+    };
 
     $('#RegEmpresa').change(function () {
 
@@ -520,9 +506,10 @@
     RecargaLisAcumulado = () => {
 
         var OpRenglon = RegEmpresa.options[RegEmpresa.selectedIndex].text;
+        var opEmpresaval = RegEmpresa.value;
         var OpRenglonint = RegRenglon.options[RegRenglon.selectedIndex].text;
         const opRenglonTex = RegRenglon.value;
-        const dataSend = { sNombreEmpresa: OpRenglon, iIdRenglon: opRenglonTex };
+        const dataSend = { iIdEmpresa: opEmpresaval, iIdRenglon: opRenglonTex };
         $("#RegAcumulado").empty();
         $('#RegAcumulado').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -542,7 +529,7 @@
 
         });
 
-    }
+    };
 
     $('#RegRenglon').change(function () {
 
@@ -615,7 +602,6 @@
     //    FrecargaPerio();
 
     //});
-
 
     // FAgrega datos de percepcion en BD
 
@@ -714,69 +700,75 @@
         $("#TbPercepciones").click();
         btnAgregarPercep.style.visibility = 'hidden';
         btnActualizarPercep.style.visibility = 'visible';
-    
-       
+
+
         for (var i = 0; i < RegEmpresa.length; i++) {
             if (RegEmpresa.options[i].text == DatoEmpresa) {
                 // seleccionamos el valor que coincide
                 RegEmpresa.selectedIndex = i;
             }
-            
+
         }
 
         var OpRenglon = RegEmpresa.options[RegEmpresa.selectedIndex].text;
-      
-        const dataSend = { sNombreEmpresa: OpRenglon };
+        var opvalEmpresa = RegEmpresa.value;
+        const dataSend = { IdEmpresa: opvalEmpresa };
+        
         $("#RegRenglon").empty();
         $('#RegRenglon').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
             url: "../Nomina/LisRenglon",
             type: "POST",
             data: dataSend,
-            success: (data) => {     
+            success: (data) => {
                 for (i = 0; i < data.length; i++) {
                     document.getElementById("RegRenglon").innerHTML += `<option value='${data[i].iIdRenglon}'>${data[i].sNombreRenglon}</option>`;
                 }
 
-                 for (i = 0; i < RegRenglon.length; i++) {
-                     if (RegRenglon.options[i].text == DatoRenglon) {
-                          // seleccionamos el valor que coincide
-                       RegRenglon.selectedIndex = i;
-                     }
+                for (i = 0; i < RegRenglon.length; i++) {
+                    if (RegRenglon.options[i].text == DatoRenglon) {
+                        // seleccionamos el valor que coincide
+                        RegRenglon.selectedIndex = i;
+                    }
                 }
 
-                OpRenglon = RegEmpresa.options[RegEmpresa.selectedIndex].text;       
+
+                var opEmpresaval = RegEmpresa.value;
+                OpRenglon = RegEmpresa.options[RegEmpresa.selectedIndex].text;
                 const opRenglonTex = RegRenglon.value;
-                const dataSend3 = { sNombreEmpresa: OpRenglon, iIdRenglon: opRenglonTex };
+                const dataSend3 = { iIdEmpresa: opEmpresaval, iIdRenglon: opRenglonTex };
                 console.log(dataSend3);
                 $("#RegAcumulado").empty();
                 $('#RegAcumulado').append('<option value="0" selected="selected">Selecciona</option>');
-                    $.ajax({
-                        url: "../Nomina/LisAcumulado",
-                         type: "POST",
-                         data: dataSend3,
-                          success: (data) => {
+                $.ajax({
+                    url: "../Nomina/LisAcumulado",
+                    type: "POST",
+                    data: dataSend3,
+                    success: (data) => {
 
-                             for (i = 0; i < data.length; i++) {
-                                document.getElementById("RegAcumulado").innerHTML += `<option value='${data[i].iIdAcumulado}'>${data[i].sDesAcumulado}</option>`;
-                              }
-                                for (var i = 0; i < RegAcumulado.length; i++) {
-                                   if (RegAcumulado.options[i].text == datoacumulado) {
-                                      // seleccionamos el valor que coincide
-                                         RegAcumulado.selectedIndex = i;
-                                    }
+                        for (i = 0; i < data.length; i++) {
+                            document.getElementById("RegAcumulado").innerHTML += `<option value='${data[i].iIdAcumulado}'>${data[i].sDesAcumulado}</option>`;
+                        }
+                        for (var i = 0; i < RegAcumulado.length; i++) {
+                            if (RegAcumulado.options[i].text == datoacumulado) {
+                                // seleccionamos el valor que coincide
+                                RegAcumulado.selectedIndex = i;
+                            }
 
-                                 }
-                          },
-                    });
+                        }
+                    },
+                });
             },
             error: function (jqXHR, exception) {
                 fcaptureaerrorsajax(jqXHR, exception);
             }
         });
+
+        var op = RegEmpresa.options[RegEmpresa.selectedIndex].text;
+        var opval = RegEmpresa.value;
+        const dataSend2 = { IdEmpresa: opval };
       
-        var op = RegEmpresa.options[RegEmpresa.selectedIndex].text;     
-        const dataSend2 = { Ctrsvalor: op };
+
         $("#RegTipoperiodo1").empty();
         $('#RegTipoperiodo1').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -796,46 +788,46 @@
                 }
 
                 $("#TpDefinicion").click();
-                        //const dataSend4 = { iIdFinicion: IdDh };
-                        //$.ajax({
-                        //    url: "../Nomina/DefCancelado",
-                        //    type: "POST",
-                        //    data: dataSend4,
-                        //    success: (data) => {
-                        //        for (i = 0; i < data.length; i++) {
-                        //            AnioPre = data[i].iAno;
-                        //        }
-                        //        var OpEmpresa = RegEmpresa.value;
-                        //        const OpIdTipoperiodo = RegTipoperiodo1.value;
-                        //        const anio = AnioPre;
-                        //        const dataSend = { iIdEmpresesas: OpEmpresa, ianio: anio, iTipoPeriodo: OpIdTipoperiodo };
-                        //        $("#RegPeridoPer").empty();
-                        //        $('#RegPeridoPer').append('<option value="0" selected="selected">Selecciona</option>');
-                        //        $.ajax({
-                        //            url: "../Nomina/ListPeriodo",
-                        //            type: "POST",
-                        //            data: dataSend,
-                        //            success: (data) => {
-                        //                for (i = 0; i < data.length; i++) {
-                        //                    document.getElementById("RegPeridoPer").innerHTML += `<option value='${data[i].iId}'>${data[i].iPeriodo}</option>`;
+                //const dataSend4 = { iIdFinicion: IdDh };
+                //$.ajax({
+                //    url: "../Nomina/DefCancelado",
+                //    type: "POST",
+                //    data: dataSend4,
+                //    success: (data) => {
+                //        for (i = 0; i < data.length; i++) {
+                //            AnioPre = data[i].iAno;
+                //        }
+                //        var OpEmpresa = RegEmpresa.value;
+                //        const OpIdTipoperiodo = RegTipoperiodo1.value;
+                //        const anio = AnioPre;
+                //        const dataSend = { iIdEmpresesas: OpEmpresa, ianio: anio, iTipoPeriodo: OpIdTipoperiodo };
+                //        $("#RegPeridoPer").empty();
+                //        $('#RegPeridoPer').append('<option value="0" selected="selected">Selecciona</option>');
+                //        $.ajax({
+                //            url: "../Nomina/ListPeriodo",
+                //            type: "POST",
+                //            data: dataSend,
+                //            success: (data) => {
+                //                for (i = 0; i < data.length; i++) {
+                //                    document.getElementById("RegPeridoPer").innerHTML += `<option value='${data[i].iId}'>${data[i].iPeriodo}</option>`;
 
-                        //                }
+                //                }
 
-                        //                for ( i = 0; i < RegPeridoPer.length; i++) {
-                        //                    if (RegPeridoPer.options[i].text == datoperiodo) {
-                        //                        // seleccionamos el valor que coincide
-                        //                        RegPeridoPer.selectedIndex = i;
-                        //                    }
+                //                for ( i = 0; i < RegPeridoPer.length; i++) {
+                //                    if (RegPeridoPer.options[i].text == datoperiodo) {
+                //                        // seleccionamos el valor que coincide
+                //                        RegPeridoPer.selectedIndex = i;
+                //                    }
 
-                        //                }
+                //                }
 
-                        //            },
+                //            },
 
 
-                        //        });
+                //        });
 
-                        //    }
-                        //});
+                //    }
+                //});
 
             },
             error: function (jqXHR, exception) {
@@ -850,9 +842,10 @@
             }
 
         }
-      
 
-    }
+
+    };
+
     BActuPer.addEventListener('click', botonActuPer);
 
     $("#TbPercepciones").on('rowselect', function (event) {
@@ -879,10 +872,10 @@
         RegAcumulado.value = "0";
         //RegPeridoPer.value = "0";
 
-    }
+    };
 
 
-    btnCierrapercepcion.addEventListener('click', FlimpicamposPEr)
+    btnCierrapercepcion.addEventListener('click', FlimpicamposPEr);
 
        //Funcion que guarda la actulalizacion de la percepcion en el BD
 
@@ -895,7 +888,7 @@
         var TipoPeriodoPre = Tpoperiodo1.options[Tpoperiodo1.selectedIndex].text;
         var TipoPeriodoPreId = Tpoperiodo1.value;
         var EspejoPre = iRegEspejo.options[iRegEspejo.selectedIndex].text;
-        var EspejoPreId = iRegEspejo.value
+        var EspejoPreId = iRegEspejo.value;
         var AcumuladoPre = iAcumulado.options[iAcumulado.selectedIndex].text;
         var AcumuladoPreId = iAcumulado.value;
         //var PeriodoPer = iRegPeridoPer.options[iRegPeridoPer.selectedIndex].text;
@@ -912,8 +905,7 @@
                 iIdDefinicionln: DatoiId, iIdEmpresa: EmpresaIDper,
                 iTipodeperiodo: TipoPeriodoPreId, /*iIdperiodo: PeriodoPer,*/
                 iRenglon: RenglonPerId, iEsespejo: EspejoPreId, iIdAcumulado: AcumuladoPreId
-            };
-            console.log(dataSend2)
+            };           
 
             $.ajax({
                 url: "../Nomina/UpdatePtDefinicionNl",
@@ -937,11 +929,12 @@
         }
 
         else {
-            console.log('datos iguales')
+            console.log('datos iguales');
 
         }
        
     };
+
     btnActualizarPercep.addEventListener('click', FactulizaPer);
     //FDeleteDefinicionNL = () => {
 
@@ -979,10 +972,11 @@
 
     //BEliminarPer.addEventListener('click',FDeleteDefinicionNL)
 
-    FVisualizacionBotones = () => {    
+    FVisualizacionBotones = () => {
         btnAgregarPercep.style.visibility = "visible";
         btnActualizarPercep.style.visibility = "hidden";
-    }
+    };
+
     BAgregarPer.addEventListener('click', FVisualizacionBotones);
 
     /* FUNCION QUE MUESTRA ALERTAS */
@@ -1011,7 +1005,7 @@
             //    }, 1200);
             //}
         });
-    }
+    };
 
     // Percepciones y deducciones
                        //  Tab Deducciones
@@ -1104,14 +1098,16 @@
                 }
             }
         });
-    }
+    };
+
     LisEmpresaDe();
 
     // llenado de lista droplist de tipo de periodo 
     RecargaLisperiodoDe = () => {
-
         var op = RegEmpresade.options[RegEmpresade.selectedIndex].text;
-        const dataSend = { Ctrsvalor: op };
+        var opvalde = RegEmpresade.value;
+        const dataSend = { IdEmpresa: opvalde };
+
         $("#RegTipoperiodoDe").empty();
         $('#RegTipoperiodoDe').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -1128,15 +1124,14 @@
             }
         });
 
-    }
+    };
 
     // llenado del droplist de renglon
 
     RecargaLisRenglonDe = () => {
-
         var OpRenglon = RegEmpresade.options[RegEmpresade.selectedIndex].text;
-        console.log(OpRenglon);
-        const dataSend = { sNombreEmpresa: OpRenglon };
+        var opvalEmpresaDe = RegEmpresade.value;
+        const dataSend = { IdEmpresa: opvalEmpresaDe };
         $("#RegRenglonDe").empty();
         $('#RegRenglonDe').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -1144,19 +1139,16 @@
             type: "POST",
             data: dataSend,
             success: (data) => {
-
                 console.log(data);
                 for (i = 0; i < data.length; i++) {
                     document.getElementById("RegRenglonDe").innerHTML += `<option value='${data[i].iIdRenglon}'>${data[i].sNombreRenglon}</option>`;
-
                 }
             },
             error: function (jqXHR, exception) {
                 fcaptureaerrorsajax(jqXHR, exception);
             }
         });
-
-    }
+    };
 
     $('#RegEmpresaDe').change(function () {
 
@@ -1169,10 +1161,10 @@
     RecargaLisAcumuladoDe = () => {
 
         var OpRenglon = RegEmpresaDe.options[RegEmpresaDe.selectedIndex].text;
+        var opEmpresaval = RegEmpresaDe.value;
         var OpRenglonint = RegRenglonDe.options[RegRenglonDe.selectedIndex].text;
         const opRenglonTex = RegRenglonDe.value;
-
-        const dataSend = { sNombreEmpresa: OpRenglon, iIdRenglon: opRenglonTex };
+        const dataSend = { iIdEmpresa: opEmpresaval, iIdRenglon: opRenglonTex };
         $("#RegAcumuladoDe").empty();
         $('#RegAcumuladoDe').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -1192,7 +1184,7 @@
 
         });
 
-    }
+    };
 
     $('#RegRenglonDe').change(function () {
 
@@ -1304,7 +1296,7 @@
                         iRenglon: idRenglonde, iCancelado: icancede, iElementonomina: iEleNomde,
                         iEsespejo: ispejode, iIdAcumulado: idAcumuladode
                     };
-                    console.log(dataSend2)
+                 
                     $.ajax({
                         url: "../Nomina/insertDefinicioNl",
                         type: "POST",
@@ -1340,7 +1332,7 @@
             fshowtypealert('warning', 'Los campos: Empresa, Renglo, Tipo de periodo, Periodo y Es espejo son obligatorios', 'warning');
         }
     };
-    btnAgregarDedu.addEventListener('click', FGuardarDedBD)
+    btnAgregarDedu.addEventListener('click', FGuardarDedBD);
 
     // Funcion limpia campos
 
@@ -1369,13 +1361,17 @@
                 RegEmpresade.selectedIndex = i;
             }
 
-        }
+        };
 
         var OpRenglon = RegEmpresaDe.options[RegEmpresaDe.selectedIndex].text;
-        const dataSend = { sNombreEmpresa: OpRenglon };
+        var opvalEmpresa = RegEmpresaDe.value;
+        const dataSend = { IdEmpresa: opvalEmpresa };
+   
+
         $("#RegRenglonDe").empty();
         $('#RegRenglonDe').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
+
             url: "../Nomina/LisRenglon",
             type: "POST",
             data: dataSend,
@@ -1391,10 +1387,10 @@
                     }
                 }
 
+                var opEmpresaval = RegEmpresaDe.value;
                 OpRenglon = RegEmpresaDe.options[RegEmpresaDe.selectedIndex].text;
                 const opRenglonTex = RegRenglonDe.value;
-                const dataSend3 = { sNombreEmpresa: OpRenglon, iIdRenglon: opRenglonTex };
-                console.log(dataSend3);
+                const dataSend3 = { iIdEmpresa: opEmpresaval, iIdRenglon: opRenglonTex };             
                 $("#RegAcumuladoDe").empty();
                 $('#RegAcumuladoDe').append('<option value="0" selected="selected">Selecciona</option>');
                 $.ajax({
@@ -1402,13 +1398,13 @@
                     type: "POST",
                     data: dataSend3,
                     success: (data) => {
-                       
+
                         for (i = 0; i < data.length; i++) {
                             document.getElementById("RegAcumuladoDe").innerHTML += `<option value='${data[i].iIdAcumulado}'>${data[i].sDesAcumulado}</option>`;
 
                         }
 
-                        for ( i = 0; i < RegAcumuladoDe.length; i++) {
+                        for (i = 0; i < RegAcumuladoDe.length; i++) {
                             if (RegAcumuladoDe.options[i].text == datoacumuladode) {
                                 // seleccionamos el valor que coincide
                                 RegAcumuladoDe.selectedIndex = i;
@@ -1426,8 +1422,9 @@
         });
 
 
-        var op = RegEmpresaDe.options[RegEmpresaDe.selectedIndex].text;
-        const dataSend2 = { Ctrsvalor: op };
+        var op = RegEmpresaDe.options[RegEmpresaDe.selectedIndex].text;  
+        var opvalde = RegEmpresaDe.value;
+        const dataSend2 = { IdEmpresa: opvalde };
         $("#RegTipoperiodoDe").empty();
         $('#RegTipoperiodoDe').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -1508,16 +1505,16 @@
         }
 
 
-    }
+    };
     BActudedu.addEventListener('click', FActualizaboton);
 
      // Funcion desaprece el boton de actualizar y aparece el boton de agregar
     Fagregarboton = () => {
-        
+
         btnAgregarDedu.style.visibility = "visible";
         btnActualizarDedu.style.visibility = "hidden";
 
-    }
+    };
     
     BAgregardedu2.addEventListener('click', Fagregarboton);
 
@@ -1541,7 +1538,7 @@
     //// FGuardar Actualizacion de Deduccion en la BD
 
     FActualizaDed = () => {
-        console.log('actualiza');
+      
 
         var Empresaded = RegEmpresaDe.options[RegEmpresaDe.selectedIndex].text;
         var EmpresaIDded = RegEmpresaDe.value;
@@ -1556,12 +1553,12 @@
         //var Periododed = RegPeridoDe.options[RegPeridoDe.selectedIndex].text;
         //var PeriododedId = RegPeridoDe.value;
 
-      
+
 
         if (DatoEmpresade != Empresaded || DatoRenglonde != Renglonded || datotipoperiodode != TipoPeriododed || datoespejode != Espejoded || datoacumuladode != Acumuladoded /*|| datoperiodode != Periododed*/) {
             $("#TbDeducciones").click();
 
-            if (EspejodedId == 2) { EspejodedId = 0}
+            if (EspejodedId == 2) { EspejodedId = 0 }
             const dataSend2 = {
                 iIdDefinicionln: DatoiIdde, iIdEmpresa: EmpresaIDded,
                 iTipodeperiodo: TipoPeriododedId,/* iIdperiodo: Periododed,*/
@@ -1590,13 +1587,13 @@
 
         }
         else {
-            console.log('datos iguales')
+            console.log('datos iguales');
 
         }
 
-    }
+    };
 
-    btnActualizarDedu.addEventListener('click',FActualizaDed)
+    btnActualizarDedu.addEventListener('click', FActualizaDed);
 
     // validaciones
 

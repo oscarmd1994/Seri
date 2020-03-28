@@ -15,7 +15,7 @@
     const btnlimpDefinicion = document.getElementById('btnlimpDefinicion');
     const navDefiniciontab = document.getElementById('nav-Definicion-tab');
     const navPercepcionestab = document.getElementById('nav-Percepciones-tab');
-    const navDeducciontab = document.getElementById('nav-Deduccion-tab')
+    const navDeducciontab = document.getElementById('nav-Deduccion-tab');
 
 
     // Declaracion de variables de Definicion de pantalla precepciones
@@ -63,8 +63,8 @@
             hideClass: { popup: 'animated fadeOutUp faster' },
             confirmButtonText: "Aceptar", allowOutsideClick: false, allowEscapeKey: false, allowEnterKey: false,
         }).then((acepta) => {
-          //  Nombrede.value       = '';
-           // Descripcionde.value  = '';
+            //  Nombrede.value       = '';
+            // Descripcionde.value  = '';
             //iAnode.value         = '';
             //cande.value          = '';
             //$("html, body").animate({
@@ -81,17 +81,17 @@
             //    }, 1200);
             //}
         });
-    }
+    };
 
     // funcion de control de botondes de direccionamiento para percepciones y deducione
 
-    FdirPer= () => {
+    FdirPer = () => {
 
         $("#nav-Percepciones-tab").click();
-        
-    }
 
-    btnContPercepciones.addEventListener('click', FdirPer)
+    };
+
+    btnContPercepciones.addEventListener('click', FdirPer);
 
     Fdirde = () => {
 
@@ -99,7 +99,7 @@
 
     }
 
-    btnContDeducciones.addEventListener('click', Fdirde )
+    btnContDeducciones.addEventListener('click', Fdirde);
 
     //funcion que  guarda los datos en la BD
 
@@ -144,8 +144,6 @@
             });
 
         }
-
-
         else {
             console.log('mesaje de error')
             fshowtypealert('warning', 'Introduce todos los campos', 'warning');
@@ -263,10 +261,10 @@
            
             }
 
-            //$("#nav-Percepciones-tab").removeClass("active");
-            //$("#nav-Deduccion-tab").removeClass("active");
-            //btnGuardarDefinicion.style.visibility = 'hidden';
-            //btnGuardarDefinicion.value = "2";
+            $("#nav-Percepciones-tab").removeClass("active");
+            $("#nav-Deduccion-tab").removeClass("active");
+            btnGuardarDefinicion.style.visibility = 'hidden';
+            btnGuardarDefinicion.value = "2";
        
        
         };
@@ -304,11 +302,11 @@
 
         $("#btnFloGuardar").attr("value", "3");
         $("#btnlimpDefinicion").attr("value", "3");
-        console.log(btnFloGuardar.value)
+        console.log(btnFloGuardar.value);
 
-    }
+    };
 
-    navDeducciontab.addEventListener('click', FAsignaBotonesDe)
+    navDeducciontab.addEventListener('click', FAsignaBotonesDe);
 
 
          /////// pantalla Percepcion
@@ -331,43 +329,43 @@
             }
         });
 
-    }
+    };
     LisEmpresa();
 
     // llenado de lista droplist de tipo de periodo
     RecargaLisperiodo = () => {
 
         var op = RegEmpresa.options[RegEmpresa.selectedIndex].text;
-        console.log(op);
-        const dataSend = { Ctrsvalor: op };
+        var opval = RegEmpresa.value;      
+        const dataSend = { IdEmpresa: opval };
         $("#RegTipoperiodo1").empty();
         $('#RegTipoperiodo1').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
             url: "../Nomina/LisTipPeriodo",
             type: "POST",
             data: dataSend,
-            success: (data)=> {
-                
-                    console.log(data);
-                    for (i = 0; i < data.length; i++) {
-                        document.getElementById("RegTipoperiodo1").innerHTML += `<option value='${data[i].iId}'>${data[i].sValor}</option>`;
-                    
+            success: (data) => {
 
-                } 
+                console.log(data);
+                for (i = 0; i < data.length; i++) {
+                    document.getElementById("RegTipoperiodo1").innerHTML += `<option value='${data[i].iId}'>${data[i].sValor}</option>`;
+
+                }
             },
             error: function (jqXHR, exception) {
                 fcaptureaerrorsajax(jqXHR, exception);
             }
         });
 
-    }
+    };
 
     // llenado del droplist de renglon
 
     RecargaLisRenglon = () => {
 
         var OpRenglon = RegEmpresa.options[RegEmpresa.selectedIndex].text;
-        const dataSend = { sNombreEmpresa: OpRenglon };
+        var opvalEmpresa = RegEmpresa.value;
+        const dataSend = { IdEmpresa: opvalEmpresa };
         $("#RegRenglon").empty();
         $('#RegRenglon').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -385,7 +383,8 @@
             }
         });
 
-    }
+    };
+
     $('#RegEmpresa').change(function () {
 
         RecargaLisperiodo();
@@ -397,9 +396,10 @@
     RecargaLisAcumulado = () => {
 
         var OpRenglon = RegEmpresa.options[RegEmpresa.selectedIndex].text;
+        var opEmpresaval = RegEmpresa.value;
         var OpRenglonint = RegRenglon.options[RegRenglon.selectedIndex].text;
         const opRenglonTex = RegRenglon.value;
-        const dataSend = { sNombreEmpresa: OpRenglon, iIdRenglon: opRenglonTex };
+        const dataSend = { iIdEmpresa: opEmpresaval, iIdRenglon: opRenglonTex };
         $("#RegAcumulado").empty();
         $('#RegAcumulado').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -499,8 +499,8 @@
 
         var op = RegTipoperiodo1.options[RegTipoperiodo1.selectedIndex].text;
         console.log(op);
-        if (RegEmpresa.value != "0" && RegRenglon.value != "0"  && iRegEspejo.value != "0" && op != "Selecciona") {
-          
+        if (RegEmpresa.value != "0" && RegRenglon.value != "0" && iRegEspejo.value != "0" && op != "Selecciona") {
+
             $.ajax({
                 url: "../Nomina/IdmaxDefiniconNom",
                 type: "POST",
@@ -545,10 +545,6 @@
                                 opcanel1 = 0;
                             }
 
-                            //var op2 = iRegPeridoPer.options[iRegPeridoPer.selectedIndex].text;
-                            //if (op2 == "Selecciona") {
-                            //    op2 = "0";
-                            //}
 
                             const idempresa = RegEmpresa.value;
                             const idTipoPeriodo = RegTipoperiodo1.value;
@@ -557,16 +553,6 @@
                             const icance = opcanel1;
                             const iEleNom = '39';
                             const idAcumulado = iAcumulado.value;
-
-                            console.log(IdMaxDefNom);
-                            console.log(idempresa);
-                            console.log(idTipoPeriodo);
-                            //console.log(idPeriodo);
-                            console.log(idRenglon);
-                            console.log(icance);
-                            console.log(iEleNom);
-                            console.log(ispejo);
-                            console.log(idAcumulado);
 
                             const dataSend2 = {
                                 iIdDefinicionHd: IdMaxDefNom, iIdEmpresa: idempresa,
@@ -605,24 +591,24 @@
 
                 }
             });
-            
+
         }
 
         else {
-            console.log('mesaje de error')
+            console.log('mesaje de error');
             fshowtypealert('warning', 'Los campos: Empresa, Renglo, Tipo de periodo y Es espejo son obligatorios', 'warning');
 
         }
-         
-      
-    }
+
+
+    };
 
     FactivaGuaryLlegrippre = () => {
         FSavePres();
         FllenaGripPer();
-    }
+    };
     
-    btnGuardarPercepcion.addEventListener('click', FactivaGuaryLlegrippre)
+    btnGuardarPercepcion.addEventListener('click', FactivaGuaryLlegrippre);
 
      // Funcion carga datos en tabla
 
@@ -711,8 +697,10 @@
     // llenado de lista droplist de tipo de periodo 
     RecargaLisperiodoDe = () => {
 
+
         var op = RegEmpresade.options[RegEmpresade.selectedIndex].text;
-        const dataSend = { Ctrsvalor: op };
+        var opvalde = RegEmpresade.value;
+        const dataSend = { IdEmpresa: opvalde };
         $("#RegTipoperiodoDe").empty();
         $('#RegTipoperiodoDe').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -733,14 +721,16 @@
             }
         });
 
-    }
+    };
 
     // llenado del droplist de renglon
 
     RecargaLisRenglonDe = () => {
+       
 
         var OpRenglon = RegEmpresade.options[RegEmpresade.selectedIndex].text;
-        const dataSend = { sNombreEmpresa: OpRenglon };
+        var opvalEmpresaDe = RegEmpresade.value;
+        const dataSend = { IdEmpresa: opvalEmpresaDe };
         $("#RegRenglonDe").empty();
         $('#RegRenglonDe').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -757,7 +747,7 @@
             }
         });
 
-    }
+    };
 
     $('#RegEmpresaDe').change(function () {
 
@@ -770,10 +760,11 @@
     RecargaLisAcumuladoDe = () => {
 
         var OpRenglon = RegEmpresaDe.options[RegEmpresaDe.selectedIndex].text;
+        var opEmpresaval = RegEmpresaDe.value;
         var OpRenglonint = RegRenglonDe.options[RegRenglonDe.selectedIndex].text;
         const opRenglonTex = RegRenglonDe.value;
-       
-        const dataSend = { sNombreEmpresa: OpRenglon, iIdRenglon: opRenglonTex };
+        const dataSend = { iIdEmpresa: opEmpresaval, iIdRenglon: opRenglonTex };
+
         $("#RegAcumuladoDe").empty();
         $('#RegAcumuladoDe').append('<option value="0" selected="selected">Selecciona</option>');
         $.ajax({
@@ -793,7 +784,7 @@
 
         });
 
-    }
+    };
 
     $('#RegRenglonDe').change(function () {
 
