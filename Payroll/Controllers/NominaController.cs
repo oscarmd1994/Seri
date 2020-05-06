@@ -31,6 +31,11 @@ namespace Payroll.Controllers
 
         }
 
+        public PartialViewResult Dispersion()
+        {
+            return PartialView();
+        }
+
 
         //Guarda los datos de la Definicion
         [HttpPost]
