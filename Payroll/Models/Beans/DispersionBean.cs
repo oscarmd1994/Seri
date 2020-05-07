@@ -55,4 +55,21 @@ namespace Payroll.Models.Beans
         public string sMensaje     { get; set; }
     }
 
+    public class DataDepositsBankingBean
+    {
+        public int iIdEmpresa   { get; set; }
+        public int iIdBanco     { get; set; }
+        public string sBanco    { get; set; }
+        public int iIdRenglon   { get; set; }
+        public int iDepositos   { get; set; }
+        public decimal dImporte { get; set; }
+    }
+
+    public class BankDetailsBean
+    {
+        public int iIdBanco        { get; set; }
+        public string sNombreBanco { get; set; }
+        public string sSufijo      { get; set; }
+    }
+
 }

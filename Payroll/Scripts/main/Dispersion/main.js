@@ -351,6 +351,119 @@
         }
     }
 
+    /* Funcion que carga informacion en los inputs de dispersion */
+    fLoadInfoDataDispersion = () => {
+        const d = new Date();
+        yeardis.value = d.getFullYear();
+        yeardis.setAttribute('readonly', 'true');
+        periodis.setAttribute('readonly', 'true');
+        const day = d.getDate();
+        let mth;
+        if ((d.getMonth() + 1) < 10) {
+            mth = "0" + String(d.getMonth() + 1);
+        } else { mth = d.getMonth() + 1; }
+        const yer = d.getFullYear();
+        datedis.value = yer + '-' + mth + '-' + day;
+    }
+
+    fToDeployInfoDispersion = () => {
+        btndesplegartab.innerHTML = `
+                            <i class="fas fa-play-circle mr-2"></i> Desplegar `;
+        btndesplegartab.classList.remove('active');
+        tableDataDeposits.classList.remove('animated', 'fadeIn');
+        tableDataDeposits.innerHTML = '';
+        try {
+            const arrInput = [yeardis, periodis, datedis];
+            let validate = 0;
+            for (let i = 0; i < arrInput.length; i++) {
+                if (arrInput[i].value === "") {
+                    fShowTypeAlert('Atencion', 'Completa el campo ' + String(arrInput[i].placeholder), 'warning', arrInput[i], 2);
+                    validate = 1;
+                    break;
+                }
+            }
+            if (validate === 0) {
+                $.ajax({
+                    url: "../Dispersion/ToDeployDispersion",
+                    type: "POST",
+                    data: {
+                        yearDispersion: yeardis.value,
+                        periodDispersion: periodis.value,
+                        dateDispersion: datedis.value,
+                        type: "test"
+                    },
+                    beforeSend: () => {
+                        btndesplegartab.innerHTML = `
+                            <span class="spinner-grow spinner-grow-sm mr-1" role="status" aria-hidden="true"></span>
+                            <span class="sr-only">Loading...</span>
+                            Desplegando
+                        `;
+                    },
+                    success: (data) => {
+                        btndesplegartab.classList.add('active');
+                        btndesplegartab.innerHTML = `
+                            <i class="fas fa-check-circle mr-2"></i> Desplegado
+                        `;
+                        btndesplegartab.disabled = false;
+                        if (data.BanderaDispersion == true) {
+                            if (data.BanderaBancos == true) {
+                                if (data.MensajeError == "none") {
+                                    tableDataDeposits.classList.add('animated', 'fadeIn');
+                                    tableDataDeposits.innerHTML += `
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Banco</th>
+                                                <th scope="col">Concepto</th>
+                                                <th scope="col">Depositos</th>
+                                                <th scope="col">Importe</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-body-data"></tbody>
+                                    `;
+                                    for (let i = 0; i < data.DatosDepositos.length; i++) {
+                                        let nomBanco = "";
+                                        for (let j = 0; j < data.DatosBancos.length; j++) {
+                                            if (data.DatosBancos[j].iIdBanco === data.DatosDepositos[i].iIdBanco) {
+                                                nomBanco = "[" + data.DatosBancos[j].sSufijo + "] " + data.DatosBancos[j].sNombreBanco;
+                                            }
+                                        }
+                                        document.getElementById("table-body-data").innerHTML += `
+                                            <tr>
+                                                <th scope="row">${data.DatosDepositos[i].iIdBanco}</th>
+                                                <td><i class="fas fa-university mr-2 text-primary"></i>${nomBanco}</td>
+                                                <td>${data.DatosDepositos[i].iDepositos}</td>
+                                                <td> <i class="fas fa-money-bill mr-2 text-success"></i> ${data.DatosDepositos[i].dImporte}</td>
+                                            </tr>
+                                        `;
+                                        console.log("dato", data.DatosDepositos[i]);
+                                     }
+                                } else {
+                                    alert('error');
+                                }
+                            } else {
+                                alert('sin bancos');
+                            }
+                        } else {
+                            alert('sin depositos');
+                        }
+                    }, error: (jqXHR, exception) => {
+                        fcaptureaerrorsajax(jqXHR, exception);
+                    }
+                });
+            }
+        } catch (error) {
+            if (error instanceof EvalError) {
+                console.log('EvalError ', error);
+            } else if (error instanceof RangeError) {
+                console.log('RangeError ', error);
+            } else if (error instanceof TypeError) {
+                console.log('TypeError ', error);
+            } else {
+                console.log('Error ', error);
+            }
+        }
+    }
+
 	/*
 	 * Ejecucion de funciones
 	 */
@@ -369,4 +482,7 @@
 
     btnregisterretnomina.addEventListener('click', fRegisterPayrollRetainedEmployee);
 
+    fLoadInfoDataDispersion();
+
+    btndesplegartab.addEventListener('click', fToDeployInfoDispersion);
 });

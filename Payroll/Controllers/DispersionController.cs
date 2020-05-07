@@ -122,5 +122,28 @@ namespace Payroll.Controllers
             return Json(new { Bandera = flag, MensajeError = messageError });
         }
 
+        // Muestra informacion al desplegar la dispersion
+        [HttpPost]
+        public JsonResult ToDeployDispersion(string yearDispersion, string periodDispersion, string dateDispersion, string type)
+        {
+            Boolean flag1 = false, flag2 = false;
+            String  messageError = "none";
+            List<DataDepositsBankingBean> daDepBankingBean = new List<DataDepositsBankingBean>();
+            DataDispersionBusiness        daDiBusinessDaoD = new DataDispersionBusiness();
+            List<BankDetailsBean>         bankDetailsBean  = new List<BankDetailsBean>();
+            try {
+                int keyBusiness  = int.Parse(Session["IdEmpresa"].ToString());
+                daDepBankingBean = daDiBusinessDaoD.sp_Obtiene_Depositos_Bancarios(keyBusiness, yearDispersion, periodDispersion, type);
+                if (daDepBankingBean.Count > 0) {
+                    flag1 = true;
+                    bankDetailsBean = daDiBusinessDaoD.sp_Datos_Banco(daDepBankingBean);
+                    flag2 = (bankDetailsBean.Count > 0) ? true : false;
+                }
+            } catch (Exception exc) {
+                messageError = exc.Message.ToString();
+            }
+            return Json(new { BanderaDispersion = flag1, BanderaBancos = flag2, MensajeError = messageError, DatosDepositos = daDepBankingBean, DatosBancos = bankDetailsBean });
+        }
+
     }
 }

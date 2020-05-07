@@ -202,4 +202,70 @@ namespace Payroll.Models.Daos
 
     }
 
+    public class DataDispersionBusiness : Conexion {
+        
+        public List<DataDepositsBankingBean> sp_Obtiene_Depositos_Bancarios(int keyBusiness, string yearDispersion, string periodDispersion, string type)
+        {
+            List<DataDepositsBankingBean> listDaDepBankingBean = new List<DataDepositsBankingBean>();
+            try {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Obtiene_Depositos_Bancarios", this.conexion) { CommandType = CommandType.StoredProcedure };
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", Convert.ToInt32(keyBusiness)));
+                cmd.Parameters.Add(new SqlParameter("@AnioAct", Convert.ToInt32(yearDispersion)));
+                if (type == "test") {
+                    cmd.Parameters.Add(new SqlParameter("@Periodo", Convert.ToInt32(3)));
+                } else {
+                    cmd.Parameters.Add(new SqlParameter("@Periodo", Convert.ToInt32(periodDispersion)));
+                }
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.HasRows) {
+                    while (data.Read()) {
+                        listDaDepBankingBean.Add(new DataDepositsBankingBean {
+                            iIdEmpresa = keyBusiness,
+                            iIdBanco   = Convert.ToInt32(data["banco"].ToString()),
+                            iIdRenglon = Convert.ToInt32(data["Renglon_id"].ToString()),
+                            iDepositos = Convert.ToInt32(data["depositos"].ToString()),
+                            dImporte   = Convert.ToDecimal(data["importe"].ToString())
+                        });
+                    } 
+                }
+                cmd.Parameters.Clear(); cmd.Dispose(); data.Close();
+            } catch (Exception exc) {
+                Console.WriteLine(exc.Message.ToString());
+            } finally {
+                this.conexion.Close();
+                this.Conectar().Close();
+            }
+            return listDaDepBankingBean;
+        }
+
+        public List<BankDetailsBean> sp_Datos_Banco(List<DataDepositsBankingBean> listData)
+        {
+            List<BankDetailsBean> listBankDetailsBean = new List<BankDetailsBean>();
+            try {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Datos_Banco", this.conexion) { CommandType = CommandType.StoredProcedure };
+                foreach (DataDepositsBankingBean data in listData) {
+                    cmd.Parameters.Add(new SqlParameter("@IdBanco", Convert.ToInt32(data.iIdBanco.ToString())));
+                    SqlDataReader dataBank = cmd.ExecuteReader();
+                    if (dataBank.Read()) {
+                        listBankDetailsBean.Add(new BankDetailsBean {
+                            iIdBanco     = Convert.ToInt32(dataBank["IdBanco"].ToString()),
+                            sNombreBanco = dataBank["Descripcion"].ToString(),
+                            sSufijo      = (Convert.ToInt32(data.iIdBanco.ToString()) != 0) ? "Nomina" : "Efectivo"
+                        });
+                    }
+                    cmd.Parameters.Clear(); cmd.Dispose(); dataBank.Close();
+                }
+            } catch (Exception exc) {
+                Console.WriteLine(exc.Message.ToString());
+            } finally {
+                this.conexion.Close();
+                this.Conectar().Close();
+            }
+            return listBankDetailsBean;
+        }
+
+    }
+
 }
