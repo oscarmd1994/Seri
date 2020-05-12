@@ -140,6 +140,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CatalogsTablesController.cs" />
     <Compile Include="Controllers\ControlPayrollController.cs" />
+    <Compile Include="Controllers\DispersionController.cs" />
     <Compile Include="Controllers\EditDataGeneralController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\EmpresasController.cs" />
@@ -153,6 +154,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Beans\CatalogosBean.cs" />
+    <Compile Include="Models\Beans\DispersionBean.cs" />
     <Compile Include="Models\Beans\MainMenuBean.cs" />
     <Compile Include="Models\Beans\MenuBean.cs" />
     <Compile Include="Models\Beans\NominaBean.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="Models\Beans\UsuariosBean.cs" />
     <Compile Include="Models\Beans\VariablesBean.cs" />
     <Compile Include="Models\Daos\CatalogosDao.cs" />
+    <Compile Include="Models\Daos\DispersionDao.cs" />
     <Compile Include="Models\Daos\EditDataGeneralDao.cs" />
     <Compile Include="Models\Daos\ListTablesDao.cs" />
     <Compile Include="Models\Daos\MainMenuDao.cs" />
@@ -803,10 +806,13 @@
     <Content Include="Views\Incidencias\Incidencias.cshtml" />
     <Content Include="Views\Incidencias\RegistrarIncidencias.cshtml" />
     <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
+    <Content Include="Views\Nomina\Dispersion.cshtml" />
+    <Content Include="Scripts\main\Dispersion\main.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\CatalogsTables\" />
+    <Folder Include="Views\Dispersion\" />
     <Folder Include="Views\EditDataGeneral\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Views\MainMenu\" />
