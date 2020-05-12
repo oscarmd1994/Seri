@@ -14,6 +14,8 @@ namespace Payroll.Models.Daos
 
     public class ListEmpleadosDao : Conexion
     {
+<<<<<<< HEAD
+=======
         public List<EmpleadosBean> sp_Empleados_Retrieve_Search_Empleados(int keyemp, string wordsearch, string filtered)
         {
             List<EmpleadosBean> listEmpleadosBean = new List<EmpleadosBean>();
@@ -52,6 +54,7 @@ namespace Payroll.Models.Daos
             }
             return listEmpleadosBean;
         }
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
         public List<EmpleadosBean> sp_Empleados_Retrieve_Empleados(int keyemp)
         {
             List<EmpleadosBean> listEmpleadosBean = new List<EmpleadosBean>();
@@ -73,117 +76,66 @@ namespace Payroll.Models.Daos
                 }
                 cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
             } catch (Exception exc) {
-                string origenerror = "ListTablesdao";
-                string mensajeerror = exc.ToString();
-                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
-                CapturaErrores capturaErrorDao = new CapturaErrores();
-                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
                 Console.WriteLine(exc);
             }
             return listEmpleadosBean;
         }
+
         public EmpleadosBean sp_Empleados_Retrieve_Empleado(int keyemploye)
         {
             EmpleadosBean empleadoBean = new EmpleadosBean();
-            try
-            {
+            try {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Empleados_Retrieve_Empleado", this.conexion)
-                {
+                SqlCommand cmd = new SqlCommand("sp_Empleados_Retrieve_Empleado", this.conexion) {
                     CommandType = CommandType.StoredProcedure
                 };
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpleado", keyemploye));
                 SqlDataReader data = cmd.ExecuteReader();
-                if (data.Read())
-                {
-                    empleadoBean.iIdEmpleado = Convert.ToInt32(data["IdEmpleado"].ToString());
-                    empleadoBean.sNombreEmpleado = (String.IsNullOrEmpty(data["Nombre_Empleado"].ToString())) ? "" : data["Nombre_Empleado"].ToString();
-                    empleadoBean.sApellidoPaterno = (String.IsNullOrEmpty(data["Apellido_Paterno_Empleado"].ToString())) ? "" : data["Apellido_Paterno_Empleado"].ToString();
-                    empleadoBean.sApellidoMaterno = (String.IsNullOrEmpty(data["Apellido_Materno_Empleado"].ToString())) ? "" : data["Apellido_Materno_Empleado"].ToString();
-                    empleadoBean.sFechaNacimiento = (String.IsNullOrEmpty(data["Fecha_Nacimiento_Empleado"].ToString())) ? "" : data["Fecha_Nacimiento_Empleado"].ToString();
-                    empleadoBean.sLugarNacimiento = (String.IsNullOrEmpty(data["Lugar_Nacimiento_Empleado"].ToString())) ? "" : data["Lugar_Nacimiento_Empleado"].ToString();
-                    if (data["Cg_Titulo_id"].ToString().Length != 0)
-                    {
-                        empleadoBean.iTitulo_id = Convert.ToInt32(data["Cg_Titulo_id"].ToString());
-                    }
-                    else
-                    {
-                        empleadoBean.iTitulo_id = 0;
-                    }
-                    if (data["Cg_Genero_Empleado_id"].ToString().Length != 0)
-                    {
-                        empleadoBean.iGeneroEmpleado = Convert.ToInt32(data["Cg_Genero_Empleado_id"].ToString());
-                    }
-                    else
-                    {
-                        empleadoBean.iGeneroEmpleado = 0;
-                    }
-                    if (data["Nacionalidad_id"].ToString().Length != 0)
-                    {
-                        empleadoBean.iNacionalidad = Convert.ToInt32(data["Nacionalidad_id"].ToString());
-                    }
-                    else
-                    {
-                        empleadoBean.iNacionalidad = 0;
-                    }
-                    if (data["Cg_EstadoCivil_Empleado_id"].ToString().Length != 0)
-                    {
-                        empleadoBean.iEstadoCivil = Convert.ToInt32(data["Cg_EstadoCivil_Empleado_id"].ToString());
-                    }
-                    else
-                    {
-                        empleadoBean.iEstadoCivil = 0;
-                    }
-                    empleadoBean.sCodigoPostal = (String.IsNullOrEmpty(data["Codigo_Postal"].ToString())) ? "" : data["Codigo_Postal"].ToString();
-                    if (data["Cg_Estado_id"].ToString().Length != 0)
-                    {
-                        empleadoBean.iEstado_id = Convert.ToInt32(data["Cg_Estado_id"].ToString());
-                    }
-                    else
-                    {
-                        empleadoBean.iEstado_id = 0;
-                    }
-                    empleadoBean.sCiudad = (String.IsNullOrEmpty(data["Ciudad"].ToString())) ? "" : data["Ciudad"].ToString();
-                    empleadoBean.sColonia = (String.IsNullOrEmpty(data["Colonia"].ToString())) ? "" : data["Colonia"].ToString();
-                    empleadoBean.sCalle = (String.IsNullOrEmpty(data["Calle"].ToString())) ? "" : data["Calle"].ToString();
-                    empleadoBean.sNumeroCalle = (String.IsNullOrEmpty(data["Numero_Calle"].ToString())) ? "S/N" : data["Numero_Calle"].ToString();
-                    empleadoBean.sTelefonoFijo = (String.IsNullOrEmpty(data["Telefono_Fijo"].ToString())) ? "" : data["Telefono_Fijo"].ToString();
-                    empleadoBean.sTelefonoMovil = (String.IsNullOrEmpty(data["Telefono_Movil"].ToString())) ? "" : data["Telefono_Movil"].ToString();
-                    empleadoBean.sCorreoElectronico = (String.IsNullOrEmpty(data["Correo_Electronico"].ToString())) ? "" : data["Correo_Electronico"].ToString();
-                    empleadoBean.sFechaMatrimonio = (String.IsNullOrEmpty(data["Fecha_Matrimonio"].ToString())) ? "" : data["Fecha_Matrimonio"].ToString();
-                    empleadoBean.sTipoSangre = (String.IsNullOrEmpty(data["Tipo_Sangre"].ToString())) ? "" : data["Tipo_Sangre"].ToString();
-                    empleadoBean.sMensaje = "success";
-                }
-                else
-                {
+                if (data.Read()) {
+                    empleadoBean.iIdEmpleado        = Convert.ToInt32(data["IdEmpleado"].ToString());
+                    empleadoBean.sNombreEmpleado    = data["NombreEmpleado"].ToString();
+                    empleadoBean.sApellidoPaterno   = data["ApellidoPaternoEmpleado"].ToString();
+                    empleadoBean.sApellidoMaterno   = data["ApellidoMaternoEmpleado"].ToString();
+                    empleadoBean.sFechaNacimiento   = data["FechaNacimientoEmpleado"].ToString();
+                    empleadoBean.sLugarNacimiento   = data["LugarNacimientoEmpleado"].ToString();
+                    empleadoBean.iTitulo_id         = Convert.ToInt32(data["Titulo_id"].ToString());
+                    empleadoBean.iGeneroEmpleado    = Convert.ToInt32(data["GeneroEmpleado_id"].ToString());
+                    empleadoBean.sNacionalidad      = data["Nacionalidad"].ToString();
+                    empleadoBean.iEstadoCivil       = Convert.ToInt32(data["EstadoCivilEmpleado_id"].ToString());
+                    empleadoBean.sCodigoPostal      = data["CodigoPostal"].ToString();
+                    empleadoBean.iEstado_id         = Convert.ToInt32(data["Estado_id"].ToString());
+                    empleadoBean.sCiudad            = data["Ciudad"].ToString();
+                    empleadoBean.iColonia_id        = Convert.ToInt32(data["Colonia_id"].ToString());
+                    empleadoBean.sCalle             = data["Calle"].ToString();
+                    empleadoBean.sNumeroCalle       = (String.IsNullOrEmpty(data["NumeroCalle"].ToString())) ? "S/N" : data["NumeroCalle"].ToString();
+                    empleadoBean.sTelefonoFijo      = (String.IsNullOrEmpty(data["TelefonoFijo"].ToString())) ? "" : data["TelefonoFijo"].ToString();
+                    empleadoBean.sTelefonoMovil     = (String.IsNullOrEmpty(data["TelefonoMovil"].ToString())) ? "" : data["TelefonoMovil"].ToString();
+                    empleadoBean.sCorreoElectronico = (String.IsNullOrEmpty(data["CorreoElectronico"].ToString())) ? "" : data["CorreoElectronico"].ToString();
+                    empleadoBean.sMensaje         = "success";
+                } else {
                     empleadoBean.sMensaje = "error";
                 }
                 cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
-            }
-            catch (Exception exc)
-            {
-                string origenerror = "ListTablesdao";
-                string mensajeerror = exc.ToString();
-                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
-                CapturaErrores capturaErrorDao = new CapturaErrores();
-                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+            } catch (Exception exc) {
                 Console.WriteLine(exc);
             }
             return empleadoBean;
         }
-        public ImssBean sp_Imss_Retrieve_ImssEmpleado(int keyemploye, int keyemp)
+
+        public ImssBean sp_Imss_Retrieve_ImssEmpleado(int keyemploye)
         {
             ImssBean imssBean = new ImssBean();
-            try
-            {
+            try {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Imss_Retrieve_ImssEmpleado", this.conexion)
-                {
-                    CommandType = CommandType.StoredProcedure
+                SqlCommand cmd = new SqlCommand("sp_Imss_Retrieve_ImssEmpleado", this.conexion) { 
+                    CommandType = CommandType.StoredProcedure 
                 };
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpleado", keyemploye));
-                cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpresa", keyemp));
                 SqlDataReader data = cmd.ExecuteReader();
+<<<<<<< HEAD
+                if (data.Read()) {
+                    imssBean.iIdImss       = Convert.ToInt32(data["IdImss"].ToString());
+=======
                 if (data.Read())
                 {
                     imssBean.iIdImss = Convert.ToInt32(data["IdImss"].ToString());
@@ -191,59 +143,110 @@ namespace Payroll.Models.Daos
                     imssBean.iEmpresa_id = Convert.ToInt32(data["Empresa_id"].ToString());
                     // (String.IsNullOrEmpty(data["Effdt"].ToString())) ? "" : data["Effdt"].ToString();
                     imssBean.sFechaEfectiva = Convert.ToDateTime(data["Effdt"].ToString()).ToString("yyyy-MM-dd");
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
                     imssBean.sRegistroImss = (String.IsNullOrEmpty(data["RegistroImss"].ToString())) ? "" : data["RegistroImss"].ToString();
-                    imssBean.sRfc = (String.IsNullOrEmpty(data["RFC"].ToString())) ? "" : data["RFC"].ToString();
-                    imssBean.sCurp = (String.IsNullOrEmpty(data["CURP"].ToString())) ? "" : data["CURP"].ToString();
-                    if (data["Cg_NivelEstudio_id"].ToString().Length != 0)
-                    {
-                        imssBean.iNivelEstudio_id = Convert.ToInt32(data["Cg_NivelEstudio_id"].ToString());
-                    }
-                    else
-                    {
-                        imssBean.iNivelEstudio_id = 0;
-                    }
-                    if (data["Cg_NivelSocioeconomico_id"].ToString().Length != 0)
-                    {
-                        imssBean.iNivelSocioeconomico_id = Convert.ToInt32(data["Cg_NivelSocioeconomico_id"].ToString());
-                    }
-                    else
-                    {
-                        imssBean.iNivelSocioeconomico_id = 0;
-                    }
+                    imssBean.sRfc          = (String.IsNullOrEmpty(data["RFC"].ToString())) ? "" : data["RFC"].ToString();
+                    imssBean.sCurp         = (String.IsNullOrEmpty(data["CURP"].ToString())) ? "" : data["CURP"].ToString();
+                    imssBean.iNivelEstudio_id        = Convert.ToInt32(data["NivelEstudio_id"].ToString());
+                    imssBean.iNivelSocioeconomico_id = Convert.ToInt32(data["NivelSocioeconomico_id"].ToString());
                     imssBean.sMensaje = "success";
-                }
-                else
-                {
+                } else {
                     imssBean.sMensaje = "error";
                 }
                 cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
-            }
-            catch (Exception exc)
-            {
-                string origenerror = "ListTablesdao";
-                string mensajeerror = exc.ToString();
-                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
-                CapturaErrores capturaErrorDao = new CapturaErrores();
-                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
+            } catch (Exception exc) {
                 Console.WriteLine(exc);
             }
             return imssBean;
         }
-        public DatosNominaBean sp_Nominas_Retrieve_NominaEmpleado(int keyemploye, int keyemp)
+
+        public DatosNominaBean sp_Nominas_Retrieve_NominaEmpleado(int keyemploye)
         {
             DatosNominaBean nominaBean = new DatosNominaBean();
-            try
-            {
+            try {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Nominas_Retrieve_NominaEmpleado", this.conexion)
-                {
+                SqlCommand cmd = new SqlCommand("sp_Nominas_Retrieve_NominaEmpleado", this.conexion) {
                     CommandType = CommandType.StoredProcedure
                 };
                 cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpleado", keyemploye));
-                cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpresa", keyemp));
                 SqlDataReader data = cmd.ExecuteReader();
-                if (data.Read())
+                if (data.Read()) {
+                    nominaBean.iIdNomina            = Convert.ToInt32(data["IdNomina"].ToString());
+                    nominaBean.iNumeroNomina        = Convert.ToInt32(data["NumeroNomina"].ToString());
+                    nominaBean.dSalarioMensual      = Convert.ToDouble(data["SalarioMensual"].ToString());
+                    nominaBean.sPagoRetroactivo     = data["PagoRetroactivo"].ToString();
+                    nominaBean.iTipoEmpleado_id     = Convert.ToInt32(data["TipoEmpleado_id"].ToString());
+                    nominaBean.sTipoMoneda          = data["TipoMoneda"].ToString();
+                    nominaBean.iNivelEmpleado_id    = Convert.ToInt32(data["NivelEmpleado_id"].ToString());
+                    nominaBean.iTipoJornada_id      = Convert.ToInt32(data["TipoJornada_id"].ToString());
+                    nominaBean.iTipoContrato_id     = Convert.ToInt32(data["TipoContrato_id"].ToString());
+                    nominaBean.sFechaIngreso        = data["FechaIngreso"].ToString();
+                    nominaBean.sFechaAntiguedad     = data["FechaAntiguedad"].ToString();
+                    nominaBean.sVencimientoContrato = data["VencimientoContrato"].ToString();
+                    nominaBean.sTipoAlta            = data["TipoAlta"].ToString();
+                    nominaBean.sMensaje = "success";
+                } else {
+                    nominaBean.sMensaje = "error";
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            } catch (Exception exc) {
+                Console.WriteLine(exc);
+            }
+            return nominaBean;
+        }
+
+        public DatosPosicionesBean sp_Posiciones_Retrieve_PosicionEmpleado(int keyemploye)
+        {
+            DatosPosicionesBean posicionBean = new DatosPosicionesBean();
+            try {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_Posiciones_Retrieve_PosicionEmpleado", this.conexion) {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpleado", keyemploye));
+                SqlDataReader data = cmd.ExecuteReader();
+                if (data.Read()) {
+                    posicionBean.iIdPosicion         = Convert.ToInt32(data["IdPosicion"].ToString());
+                    posicionBean.iPuesto_id          = Convert.ToInt32(data["Puesto_id"].ToString());
+                    posicionBean.sNombrePuesto       = data["NombrePuesto"].ToString();
+                    posicionBean.iDepartamento_id    = Convert.ToInt32(data["Departamento_id"].ToString());
+                    posicionBean.sNombreDepartamento = data["Departamento"].ToString();
+                    posicionBean.iPosicion       = Convert.ToInt32(data["Posicion"].ToString());
+                    posicionBean.sEmpresaReporta = string.IsNullOrEmpty(data["EmpresaReportaA"].ToString()) ? "" : data["EmpresaReportaA"].ToString();
+                    posicionBean.sReporta        = string.IsNullOrEmpty(data["ReportaA"].ToString()) ? "" : data["ReportaA"].ToString();
+                    posicionBean.sTipoPago       = string.IsNullOrEmpty(data["TipoPago"].ToString()) ? "" : data["TipoPago"].ToString();
+                    posicionBean.iBanco_id       = Convert.ToInt32(data["Banco_id"].ToString());
+                    posicionBean.sCuenta         = string.IsNullOrEmpty(data["Cuenta"].ToString()) ? "" : data["Cuenta"].ToString();
+                    posicionBean.sMensaje        = "success";
+                } else {
+                    posicionBean.sMensaje = "error";
+                }
+                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+            } catch (Exception exc) {
+                Console.WriteLine(exc);
+            }
+            return posicionBean;
+        }
+
+        public List<EmpleadosBean> sp_EmpleadosDEmpresa_Retrieve_EmpleadosDEmpresa(int CtrliIdEmpresa)
+        {
+            List<EmpleadosBean> list = new List<EmpleadosBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_EmpleadosDEmpresa_Retrieve_EmpleadosDEmpresa", this.conexion)
                 {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@CtrliIdEmpresa", CtrliIdEmpresa));
+
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+<<<<<<< HEAD
+                    while (data.Read())
+=======
                     nominaBean.iIdNomina = Convert.ToInt32(data["IdNomina"].ToString());
                     nominaBean.iEmpleado_id = Convert.ToInt32(data["Empleado_id"].ToString());
                     nominaBean.iEmpresa_id = Convert.ToInt32(data["Empresa_id"].ToString());
@@ -321,46 +324,70 @@ namespace Payroll.Models.Daos
                         nominaBean.iBanco_id = Convert.ToInt32(data["Banco_id"].ToString());
                     }
                     else
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
                     {
-                        nominaBean.iBanco_id = 0;
+                        EmpleadosBean ls = new EmpleadosBean();
+                        
+                       ls.iIdEmpleado = int.Parse(data["IdEmpleado"].ToString());
+                       ls.sNombreEmpleado = data["NombreCompleto"].ToString();
+                       list.Add(ls);
                     }
-                    nominaBean.sCuentaCheques = (String.IsNullOrEmpty(data["Cta_Cheques"].ToString())) ? "" : data["Cta_Cheques"].ToString();
-                    nominaBean.iUsuarioAlta_id = Convert.ToInt32(data["Usuario_Alta_id"].ToString());
-                    nominaBean.sFechaAlta = data["Fecha_Alta"].ToString();
-                    nominaBean.sMensaje = "success";
                 }
                 else
                 {
-                    nominaBean.sMensaje = "error";
+                    list = null;
                 }
-                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+                data.Close(); cmd.Dispose(); conexion.Close(); cmd.Parameters.Clear();
             }
             catch (Exception exc)
             {
-                string origenerror = "ListTablesdao";
-                string mensajeerror = exc.ToString();
-                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
-                CapturaErrores capturaErrorDao = new CapturaErrores();
-                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
                 Console.WriteLine(exc);
             }
-            return nominaBean;
+            return list;
         }
-        public DatosPosicionesBean sp_Posiciones_Retrieve_PosicionEmpleado(int keyemploye, int keyemp)
+
+        public List<EmisorReceptorBean> sp_EmisorReceptor_Retrieve_EmisorReceptor(int CrtliIdEmpresa, string CrtlsNombre, string CrtlsAPaterno,string CrtlsAMaterno)
         {
-            DatosPosicionesBean posicionBean = new DatosPosicionesBean();
+            List<EmisorReceptorBean> list = new List<EmisorReceptorBean>();
             try
             {
                 this.Conectar();
-                SqlCommand cmd = new SqlCommand("sp_Posiciones_Retrieve_PosicionEmpleado", this.conexion)
+                SqlCommand cmd = new SqlCommand("sp_EmisorReceptor_Retrieve_EmisorReceptor", this.conexion)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpleado", keyemploye));
-                cmd.Parameters.Add(new SqlParameter("@ctrlIdEmpresa", keyemp));
+                cmd.Parameters.Add(new SqlParameter("@CtrliIdEmpresa", CrtliIdEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@CrtlsNombre", CrtlsNombre));
+                cmd.Parameters.Add(new SqlParameter("@CrtlsAPaterno", CrtlsAPaterno));
+                cmd.Parameters.Add(new SqlParameter("@CrtlsAMaterno", CrtlsAMaterno));
                 SqlDataReader data = cmd.ExecuteReader();
-                if (data.Read())
+                cmd.Dispose();
+                if (data.HasRows)
                 {
+<<<<<<< HEAD
+                    while (data.Read())
+                    {
+                        EmisorReceptorBean ls = new EmisorReceptorBean();
+                        ls.sNombreEmpresa =data["NombreEmpresa"].ToString();
+                        ls.sCalle = data["Calle"].ToString();
+                        ls.sColonia = data["Colonia"].ToString();
+                        ls.sCiudad = data["Ciudad"].ToString();
+                        ls.sRFC = data["RFC"].ToString();
+                        ls.sAfiliacionIMSS = data["Afiliacion_IMSS"].ToString();
+                        ls.sNombreComp = data["NombreComp"].ToString();
+                        ls.sRFCEmpleado = data["RFCEmpleado"].ToString();
+                        ls.iIdEmpleado = int.Parse(data["IdEmpleado"].ToString());
+                        ls.sDescripcionDepartamento = data["DescripcionDepartamento"].ToString();
+                        ls.sNombrePuesto = data["NombrePuesto"].ToString();
+                        ls.sFechaIngreso = data["FechaIngreso"].ToString();
+                        ls.sTipoContrato = data["TipoContrato"].ToString();
+                        ls.sCentroCosto = data["CentroCosto"].ToString();
+                        ls.dSalarioMensual = decimal.Parse(data["SalarioMensual"].ToString());
+                        ls.sRegistroImss = data["RegistroImss"].ToString();
+                        ls.sCURP = data["CURP"].ToString();
+                        list.Add(ls);
+                    }
+=======
                     posicionBean.iIdPosicionAsig = Convert.ToInt32(data["IdPosicion_Asig"].ToString());
                     posicionBean.iIdPosicion = Convert.ToInt32(data["IdPosicion"].ToString());
                     posicionBean.sPosicionCodigo = data["PosCode1"].ToString();
@@ -381,24 +408,22 @@ namespace Payroll.Models.Daos
                     posicionBean.iIdReportaAEmpresa = Convert.ToInt32(data["Reporta_A_Empresa"].ToString());
                     posicionBean.sNombreEmrpesaRepo = data["NombreEmpresa"].ToString();
                     posicionBean.sMensaje = "success";
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
                 }
                 else
                 {
-                    posicionBean.sMensaje = "error";
+                    list = null;
                 }
-                cmd.Dispose(); cmd.Parameters.Clear(); data.Close(); conexion.Close();
+                data.Close(); cmd.Dispose(); conexion.Close(); cmd.Parameters.Clear();
             }
             catch (Exception exc)
             {
-                string origenerror = "ListTablesdao";
-                string mensajeerror = exc.ToString();
-                CapturaErroresBean capturaErrorBean = new CapturaErroresBean();
-                CapturaErrores capturaErrorDao = new CapturaErrores();
-                capturaErrorBean = capturaErrorDao.sp_Errores_Insert_Errores(origenerror, mensajeerror);
                 Console.WriteLine(exc);
             }
-            return posicionBean;
+            return list;
         }
+<<<<<<< HEAD
+=======
         public List<EmpleadosBean> sp_EmpleadosDEmpresa_Retrieve_EmpleadosDEmpresa(int CtrliIdEmpresa)
         {
             List<EmpleadosBean> list = new List<EmpleadosBean>();
@@ -544,5 +569,6 @@ namespace Payroll.Models.Daos
         }
 
 
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
-
-namespace Payroll.Models.Beans
+﻿namespace Payroll.Models.Beans
 {
     public class CatalogosBean
     {
     }
+
     public class CatalogoGeneralBean
     {
         public int iId { get; set; }
@@ -17,6 +16,7 @@ namespace Payroll.Models.Beans
         public string sFechaAlta { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class InfDomicilioBean
     {
 
@@ -42,24 +42,43 @@ namespace Payroll.Models.Beans
         public string sColonia { get; set; }
         public string sCiudad { get; set; }
     }
+
     public class NivelEstudiosBean
     {
         public int iIdNivelEstudio { get; set; }
         public string sNombreNivelEstudio { get; set; }
         public int iEstadoNivelEstudio { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string sFechaAlta { get; set; }
+        public string sUsuarioRegistroNivel { get; set; }
+        public string sFechaRegistroNivel { get; set; }
+        public string sUsuarioModificaNivel { get; set; }
+        public string sFechaModificaNivel { get; set; }
         public string sMensaje { get; set; }
     }
+
+    public class TipoSangreBean
+    {
+        public int iIdTipoSangre { get; set; }
+        public string sNombreTipoSangre { get; set; }
+        public int iEstadoTipoSangre { get; set; }
+        public string sUsuarioRegistroTipo { get; set; }
+        public string sFechaRegistroTipo { get; set; }
+        public string sUsuarioModificaTipo { get; set; }
+        public string sFechaModificaTipo { get; set; }
+        public string sMensaje { get; set; }
+    }
+
     public class TabuladoresBean
     {
         public int iIdTabulador { get; set; }
         public string sTabulador { get; set; }
         public int iEstadoTabulador { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string sFechaAlta { get; set; }
+        public string sUsuarioRegistroTabulador { get; set; }
+        public string sFechaRegistroTabulador { get; set; }
+        public string sUsuarioModificaTabulador { get; set; }
+        public string sFechaModificaTabulador { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class BancosBean
     {
         public int iIdBanco { get; set; }
@@ -76,7 +95,6 @@ namespace Payroll.Models.Beans
     {
         public int iIdPuesto { get; set; }
         public int iIdEmpresa { get; set; }
-        public string sCodigoPuesto { get; set; }
         public string sNombrePuesto { get; set; }
         public string sDescripcionPuesto { get; set; }
         public int iIdProfesionFamilia { get; set; }
@@ -84,50 +102,55 @@ namespace Payroll.Models.Beans
         public string sOcupacionPuesto { get; set; }
         public int iIdClasificacionPuesto { get; set; }
         public int iIdColectivo { get; set; }
+        public int iIdClaveSat { get; set; }
         public int iIdNivelJerarquico { get; set; }
         public int iIdPerfomanceManager { get; set; }
         public int iIdTabulador { get; set; }
+        public string sSindicato { get; set; }
+        public string sGradoDominio { get; set; }
+        public string sTarjetaPres { get; set; }
         public int iEstadoPuesto { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string sFechaAlta { get; set; }
+        public string sUsuarioRegistroPuesto { get; set; }
+        public string sFechaRegistroPuesto { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class ProfesionesFamiliaBean
     {
         public int iIdProfesionFamilia { get; set; }
         public string sNombreProfesion { get; set; }
         public int iEstadoProfesion { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string sFechaAlta { get; set; }
-        public string sMensaje { get; set; }
+        public string sUsuarioRegistroProfesion { get; set; }
+        public string sFechaRegistroProfesoin { get; set; }
     }
+
     public class EtiquetasContablesBean
     {
         public int iIdEtiquetaContable { get; set; }
         public string sNombreEtiquetaContable { get; set; }
         public int iEstadoEtiquetaContable { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string sFechaAlta { get; set; }
-        public string sMensaje { get; set; }
+        public string sUsuarioRegistroEtiqueta { get; set; }
+        public string sFechaRegistroEtiqueta { get; set; }
     }
+
     public class NivelJerarBean
     {
         public int iIdNivelJerarquico { get; set; }
         public string sNombreNivelJerarquico { get; set; }
         public int iEstadoNivelJerarquico { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string sFechaAlta { get; set; }
-        public string sMensaje { get; set; }
+        public string sUsuarioRegistroNivel { get; set; }
+        public string sFechaRegistroNivel { get; set; }
     }
+
     public class PerfomanceManagerBean
     {
         public int iIdPerfomanceManager { get; set; }
         public string sPerfomanceManager { get; set; }
         public int iEstadoPerfomance { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string sFechaAlta { get; set; }
-        public string sMensaje { get; set; }
+        public string sUsuarioRegistroPerfomance { get; set; }
+        public string sFechaRegistroPerfomance { get; set; }
     }
+
     public class EmpresasBean
     {
         public int iIdEmpresa { get; set; }
@@ -152,6 +175,7 @@ namespace Payroll.Models.Beans
         public string sFechaRegistro { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class CentrosCostosBean
     {
         public int iIdCentroCosto { get; set; }
@@ -159,58 +183,57 @@ namespace Payroll.Models.Beans
         public string sCentroCosto { get; set; }
         public string sDescripcionCentroCosto { get; set; }
         public int iEstadoCentroCosto { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string sFechaAlta { get; set; }
+        public string sUsuarioRegistroCentro { get; set; }
+        public string sFechaRegistroCentro { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class EdificiosBean
     {
         public int iIdEdificio { get; set; }
-        public string sNombreEdificio { get; set; }
-        public string sCodigoPostal { get; set; }
+        public int iEstado_id { get; set; }
+        public string sCiudad { get; set; }
+        public int iColonia_id { get; set; }
         public string sCalle { get; set; }
-        public string sDelegacion { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string sFechaAlta { get; set; }
+        public string sCodigoPostal { get; set; }
+        public string sNombreEdificio { get; set; }
+        public int iEstadoEdificio { get; set; }
+        public string sUsuarioRegistraEdificio { get; set; }
+        public string sFechaRegistroEdificio { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class NivelEstructuraBean
     {
         public int iIdNivelEstructura { get; set; }
-        public int iEmpresaId { get; set; }
         public string sNivelEstructura { get; set; }
-        public string sDescripcion { get; set; }
         public int iEstadoNivelEstructura { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string SFechaAlta { get; set; }
+        public string sUsuarioRegistraNivel { get; set; }
+        public string sFechaRegistraNivel { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class DepartamentosBean
     {
         public int iIdDepartamento { get; set; }
-        public int iEmpresaId { get; set; }
-        public string sDeptoCodigo { get; set; }
+        public int iCentroCosto_id { get; set; }
+        public int iNivelEstructura_id { get; set; }
+        public int iEdificio_id { get; set; }
+        public string sDepartamento { get; set; }
         public string sDescripcionDepartamento { get; set; }
-        public string sNivelEstructura { get; set; }
-        public string sNivelSuperior { get; set; }
-        public int iEdificioId { get; set; }
-        public string sPiso { get; set; }
+        public int iEmpresaReporta_id { get; set; }
+        public string sEmpresa { get; set; }
         public string sUbicacion { get; set; }
-        public int iCentroCostoId { get; set; }
-        public int iEmpresaReportaId { get; set; }
-        public string sEmpresaReportaA { get; set; }
-        public string sDGA { get; set; }
-        public string sDirecGen { get; set; }
-        public string sDirecEje { get; set; }
-        public string sDirecAre { get; set; }
-        public int iEmpreDirGen { get; set; }
-        public int iEmpreDirEje { get; set; }
-        public int iEmpreDirAre { get; set; }
-        public string sCancelado { get; set; }
-        public int iUsuarioAltaId { get; set; }
-        public string sFechaAlta { get; set; }
+        public string sPlaza { get; set; }
+        public string sTitular { get; set; }
+        public string sSucursalBancaria { get; set; }
+        public string sCategoria { get; set; }
+        public int iEstadoDepartamento { get; set; }
+        public string sUsuarioRegistroDepartamento { get; set; }
+        public string sFechaRegistroDepartamento { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class EmpleadosBean
     {
         public int iIdEmpleado { get; set; }
@@ -221,93 +244,80 @@ namespace Payroll.Models.Beans
         public string sLugarNacimiento { get; set; }
         public int iTitulo_id { get; set; }
         public int iGeneroEmpleado { get; set; }
-        public int iNacionalidad { get; set; }
+        public string sNacionalidad { get; set; }
         public int iEstadoCivil { get; set; }
         public string sCodigoPostal { get; set; }
         public int iEstado_id { get; set; }
         public string sCiudad { get; set; }
-        public string sColonia { get; set; }
+        public int iColonia_id { get; set; }
         public string sCalle { get; set; }
         public string sNumeroCalle { get; set; }
         public string sTelefonoFijo { get; set; }
         public string sTelefonoMovil { get; set; }
         public string sCorreoElectronico { get; set; }
-        public string sFechaMatrimonio { get; set; }
-        public string sTipoSangre { get; set; }
         public string sUsuarioRegistroEmpleado { get; set; }
         public string sFechaRegistroEmpleado { get; set; }
         public int iNumeroNomina { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class ImssBean
     {
         public int iIdImss { get; set; }
         public int iEmpleado_id { get; set; }
-        public int iEmpresa_id { get; set; }
-        public string sFechaEfectiva { get; set; }
         public string sRegistroImss { get; set; }
         public string sRfc { get; set; }
         public string sCurp { get; set; }
         public int iNivelEstudio_id { get; set; }
         public int iNivelSocioeconomico_id { get; set; }
         public int iEstadoImss { get; set; }
-        public string iUsuarioAlta_id { get; set; }
-        public string sFechaAlta { get; set; }
+        public string sUsuarioRegistroImss { get; set; }
+        public string sFechaRegistroImss { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class DatosNominaBean
     {
         public int iIdNomina { get; set; }
         public int iEmpleado_id { get; set; }
-        public int iEmpresa_id { get; set; }
-        public string sFechaEfectiva { get; set; }
-        public int iTipoPeriodo { get; set; }
+        public int iNumeroNomina { get; set; }
         public double dSalarioMensual { get; set; }
+        public string sPagoRetroactivo { get; set; }
         public int iTipoEmpleado_id { get; set; }
+        public string sTipoMoneda { get; set; }
         public int iNivelEmpleado_id { get; set; }
         public int iTipoJornada_id { get; set; }
         public int iTipoContrato_id { get; set; }
-        public int iTipoContratacion_id { get; set; }
-        public int iMotivoIncremento_id { get; set; }
         public string sFechaIngreso { get; set; }
         public string sFechaAntiguedad { get; set; }
         public string sVencimientoContrato { get; set; }
-        public int iPosicion_id { get; set; }
-        public int iTipoPago_id { get; set; }
-        public int iBanco_id { get; set; }
-        public string sCuentaCheques { get; set; }
-        public int iUsuarioAlta_id { get; set; }
-        public string sFechaAlta { get; set; }
+        public string sTipoAlta { get; set; }
+        public int iEstadoNomina { get; set; }
+        public string sUsuarioRegistroNomina { get; set; }
+        public string sFechaRegistroNomina { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class DatosPosicionesBean
     {
-        public int iIdPosicionAsig { get; set; }
         public int iIdPosicion { get; set; }
         public int iEmpresa_id { get; set; }
-        public string sPosicionCodigo { get; set; }
         public int iPuesto_id { get; set; }
-        public string sPuestoCodigo { get; set; }
         public string sNombrePuesto { get; set; }
-        public string sFechaEffectiva { get; set; }
-        public string sFechaInicio { get; set; }
         public int iDepartamento_id { get; set; }
         public string sNombreDepartamento { get; set; }
-        public string sDeptoCodigo { get; set; }
         public int iPosicion { get; set; }
         public string sEmpresaReporta { get; set; }
-        public int iIdReportaAPosicion { get; set; }
-        public string sCodRepPosicion { get; set; }
-        public int iIdReportaAEmpresa { get; set; }
-        public string sNombreEmrpesaRepo { get; set; }
-        public int iIdRegistroPat { get; set; }
-        public string sRegistroPat { get; set; }
-        public int iIdLocalidad { get; set; }
-        public string sLocalidad { get; set; }
+        public string sReporta { get; set; }
+        public string sTipoPago { get; set; }
+        public int iBanco_id { get; set; }
+        public string sCuenta { get; set; }
         public string sUsuarioRegistroPosicion { get; set; }
         public string sFechaRegistroPosicion { get; set; }
         public string sMensaje { get; set; }
     }
+<<<<<<< HEAD
+=======
     public class TipoPeriodosBean
     {
         public int iId { get; set; }
@@ -371,6 +381,7 @@ namespace Payroll.Models.Beans
         public int IdRegimenFiscal { get; set; }
         public string Descripcion { get; set; }
     }
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
     public class RegionalesBean
     {
         public int iIdRegional { get; set; }
@@ -381,6 +392,7 @@ namespace Payroll.Models.Beans
         public string sFechaAlta { get; set; }
         public string sMensaje { get; set; }
     }
+
     public class SucursalesBean
     {
         public int iIdSucursal { get; set; }
@@ -390,6 +402,9 @@ namespace Payroll.Models.Beans
         public string sFechaAlta { get; set; }
         public string sMensaje { get; set; }
     }
+<<<<<<< HEAD
+
+=======
     public class ZonaEconomicaBean
     {
         public int iIdZonaEconomica { get; set; }
@@ -548,5 +563,9 @@ namespace Payroll.Models.Beans
         public int Ren_incid_id { get; set; }
         public string Descripcion {get;set;}
     }
+<<<<<<< HEAD
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
+=======
 
+>>>>>>> 084ea7efa071ee19752d41309dd4c99cf5cd9a82
 }

@@ -24,9 +24,15 @@ namespace Payroll
         public void Configuration(IAppBuilder app)
         {
             // Para obtener más información sobre cómo configurar la aplicación, visite https://go.microsoft.com/fwlink/?LinkID=316888
+<<<<<<< HEAD
+            GlobalConfiguration.Configuration.UseSqlServerStorage("Data Source = DESKTOP-CNPFA5C; Initial Catalog=IPSNet; Integrated Security = true");
+            app.UseHangfireDashboard();
+       
+=======
            // GlobalConfiguration.Configuration.UseSqlServerStorage("Data Source = DESKTOP-CNPFA5C; Initial Catalog=IPSNet; Integrated Security = true");
             GlobalConfiguration.Configuration.UseSqlServerStorage("Data Source = 201.149.34.185,15002; Initial Catalog=IPSNet; User ID= IPSNet;Password= IPSNet2;Integrated Security= False");
             app.UseHangfireDashboard();
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
             app.UseHangfireServer();
         }
 
@@ -132,9 +138,14 @@ namespace Payroll
             RecurringJob.AddOrUpdate(() => ProcesosContinuos(), Cron.Minutely);
             //var jobId = BackgroundJob.Enqueue(() => ProcesosContinuos());
         }
+<<<<<<< HEAD
+        public void ProcesosContinuos() 
+        {
+=======
 
         public void ProcesosContinuos() 
        {
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
              FuncionesNomina Dao = new FuncionesNomina();
              Dao.sp_EstatusTpProcesosJobs_Update_EstatusTpProcesosJobs();     
         }
@@ -156,6 +167,8 @@ namespace Payroll
             return fechajobs;
         }
 
+<<<<<<< HEAD
+=======
         public void  Proceso( string NomProceso)
         {
             string FechaProceso = Fecha();
@@ -190,6 +203,7 @@ namespace Payroll
         }
 
 
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
 
     }
 }

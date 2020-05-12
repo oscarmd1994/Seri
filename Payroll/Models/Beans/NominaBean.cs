@@ -141,8 +141,12 @@ namespace Payroll.Models.Beans
         public string sMensaje { get; set; }
     }
 
+<<<<<<< HEAD
+    public class TpCalculosLn {
+=======
     public class TpCalculosLn
     {
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
 
         public int iIdCalculosLn { get; set; }
         public int iIdCalculosHd { get; set; }
@@ -168,12 +172,21 @@ namespace Payroll.Models.Beans
 
     public class TPProcesos
     {
+<<<<<<< HEAD
+       public int iIdTarea { get; set; }
+       public int iIdJobs { get; set; }
+       public string sEstatusJobs { get; set; }
+       public string sNombre { get; set; }
+       public string sParametros { get; set; }
+       public string sMensaje { get; set; }
+=======
         public int iIdTarea { get; set; }
         public int iIdJobs { get; set; }
         public string sEstatusJobs { get; set; }
         public string sNombre { get; set; }
         public string sParametros { get; set; }
         public string sMensaje { get; set; }
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
 
     }
 
@@ -182,12 +195,24 @@ namespace Payroll.Models.Beans
         public int iId { get; set; }
         public int iStateldId { get; set; }
         public string sArguments { get; set; }
+<<<<<<< HEAD
+        public string sInvocacionData  { get; set; }
+=======
         public string sInvocacionData { get; set; }
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
         public string sCreatedAt { get; set; }
         public string sMensaje { get; set; }
 
     }
 
+<<<<<<< HEAD
+    public class EmisorReceptorBean {
+
+        public string sNombreEmpresa { get; set; }
+        public string  sCalle { get; set; }
+        public string sColonia { get; set; }
+        public string sCiudad  { get; set; }
+=======
     public class EmisorReceptorBean
     {
 
@@ -195,13 +220,18 @@ namespace Payroll.Models.Beans
         public string sCalle { get; set; }
         public string sColonia { get; set; }
         public string sCiudad { get; set; }
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
         public string sRFC { get; set; }
         public string sAfiliacionIMSS { get; set; }
         public string sNombreComp { get; set; }
         public string sRFCEmpleado { get; set; }
         public int iIdEmpleado { get; set; }
         public string sDescripcionDepartamento { get; set; }
+<<<<<<< HEAD
+        public string sNombrePuesto { get; set; } 
+=======
         public string sNombrePuesto { get; set; }
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
         public string sFechaIngreso { get; set; }
         public string sTipoContrato { get; set; }
         public string sCentroCosto { get; set; }

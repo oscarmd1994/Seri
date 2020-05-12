@@ -218,7 +218,11 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+<<<<<<< HEAD
+    <None Include="packages.config" />
+=======
     <None Include="Properties\PublishProfiles\IPSNetProfile.pubxml" />
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\dataTables.autoFill.js" />
     <Content Include="Scripts\dataTables.bootstrap.js" />
@@ -758,13 +762,6 @@
     <Content Include="Scripts\Nomoper\OperNomEjecucion.js" />
     <Content Include="Scripts\sweetalert\sweetalert.min.js" />
     <Content Include="Scripts\toastr\toastr.min.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -785,8 +782,6 @@
     <Content Include="Views\Empresas\Registros_Patronales.cshtml" />
     <Content Include="Views\Empresas\Localidades.cshtml" />
     <Content Include="Views\Incidencias\Creditos.cshtml" />
-    <Content Include="Views\Nomina\AltaDefinicion.cshtml" />
-    <Content Include="Views\Nomina\Consulta.cshtml" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\colorpicker\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\darkness\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\le-frog\Thumbs.db" />
@@ -799,15 +794,43 @@
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\images\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\styles\Thumbs.db" />
     <Content Include="Scripts\jqxGrid\jqwidgets\jquery-1.11.1.min.map" />
+    <Content Include="Views\Empleados\RecibosNomina.cshtml" />
+    <Content Include="Views\Nomina\AltaDefinicion.cshtml" />
+    <Content Include="Views\Nomina\Consulta.cshtml" />
     <Content Include="Views\Nomina\Ejecucion.cshtml" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <Content Include="Views\Nomina\MonitorProcesos.cshtml" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+=======
+    <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
+    <Content Include="Views\Incidencias\Incidencias.cshtml" />
+    <Content Include="Views\Incidencias\RegistrarIncidencias.cshtml" />
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
+=======
+
+=======
+>>>>>>> 084ea7efa071ee19752d41309dd4c99cf5cd9a82
     <Content Include="Views\Nomina\MonitorProcesos.cshtml" />
     <Content Include="Views\Empleados\RecibosNomina.cshtml" />
     <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
     <Content Include="Views\Incidencias\Incidencias.cshtml" />
     <Content Include="Views\Incidencias\RegistrarIncidencias.cshtml" />
+<<<<<<< HEAD
+    
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
+=======
     <Content Include="Views\Nomina\BajasEmpleados.cshtml" />
     <Content Include="Views\Nomina\Dispersion.cshtml" />
     <Content Include="Scripts\main\Dispersion\main.js" />
+>>>>>>> 084ea7efa071ee19752d41309dd4c99cf5cd9a82
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -824,7 +847,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>

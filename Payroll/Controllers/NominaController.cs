@@ -1,30 +1,57 @@
 ﻿using Payroll.Models.Beans;
 using Payroll.Models.Daos;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Web.Mvc;
 
 namespace Payroll.Controllers
 {
     public class NominaController : Controller
     {
+        
         // GET: Nomina
         public PartialViewResult AltaDefinicion()
         {
             return PartialView();
         }
+<<<<<<< HEAD
+
+
+        public PartialViewResult Consulta()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult Ejecucion()
+        {
+
+=======
         public PartialViewResult BajasEmpleados()
         {
             return PartialView();
         }
         public PartialViewResult Consulta()
         {
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
             return PartialView();
         }
         public PartialViewResult Ejecucion()
         {
 
+<<<<<<< HEAD
+        public PartialViewResult MonitorProcesos()
+        {
+            return PartialView();
+        
+        }
+<<<<<<< HEAD
+
+
+=======
             return PartialView();
         }
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
+=======
         public PartialViewResult MonitorProcesos()
         {
             return PartialView();
@@ -37,6 +64,7 @@ namespace Payroll.Controllers
         }
 
 
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
         //Guarda los datos de la Definicion
         [HttpPost]
         public JsonResult DefiNomina(string sNombreDefinicion, string sDescripcion, int iAno, int iCancelado)
@@ -103,6 +131,10 @@ namespace Payroll.Controllers
             Idmax = Dao.sp_IdDefinicionNomina_Retrieve_IdDefinicionNomina();
             return Json(Idmax);
         }
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
         //Devuelve el valor de la columna cancelado del ultimo regristro 
         [HttpPost]
         public JsonResult DefCancelado(int iIdFinicion)
@@ -114,12 +146,20 @@ namespace Payroll.Controllers
         }
         //Guarda los datos de la DefinicionLn
         [HttpPost]
+<<<<<<< HEAD
+        public JsonResult insertDefinicioNl(int iIdDefinicionHd, int iIdEmpresa, int iTipodeperiodo, /*int iIdperiodo,*/ int iRenglon, int iCancelado, int iElementonomina, int iEsespejo, int iIdAcumulado)
+=======
         public JsonResult insertDefinicioNl(int iIdDefinicionHd, int iIdEmpresa, int iTipodeperiodo, int iRenglon, int iCancelado, int iElementonomina, int iEsespejo, int iIdAcumulado)
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
         {
             NominaLnBean bean = new NominaLnBean();
             FuncionesNomina dao = new FuncionesNomina();
             int usuario = int.Parse(Session["iIdUsuario"].ToString());
+<<<<<<< HEAD
+            bean = dao.sp_CDefinicionLN_insert_CDefinicionLN(iIdDefinicionHd, iIdEmpresa, iTipodeperiodo, /*iIdperiodo,*/ iRenglon, iCancelado, usuario, iElementonomina, iEsespejo, iIdAcumulado);
+=======
             bean = dao.sp_CDefinicionLN_insert_CDefinicionLN(iIdDefinicionHd, iIdEmpresa, iTipodeperiodo, iRenglon, iCancelado, usuario, iElementonomina, iEsespejo, iIdAcumulado);
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
 
             return Json(bean);
         }
@@ -131,7 +171,6 @@ namespace Payroll.Controllers
             FuncionesNomina dao = new FuncionesNomina();
             LPe = dao.sp_Cperiodo_Retrieve_Cperiodo(iIdEmpresesas, ianio, iTipoPeriodo);
             return Json(LPe);
-
         }
         // llena datos de la tabla de Percepciones
         [HttpPost]
@@ -228,12 +267,22 @@ namespace Payroll.Controllers
         public JsonResult ListadoNomDefinicion()
         {
 
+<<<<<<< HEAD
+        public JsonResult ListadoNomDefinicion()
+        {
+
+=======
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
             List<NominahdBean> LNND = new List<NominahdBean>();
             FuncionesNomina Dao = new FuncionesNomina();
             LNND = Dao.sp_DefinicionNombresHd_Retrieve_DefinicionNombresHd();
             return Json(LNND);
         }
+<<<<<<< HEAD
+
+=======
         [HttpPost]
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
         public JsonResult TpDefinicionNomina()
         {
 
@@ -340,6 +389,11 @@ namespace Payroll.Controllers
             FuncionesNomina dao = new FuncionesNomina();
             bean = dao.sp_TpCalculos_Insert_TpCalculos(iIdDefinicionHd, iNominaCerrada);
             return Json(bean);
+<<<<<<< HEAD
+
+        }
+=======
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
 
         }
         // Actualiza PTCalculoshd
@@ -351,65 +405,118 @@ namespace Payroll.Controllers
             bean = dao.sp_TpCalculos_update_TpCalculos(iIdDefinicionHd, iNominaCerrada);
             return Json(bean);
         }
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+        [HttpPost]
+        public JsonResult ListTpCalculoln(int iIdEmpresa)
+        {      
+            List<TpCalculosLn> Dta = new List<TpCalculosLn>();
+            //List<NominaLnDatBean> DA = new List<NominaLnDatBean>();
+=======
+=======
         
 
 
 
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
         [HttpPost]
         public JsonResult TpDefinicionnl()
         {
             List<NominaLnDatBean> Dta = new List<NominaLnDatBean>();
             List<NominaLnDatBean> DA = new List<NominaLnDatBean>();
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
             FuncionesNomina dao = new FuncionesNomina();
-            Dta = dao.sp_TpDefinicionNomins_Retrieve_TpDefinicionNomins();
-            if (Dta != null)
-            {
-                for (int i = 0; i < Dta.Count; i++)
-                {
-                    if (Dta[i].iElementonomina == "39")
-                    {
-                        Dta[i].iElementonomina = "Percepciones";
-                    }
+            Dta = dao.sp_IdEmpresasTPCalculoshd_Retrieve_IdEmpresasTPCalculoshd(iIdEmpresa);
+            //if (Dta != null)
+            //{
+            //    for (int i = 0; i < Dta.Count; i++)
+            //    {
+            //        if (Dta[i].iElementonomina == "39")
+            //        {
+            //            Dta[i].iElementonomina = "Percepciones";
+            //        }
 
-                    if (Dta[i].iElementonomina == "40")
-                    {
-                        Dta[i].iElementonomina = "Deducciones";
-                    }
-
-
-                    if (Dta[i].iEsespejo == "True")
-                    {
-                        Dta[i].iEsespejo = "Si";
-                    }
-
-                    else if (Dta[i].iEsespejo == "False")
-                    {
-                        Dta[i].iEsespejo = "No";
-                    }
-
-                    if (Dta[i].iIdAcumulado == "0")
-                    {
-
-                        Dta[i].iIdAcumulado = "";
-                    }
+            //        if (Dta[i].iElementonomina == "40")
+            //        {
+            //            Dta[i].iElementonomina = "Deducciones";
+            //        }
 
 
+            //        if (Dta[i].iEsespejo == "True")
+            //        {
+            //            Dta[i].iEsespejo = "Si";
+            //        }
 
-                    if (Dta[i].iIdAcumulado != "0" && Dta[i].iIdAcumulado != "" && Dta[i].iIdAcumulado != " ")
-                    {
+            //        else if (Dta[i].iEsespejo == "False")
+            //        {
+            //            Dta[i].iEsespejo = "No";
+            //        }
 
-                        int num = int.Parse(Dta[i].iIdAcumulado);
-                        DA = dao.sp_DescripAcu_Retrieve_DescripAcu(num);
-                        Dta[i].iIdAcumulado = DA[0].iIdAcumulado;
+            //        if (Dta[i].iIdAcumulado == "0")
+            //        {
 
-                    }
+            //            Dta[i].iIdAcumulado = "";
+            //        }
 
-                }
-            }
 
+
+            //        if (Dta[i].iIdAcumulado != "0" && Dta[i].iIdAcumulado != "" && Dta[i].iIdAcumulado != " ")
+            //        {
+
+            //            int num = int.Parse(Dta[i].iIdAcumulado);
+            //            DA = dao.sp_DescripAcu_Retrieve_DescripAcu(num);
+            //            Dta[i].iIdAcumulado = DA[0].iIdAcumulado;
+
+            //        }
+
+            //    }
+            //}
+
+
+            //Startup obj = new Startup();
+
+            //int op = 1, iIdjobs = 2, iIdTarea = 0;
+            //obj.ConsultaTpJobs(op, iIdjobs, iIdTarea);
+
+            //int iNominaCerrada = 1, idNum = 39;
+            //obj.ActualizaCalculoshd(iNominaCerrada, idNum);
+            //int IdJobs = 458;
+            //obj.Reprocesos(IdJobs);
 
             return Json(Dta);
         }
+<<<<<<< HEAD
+
+        public JsonResult ListTBProcesosJobs()
+        {
+            int op1 = 0,op2=0, op3 = 0,CrtliIdJobs=0, CtrliIdTarea=0;
+            List<TPProcesos> LTbProc = new List<TPProcesos>();
+            FuncionesNomina dao = new FuncionesNomina();
+            LTbProc = dao.sp_TPProcesosJobs_Retrieve_TPProcesosJobs(op1, op2, op3, CrtliIdJobs, CtrliIdTarea);
+            return Json(LTbProc);
+        }
+
+        public JsonResult ListStatusProcesosJobs()
+        {
+            List<TPProcesos> LTbProc = new List<TPProcesos>();
+            FuncionesNomina dao = new FuncionesNomina();
+            LTbProc = dao.sp_EstatusJobsTbProcesos_retrieve_EstatusJobsTbProcesos();
+            Startup obj = new Startup();
+            obj.ActBDTbJobs();
+            return Json(LTbProc);
+        }
+
+        public JsonResult ProcesosPots()
+        {
+            Startup obj = new Startup();
+            int iNominaCerrada = 1, idNum = 39;
+            obj.ActualizaCalculoshd(iNominaCerrada, idNum);
+            return null;
+        }
+
+
+=======
         //Carga motivos de baja para select
         [HttpPost]
         public JsonResult LoadMotivoBaja()
@@ -447,6 +554,9 @@ namespace Payroll.Controllers
             bean = dao.sp_TEmpleado_Nomina_Retrieve_DatosBaja(Empresa_id,Empleado_id);
             return Json(bean);
         }
+<<<<<<< HEAD
+>>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
+=======
 
 
 
@@ -546,5 +656,7 @@ namespace Payroll.Controllers
 
 
 
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
     }
+
 }
