@@ -563,5 +563,9 @@
         public int Ren_incid_id { get; set; }
         public string Descripcion {get;set;}
     }
+<<<<<<< HEAD
 >>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
+=======
+
+>>>>>>> 084ea7efa071ee19752d41309dd4c99cf5cd9a82
 }

@@ -58,6 +58,11 @@ namespace Payroll.Controllers
 
         }
 
+        public PartialViewResult Dispersion()
+        {
+            return PartialView();
+        }
+
 
 >>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
         //Guarda los datos de la Definicion
