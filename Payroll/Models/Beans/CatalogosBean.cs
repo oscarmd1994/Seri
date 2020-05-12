@@ -547,6 +547,7 @@
         public string Descripcion { get; set; }
         public int TipoEmpleado_id { get; set; }
     }
+
     public class IncidenciaBean
     {
         public int IdTRegistro_Incidencia { get; set; }

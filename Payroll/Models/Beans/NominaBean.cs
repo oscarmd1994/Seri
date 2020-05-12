@@ -87,7 +87,7 @@ namespace Payroll.Models.Beans
         public int ianio { get; set; }
         public int iTipoPeriodo { get; set; }
         public int iPeriodo { get; set; }
-        public int iNominaCerrada { get; set; }
+        public string sNominaCerrada { get; set; }
         public string sFechaInicio { get; set; }
         public string sFechaFinal { get; set; }
         public string sFechaProceso { get; set; }
@@ -162,6 +162,10 @@ namespace Payroll.Models.Beans
         public string iGravado { get; set; }
         public string iExcento { get; set; }
         public string sFecha { get; set; }
+        public string iInactivo { get; set; }
+        public int iTipoEmpleado { get; set; }
+        public int iIdDepartamento { get; set; }
+        public string EsEspejo { get; set; }
         public string sMensaje { get; set; }
 
     }
@@ -185,7 +189,6 @@ namespace Payroll.Models.Beans
 >>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
 
     }
-
 
     public class HangfireJobs
     {
@@ -235,8 +238,33 @@ namespace Payroll.Models.Beans
         public decimal dSalarioMensual { get; set; }
         public string sRegistroImss { get; set; }
         public string sCURP { get; set; }
+            public string sDescripcion { get; set; }
+            public int iCtaCheques { get; set; }   
+            public int iRegimenFiscal { get; set; }
         public string sMensaje { get; set; }
 
     }
 
+    public class ReciboNominaBean
+    { 
+       public int iIdRenglon { get; set; }
+       public string sNombre_Renglon { get; set; }
+       public decimal  dSaldo { get; set; }
+       public int iConsecutivo { get; set; }
+       public int iElementoNomina { get; set; }
+       public string sMensaje { get; set; }
+
+    }
+
+    public class TablaNominaBean
+    { 
+       public string sConcepto { get; set; }
+       public string dPercepciones { get; set; }
+       public string dDeducciones { get; set; }
+       public string dSaldos { get; set; }
+       public string dInformativos { get; set; } 
+    
+    }
+
+   
 }

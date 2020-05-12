@@ -23,6 +23,11 @@ namespace Payroll.Controllers
         {
             return PartialView();
         }
+        public PartialViewResult RecibosNomina()
+        {
+            return PartialView();
+        }
+
         [HttpPost]
         public JsonResult LoadStates()
         {
@@ -210,5 +215,77 @@ namespace Payroll.Controllers
             var data = new { empleado = clvemp, result = empleadoBean.sMensaje };
             return Json(data);
         }
+
+        [HttpPost]
+        public JsonResult DataListEmpleado(int iIdEmpresa)
+        {
+            List<EmpleadosBean> ListEmple = new List<EmpleadosBean>();
+            ListEmpleadosDao Dao = new ListEmpleadosDao();
+            ListEmple = Dao.sp_EmpleadosDEmpresa_Retrieve_EmpleadosDEmpresa(iIdEmpresa);
+            return Json(ListEmple);
+        }
+        [HttpPost]
+        public JsonResult EmisorEmpresa(int IdEmpresa, string sNombreComple)
+        {
+
+            string[] Nombre = sNombreComple.Split(' ');
+            string Idempleado = Nombre[0].ToString();
+            int id = int.Parse(Idempleado);
+            List<EmisorReceptorBean> ListDatEmisor = new List<EmisorReceptorBean>();
+            ListEmpleadosDao Dao = new ListEmpleadosDao();
+            ListDatEmisor = Dao.sp_EmisorReceptor_Retrieve_EmisorReceptor(IdEmpresa, id);
+
+            return Json(ListDatEmisor);
+        }
+
+        public JsonResult ListDatPeriodo(int iIdEmpresesas, int ianio, int iTipoPeriodo, int iPeriodo)
+        {
+            List<CInicioFechasPeriodoBean> LPe = new List<CInicioFechasPeriodoBean>();
+            ListEmpleadosDao dao = new ListEmpleadosDao();
+            LPe = dao.sp_DatosPerido_Retrieve_DatosPerido(iIdEmpresesas, ianio, iTipoPeriodo, iPeriodo);
+            return Json(LPe);
+
+        }
+
+        [HttpPost]
+
+        public JsonResult ReciboNomina(int iIdEmpresa, int iIdEmpleado, int iPeriodo)
+        {
+            List<ReciboNominaBean> LCRecibo = new List<ReciboNominaBean>();
+            List<TablaNominaBean> LsTabla = new List<TablaNominaBean>();
+            FuncionesNomina dao = new FuncionesNomina();
+            LCRecibo = dao.sp_TpCalculoEmpleado_Retrieve_TpCalculoEmpleado(iIdEmpresa, iIdEmpleado, iPeriodo);
+
+            if (LCRecibo.Count > 0)
+            {
+                for (int i = 0; i < LCRecibo.Count; i++)
+                {
+                    TablaNominaBean ls = new TablaNominaBean();
+                    {
+                        ls.sConcepto = LCRecibo[i].sNombre_Renglon;
+
+                        if (LCRecibo[i].iElementoNomina == 39)
+                        {
+                            ls.dPercepciones = LCRecibo[i].dSaldo.ToString("#.##");                 
+                            ls.dDeducciones = "0";
+                        }
+                        if (LCRecibo[i].iElementoNomina == 40) {
+                            ls.dPercepciones = "0";
+                            ls.dDeducciones = LCRecibo[i].dSaldo.ToString();
+                        }
+                       
+                    }
+                    ls.dSaldos = "0";
+                    ls.dInformativos = "0";
+                    LsTabla.Add(ls);            
+                
+                }
+                 
+            }
+           
+            return Json(LsTabla);
+
+        }
+
     }
 }

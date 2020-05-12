@@ -44,12 +44,22 @@ namespace Payroll.Controllers
             return PartialView();
         
         }
+<<<<<<< HEAD
 
 
 =======
             return PartialView();
         }
 >>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
+=======
+        public PartialViewResult MonitorProcesos()
+        {
+            return PartialView();
+
+        }
+
+
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
         //Guarda los datos de la Definicion
         [HttpPost]
         public JsonResult DefiNomina(string sNombreDefinicion, string sDescripcion, int iAno, int iCancelado)
@@ -68,33 +78,43 @@ namespace Payroll.Controllers
             List<EmpresasBean> LE = new List<EmpresasBean>();
             FuncionesNomina Dao = new FuncionesNomina();
             LE = Dao.sp_CEmpresas_Retrieve_Empresas();
+            if (LE.Count > 0)
+            {
+                for (int i = 0; i < LE.Count - 1; i++)
+                {
+                    LE[i].sNombreEmpresa = LE[i].iIdEmpresa + " " + LE[i].sNombreEmpresa;
+                }
+            }
+
             return Json(LE);
         }
         // regresa el listado del periodo
         [HttpPost]
-        public JsonResult LisTipPeriodo(string Ctrsvalor)
+        public JsonResult LisTipPeriodo(int IdEmpresa)
         {
+          
+            
             List<CTipoPeriodoBean> LTP = new List<CTipoPeriodoBean>();
             FuncionesNomina Dao = new FuncionesNomina();
-            LTP = Dao.sp_CTipoPeriod_Retrieve_TiposPeriodos(Ctrsvalor);
+            LTP = Dao.sp_CTipoPeriod_Retrieve_TiposPeriodos(IdEmpresa);
             return Json(LTP);
         }
         // regresa el listado de renglon
         [HttpPost]
-        public JsonResult LisRenglon(string sNombreEmpresa)
+        public JsonResult LisRenglon(int IdEmpresa)
         {
             List<CRenglonesBean> LR = new List<CRenglonesBean>();
             FuncionesNomina Dao = new FuncionesNomina();
-            LR = Dao.sp_CRenglones_Retrieve_CRenglones(sNombreEmpresa);
+            LR = Dao.sp_CRenglones_Retrieve_CRenglones(IdEmpresa);
             return Json(LR);
         }
         // regresa el listado de acumulado 
         [HttpPost]
-        public JsonResult LisAcumulado(string sNombreEmpresa, int iIdRenglon)
+        public JsonResult LisAcumulado(int iIdEmpresa, int iIdRenglon)
         {
             List<CAcumuladosRenglon> LAc = new List<CAcumuladosRenglon>();
             FuncionesNomina Dao = new FuncionesNomina();
-            LAc = Dao.sp_CAcumuladoREnglones_Retrieve_CAcumuladoREnglones(sNombreEmpresa, iIdRenglon);
+            LAc = Dao.sp_CAcumuladoREnglones_Retrieve_CAcumuladoREnglones(iIdEmpresa, iIdRenglon);
             return Json(LAc);
         }
         // devuelve el ultimo ID
@@ -381,6 +401,7 @@ namespace Payroll.Controllers
             return Json(bean);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         [HttpPost]
         public JsonResult ListTpCalculoln(int iIdEmpresa)
@@ -388,6 +409,12 @@ namespace Payroll.Controllers
             List<TpCalculosLn> Dta = new List<TpCalculosLn>();
             //List<NominaLnDatBean> DA = new List<NominaLnDatBean>();
 =======
+=======
+        
+
+
+
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
         [HttpPost]
         public JsonResult TpDefinicionnl()
         {
@@ -522,7 +549,109 @@ namespace Payroll.Controllers
             bean = dao.sp_TEmpleado_Nomina_Retrieve_DatosBaja(Empresa_id,Empleado_id);
             return Json(bean);
         }
+<<<<<<< HEAD
 >>>>>>> 6bfed6518806f6e6fa7b15ca26995c0c48d54400
+=======
+
+
+
+        [HttpPost]
+        public JsonResult ListTpCalculoln(int iIdEmpresa)
+        {
+            List<TpCalculosLn> Dta = new List<TpCalculosLn>();
+            //List<NominaLnDatBean> DA = new List<NominaLnDatBean>();
+            FuncionesNomina dao = new FuncionesNomina();
+            Dta = dao.sp_IdEmpresasTPCalculoshd_Retrieve_IdEmpresasTPCalculoshd(iIdEmpresa);
+            //if (Dta != null)
+            //{
+            //    for (int i = 0; i < Dta.Count; i++)
+            //    {
+            //        if (Dta[i].iElementonomina == "39")
+            //        {
+            //            Dta[i].iElementonomina = "Percepciones";
+            //        }
+
+            //        if (Dta[i].iElementonomina == "40")
+            //        {
+            //            Dta[i].iElementonomina = "Deducciones";
+            //        }
+
+
+            //        if (Dta[i].iEsespejo == "True")
+            //        {
+            //            Dta[i].iEsespejo = "Si";
+            //        }
+
+            //        else if (Dta[i].iEsespejo == "False")
+            //        {
+            //            Dta[i].iEsespejo = "No";
+            //        }
+
+            //        if (Dta[i].iIdAcumulado == "0")
+            //        {
+
+            //            Dta[i].iIdAcumulado = "";
+            //        }
+
+
+
+            //        if (Dta[i].iIdAcumulado != "0" && Dta[i].iIdAcumulado != "" && Dta[i].iIdAcumulado != " ")
+            //        {
+
+            //            int num = int.Parse(Dta[i].iIdAcumulado);
+            //            DA = dao.sp_DescripAcu_Retrieve_DescripAcu(num);
+            //            Dta[i].iIdAcumulado = DA[0].iIdAcumulado;
+
+            //        }
+
+            //    }
+            //}
+
+
+            //Startup obj = new Startup();
+
+            //int op = 1, iIdjobs = 2, iIdTarea = 0;
+            //obj.ConsultaTpJobs(op, iIdjobs, iIdTarea);
+
+            //int iNominaCerrada = 1, idNum = 39;
+            //obj.ActualizaCalculoshd(iNominaCerrada, idNum);
+            //int IdJobs = 458;
+            //obj.Reprocesos(IdJobs);
+
+            return Json(Dta);
+        }
+
+        public JsonResult ListTBProcesosJobs()
+        {
+            int op1 = 0, op2 = 0, op3 = 0, CrtliIdJobs = 0, CtrliIdTarea = 0;
+            List<TPProcesos> LTbProc = new List<TPProcesos>();
+            FuncionesNomina dao = new FuncionesNomina();
+            LTbProc = dao.sp_TPProcesosJobs_Retrieve_TPProcesosJobs(op1, op2, op3, CrtliIdJobs, CtrliIdTarea);
+            return Json(LTbProc);
+        }
+
+        public JsonResult ListStatusProcesosJobs()
+        {
+            List<TPProcesos> LTbProc = new List<TPProcesos>();
+            FuncionesNomina dao = new FuncionesNomina();
+            LTbProc = dao.sp_EstatusJobsTbProcesos_retrieve_EstatusJobsTbProcesos();
+            Startup obj = new Startup();
+            obj.ActBDTbJobs();
+            return Json(LTbProc);
+        }
+
+        public JsonResult ProcesosPots()
+        {
+            Startup obj = new Startup();
+            string NomProceso = "CNomina";
+            obj.Proceso(NomProceso);
+
+            return null;
+        }
+
+
+
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
     }
 
 }

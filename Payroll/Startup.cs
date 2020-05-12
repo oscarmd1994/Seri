@@ -24,9 +24,15 @@ namespace Payroll
         public void Configuration(IAppBuilder app)
         {
             // Para obtener más información sobre cómo configurar la aplicación, visite https://go.microsoft.com/fwlink/?LinkID=316888
+<<<<<<< HEAD
             GlobalConfiguration.Configuration.UseSqlServerStorage("Data Source = DESKTOP-CNPFA5C; Initial Catalog=IPSNet; Integrated Security = true");
             app.UseHangfireDashboard();
        
+=======
+           // GlobalConfiguration.Configuration.UseSqlServerStorage("Data Source = DESKTOP-CNPFA5C; Initial Catalog=IPSNet; Integrated Security = true");
+            GlobalConfiguration.Configuration.UseSqlServerStorage("Data Source = 201.149.34.185,15002; Initial Catalog=IPSNet; User ID= IPSNet;Password= IPSNet2;Integrated Security= False");
+            app.UseHangfireDashboard();
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
             app.UseHangfireServer();
         }
 
@@ -132,8 +138,14 @@ namespace Payroll
             RecurringJob.AddOrUpdate(() => ProcesosContinuos(), Cron.Minutely);
             //var jobId = BackgroundJob.Enqueue(() => ProcesosContinuos());
         }
+<<<<<<< HEAD
         public void ProcesosContinuos() 
         {
+=======
+
+        public void ProcesosContinuos() 
+       {
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
              FuncionesNomina Dao = new FuncionesNomina();
              Dao.sp_EstatusTpProcesosJobs_Update_EstatusTpProcesosJobs();     
         }
@@ -155,6 +167,43 @@ namespace Payroll
             return fechajobs;
         }
 
+<<<<<<< HEAD
+=======
+        public void  Proceso( string NomProceso)
+        {
+            string FechaProceso = Fecha();
+
+            if (NomProceso == "CNomina")
+            {
+             
+                int anio = 2020;
+                int TipoPeriodo = 3;
+                int Periodo = 3;
+                int IdDefinicion = 1;
+                 var jobId = BackgroundJob.Enqueue(() => Cnomia(anio, TipoPeriodo, Periodo, IdDefinicion, FechaProceso));
+                 List<HangfireJobs> id = new List<HangfireJobs>();
+                 FuncionesNomina Dao = new FuncionesNomina();
+                 id = Dao.sp_IdJobsHangfireJobs_Retrieve_IdJobsHangfireJobs(FechaProceso);
+                int Idjobs = Convert.ToInt16(id[0].iId.ToString());
+                string StatusJobs = "En Cola";
+                string Nombrejobs = "CNomina1";
+                string Parametros = anio + "," + TipoPeriodo + "," + Periodo + "," + IdDefinicion + "," + FechaProceso;
+                Dao.Sp_TPProcesosJobs_insert_TPProcesosJobs(Idjobs, StatusJobs, Nombrejobs, Parametros);
+
+            }
+
+        }
+
+        public void Cnomia(int anio, int TipoPeriodo, int Periodo, int IdDefinicion, string fecha) {
+
+            FuncionesNomina Dao2 = new FuncionesNomina();
+            Dao2.sp_CNomina_1(anio, TipoPeriodo, Periodo, IdDefinicion);
+
+
+        }
+
+
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
 
     }
 }

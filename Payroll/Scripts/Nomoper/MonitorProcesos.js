@@ -35,7 +35,11 @@
                     }
                 }
                  
+<<<<<<< HEAD
                 TotalRows = EnCola + terminado + Procesando
+=======
+                TotalRows = EnCola + terminado + Procesando;
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
                 console.log(TotalRows);
                 PorMultiplicador = terminado * 100;              
                 PorMultiplicador = (PorMultiplicador / TotalRows); 
@@ -45,7 +49,11 @@
                         return "<span style='color: #333;'>" + text + "</span>";
                     }
                     return "<span style='color: #fff; '>" + text + "</span>";
+<<<<<<< HEAD
                 }
+=======
+                };
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
            
                 $("#jqxProgressBar2").jqxProgressBar({ animationDuration: 0, showText: true, renderText: renderText, template: "primary", width: 980, height: 20, value: PorMultiplicador });
                 var values = {};

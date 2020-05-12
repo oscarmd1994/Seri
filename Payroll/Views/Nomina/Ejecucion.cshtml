@@ -5,15 +5,20 @@
 
     @*Botones de flotantes*@
     <div>
-        <button class="flotante rounded btn btn-outline-success" title="Guardar" id="btnFloGuardar" type="button" value="1">
+        <button class="flotante rounded btn btn-outline-success" title="Guardar" id="btnFloGuardar" type="button" value="1" style="visibility:visible">
             <i class="fa fa-floppy-o"></i>
         </button>
-        <button class="flotante2 rounded btn btn-outline-danger" title="Limpiar todos los campos" id="btnlimpDat" type="button" btvisible="true" value="1">
+        <button class="flotante2 rounded btn btn-outline-danger" title="Limpiar todos los campos" id="btnlimpDat" type="button" btvisible="true" value="1" style="visibility:visible">
             <i class="fas fa-eraser"></i>
         </button>
-        <button class="flotante3 rounded btn btn-outline-danger" title="Ejecutar" id="btnFloEjecutar" type="button" btvisible="true" value="1">
+        <button class="flotante3 rounded btn btn-outline-danger" title="Ejecutar" id="btnFloEjecutar" type="button" btvisible="true" value="1" style="visibility:visible">
             <i class="far fa-caret-square-right"></i>
         </button>
+        <button class="flotante4 rounded btn btn-outline-danger" title="Cerrar Nomina" id="btnFloCerrarNom" type="button" btvisible="true" value="1" style="visibility:visible">
+            <i class="far fa-file-archive"></i>
+        </button>
+
+        
 
     </div>
 
@@ -63,15 +68,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label font-labels">
-                                Ejecucion:
-                            </label>
-                            <div class="col-sm-8">
+
+                            <label class="col-sm-4 col-form-label font-labels"><input type="checkbox" id="ChNCerrada">  Nomina cerrda</label>
+                            @*<div class="col-sm-8">
                                 <select placeholder="Ejecucion" tp-select="NomCerreada" class="form-control form-control-sm" id="EjeCerrada">
                                     <option value="0">Falso</option>
                                     <option value="1">Firme</option>
                                 </select>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
 

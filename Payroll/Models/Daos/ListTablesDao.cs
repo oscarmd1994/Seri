@@ -422,5 +422,153 @@ namespace Payroll.Models.Daos
             }
             return list;
         }
+<<<<<<< HEAD
+=======
+        public List<EmpleadosBean> sp_EmpleadosDEmpresa_Retrieve_EmpleadosDEmpresa(int CtrliIdEmpresa)
+        {
+            List<EmpleadosBean> list = new List<EmpleadosBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_EmpleadosDEmpresa_Retrieve_EmpleadosDEmpresa", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@CtrliIdEmpresa", CtrliIdEmpresa));
+
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        EmpleadosBean ls = new EmpleadosBean();
+
+                        ls.iIdEmpleado = int.Parse(data["IdEmpleado"].ToString());
+                        ls.sNombreEmpleado = data["NombreCompleto"].ToString();
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                data.Close(); cmd.Dispose(); conexion.Close(); cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+        }
+
+        public List<EmisorReceptorBean> sp_EmisorReceptor_Retrieve_EmisorReceptor(int CrtliIdEmpresa, int CrtliIdEmpleado)
+        {
+            List<EmisorReceptorBean> list = new List<EmisorReceptorBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_EmisorReceptor_Retrieve_EmisorReceptor", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@CrtliIdEmpresa", CrtliIdEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@CrtliIdEmpleado", CrtliIdEmpleado));
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        EmisorReceptorBean ls = new EmisorReceptorBean();
+                        ls.sNombreEmpresa = data["RazonSocial"].ToString();
+                        ls.sCalle = data["Calle"].ToString();
+                        //ls.sColonia = data["Colonia"].ToString();
+                        ls.sCiudad = data["Ciudad"].ToString();
+                        ls.sRFC = data["RFC"].ToString();
+                        ls.sAfiliacionIMSS = data["Afiliacion_IMSS"].ToString();
+                        ls.sNombreComp = data["NombreComp"].ToString();
+                        ls.sRFCEmpleado = data["RFCEmpleado"].ToString();
+                        ls.iIdEmpleado = int.Parse(data["IdEmpleado"].ToString());
+                        ls.sDescripcionDepartamento = data["DescripcionDepartamento"].ToString();
+                        ls.sNombrePuesto = data["NombrePuesto"].ToString();
+                        ls.sFechaIngreso = data["FechaIngreso"].ToString();
+                        ls.sTipoContrato = data["TipoContrato"].ToString();
+                        ls.sCentroCosto = data["CentroCosto"].ToString();
+                        ls.dSalarioMensual = decimal.Parse(data["SalarioMensual"].ToString());
+                        ls.sRegistroImss = data["RegistroImss"].ToString();
+                        ls.sCURP = data["CURP"].ToString();
+                        ls.sDescripcion = data[""].ToString();
+                        ls.iCtaCheques = int.Parse(data[""].ToString());
+                        ls.iRegimenFiscal = int.Parse(data[""].ToString());
+
+                        list.Add(ls);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+                data.Close(); cmd.Dispose(); conexion.Close(); cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+        }
+
+        public List<CInicioFechasPeriodoBean> sp_DatosPerido_Retrieve_DatosPerido(int CtrliIdEmpresa, int CtrliAnio, int CtrliTipoPereriodo, int CtrliPeriodo)
+        {
+            List<CInicioFechasPeriodoBean> list = new List<CInicioFechasPeriodoBean>();
+            try
+            {
+                this.Conectar();
+                SqlCommand cmd = new SqlCommand("sp_DatosPerido_Retrieve_DatosPerido", this.conexion)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.Add(new SqlParameter("@CtrliIdEmpresa", CtrliIdEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@CtrliAnio", CtrliAnio));
+                cmd.Parameters.Add(new SqlParameter("@CtrliTipoPereriodo", CtrliTipoPereriodo));
+                cmd.Parameters.Add(new SqlParameter("@CtrliPeriodo", CtrliPeriodo));
+                SqlDataReader data = cmd.ExecuteReader();
+                cmd.Dispose();
+                if (data.HasRows)
+                {
+                    while (data.Read())
+                    {
+                        CInicioFechasPeriodoBean LP = new CInicioFechasPeriodoBean();
+                        {
+                            LP.iId = int.Parse(data["Id"].ToString());
+                            LP.sNominaCerrada = data["Nomina_Cerrada"].ToString();
+                            LP.sFechaInicio = data["Fecha_Inicio"].ToString();
+                            LP.sFechaFinal = data["Fecha_Final"].ToString();
+                            LP.sFechaProceso = data["Fecha_Proceso"].ToString();
+                            LP.sFechaPago = data["Fecha_Pago"].ToString();
+                            LP.iDiasEfectivos = int.Parse(data["Dias_Efectivos"].ToString());
+
+                        };
+
+                        list.Add(LP);
+                    }
+                }
+                else
+                {
+                    list = null;
+                }
+
+                data.Close(); cmd.Dispose(); conexion.Close(); cmd.Parameters.Clear();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine(exc);
+            }
+            return list;
+
+        }
+
+
+>>>>>>> 372449f08200e247f5d4c46af2d806e69867fc5a
     }
 }
