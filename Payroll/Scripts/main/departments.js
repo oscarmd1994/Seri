@@ -1,4 +1,5 @@
-﻿$(function () {
+﻿/// <reference path="loadmenu.js" />
+$(function () {
 
     /* CONSTANTES DE LA BUSQUEDA DE UN DEPARTAMENTO AL REGISTRAR UNO NUEVO */
     const searchdepartmentkeynew = document.getElementById('searchdepartmentkeynew');
